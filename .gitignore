@@ -1,0 +1,22 @@
+__pycache__/
+*.py[cod]
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+
+# 原始需求与内部实现方案不进入公开仓库。
+/油气管网规范审查Agent_需求说明_v0.1.md
+/油气管网规范审查Agent_模块化实现方案_v1.0.docx
+
+# 企业规范原文和离线处理产物不进入公开仓库。
+data/raw/*
+data/pages/
+data/ocr/
+data/processed/
+data/indexes/
+data/*.db

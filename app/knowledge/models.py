@@ -1,0 +1,39 @@
+from datetime import datetime
+
+from pydantic import Field
+
+from app.domain.models import KnowledgeUnit, StrictModel
+
+
+class StoredUnit(StrictModel):
+    unit: KnowledgeUnit
+    document_id: str
+    standard_code: str
+    file_name: str
+    clause_number: str | None = None
+    table_number: str | None = None
+    parse_status: str | None = None
+
+
+class SearchHit(StrictModel):
+    knowledge_unit_id: str
+    score: float
+    source: str
+
+
+class IndexVersion(StrictModel):
+    version_id: str
+    source_hash: str
+    config_hash: str
+    embedding_model_id: str
+    build_time: datetime
+    unit_count: int = Field(ge=0)
+    bm25_count: int = Field(ge=0)
+    vector_count: int = Field(ge=0)
+
+
+class BuildReport(StrictModel):
+    version: IndexVersion
+    document_count: int
+    failures: list[str] = Field(default_factory=list)
+    duration_ms: float = Field(ge=0)

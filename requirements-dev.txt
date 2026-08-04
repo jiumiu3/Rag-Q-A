@@ -1,0 +1,6 @@
+# 开发与测试依赖。先安装 requirements.txt。
+httpx>=0.28,<1.0
+mypy>=1.14,<2.0
+pytest>=8.3,<9.0
+PyYAML>=6,<7
+ruff>=0.9,<1.0

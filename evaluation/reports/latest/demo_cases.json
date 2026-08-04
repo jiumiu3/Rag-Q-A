@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "demo-query",
+    "title": "基础条款查询",
+    "status": "COMPLETED",
+    "expected_terminal": "COMPLETED",
+    "passed": true,
+    "intent": "CLAUSE_LOOKUP",
+    "check_item_count": 0,
+    "evidence_count": 18,
+    "result_statuses": [],
+    "trace_nodes": [
+      "normalize_input",
+      "classify_intent",
+      "answer_query",
+      "generate_report"
+    ],
+    "limitations": []
+  },
+  {
+    "case_id": "demo-checklist",
+    "title": "检查清单",
+    "status": "COMPLETED",
+    "expected_terminal": "COMPLETED",
+    "passed": true,
+    "intent": "CHECKLIST_GENERATION",
+    "check_item_count": 2,
+    "evidence_count": 0,
+    "result_statuses": [],
+    "trace_nodes": [
+      "normalize_input",
+      "classify_intent",
+      "identify_scenario",
+      "generate_checklist",
+      "generate_report"
+    ],
+    "limitations": []
+  },
+  {
+    "case_id": "demo-review",
+    "title": "完整设计描述预审",
+    "status": "WAITING_CONFIRMATION",
+    "expected_terminal": "WAITING_CONFIRMATION",
+    "passed": true,
+    "intent": "COMPLIANCE_REVIEW",
+    "check_item_count": 2,
+    "evidence_count": 0,
+    "result_statuses": [],
+    "trace_nodes": [
+      "normalize_input",
+      "classify_intent",
+      "identify_scenario",
+      "extract_check_items",
+      "confirm"
+    ],
+    "limitations": []
+  }
+]

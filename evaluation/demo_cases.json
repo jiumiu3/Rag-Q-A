@@ -1,0 +1,26 @@
+[
+  {
+    "case_id": "demo-query",
+    "type": "query",
+    "title": "基础条款查询",
+    "input": "Q/GGW 02005.2-2022 第8.3.4.4条是什么？",
+    "expected_terminal": "COMPLETED",
+    "purpose": "展示精确条款命中、引用和原页定位"
+  },
+  {
+    "case_id": "demo-checklist",
+    "type": "checklist",
+    "title": "检查清单",
+    "input": "为新建输气站生成控制室照度和UPS供电时间检查清单",
+    "expected_terminal": "COMPLETED",
+    "purpose": "展示任务路由和原子检查项"
+  },
+  {
+    "case_id": "demo-review",
+    "type": "full_review",
+    "title": "完整设计描述预审",
+    "input": "请审查：新建输气站控制室照度为500lx，UPS持续供电时间为2h。",
+    "expected_terminal": "WAITING_CONFIRMATION",
+    "purpose": "展示检查项确认、追问和未确认生产规则时的安全边界"
+  }
+]

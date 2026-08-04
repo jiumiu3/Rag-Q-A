@@ -1,0 +1,8 @@
+# 运行时依赖。建议优先使用：pip install -e .
+fastapi>=0.115,<0.116
+Pillow>=11,<13
+PyMuPDF>=1.25,<2.0
+pydantic>=2.10,<3.0
+pydantic-settings>=2.7,<3.0
+PyYAML>=6,<7
+uvicorn[standard]>=0.34,<1.0

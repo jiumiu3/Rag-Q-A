@@ -1,0 +1,289 @@
+{
+  "versions": {
+    "generated_at": "2026-08-04T09:15:48.316778Z",
+    "random_seed": 42,
+    "code_commit": "UNAVAILABLE_NOT_A_GIT_WORKTREE",
+    "code_hash": "131bd14c483627740d9fd0c8aff13dff29cbe8d9c028a84aca9ec9aa4f56ccf0",
+    "index_version": "index_2d8fa99bdc0f110e0087",
+    "index_source_hash": "b5e2f7510d3f2e816b4df786f5460b794bb820dfaca34cad8158877a961af375",
+    "index_config_hash": "8469c3138f250a19d301e27734ed004ea77e949450563b0d0819521d698e0c74",
+    "embedding_model_id": "qwen3.7-text-embedding",
+    "chat_model_id": "qwen3.7-plus",
+    "model_config_hash": "23e2b00c905a2787974b41a3e815471b443254a846107a9e732df2090aabec46",
+    "prompt_and_evaluator_hash": "c64610c62cb2771b79ed10cab8a64d36e5a5ea07055526300b9eb995329a5b32",
+    "dataset_version": "m11-datasets-v1",
+    "dataset_hashes": {
+      "evaluation/retrieval_gold.jsonl": "a8c8eff0d81f05db08c419a941ef7341a21c14cd0cf90f9a7e14e9f6c88b6cdf",
+      "evaluation/qa_gold.jsonl": "dd0f3382ef921fa81d991c408e68501e74228d09b694d82405ec118401c98cd6",
+      "evaluation/design_gold.jsonl": "fb8cbf33eae8b02cc66991a06bf824a6ff7904647d60ee9090c3df79efce0ff0",
+      "evaluation/design_detail_gold.jsonl": "15427b0244183684b15e20ccaaaf92c90425e11c293ed0457c84a2efebce7ce0",
+      "evaluation/compliance_gold.jsonl": "73a564f35016a029c15ef3ecdd52ec54212c5b5e6874e15825f55eac8b0bb8a1",
+      "evaluation/MANIFEST.json": "655172bf6734a1b04d925c5a4d1eed881c538e509ff02d00494b4fe48fbe3016"
+    },
+    "evaluator_version": "m11-v1"
+  },
+  "suites": [
+    {
+      "name": "retrieval",
+      "dataset_path": "evaluation/retrieval_gold.jsonl",
+      "dataset_hash": "a8c8eff0d81f05db08c419a941ef7341a21c14cd0cf90f9a7e14e9f6c88b6cdf",
+      "case_count": 50,
+      "metrics": [
+        {
+          "name": "recall_at_1",
+          "value": 1.0,
+          "numerator": 50,
+          "denominator": 50,
+          "status": "MEASURED",
+          "scope": "50条真实索引精确条款号基准"
+        },
+        {
+          "name": "recall_at_5",
+          "value": 1.0,
+          "numerator": 50,
+          "denominator": 50,
+          "status": "MEASURED",
+          "scope": "50条真实索引精确条款号基准"
+        },
+        {
+          "name": "mrr",
+          "value": 1.0,
+          "numerator": 50.0,
+          "denominator": 50,
+          "status": "MEASURED",
+          "scope": "50条真实索引精确条款号基准"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "标签由 SQLite 精确条款键分层派生，不代表同义改写或开放语义检索性能。"
+      ]
+    },
+    {
+      "name": "qa",
+      "dataset_path": "evaluation/qa_gold.jsonl",
+      "dataset_hash": "dd0f3382ef921fa81d991c408e68501e74228d09b694d82405ec118401c98cd6",
+      "case_count": 30,
+      "metrics": [
+        {
+          "name": "route_accuracy",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "30条条款/表格查询"
+        },
+        {
+          "name": "evidence_status_accuracy",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "30条可程序验证状态"
+        },
+        {
+          "name": "citation_validity",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "引用存在且来自 Evidence"
+        },
+        {
+          "name": "numeric_consistency",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "回答数值不得脱离绑定 Evidence"
+        },
+        {
+          "name": "refusal_accuracy",
+          "value": 1.0,
+          "numerator": 10,
+          "denominator": 10,
+          "status": "MEASURED",
+          "scope": "10条错误条款/复杂表格/错误表号"
+        },
+        {
+          "name": "evidence_supported_answer_accuracy",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "状态、期望证据与引用联合校验"
+        },
+        {
+          "name": "agent_tool_call_rate",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "回答对象包含经代码执行的 knowledge_search 调用审计"
+        },
+        {
+          "name": "agent_generation_success_rate",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "模型基于工具证据生成结构化回答且未降级为抽取式回答"
+        },
+        {
+          "name": "free_text_semantic_correctness",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "没有领域专家逐条语义评分，不报告自由文本正确率"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "20条正例由精确条款键派生；自由文本语义正确性尚需领域专家评分。"
+      ]
+    },
+    {
+      "name": "design",
+      "dataset_path": "evaluation/design_gold.jsonl;evaluation/design_detail_gold.jsonl",
+      "dataset_hash": "4f682ae3bc67d243100adf6c0b8318b180d812f922324144450ceec5968b0c15",
+      "case_count": 30,
+      "metrics": [
+        {
+          "name": "item_recall",
+          "value": 1.0,
+          "numerator": 61,
+          "denominator": 61,
+          "status": "MEASURED",
+          "scope": "30段、每段2-3项的属性多重集召回"
+        },
+        {
+          "name": "item_sequence_exact_match",
+          "value": 1.0,
+          "numerator": 30,
+          "denominator": 30,
+          "status": "MEASURED",
+          "scope": "30段属性顺序完全匹配"
+        },
+        {
+          "name": "object_binding_accuracy",
+          "value": 1.0,
+          "numerator": 24,
+          "denominator": 24,
+          "status": "MEASURED",
+          "scope": "12段24项细粒度人工夹具"
+        },
+        {
+          "name": "parameter_accuracy",
+          "value": 1.0,
+          "numerator": 24,
+          "denominator": 24,
+          "status": "MEASURED",
+          "scope": "12段24项细粒度人工夹具"
+        },
+        {
+          "name": "unit_accuracy",
+          "value": 1.0,
+          "numerator": 24,
+          "denominator": 24,
+          "status": "MEASURED",
+          "scope": "12段24项细粒度人工夹具"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "细粒度夹具由项目实现阶段人工编写，标注人字段仍待领域负责人签字确认。"
+      ]
+    },
+    {
+      "name": "compliance",
+      "dataset_path": "evaluation/compliance_gold.jsonl",
+      "dataset_hash": "73a564f35016a029c15ef3ecdd52ec54212c5b5e6874e15825f55eac8b0bb8a1",
+      "case_count": 20,
+      "metrics": [
+        {
+          "name": "deterministic_status_accuracy",
+          "value": 1.0,
+          "numerator": 20,
+          "denominator": 20,
+          "status": "MEASURED",
+          "scope": "20条人工规则夹具的确定性执行结果"
+        },
+        {
+          "name": "trace_or_limitation_coverage",
+          "value": 1.0,
+          "numerator": 20,
+          "denominator": 20,
+          "status": "MEASURED",
+          "scope": "每项必须有比较 trace 或安全降级限制"
+        },
+        {
+          "name": "advisory_strength_accuracy",
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "status": "MEASURED",
+          "scope": "带期望 advisory 标签的规则"
+        },
+        {
+          "name": "missing_condition_safety_accuracy",
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "status": "MEASURED",
+          "scope": "缺少必要输入时必须安全降级，不得猜测结论"
+        },
+        {
+          "name": "llm_rule_extraction_accuracy",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "未建立真实条款到规则的领域专家黄金集"
+        },
+        {
+          "name": "production_end_to_end_compliance_accuracy",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "尚无人工确认生产规则库，不能报告端到端准确率"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "规则均为人工夹具，只测执行器；不代表真实条款规则抽取或工程审查准确率。"
+      ]
+    }
+  ],
+  "error_summary": {
+    "agent_generation": 0,
+    "agent_tool_call": 0,
+    "binding": 0,
+    "citation": 0,
+    "item_extraction": 0,
+    "numeric": 0,
+    "ocr": 0,
+    "parameter": 0,
+    "qa_status": 0,
+    "retrieval": 0,
+    "routing": 0,
+    "rule_extraction": 0,
+    "structure": 0,
+    "table": 0,
+    "unit": 0
+  },
+  "known_data_quality": {
+    "ocr_suspicious_pages": 8,
+    "manual_review_tables": 27,
+    "production_rules_confirmed": 0,
+    "note": "来自 M1/M2 真实质量报告与当前规则库状态"
+  },
+  "claims_boundary": [
+    "检索指标仅适用于精确条款号基准，不能外推为开放语义检索准确率。",
+    "问答未进行领域专家自由文本语义评分。",
+    "拆解细粒度夹具尚待领域负责人签字确认。",
+    "合规仅测人工规则夹具执行器，未测真实规则抽取和生产端到端准确率。",
+    "没有优化前同口径基线，因此不报告性能提升百分比。"
+  ]
+}

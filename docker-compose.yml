@@ -1,0 +1,50 @@
+services:
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_UID: ${LOCAL_UID:-1000}
+        APP_GID: ${LOCAL_GID:-1000}
+    image: oil-gas-compliance-agent:cpu
+    init: true
+    env_file:
+      - .env
+    environment:
+      APP_ENV: production
+      PYTHONPATH: /app
+      APP_STORAGE__RAW_DATA_DIR: /app/data/raw
+      APP_STORAGE__PAGES_DIR: /app/data/pages
+      APP_STORAGE__OCR_DIR: /app/data/ocr
+      APP_STORAGE__PROCESSED_DIR: /app/data/processed
+      APP_STORAGE__INDEX_DIR: /app/data/indexes
+      APP_STORAGE__SQLITE_PATH: /app/data/knowledge.db
+      APP_STORAGE__SESSION_SQLITE_PATH: /app/data/sessions.db
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    cpus: ${APP_CPUS:-4.0}
+    mem_limit: ${APP_MEMORY_LIMIT:-8g}
+    volumes:
+      # 开发阶段直接挂载源码；Python 修改无需重建包含 OCR 模型的镜像。
+      - ./app:/app/app:ro
+      - ./scripts:/app/scripts:ro
+      # M11 数据集与报告挂载到宿主机；评测生成的报告可直接保留。
+      - ./evaluation:/app/evaluation
+      # data 整体持久化；原始规范再用只读子挂载覆盖。
+      - ./data:/app/data
+      - ./data/raw:/app/data/raw:ro
+    tmpfs:
+      - /tmp:size=1g
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=3).read()
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

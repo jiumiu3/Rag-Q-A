@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>规范问答助手</title>
+  <style>
+    :root{font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif;color:#17324d;background:#f3f8fd;--blue:#3b82f6;--line:#dceaf7;--soft:#eaf4ff;--muted:#6d8398}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#f7fbff 0%,#edf6ff 100%)}
+    header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#ffffffdb;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:700}.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#78b7ff,#3b82f6);display:grid;place-items:center;color:white}.subtitle{font-size:12px;color:var(--muted);font-weight:400}
+    .layout{max-width:1120px;margin:0 auto;min-height:calc(100vh - 64px);padding:22px;display:flex;gap:18px}.chat{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 36px #4d8fc414;flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+    .chat-head{padding:20px 22px 14px;border-bottom:1px solid #edf4fa}.chat-head h1{font-size:19px;margin:0 0 5px}.muted{color:var(--muted);font-size:12px}.messages{min-height:430px;max-height:calc(100vh - 285px);overflow:auto;padding:24px;display:flex;flex-direction:column;gap:18px}
+    .bubble{max-width:86%;padding:13px 16px;border-radius:16px;line-height:1.65;white-space:pre-wrap;font-size:14px}.assistant{align-self:flex-start;background:#f1f7fd;border:1px solid #dfedf9;border-bottom-left-radius:5px}.user{align-self:flex-end;background:linear-gradient(135deg,#66a9f7,#3b82f6);color:white;border-bottom-right-radius:5px}.welcome{color:#52708d}
+    .composer{border-top:1px solid var(--line);padding:16px 18px;background:#fbfdff}.input-wrap{display:flex;align-items:flex-end;gap:10px;border:1px solid #cfe2f4;background:white;border-radius:15px;padding:9px 10px 9px 14px;box-shadow:0 4px 14px #6098c60d}.input-wrap:focus-within{border-color:#76adf3;box-shadow:0 0 0 3px #dcebff}
+    textarea{border:0;outline:0;resize:none;width:100%;min-height:48px;max-height:130px;font:inherit;color:#17324d;padding:6px;background:transparent}.send{width:42px;height:42px;border:0;border-radius:12px;background:var(--blue);color:white;font-size:19px;cursor:pointer}.send:hover{background:#256fd9}.tools{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.link-btn{border:0;background:transparent;color:#4b82ba;cursor:pointer;padding:4px;font-size:12px}
+    .drawer{width:0;opacity:0;overflow:hidden;transition:width .25s,opacity .2s}.drawer.open{width:340px;opacity:1}.panel{height:100%;max-height:calc(100vh - 108px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 12px 36px #4d8fc410}.panel h2{font-size:15px;margin:0 0 12px}.panel-section{border-top:1px solid #eaf2f8;padding:14px 0}.panel-section:first-of-type{border-top:0}.panel summary{cursor:pointer;font-size:13px;color:#315c83;padding:6px 0}.panel p{font-size:12px;line-height:1.6;color:#536d84}.panel a{color:#347dc4;font-size:12px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:var(--soft);font-size:11px;margin:2px}.warning{color:#a45e00;background:#fff6df;padding:9px;border-radius:9px;font-size:12px}.status{color:#54809f}.actions button{border:1px solid #cfe2f4;background:white;color:#3978b5;border-radius:9px;padding:7px 9px;margin:4px 3px 4px 0;cursor:pointer}pre{white-space:pre-wrap;font-size:11px;background:#f5f9fc;padding:8px;border-radius:8px;overflow:auto}
+    @media(max-width:820px){.layout{padding:10px}.drawer.open{position:fixed;inset:64px 0 0 auto;width:min(88vw,360px);z-index:9;background:#f3f8fd;padding:10px}.panel{max-height:100%}.messages{max-height:calc(100vh - 275px)}header{padding:0 16px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">规</div><div>规范问答助手<div class="subtitle">油气管网仪表与自动控制</div></div></div>
+  <button class="link-btn" id="toggle">证据与详情 ☰</button>
+</header>
+<main class="layout">
+  <section class="chat">
+    <div class="chat-head"><h1>问答</h1><div id="session" class="muted">正在创建会话…</div></div>
+    <div id="messages" class="messages"><div class="bubble assistant welcome">你好，我可以查询规范条款、生成检查清单或预审设计描述。每次回答末尾都会列出证据来源。</div></div>
+    <div class="composer">
+      <div class="input-wrap"><textarea id="message" placeholder="输入规范问题或设计描述…">Q/GGW 02005.2-2022 第8.3.4.4条是什么？</textarea><button class="send" id="send" aria-label="发送">↑</button></div>
+      <div class="tools"><span id="status" class="muted"></span><button class="link-btn" id="new">新建会话</button></div>
+    </div>
+  </section>
+  <aside id="drawer" class="drawer" aria-label="证据与详情侧栏">
+    <div class="panel">
+      <h2>证据与详情</h2>
+      <div class="panel-section"><strong>规范证据</strong><div id="evidence" class="muted">暂无证据</div></div>
+      <div class="panel-section"><strong>检查项确认</strong><div id="items" class="muted">暂无检查项</div><div class="actions"><button id="confirm">确认检查项并继续</button></div></div>
+      <div class="panel-section"><strong>追问回复</strong><div id="question" class="muted">暂无追问</div><textarea id="answers" placeholder='JSON，例如 {"location":"控制室"}'></textarea><div class="actions"><button id="clarify">提交补充信息</button></div></div>
+      <div class="panel-section"><strong>合规结果</strong><div id="results" class="muted">暂无结果</div></div>
+      <div class="panel-section"><details><summary>运行追踪</summary><pre id="trace"></pre></details><div class="actions"><button id="report">打开 Markdown 报告</button></div></div>
+    </div>
+  </aside>
+</main>
+<script>
+let sessionId=null,state=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function api(path,options={}){const r=await fetch('/api/v1'+path,{headers:{'Content-Type':'application/json'},...options});const body=await r.json().catch(()=>({}));if(!r.ok)throw new Error(body.error?.message||JSON.stringify(body));return body}
+function bubble(text,type){const node=document.createElement('div');node.className=`bubble ${type}`;node.textContent=text;$('messages').appendChild(node);$('messages').scrollTop=$('messages').scrollHeight}
+async function create(){state=await api('/sessions',{method:'POST',body:'{"mode":"review"}'});sessionId=state.session_id;$('session').textContent=`会话 ${sessionId}`;renderDetails()}
+async function send(){const content=$('message').value.trim();if(!content)return;if(!sessionId)await create();bubble(content,'user');$('message').value='';$('status').textContent='正在检索规范…';try{state=await api(`/sessions/${sessionId}/messages`,{method:'POST',body:JSON.stringify({content,idempotency_key:crypto.randomUUID()})});bubble(answerText(state),'assistant');renderDetails()}catch(e){bubble(`处理失败：${e.message}\n\n证据来源：\n无可用规范证据。`,'assistant')}finally{$('status').textContent=state?`状态 ${state.status}`:''}}
+function sourceText(s){if(!s.evidence.length)return '无可用规范证据。';return s.evidence.slice(0,10).map((e,i)=>`[${i+1}] ${e.citation.standard_code}，${e.citation.clause_id||e.citation.table_id||'未标号内容'}，第 ${e.citation.page_number} 页`).join('\n')}
+function answerText(s){if(s.answer?.answer_text)return s.answer.answer_text;if(s.status==='WAITING_CONFIRMATION')return `已拆解出 ${s.check_items.length} 个检查项，请在右侧“检查项确认”中核对后继续。\n\n证据来源：\n当前步骤尚未形成规范证据。`;if(s.report_markdown)return s.report_markdown.includes('## 证据来源')?s.report_markdown:`${s.report_markdown}\n\n证据来源：\n${sourceText(s)}`;return `处理完成，当前状态：${s.status}。\n\n证据来源：\n${sourceText(s)}`}
+async function confirm(){if(!state?.check_items?.length)return;state=await api(`/sessions/${sessionId}/confirm`,{method:'POST',body:JSON.stringify({items:state.check_items,rules:[]})});bubble(answerText(state),'assistant');renderDetails()}
+async function clarify(){let answers;try{answers=JSON.parse($('answers').value)}catch{alert('追问回复必须是 JSON');return}state=await api(`/sessions/${sessionId}/clarify`,{method:'POST',body:JSON.stringify({answers})});bubble(answerText(state),'assistant');renderDetails()}
+function renderDetails(){if(!state)return;$('items').innerHTML=state.check_items.length?state.check_items.map(i=>`<details><summary>${esc(i.object)} · ${esc(i.attribute)}</summary><p>${esc(i.value)} ${esc(i.unit)} · <span class="pill">${esc(i.status)}</span></p></details>`).join(''):'暂无检查项';$('question').textContent=state.clarification?.question||'暂无追问';$('results').innerHTML=state.compliance_results.length?state.compliance_results.map(r=>`<p><span class="pill">${esc(r.status)}</span> ${esc(r.item_id)}<br>${esc((r.limitations||[]).join('；'))}</p>`).join(''):'暂无结果';$('evidence').innerHTML=state.evidence.length?state.evidence.map(e=>`<details><summary>${esc(e.citation.standard_code)} · ${esc(e.citation.clause_id||e.citation.table_id||'上下文')} · 第${e.citation.page_number}页</summary><p>${esc(e.citation.quote)}</p><a target="_blank" href="/api/v1/pages/${encodeURIComponent(e.citation.source_span.document_id)}/${e.citation.page_number}">打开原页</a></details>`).join(''):'暂无证据';$('trace').textContent=JSON.stringify(state.workflow_trace,null,2)}
+$('toggle').onclick=()=>{$('drawer').classList.toggle('open')};$('new').onclick=async()=>{await create();$('messages').innerHTML='<div class="bubble assistant welcome">新会话已创建。每次回答末尾都会列出证据来源。</div>'};$('send').onclick=send;$('message').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}};$('confirm').onclick=confirm;$('clarify').onclick=clarify;$('report').onclick=()=>sessionId&&window.open(`/api/v1/sessions/${sessionId}/report?format=markdown`,'_blank');create().catch(e=>$('status').textContent=e.message);
+</script>
+</body>
+</html>

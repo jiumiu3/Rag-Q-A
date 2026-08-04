@@ -1,0 +1,4 @@
+# M1 中文 OCR 可选依赖。安装基础依赖后执行：pip install -r requirements-ocr.txt
+onnxruntime>=1.20,<2.0
+rapidocr>=3,<4
+

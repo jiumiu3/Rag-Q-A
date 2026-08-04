@@ -1,0 +1,23 @@
+.git
+.agents
+.codex
+.env
+.venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.mypy_cache
+.ruff_cache
+*.egg-info
+build
+dist
+
+# 原始企业规范与所有生成数据通过 volume 挂载，不进入镜像层。
+data
+
+# Office 临时文件、方案原稿和本地测试不需要进入运行镜像。
+~$*
+*.docx
+tests
+docs
+

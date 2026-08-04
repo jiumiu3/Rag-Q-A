@@ -1,0 +1,34 @@
+{
+  "dataset_version": "m11-datasets-v1",
+  "random_seed": 42,
+  "split": "evaluation-only",
+  "training_usage": false,
+  "datasets": {
+    "retrieval_gold.jsonl": {
+      "cases": 50,
+      "annotation": "从当前 SQLite 索引的精确标准号和条款键分层派生",
+      "limitation": "不代表同义改写或开放语义检索"
+    },
+    "qa_gold.jsonl": {
+      "cases": 30,
+      "annotation": "20 条精确条款正例、5 条错误条款、3 条复杂表格、2 条错误表号",
+      "limitation": "未包含领域专家自由文本语义评分"
+    },
+    "design_gold.jsonl": {
+      "cases": 30,
+      "annotation": "实现阶段人工编写的原子属性标签",
+      "limitation": "不是独立领域专家盲测集"
+    },
+    "design_detail_gold.jsonl": {
+      "cases": 12,
+      "items": 24,
+      "annotation": "对象、参数、单位细粒度人工夹具",
+      "limitation": "待领域负责人签字确认"
+    },
+    "compliance_gold.jsonl": {
+      "cases": 20,
+      "annotation": "覆盖阈值、范围、枚举、布尔、单位和安全降级的人工规则夹具",
+      "limitation": "只测确定性执行器，不代表真实条款规则抽取或生产审查准确率"
+    }
+  }
+}
