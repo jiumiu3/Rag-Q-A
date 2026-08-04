@@ -9,6 +9,7 @@ from app.workflow.models import AgentState, WorkflowStatus
 from app.workflow.nodes import WorkflowNodes
 from app.workflow.routes import (
     route_after_identification,
+    route_after_rule_extraction,
     route_completeness,
     route_confirmation,
     route_evidence,
@@ -103,7 +104,7 @@ class WorkflowRunner:
             "plan_retrieval": "retrieve",
             "retrieve": "evaluate_evidence",
             "evaluate_evidence": route_evidence(state),
-            "extract_rule": "evaluate_compliance",
+            "extract_rule": route_after_rule_extraction(state),
             "evaluate_compliance": "verify_claims",
             "verify_claims": route_verification(state),
             "answer_query": "generate_report",
@@ -141,9 +142,13 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
     graph.add_conditional_edges(
         "evaluate_evidence",
         route_evidence,
-        {"retrieve": "retrieve", "extract_rule": "extract_rule", "pause": END},
+        {"plan_retrieval": "plan_retrieval", "extract_rule": "extract_rule", "pause": END},
     )
-    graph.add_edge("extract_rule", "evaluate_compliance")
+    graph.add_conditional_edges(
+        "extract_rule",
+        route_after_rule_extraction,
+        {"evaluate_compliance": "evaluate_compliance", "pause": END},
+    )
     graph.add_edge("evaluate_compliance", "verify_claims")
     graph.add_conditional_edges(
         "verify_claims",

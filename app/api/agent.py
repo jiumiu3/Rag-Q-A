@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
 from app.api.qa import get_qa_service
+from app.compliance.repository import SQLiteRuleRepository
 from app.core.config import get_settings
 from app.core.exceptions import AppError
 from app.workflow.graph import WorkflowRunner, graph_mermaid
@@ -35,7 +36,11 @@ class ApiResourceError(AppError):
 def get_workflow_service() -> WorkflowService:
     settings = get_settings()
     qa = get_qa_service()
-    nodes = WorkflowNodes(qa, qa.retrieval)
+    nodes = WorkflowNodes(
+        qa,
+        qa.retrieval,
+        SQLiteRuleRepository(settings.storage.session_sqlite_path),
+    )
     repository = SQLiteWorkflowRepository(settings.storage.session_sqlite_path)
     return WorkflowService(repository, WorkflowRunner(nodes))
 

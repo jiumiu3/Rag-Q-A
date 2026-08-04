@@ -1,24 +1,28 @@
 {
   "versions": {
-    "generated_at": "2026-08-04T09:15:48.316778Z",
+    "generated_at": "2026-08-04T10:09:49.217637Z",
     "random_seed": 42,
-    "code_commit": "UNAVAILABLE_NOT_A_GIT_WORKTREE",
-    "code_hash": "131bd14c483627740d9fd0c8aff13dff29cbe8d9c028a84aca9ec9aa4f56ccf0",
+    "code_commit": "22f95ac269af4a0605994237c9275dbad9732d8c",
+    "code_hash": "2bc6db65c426b10aab90682305979522093015a306e1fc8eebc07339b4993009",
     "index_version": "index_2d8fa99bdc0f110e0087",
     "index_source_hash": "b5e2f7510d3f2e816b4df786f5460b794bb820dfaca34cad8158877a961af375",
     "index_config_hash": "8469c3138f250a19d301e27734ed004ea77e949450563b0d0819521d698e0c74",
     "embedding_model_id": "qwen3.7-text-embedding",
     "chat_model_id": "qwen3.7-plus",
-    "model_config_hash": "23e2b00c905a2787974b41a3e815471b443254a846107a9e732df2090aabec46",
-    "prompt_and_evaluator_hash": "c64610c62cb2771b79ed10cab8a64d36e5a5ea07055526300b9eb995329a5b32",
+    "model_config_hash": "a117fc37e76deda0d81a8481715a37ae82cde438a32dd13680773f487e8ecbb7",
+    "prompt_and_evaluator_hash": "233127c3ac7ec2441a266a5691a3f7b520b23aea105f2ced08d7f3402e7e38ed",
     "dataset_version": "m11-datasets-v1",
     "dataset_hashes": {
       "evaluation/retrieval_gold.jsonl": "a8c8eff0d81f05db08c419a941ef7341a21c14cd0cf90f9a7e14e9f6c88b6cdf",
       "evaluation/qa_gold.jsonl": "dd0f3382ef921fa81d991c408e68501e74228d09b694d82405ec118401c98cd6",
       "evaluation/design_gold.jsonl": "fb8cbf33eae8b02cc66991a06bf824a6ff7904647d60ee9090c3df79efce0ff0",
       "evaluation/design_detail_gold.jsonl": "15427b0244183684b15e20ccaaaf92c90425e11c293ed0457c84a2efebce7ce0",
+      "evaluation/datasets/semantic_retrieval.jsonl": "85700b3e7590ed95bf6849851a8f53c47cb3bca74e908f47886b343cb5268893",
+      "evaluation/datasets/adversarial_qa.jsonl": "67637d97b08045278e485d168f5c53df45fa123b6fc5d2493caf961d768ed82d",
+      "evaluation/datasets/engineering_cases.jsonl": "fe496198b5556bb02fa2623cc2c09647f0989f60678e574af8cb0fd255e1fa42",
+      "evaluation/datasets/rule_extraction.jsonl": "3e4d0b89bdafd87d299f795551ce69801d5764a91293ef76b7ba1b453db9a63b",
       "evaluation/compliance_gold.jsonl": "73a564f35016a029c15ef3ecdd52ec54212c5b5e6874e15825f55eac8b0bb8a1",
-      "evaluation/MANIFEST.json": "655172bf6734a1b04d925c5a4d1eed881c538e509ff02d00494b4fe48fbe3016"
+      "evaluation/MANIFEST.json": "d78d444cf167954640b88ac0a1bf6f7856bd31c4ab847ba99c46891c46a69510"
     },
     "evaluator_version": "m11-v1"
   },
@@ -115,8 +119,8 @@
         },
         {
           "name": "agent_tool_call_rate",
-          "value": 1.0,
-          "numerator": 30,
+          "value": 0.0,
+          "numerator": 0,
           "denominator": 30,
           "status": "MEASURED",
           "scope": "回答对象包含经代码执行的 knowledge_search 调用审计"
@@ -138,7 +142,248 @@
           "scope": "没有领域专家逐条语义评分，不报告自由文本正确率"
         }
       ],
-      "failures": [],
+      "failures": [
+        {
+          "suite": "qa",
+          "case_id": "qa-001",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-002",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-003",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-004",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-005",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-006",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-007",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-008",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-009",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-010",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-011",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-012",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-013",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-014",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-015",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-016",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-017",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-018",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-019",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-020",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/SUFFICIENT",
+          "actual": "CLAUSE_LOOKUP/SUFFICIENT",
+          "detail": "当前为抽取式回答；结论不构成完整设计合规判定。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-021",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/NOT_FOUND",
+          "actual": "CLAUSE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-022",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/NOT_FOUND",
+          "actual": "CLAUSE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-023",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/NOT_FOUND",
+          "actual": "CLAUSE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-024",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/NOT_FOUND",
+          "actual": "CLAUSE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-025",
+          "category": "agent_tool_call",
+          "expected": "CLAUSE_LOOKUP/NOT_FOUND",
+          "actual": "CLAUSE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-026",
+          "category": "agent_tool_call",
+          "expected": "TABLE_LOOKUP/PARTIAL",
+          "actual": "TABLE_LOOKUP/PARTIAL",
+          "detail": "请根据引用页图像人工复核；后续可接入多模态表格解析。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-027",
+          "category": "agent_tool_call",
+          "expected": "TABLE_LOOKUP/PARTIAL",
+          "actual": "TABLE_LOOKUP/PARTIAL",
+          "detail": "请根据引用页图像人工复核；后续可接入多模态表格解析。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-028",
+          "category": "agent_tool_call",
+          "expected": "TABLE_LOOKUP/PARTIAL",
+          "actual": "TABLE_LOOKUP/PARTIAL",
+          "detail": "请根据引用页图像人工复核；后续可接入多模态表格解析。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-029",
+          "category": "agent_tool_call",
+          "expected": "TABLE_LOOKUP/NOT_FOUND",
+          "actual": "TABLE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        },
+        {
+          "suite": "qa",
+          "case_id": "qa-030",
+          "category": "agent_tool_call",
+          "expected": "TABLE_LOOKUP/NOT_FOUND",
+          "actual": "TABLE_LOOKUP/NOT_FOUND",
+          "detail": "证据不足时系统不会使用模型常识生成规范结论。"
+        }
+      ],
       "limitations": [
         "20条正例由精确条款键派生；自由文本语义正确性尚需领域专家评分。"
       ]
@@ -193,6 +438,250 @@
       "failures": [],
       "limitations": [
         "细粒度夹具由项目实现阶段人工编写，标注人字段仍待领域负责人签字确认。"
+      ]
+    },
+    {
+      "name": "semantic_retrieval",
+      "dataset_path": "evaluation/datasets/semantic_retrieval.jsonl",
+      "dataset_hash": "85700b3e7590ed95bf6849851a8f53c47cb3bca74e908f47886b343cb5268893",
+      "case_count": 4,
+      "metrics": [
+        {
+          "name": "bm25_recall_at_1",
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "开放语义人工释义集"
+        },
+        {
+          "name": "bm25_recall_at_5",
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "开放语义人工释义集"
+        },
+        {
+          "name": "bm25_mrr",
+          "value": 0.75,
+          "numerator": 3.0,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "开放语义人工释义集"
+        },
+        {
+          "name": "bm25_ndcg_at_5",
+          "value": 0.75,
+          "numerator": 3.0,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "开放语义人工释义集"
+        },
+        {
+          "name": "vector_recall_at_1",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "vector_recall_at_5",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "vector_mrr",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "vector_ndcg_at_5",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "hybrid_recall_at_1",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "hybrid_recall_at_5",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "hybrid_mrr",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "hybrid_ndcg_at_5",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "离线模式未调用远程 Embedding，不能伪造 Vector 指标"
+        },
+        {
+          "name": "semantic_query_success_rate",
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "离线首轮 BM25 检索"
+        },
+        {
+          "name": "retry_recovery_rate",
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "status": "MEASURED",
+          "scope": "首轮失败后自适应改写"
+        },
+        {
+          "name": "query_rewrite_gain",
+          "value": 0.25,
+          "numerator": 1,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "因查询改写新增成功案例占全体比例"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "样本为非敏感人工释义夹具，标签仍待独立领域专家复核；不报告相对提升百分比。"
+      ]
+    },
+    {
+      "name": "adversarial_and_engineering",
+      "dataset_path": "evaluation/datasets/adversarial_qa.jsonl;evaluation/datasets/engineering_cases.jsonl",
+      "dataset_hash": "0d6b994ab3eea9c67d666daa8d525d876e7e4dfd4d18e45afa5c7a7796e11445",
+      "case_count": 7,
+      "metrics": [
+        {
+          "name": "unsupported_exact_match_rejection_rate",
+          "value": 1.0,
+          "numerator": 2,
+          "denominator": 2,
+          "status": "MEASURED",
+          "scope": "不存在条款号和错误表号"
+        },
+        {
+          "name": "missing_condition_safety_annotation_coverage",
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "status": "MEASURED",
+          "scope": "工程案例缺条件均有期望追问/降级标签"
+        },
+        {
+          "name": "free_text_semantic_correctness",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "专家评分文件尚未填写"
+        },
+        {
+          "name": "compliance_status_accuracy",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "工程案例规则尚未独立确认，禁止自动宣称准确率"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "对抗动作与工程结论标签已建模；未完成人工语义评分的指标明确为 NOT_EVALUATED。"
+      ]
+    },
+    {
+      "name": "rule_extraction",
+      "dataset_path": "evaluation/datasets/rule_extraction.jsonl",
+      "dataset_hash": "3e4d0b89bdafd87d299f795551ce69801d5764a91293ef76b7ba1b453db9a63b",
+      "case_count": 4,
+      "metrics": [
+        {
+          "name": "rule_type_accuracy",
+          "value": 0.75,
+          "numerator": 3,
+          "denominator": 4,
+          "status": "MEASURED",
+          "scope": "确定性候选规则原始输出"
+        },
+        {
+          "name": "operator_accuracy",
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "status": "MEASURED",
+          "scope": "带操作符标签样例"
+        },
+        {
+          "name": "threshold_accuracy",
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "status": "MEASURED",
+          "scope": "带阈值标签样例"
+        },
+        {
+          "name": "unit_accuracy",
+          "value": 0.6666666666666666,
+          "numerator": 2,
+          "denominator": 3,
+          "status": "MEASURED",
+          "scope": "带单位标签样例"
+        },
+        {
+          "name": "condition_recall",
+          "value": 1.0,
+          "numerator": 1,
+          "denominator": 1,
+          "status": "MEASURED",
+          "scope": "带条件标签样例"
+        },
+        {
+          "name": "candidate_review_acceptance_rate",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "尚无完成的领域人工审核"
+        },
+        {
+          "name": "confirmed_rule_execution_accuracy",
+          "value": null,
+          "numerator": null,
+          "denominator": 0,
+          "status": "NOT_EVALUATED",
+          "scope": "尚无独立确认规则黄金集"
+        }
+      ],
+      "failures": [],
+      "limitations": [
+        "只报告原始候选规则；人工修改结果和最终确认规则未混入抽取准确率。"
       ]
     },
     {
@@ -258,7 +747,7 @@
   ],
   "error_summary": {
     "agent_generation": 0,
-    "agent_tool_call": 0,
+    "agent_tool_call": 30,
     "binding": 0,
     "citation": 0,
     "item_extraction": 0,
@@ -280,10 +769,11 @@
     "note": "来自 M1/M2 真实质量报告与当前规则库状态"
   },
   "claims_boundary": [
-    "检索指标仅适用于精确条款号基准，不能外推为开放语义检索准确率。",
+    "精确编号与开放语义指标使用不同数据集，均不能外推为生产准确率。",
     "问答未进行领域专家自由文本语义评分。",
     "拆解细粒度夹具尚待领域负责人签字确认。",
     "合规仅测人工规则夹具执行器，未测真实规则抽取和生产端到端准确率。",
-    "没有优化前同口径基线，因此不报告性能提升百分比。"
+    "没有优化前同口径基线，因此不报告性能提升百分比。",
+    "离线直接模型回答基线因无证据且不安全，仅作为定义保留，不进入生产默认路径。"
   ]
 }

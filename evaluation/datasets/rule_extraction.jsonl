@@ -1,0 +1,4 @@
+{"case_id":"rule-min","source_text":"控制系统UPS供电后备时间应不少于2 h。","expected":{"rule_type":"NUMERIC_THRESHOLD","operator":">=","expected_value":"2","unit":"h"},"annotation_source":"确定性语言夹具"}
+{"case_id":"rule-max","source_text":"仪表管道长度不得超过10 m。","expected":{"rule_type":"NUMERIC_THRESHOLD","operator":"<=","expected_value":"10","unit":"m"},"annotation_source":"确定性语言夹具"}
+{"case_id":"rule-bool","source_text":"控制室应设置应急照明系统。","expected":{"rule_type":"BOOLEAN_REQUIREMENT","expected_boolean":true},"annotation_source":"确定性语言夹具"}
+{"case_id":"rule-condition","source_text":"在无人值守站场，控制系统UPS供电时间不应低于2 h。","expected":{"rule_type":"NUMERIC_THRESHOLD","operator":">=","expected_value":"2","unit":"h","condition":"无人值守站场"},"annotation_source":"确定性语言夹具"}

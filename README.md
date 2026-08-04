@@ -10,10 +10,12 @@
 - 条款层级、术语、图注、候选表格和知识单元结构化。
 - SQLite 精确检索、BM25 和 Embedding 语义向量检索。
 - 明确条款号/表号使用确定性精确查询，开放问题使用 BM25 与向量检索。
+- 证据不足时记录缺口并采用保留标识符改写、领域同义词、问题拆分或路线切换重试；无新增证据即安全停止。
 - 大模型调用 `knowledge_search`，仅依据工具返回的 Evidence 组织中文回答。
 - Claim-Evidence 绑定、引用校验、工程数值校验和证据不足安全拒答。
 - 设计描述原子拆解、人工确认、缺失条件追问与会话恢复。
 - 阈值、范围、枚举、布尔、单位换算、查表和复合规则确定性执行。
+- 规范 Evidence 可提取为 SQLite 持久化候选规则；只有人工确认版本能进入正式规则库。
 - FastAPI、SQLite 会话、响应式 Web 问答页面和 Markdown/JSON 报告。
 - 检索、问答、拆解、合规四类可复现评测及版本哈希绑定。
 
@@ -34,7 +36,8 @@ flowchart LR
     VERIFY --> ANSWER[带来源回答]
     DESIGN[设计描述] --> ITEMS[原子检查项]
     ITEMS --> CONFIRM[人工确认/追问]
-    CONFIRM --> RULES[确定性规则执行]
+    CONFIRM --> CANDIDATE[候选规则提取/审核]
+    CANDIDATE --> RULES[已确认规则确定性执行]
 ```
 
 详细组件和安全边界见 [系统架构说明](docs/ARCHITECTURE.md)。
@@ -235,6 +238,21 @@ POST /api/v1/compliance/evaluate
 
 最终判断由确定性执行器完成，不由聊天模型直接决定。支持数值阈值、范围、单位换算、枚举、布尔、唯一查表、AND/OR 复合规则和人工复核规则。
 
+候选规则审核接口：
+
+```text
+POST /api/v1/candidate-rules/extract
+GET  /api/v1/candidate-rules
+GET  /api/v1/candidate-rules/{candidate_rule_id}
+POST /api/v1/candidate-rules/{candidate_rule_id}/confirm
+POST /api/v1/candidate-rules/{candidate_rule_id}/reject
+POST /api/v1/candidate-rules/{candidate_rule_id}/revise
+GET  /api/v1/rules
+GET  /api/v1/rules/{rule_id}
+```
+
+候选规则默认 `pending_review`，审核会保存原始 JSON、修改后版本、审核人、时间和备注。`rejected` 规则不会进入正式规则库；匹配存在缺条件、歧义或冲突时不会执行确定性判断。
+
 外部标准、缺失条件、未解析表格和非唯一查表不会输出确定性结论。
 
 ## 会话与证据接口
@@ -268,7 +286,7 @@ docker compose run --rm --no-deps agent \
 
 输出位于 `evaluation/reports/latest/`，包括 JSON、Markdown、HTML 指标报告和三类演示结果。评测绑定代码哈希、索引版本、Embedding/Chat 模型、运行配置和数据集 SHA256。
 
-当前固定数据集包括 50 条精确编号检索、30 条条款/表格问答、30 段设计拆解和 20 条确定性合规夹具。结果与适用边界见 [评测报告](evaluation/reports/latest/report.md)。精确编号指标不能外推为开放语义检索准确率；自由文本领域语义、真实规则抽取和生产端到端合规仍需要独立专家数据集。
+原固定数据集继续保留，并新增开放语义检索、对抗问答、多检查项工程案例和候选规则抽取集。报告分别展示 BM25、Vector、混合与自适应检索；未填写专家评分时自由文本语义指标明确为 `NOT_EVALUATED`。所有新增案例均为非敏感合成或测试索引释义，不能外推为生产准确率。
 
 ## 本地开发
 

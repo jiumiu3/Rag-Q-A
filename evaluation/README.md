@@ -11,6 +11,11 @@
 | `design_gold.jsonl` | 30 段/61 项 | 原子属性召回与顺序 | 实现阶段人工夹具，不是独立盲测集 |
 | `design_detail_gold.jsonl` | 12 段/24 项 | 对象、参数、单位 | 待领域负责人签字确认 |
 | `compliance_gold.jsonl` | 20 | 确定性执行、安全降级、trace | 人工规则夹具，只测执行器 |
+| `datasets/semantic_retrieval.jsonl` | 4 | BM25、Vector、混合、自适应检索 | 自然表达与多属性组合，待专家复核 |
+| `datasets/adversarial_qa.jsonl` | 5 | 精确错误拒答与安全动作 | 含错误前提和 Prompt Injection |
+| `datasets/engineering_cases.jsonl` | 2/4项 | 多检查项工程预审 | 非敏感合成案例，结论待专家确认 |
+| `datasets/rule_extraction.jsonl` | 4 | 候选规则结构化抽取 | 不与人工修改后规则混算 |
+| `annotations/*.jsonl` | 待填写 | 专家逐条评分 | 未填写时报告 `NOT_EVALUATED` |
 | `demo_cases.json` | 3 | 查询、清单、完整预审演示 | 校验真实工作流终态 |
 
 ## 运行
@@ -41,4 +46,5 @@ docker compose run --rm --no-deps agent python scripts/run_demo_cases.py
 
 - `free_text_semantic_correctness`、`llm_rule_extraction_accuracy` 和 `production_end_to_end_compliance_accuracy` 当前为 `NOT_EVALUATED`。
 - 27 张复杂表格仍强制人工复核；8 张 OCR 异常字符候选页不是本评测中的已确认错误。
-- 当前目录没有独立优化前同口径基线，不报告性能提升比例。
+- 报告分别给出 BM25、Vector、混合和自适应检索；没有同口径历史基线时不报告提升比例。
+- 直接模型回答基线不提供 Evidence，只允许离线定义，绝不进入生产默认路径。

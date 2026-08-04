@@ -47,7 +47,7 @@ class RuleEvaluator:
             return self._result(item, rule, ComplianceStatus.MANUAL_REVIEW_REQUIRED, rule.reason)
         if not self._conditions_match(item, rule.conditions):
             return self._result(
-                item, rule, ComplianceStatus.NOT_SPECIFIED, "检查项不满足规则适用条件"
+                item, rule, ComplianceStatus.INSUFFICIENT_INFORMATION, "规则适用条件缺失或不匹配"
             )
         if isinstance(rule, NumericThresholdRule):
             return self._threshold(item, rule)

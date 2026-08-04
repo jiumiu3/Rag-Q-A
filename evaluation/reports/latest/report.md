@@ -1,12 +1,12 @@
 # M11 可复现评测报告
 
-生成时间：2026-08-04T09:15:48.316778+00:00
-代码哈希：`131bd14c483627740d9fd0c8aff13dff29cbe8d9c028a84aca9ec9aa4f56ccf0`
+生成时间：2026-08-04T10:09:49.217637+00:00
+代码哈希：`2bc6db65c426b10aab90682305979522093015a306e1fc8eebc07339b4993009`
 索引版本：`index_2d8fa99bdc0f110e0087`
 索引源哈希：`b5e2f7510d3f2e816b4df786f5460b794bb820dfaca34cad8158877a961af375`
 数据集版本：`m11-datasets-v1`
-模型配置哈希：`23e2b00c905a2787974b41a3e815471b443254a846107a9e732df2090aabec46`（不包含 API Key）
-提示词与评测器哈希：`c64610c62cb2771b79ed10cab8a64d36e5a5ea07055526300b9eb995329a5b32`
+模型配置哈希：`a117fc37e76deda0d81a8481715a37ae82cde438a32dd13680773f487e8ecbb7`（不包含 API Key）
+提示词与评测器哈希：`233127c3ac7ec2441a266a5691a3f7b520b23aea105f2ced08d7f3402e7e38ed`
 
 ## 指标
 
@@ -32,7 +32,7 @@
 | numeric_consistency | 1.0000 | 30 | MEASURED | 回答数值不得脱离绑定 Evidence |
 | refusal_accuracy | 1.0000 | 10 | MEASURED | 10条错误条款/复杂表格/错误表号 |
 | evidence_supported_answer_accuracy | 1.0000 | 30 | MEASURED | 状态、期望证据与引用联合校验 |
-| agent_tool_call_rate | 1.0000 | 30 | MEASURED | 回答对象包含经代码执行的 knowledge_search 调用审计 |
+| agent_tool_call_rate | 0.0000 | 30 | MEASURED | 回答对象包含经代码执行的 knowledge_search 调用审计 |
 | agent_generation_success_rate | 1.0000 | 30 | MEASURED | 模型基于工具证据生成结构化回答且未降级为抽取式回答 |
 | free_text_semantic_correctness | N/A | 0 | NOT_EVALUATED | 没有领域专家逐条语义评分，不报告自由文本正确率 |
 
@@ -51,6 +51,56 @@
 
 - 限制：细粒度夹具由项目实现阶段人工编写，标注人字段仍待领域负责人签字确认。
 
+### semantic_retrieval
+数据量：4
+
+| 指标 | 值 | 分母 | 状态 | 适用范围 |
+|---|---:|---:|---|---|
+| bm25_recall_at_1 | 0.7500 | 4 | MEASURED | 开放语义人工释义集 |
+| bm25_recall_at_5 | 0.7500 | 4 | MEASURED | 开放语义人工释义集 |
+| bm25_mrr | 0.7500 | 4 | MEASURED | 开放语义人工释义集 |
+| bm25_ndcg_at_5 | 0.7500 | 4 | MEASURED | 开放语义人工释义集 |
+| vector_recall_at_1 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| vector_recall_at_5 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| vector_mrr | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| vector_ndcg_at_5 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| hybrid_recall_at_1 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| hybrid_recall_at_5 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| hybrid_mrr | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| hybrid_ndcg_at_5 | N/A | 0 | NOT_EVALUATED | 离线模式未调用远程 Embedding，不能伪造 Vector 指标 |
+| semantic_query_success_rate | 0.7500 | 4 | MEASURED | 离线首轮 BM25 检索 |
+| retry_recovery_rate | 1.0000 | 1 | MEASURED | 首轮失败后自适应改写 |
+| query_rewrite_gain | 0.2500 | 4 | MEASURED | 因查询改写新增成功案例占全体比例 |
+
+- 限制：样本为非敏感人工释义夹具，标签仍待独立领域专家复核；不报告相对提升百分比。
+
+### adversarial_and_engineering
+数据量：7
+
+| 指标 | 值 | 分母 | 状态 | 适用范围 |
+|---|---:|---:|---|---|
+| unsupported_exact_match_rejection_rate | 1.0000 | 2 | MEASURED | 不存在条款号和错误表号 |
+| missing_condition_safety_annotation_coverage | 1.0000 | 1 | MEASURED | 工程案例缺条件均有期望追问/降级标签 |
+| free_text_semantic_correctness | N/A | 0 | NOT_EVALUATED | 专家评分文件尚未填写 |
+| compliance_status_accuracy | N/A | 0 | NOT_EVALUATED | 工程案例规则尚未独立确认，禁止自动宣称准确率 |
+
+- 限制：对抗动作与工程结论标签已建模；未完成人工语义评分的指标明确为 NOT_EVALUATED。
+
+### rule_extraction
+数据量：4
+
+| 指标 | 值 | 分母 | 状态 | 适用范围 |
+|---|---:|---:|---|---|
+| rule_type_accuracy | 0.7500 | 4 | MEASURED | 确定性候选规则原始输出 |
+| operator_accuracy | 0.6667 | 3 | MEASURED | 带操作符标签样例 |
+| threshold_accuracy | 0.6667 | 3 | MEASURED | 带阈值标签样例 |
+| unit_accuracy | 0.6667 | 3 | MEASURED | 带单位标签样例 |
+| condition_recall | 1.0000 | 1 | MEASURED | 带条件标签样例 |
+| candidate_review_acceptance_rate | N/A | 0 | NOT_EVALUATED | 尚无完成的领域人工审核 |
+| confirmed_rule_execution_accuracy | N/A | 0 | NOT_EVALUATED | 尚无独立确认规则黄金集 |
+
+- 限制：只报告原始候选规则；人工修改结果和最终确认规则未混入抽取准确率。
+
 ### compliance
 数据量：20
 
@@ -68,7 +118,7 @@
 ## 误差分类
 
 - agent_generation: 0
-- agent_tool_call: 0
+- agent_tool_call: 30
 - binding: 0
 - citation: 0
 - item_extraction: 0
@@ -87,7 +137,36 @@
 
 | 套件 | 案例 | 分类 | 期望 | 实际 | 说明 |
 |---|---|---|---|---|---|
-| - | - | - | - | - | 当前固定夹具无失败 |
+| qa | qa-001 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-002 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-003 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-004 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-005 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-006 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-007 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-008 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-009 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-010 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-011 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-012 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-013 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-014 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-015 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-016 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-017 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-018 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-019 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-020 | agent_tool_call | CLAUSE_LOOKUP/SUFFICIENT | CLAUSE_LOOKUP/SUFFICIENT | 当前为抽取式回答；结论不构成完整设计合规判定。 |
+| qa | qa-021 | agent_tool_call | CLAUSE_LOOKUP/NOT_FOUND | CLAUSE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-022 | agent_tool_call | CLAUSE_LOOKUP/NOT_FOUND | CLAUSE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-023 | agent_tool_call | CLAUSE_LOOKUP/NOT_FOUND | CLAUSE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-024 | agent_tool_call | CLAUSE_LOOKUP/NOT_FOUND | CLAUSE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-025 | agent_tool_call | CLAUSE_LOOKUP/NOT_FOUND | CLAUSE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-026 | agent_tool_call | TABLE_LOOKUP/PARTIAL | TABLE_LOOKUP/PARTIAL | 请根据引用页图像人工复核；后续可接入多模态表格解析。 |
+| qa | qa-027 | agent_tool_call | TABLE_LOOKUP/PARTIAL | TABLE_LOOKUP/PARTIAL | 请根据引用页图像人工复核；后续可接入多模态表格解析。 |
+| qa | qa-028 | agent_tool_call | TABLE_LOOKUP/PARTIAL | TABLE_LOOKUP/PARTIAL | 请根据引用页图像人工复核；后续可接入多模态表格解析。 |
+| qa | qa-029 | agent_tool_call | TABLE_LOOKUP/NOT_FOUND | TABLE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
+| qa | qa-030 | agent_tool_call | TABLE_LOOKUP/NOT_FOUND | TABLE_LOOKUP/NOT_FOUND | 证据不足时系统不会使用模型常识生成规范结论。 |
 
 ## 已知数据质量
 
@@ -98,8 +177,9 @@
 
 ## 声明边界
 
-- 检索指标仅适用于精确条款号基准，不能外推为开放语义检索准确率。
+- 精确编号与开放语义指标使用不同数据集，均不能外推为生产准确率。
 - 问答未进行领域专家自由文本语义评分。
 - 拆解细粒度夹具尚待领域负责人签字确认。
 - 合规仅测人工规则夹具执行器，未测真实规则抽取和生产端到端准确率。
 - 没有优化前同口径基线，因此不报告性能提升百分比。
+- 离线直接模型回答基线因无证据且不安全，仅作为定义保留，不进入生产默认路径。

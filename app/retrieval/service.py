@@ -96,16 +96,26 @@ class RetrievalService:
 
     def retrieve(self, query: str, top_k: int = 5) -> RetrievalResult:
         analysis, plan = self.analyzer.plan(query, top_k)
+        return self.execute(plan, analysis)
+
+    def execute(
+        self, plan: RetrievalPlan, analysis: QueryAnalysis | None = None
+    ) -> RetrievalResult:
+        """严格执行已生成的计划，供工作流重试复用。"""
+        query = plan.query
+        analysis = analysis or self.analyzer.analyze(query)
         all_units = self.repository.list_units(plan.filters)
         allowed = allowed_unit_ids(all_units, plan.filters)
         routes: dict[str, list[SearchHit]] = {}
         if "exact" in plan.retrievers:
-            routes["exact"] = self.repository.exact_search(plan.exact_keys, plan.filters, top_k * 3)
+            routes["exact"] = self.repository.exact_search(
+                plan.exact_keys, plan.filters, plan.top_k * 3
+            )
         if "bm25" in plan.retrievers:
-            routes["bm25"] = self.bm25.search(query, allowed, top_k * 4)
+            routes["bm25"] = self.bm25.search(query, allowed, plan.top_k * 4)
         if "vector" in plan.retrievers:
             routes["vector"] = self.vector.search(
-                self.embedding.embed([query])[0], allowed, top_k * 4
+                self.embedding.embed([query])[0], allowed, plan.top_k * 4
             )
         fused, source_scores = self._rrf(routes)
         if routes.get("exact"):
@@ -121,13 +131,14 @@ class RetrievalService:
                     item[0],
                 )
             )
-        candidate_ids = [key for key, _ in fused[: top_k * 2]]
+        candidate_ids = [key for key, _ in fused[: plan.top_k * 2]]
         units = self.repository.get_units(candidate_ids)
         if self.reranker:
             reranked = self.reranker.rerank(query, units)
             order = {key: score for key, score in reranked}
             units.sort(key=lambda item: -order.get(item.unit.unit_id, 0))
-        units = self._expand(units[:top_k], all_units)
+        selected = units[: plan.top_k]
+        units = self._expand(selected, all_units) if plan.expansion_policy else selected
         evidence = [
             self._evidence(item, source_scores.get(item.unit.unit_id, {}), analysis)
             for item in units

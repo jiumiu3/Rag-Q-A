@@ -162,6 +162,9 @@ class RetrievalPlan(StrictModel):
     retrievers: list[Literal["exact", "bm25", "vector"]] = Field(default_factory=list)
     top_k: int = Field(default=5, ge=1, le=100)
     expansion_policy: str | None = None
+    subqueries: list[str] = Field(default_factory=list)
+    rewrite_reason: str | None = None
+    attempt: int = Field(default=0, ge=0)
 
 
 class SourceCitation(StrictModel):

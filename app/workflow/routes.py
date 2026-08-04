@@ -1,5 +1,5 @@
 from app.domain.models import IntentType
-from app.workflow.models import AgentState, WorkflowStatus
+from app.workflow.models import AgentState, PendingAction, WorkflowStatus
 
 
 def route_intent(state: AgentState) -> str:
@@ -35,10 +35,20 @@ def route_completeness(state: AgentState) -> str:
 def route_evidence(state: AgentState) -> str:
     if state.status == WorkflowStatus.SAFE_STOPPED:
         return "pause"
-    return "retrieve" if not state.evidence and state.retrieval_retry_count else "extract_rule"
+    if state.evidence_assessments and state.evidence_assessments[-1].is_sufficient:
+        return "extract_rule"
+    return "plan_retrieval"
 
 
 def route_verification(state: AgentState) -> str:
     if state.status == WorkflowStatus.SAFE_STOPPED:
         return "pause"
     return "evaluate_compliance" if state.validation_retry_count else "generate_report"
+
+
+def route_after_rule_extraction(state: AgentState) -> str:
+    return (
+        "pause"
+        if state.pending_action == PendingAction.REVIEW_CANDIDATE_RULES
+        else "evaluate_compliance"
+    )

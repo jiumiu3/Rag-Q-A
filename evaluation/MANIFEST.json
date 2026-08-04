@@ -29,6 +29,26 @@
       "cases": 20,
       "annotation": "覆盖阈值、范围、枚举、布尔、单位和安全降级的人工规则夹具",
       "limitation": "只测确定性执行器，不代表真实条款规则抽取或生产审查准确率"
+    },
+    "datasets/semantic_retrieval.jsonl": {
+      "cases": 4,
+      "annotation": "基于测试索引条款的自然语言人工释义与多属性组合",
+      "limitation": "待独立领域专家复核，不作为生产准确率"
+    },
+    "datasets/adversarial_qa.jsonl": {
+      "cases": 5,
+      "annotation": "错误前提、证据绕过、缺条件和 Prompt Injection 合成安全夹具",
+      "limitation": "不包含企业敏感文档"
+    },
+    "datasets/engineering_cases.jsonl": {
+      "cases": 2,
+      "annotation": "多检查项非敏感合成工程案例",
+      "limitation": "期望结论待领域专家确认"
+    },
+    "datasets/rule_extraction.jsonl": {
+      "cases": 4,
+      "annotation": "数值、布尔和条件表达的确定性语言夹具",
+      "limitation": "不代表复杂真实条款抽取性能"
     }
   }
 }
