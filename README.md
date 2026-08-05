@@ -102,6 +102,9 @@ APP_MODEL__REQUEST_RETRIES=3
 APP_MODEL__API_KEY_ENV=LLM_API_KEY
 LLM_API_KEY=你的密钥
 APP_AGENT__RAG_LLM_ENABLED=true
+APP_RETRIEVAL__CONTEXTUAL_ENABLED=true
+APP_RETRIEVAL__CONTEXTUAL_STRATEGY=deterministic
+APP_RETRIEVAL__CONTEXTUAL_VERSION=v1
 ```
 
 `.env` 不得提交。远程建库会把知识单元发送给 Embedding 服务，问答会把检索 Evidence 发送给聊天模型，启用前应确认数据授权和服务方的数据政策。
@@ -184,6 +187,8 @@ docker compose run --rm --no-deps agent \
 ```
 
 该命令生成 SQLite、BM25、Embedding 向量、可选 FAISS 文件和索引版本清单。检查一致性：
+
+BM25 和 Embedding 使用确定性生成的 `context_prefix + 原始 content`，引用仍只使用原始内容。构建同时生成 `data/indexes/contextual_units.jsonl` 审计文件。修改上下文策略或版本后必须重新运行本命令；配置变化会触发全量上下文重算。
 
 ```bash
 docker compose run --rm --no-deps agent \

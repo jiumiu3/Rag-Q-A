@@ -15,7 +15,13 @@ from app.domain.models import (
     TraceEvent,
 )
 from app.qa.models import AnswerDraft
-from app.retrieval.models import EvidenceAssessment, RetrievalAttempt
+from app.retrieval.models import (
+    EvidenceAssessment,
+    QuestionAnalysis,
+    RetrievalAttempt,
+    RetrievalGoal,
+    RetrievalToolTrace,
+)
 
 
 class WorkflowStatus(StrEnum):
@@ -57,6 +63,11 @@ class AgentState(StrictModel):
     retrieval_plan: RetrievalPlan | None = None
     retrieval_attempts: list[RetrievalAttempt] = Field(default_factory=list)
     evidence_assessments: list[EvidenceAssessment] = Field(default_factory=list)
+    question_analysis: QuestionAnalysis | None = None
+    retrieval_goals: list[RetrievalGoal] = Field(default_factory=list)
+    retrieval_step_count: int = Field(default=0, ge=0)
+    evidence_coverage: list[EvidenceAssessment] = Field(default_factory=list)
+    retrieval_tool_calls: list[RetrievalToolTrace] = Field(default_factory=list)
     rules: list[ExecutableRule] = Field(default_factory=list)
     candidate_rules: list[CandidateRule] = Field(default_factory=list)
     compliance_results: list[ComplianceResult] = Field(default_factory=list)

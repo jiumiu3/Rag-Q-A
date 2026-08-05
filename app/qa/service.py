@@ -7,8 +7,15 @@ from pydantic import ValidationError
 from app.core.model_client import CompatibleJSONClient, ModelClientError
 from app.domain.models import Evidence, EvidenceStatus, IntentType, SourceCitation
 from app.qa.models import AnswerClaim, AnswerDraft, RAGGeneratedAnswer, RetrievalToolCall
-from app.retrieval.models import RetrievalResult
+from app.retrieval.agentic_planner import AgenticRetrievalPlanner
+from app.retrieval.evaluator import QAEvidenceEvaluator
+from app.retrieval.models import (
+    RetrievalGoal,
+    RetrievalResult,
+    RetrievalToolTrace,
+)
 from app.retrieval.service import QueryAnalyzer, RetrievalService
+from app.retrieval.tools import KnowledgeSearchTool
 
 NUMERIC_RE = re.compile(r"(?<![\w.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h)?", re.I)
 REFERENCE_RE = re.compile(
@@ -300,6 +307,71 @@ class RAGAgentAnswerer:
         )
 
 
+class EvidenceGroundedAnswerGenerator:
+    """只消费工作流已批准的 Evidence，不在回答阶段执行检索。"""
+
+    def __init__(self, client: CompatibleJSONClient | None = None) -> None:
+        self.client = client
+
+    def generate(
+        self,
+        question: str,
+        evidence: list[Evidence],
+        retrieval_goals: list[RetrievalGoal],
+        tool_calls: list[RetrievalToolTrace],
+        result: RetrievalResult,
+    ) -> AnswerDraft:
+        base = EvidenceAnswerer().answer(question, result)
+        invocations = [
+            RetrievalToolCall(
+                query=call.query,
+                top_k=max(1, min(result.trace.plan.top_k, 10)),
+                result_count=call.result_count,
+            )
+            for call in tool_calls
+            if call.tool_name == "knowledge_search"
+        ]
+        if base.status != EvidenceStatus.SUFFICIENT or not self.client:
+            return AnswerDraft.model_validate(
+                {**base.model_dump(exclude={"answer_text"}), "tool_calls": invocations}
+            )
+        allowed = {item.evidence_id: item for item in evidence if item.context_reason is None}
+        prompt = json.dumps(
+            {
+                "instruction": "仅依据 evidence 生成简体中文回答并绑定真实 evidence_ids",
+                "question": question,
+                "goals": [goal.model_dump(mode="json") for goal in retrieval_goals],
+                "evidence": [
+                    {"evidence_id": item.evidence_id, "content": item.content}
+                    for item in allowed.values()
+                ],
+            },
+            ensure_ascii=False,
+        )
+        try:
+            generated = self.client.complete(prompt, RAGGeneratedAnswer)
+            used = [key for claim in generated.claims for key in claim.evidence_ids]
+            if not set(used).issubset(allowed):
+                raise ModelClientError("回答生成器引用了工作流范围之外的 Evidence")
+            draft = AnswerDraft(
+                intent=result.trace.query_analysis.intent,
+                status=EvidenceStatus.SUFFICIENT,
+                conclusion=generated.conclusion,
+                claims=generated.claims,
+                citations=[allowed[key].citation for key in dict.fromkeys(used)],
+                limitations=generated.limitations,
+                tool_calls=invocations,
+            )
+            if CitationValidator().validate(draft, evidence):
+                raise ModelClientError("生成答案未通过引用或数值校验")
+            return draft
+        except (ModelClientError, ValidationError):
+            payload = base.model_dump(exclude={"answer_text"})
+            payload["tool_calls"] = invocations
+            payload["limitations"] = base.limitations + ["结构化生成失败，已降级为抽取式回答。"]
+            return AnswerDraft.model_validate(payload)
+
+
 class QAService:
     def __init__(
         self, retrieval: RetrievalService, rag_answerer: RAGAgentAnswerer | None = None
@@ -308,22 +380,86 @@ class QAService:
         self.answerer = EvidenceAnswerer()
         self.rag_answerer = rag_answerer
         self.validator = CitationValidator()
+        client = rag_answerer.client if rag_answerer else None
+        self.agentic_planner = AgenticRetrievalPlanner(client)
+        self.search_tool = KnowledgeSearchTool(retrieval)
+        self.evidence_evaluator = QAEvidenceEvaluator()
+        self.answer_generator = EvidenceGroundedAnswerGenerator(client)
 
     def ask(self, question: str, top_k: int = 5) -> tuple[AnswerDraft, RetrievalResult]:
-        fallback_reason: str | None = None
-        if self.rag_answerer:
-            try:
-                draft, result = self.rag_answerer.answer(question, top_k)
-            except ModelClientError as exc:
-                fallback_reason = exc.message
-                result = self.retrieval.retrieve(question, top_k)
-                draft = self.answerer.answer(question, result)
+        # 保留仅实现旧 chat 工具协议的第三方适配器兼容性；正式 CompatibleJSONClient
+        # 使用下方受工作流控制的多轮流程。
+        if self.rag_answerer and not hasattr(self.rag_answerer.client, "complete"):
+            draft, legacy_result = self.rag_answerer.answer(question, top_k)
+            errors = self.validator.validate(draft, legacy_result.evidence)
+            if errors:
+                draft = EvidenceAnswerer._degraded(
+                    legacy_result.trace.query_analysis.intent,
+                    EvidenceStatus.PARTIAL,
+                    "候选答案未通过引用一致性校验，已阻止返回未经验证的内容。",
+                    errors,
+                )
+            return draft, legacy_result
+        analysis = self.agentic_planner.analyze_question(question)
+        evidence: list[Evidence] = []
+        history: list[str] = []
+        traces: list[RetrievalToolTrace] = []
+        previous = None
+        result: RetrievalResult | None = None
+        for attempt in range(self.agentic_planner.MAX_ATTEMPTS):
+            plan = self.agentic_planner.create(
+                question, analysis, attempt, previous, history, top_k
+            )
+            known = {item.evidence_id for item in evidence}
+            new_count = 0
+            for query in plan.subqueries or [plan.query]:
+                query_plan = plan.model_copy(update={"query": query})
+                result, trace = self.search_tool.execute(query_plan, known)
+                traces.append(trace)
+                for item in result.evidence:
+                    if item.evidence_id not in known:
+                        evidence.append(item)
+                        known.add(item.evidence_id)
+                        new_count += 1
+                history.append(query)
+            assert result is not None
+            previous = self.evidence_evaluator.evaluate(analysis, plan, evidence, known, new_count)
+            if previous.is_sufficient or previous.next_action in {"manual_review", "safe_stop"}:
+                break
+        assert result is not None
+        result = result.model_copy(update={"evidence": evidence})
+        if previous and previous.is_sufficient:
+            draft = self.answer_generator.generate(
+                question, evidence, analysis.goals, traces, result
+            )
         else:
-            result = self.retrieval.retrieve(question, top_k)
-            draft = self.answerer.answer(question, result)
-        if fallback_reason:
-            draft.limitations.append(f"模型工具调用失败，已降级为抽取式回答：{fallback_reason}")
-            draft = AnswerDraft.model_validate(draft.model_dump(exclude={"answer_text"}))
+            goal_statuses = {
+                item.status for item in (previous.goal_assessments if previous else [])
+            }
+            status = (
+                EvidenceStatus.CONFLICTING
+                if "CONFLICT" in goal_statuses
+                else EvidenceStatus.PARTIAL
+                if "PARTIAL" in goal_statuses
+                else EvidenceStatus.NOT_FOUND
+            )
+            direct = [item for item in evidence if item.context_reason is None]
+            draft = EvidenceAnswerer._degraded(
+                result.trace.query_analysis.intent,
+                status,
+                (previous.failure_reason if previous else None) or "未检索到充分证据",
+                citations=[item.citation for item in direct]
+                if status == EvidenceStatus.PARTIAL
+                else [],
+                tool_calls=[
+                    RetrievalToolCall(
+                        query=call.query,
+                        top_k=max(1, min(top_k, 10)),
+                        result_count=call.result_count,
+                    )
+                    for call in traces
+                ],
+            )
         errors = self.validator.validate(draft, result.evidence)
         if errors:
             draft = EvidenceAnswerer._degraded(

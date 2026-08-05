@@ -30,6 +30,8 @@ flowchart LR
 
 自适应检索由 `plan_retrieval`、`retrieve`、`evaluate_evidence` 三个职责独立的节点组成。状态持久化原始/当前/历史查询、路线、过滤条件、候选数、新增 Evidence 数和结构化充分性评估。明确条款号或表号始终只以 exact 命中作为目标证据，邻近上下文不能替代目标。
 
+规范问答使用独立但语义一致的受控循环：`analyze_question` 将复杂问题拆成可验证目标，`plan_qa_retrieval` 根据未覆盖目标规划最多三轮、每轮最多五个查询，`evaluate_qa_evidence` 逐目标记录 `SUPPORTED`、`PARTIAL`、`UNSUPPORTED` 或 `CONFLICT`。只有全部目标充分时才进入 `generate_qa_answer`；精确编号未命中、未解析表格、冲突证据、无新增 Evidence 或达到轮次上限均安全停止。回答生成器只消费工作流已批准的 Evidence，不自行检索。
+
 候选规则与审核记录使用增量 `CREATE TABLE IF NOT EXISTS` 迁移写入现有 SQLite 文件，不修改旧表。候选 ID 由规范、条款、Evidence、对象和属性稳定生成；审核后的正式规则按对象、属性及条件匹配，不依赖数组位置。
 
 运行态状态存入 SQLite；恢复令牌只存哈希。原页接口只能使用已登记的 `document_id` 与页码定位。日志和 M11 版本绑定不保存 API Key。

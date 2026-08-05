@@ -15,6 +15,7 @@
 | `datasets/adversarial_qa.jsonl` | 5 | 精确错误拒答与安全动作 | 含错误前提和 Prompt Injection |
 | `datasets/engineering_cases.jsonl` | 2/4项 | 多检查项工程预审 | 非敏感合成案例，结论待专家确认 |
 | `datasets/rule_extraction.jsonl` | 4 | 候选规则结构化抽取 | 不与人工修改后规则混算 |
+| `datasets/retrieval_realistic_small.jsonl` | 16 | 小规模分层真实检索 | 默认最多 12 次查询 Embedding 调用；标签待专家审核 |
 | `annotations/*.jsonl` | 待填写 | 专家逐条评分 | 未填写时报告 `NOT_EVALUATED` |
 | `demo_cases.json` | 3 | 查询、清单、完整预审演示 | 校验真实工作流终态 |
 
@@ -25,6 +26,7 @@
 ```bash
 python scripts/run_evaluation.py
 python scripts/run_demo_cases.py
+python scripts/evaluate_realistic_retrieval.py
 ```
 
 CPU Docker（源码已挂载时无需重建）：
@@ -39,6 +41,11 @@ docker compose run --rm --no-deps agent python scripts/run_demo_cases.py
 - `metrics.json`：指标、逐条失败、版本绑定和声明边界；
 - `report.md`、`report.html`：人类可读误差报告；
 - `demo_cases.json`、`demo_cases.md`：三类真实演示结果。
+- `retrieval_realistic.json`：BM25/Hybrid 分层指标、目标覆盖率、延迟和逐条结果。
+
+小规模真实检索评测默认执行 4 个 exact、12 个 BM25 和 12 个 Hybrid 任务。BM25 不调用模型，Hybrid 对每个非 exact 查询调用一次索引对应的真实 Embedding API，总调用上限为 12。脚本显示完成比例、耗时和 ETA；如索引使用 `local-hash`，会拒绝输出 Vector/Hybrid 指标。可先运行 `--limit 3` 冒烟，或通过 `--routes bm25` 完全离线检查词法召回。
+
+`retrieval_realistic_review.jsonl` 中只有 `status=approved` 的案例进入正式指标；全部为 `pending` 时报告状态是 `PROVISIONAL`，不能对外宣称为生产真实效果。
 
 每次运行绑定代码内容哈希、Git commit（若存在）、索引版本/源/配置哈希、模型配置哈希、提示词与评测器哈希、数据集版本和逐文件 SHA256。模型配置哈希不含 API Key。
 

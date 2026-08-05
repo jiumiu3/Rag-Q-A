@@ -60,6 +60,11 @@ class WorkflowService:
                 "retrieval_plan": None,
                 "retrieval_attempts": [],
                 "evidence_assessments": [],
+                "question_analysis": None,
+                "retrieval_goals": [],
+                "retrieval_step_count": 0,
+                "evidence_coverage": [],
+                "retrieval_tool_calls": [],
                 "validation_retry_count": 0,
                 "messages": previous.messages
                 + [WorkflowMessage(role="user", content=content, created_at=now)],

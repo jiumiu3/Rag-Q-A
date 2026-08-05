@@ -1,6 +1,7 @@
 import json
 import math
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -141,11 +142,12 @@ class CompatibleJSONClient:
 class CompatibleEmbeddingClient:
     """OpenAI-compatible Embeddings 客户端，用于建库和查询使用同一模型。"""
 
-    def __init__(self, settings: ModelSettings) -> None:
+    def __init__(self, settings: ModelSettings, show_progress: bool = False) -> None:
         if not settings.embedding_model:
             raise ModelClientError("未配置 EMBEDDING_MODEL")
         self.settings = settings
         self.client = CompatibleJSONClient(settings)
+        self.show_progress = show_progress
 
     @property
     def model_id(self) -> str:
@@ -164,6 +166,8 @@ class CompatibleEmbeddingClient:
         # 控制单次请求体大小，避免 1092 个知识单元一次提交超出服务限制。
         vectors: list[list[float]] = []
         size = self.settings.embedding_batch_size
+        total_batches = math.ceil(len(texts) / size)
+        started = time.perf_counter()
         for start in range(0, len(texts), size):
             # 只截断向量编码输入，SQLite 原文和最终引用仍保持完整。
             batch = [
@@ -182,6 +186,17 @@ class CompatibleEmbeddingClient:
                 raise ModelClientError(
                     "Embedding API 输出格式无效", details={"error": str(exc)}
                 ) from exc
+            if self.show_progress:
+                completed = start // size + 1
+                elapsed = time.perf_counter() - started
+                eta = elapsed / completed * (total_batches - completed)
+                print(
+                    f"\rEmbedding [{completed}/{total_batches}] "
+                    f"elapsed={elapsed:.1f}s eta={eta:.1f}s",
+                    end="" if completed < total_batches else "\n",
+                    file=sys.stderr,
+                    flush=True,
+                )
         if len(vectors) != len(texts) or len({len(vector) for vector in vectors}) != 1:
             raise ModelClientError("Embedding API 返回数量或维度不一致")
         return vectors

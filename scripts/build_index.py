@@ -21,11 +21,18 @@ def main() -> int:
     settings = get_settings()
     repository = SQLiteKnowledgeRepository(settings.storage.sqlite_path)
     embedding = (
-        CompatibleEmbeddingClient(settings.model)
+        CompatibleEmbeddingClient(settings.model, show_progress=True)
         if settings.model.base_url and settings.model.embedding_model
         else None
     )
-    builder = IndexBuilder(repository, settings.storage.index_dir, embedding)
+    builder = IndexBuilder(
+        repository,
+        settings.storage.index_dir,
+        embedding,
+        contextual_enabled=settings.retrieval.contextual_enabled,
+        contextual_strategy=settings.retrieval.contextual_strategy,
+        contextual_version=settings.retrieval.contextual_version,
+    )
     if args.check:
         result = builder.check_consistency()
         print(json.dumps(result, ensure_ascii=False))

@@ -4,16 +4,19 @@ from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
 
-from app.domain.models import TraceEvent
+from app.domain.models import IntentType, TraceEvent
 from app.workflow.models import AgentState, WorkflowStatus
 from app.workflow.nodes import WorkflowNodes
 from app.workflow.routes import (
     route_after_identification,
+    route_after_qa_analysis,
     route_after_rule_extraction,
     route_completeness,
     route_confirmation,
     route_evidence,
     route_intent,
+    route_qa_evidence,
+    route_qa_verification,
     route_verification,
 )
 
@@ -43,6 +46,11 @@ class WorkflowRunner:
                 "verify_claims",
                 "generate_report",
                 "answer_query",
+                "analyze_question",
+                "plan_qa_retrieval",
+                "evaluate_qa_evidence",
+                "generate_qa_answer",
+                "verify_qa_answer",
                 "generate_checklist",
                 "out_of_scope",
             )
@@ -97,12 +105,22 @@ class WorkflowRunner:
         fixed = {
             "normalize_input": "classify_intent",
             "classify_intent": route_intent(state),
+            "analyze_question": route_after_qa_analysis(state),
+            "plan_qa_retrieval": "retrieve",
             "identify_scenario": route_after_identification(state),
             "extract_check_items": "confirm",
             "confirm": route_confirmation(state),
             "check_completeness": route_completeness(state),
             "plan_retrieval": "retrieve",
-            "retrieve": "evaluate_evidence",
+            "retrieve": (
+                "evaluate_qa_evidence"
+                if state.intent
+                in {IntentType.KNOWLEDGE_QA, IntentType.CLAUSE_LOOKUP, IntentType.TABLE_LOOKUP}
+                else "evaluate_evidence"
+            ),
+            "evaluate_qa_evidence": route_qa_evidence(state),
+            "generate_qa_answer": "verify_qa_answer",
+            "verify_qa_answer": route_qa_verification(state),
             "evaluate_evidence": route_evidence(state),
             "extract_rule": route_after_rule_extraction(state),
             "evaluate_compliance": "verify_claims",
@@ -129,6 +147,12 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
     graph.set_entry_point("normalize_input")
     graph.add_edge("normalize_input", "classify_intent")
     graph.add_conditional_edges("classify_intent", route_intent)
+    graph.add_conditional_edges(
+        "analyze_question",
+        route_after_qa_analysis,
+        {"plan_qa_retrieval": "plan_qa_retrieval", "generate_report": "generate_report"},
+    )
+    graph.add_edge("plan_qa_retrieval", "retrieve")
     graph.add_conditional_edges("identify_scenario", route_after_identification)
     graph.add_edge("extract_check_items", "confirm")
     graph.add_conditional_edges(
@@ -138,7 +162,30 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
         "check_completeness", route_completeness, {"plan_retrieval": "plan_retrieval", "pause": END}
     )
     graph.add_edge("plan_retrieval", "retrieve")
-    graph.add_edge("retrieve", "evaluate_evidence")
+    graph.add_conditional_edges(
+        "retrieve",
+        lambda state: (
+            "evaluate_qa_evidence"
+            if state.intent
+            in {IntentType.KNOWLEDGE_QA, IntentType.CLAUSE_LOOKUP, IntentType.TABLE_LOOKUP}
+            else "evaluate_evidence"
+        ),
+    )
+    graph.add_conditional_edges(
+        "evaluate_qa_evidence",
+        route_qa_evidence,
+        {
+            "plan_qa_retrieval": "plan_qa_retrieval",
+            "generate_qa_answer": "generate_qa_answer",
+            "pause": END,
+        },
+    )
+    graph.add_edge("generate_qa_answer", "verify_qa_answer")
+    graph.add_conditional_edges(
+        "verify_qa_answer",
+        route_qa_verification,
+        {"generate_report": "generate_report", "pause": END},
+    )
     graph.add_conditional_edges(
         "evaluate_evidence",
         route_evidence,
@@ -173,7 +220,11 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
 def graph_mermaid() -> str:
     return """flowchart TD
  input[normalize_input] --> intent[classify_intent]
- intent -->|QA/条款/表格| qa[answer_query]
+ intent -->|QA/条款/表格| analyze[analyze_question]
+ analyze --> qaplan[plan_qa_retrieval] --> qaret[retrieve]
+ qaret --> qaeval{evaluate_qa_evidence}
+ qaeval -->|retry| qaplan
+ qaeval -->|sufficient| qaanswer[generate_qa_answer --> verify_qa_answer]
  intent -->|清单/预审| scenario[identify_scenario]
  scenario --> items[extract_check_items] --> confirm{confirm}
  confirm -->|等待人工| pause1([pause])

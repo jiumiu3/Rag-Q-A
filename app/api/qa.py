@@ -7,6 +7,7 @@ from fastapi import APIRouter, Depends
 from app.core.config import get_settings
 from app.core.exceptions import RetrievalError
 from app.core.model_client import CompatibleEmbeddingClient, CompatibleJSONClient
+from app.knowledge.builder import IndexBuilder
 from app.knowledge.indexes import BM25Index, EmbeddingClient, HashEmbeddingClient, VectorIndex
 from app.knowledge.repository import SQLiteKnowledgeRepository
 from app.qa.models import QARequest, QAResponse
@@ -31,6 +32,16 @@ def get_qa_service() -> QAService:
         raise RetrievalError("M3 索引尚未构建", details={"missing": missing})
     repository = SQLiteKnowledgeRepository(settings.storage.sqlite_path)
     manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    manifest_checker = IndexBuilder(
+        repository,
+        index_dir,
+        contextual_enabled=settings.retrieval.contextual_enabled,
+        contextual_strategy=settings.retrieval.contextual_strategy,
+        contextual_version=settings.retrieval.contextual_version,
+    )
+    contextual_error = manifest_checker.contextual_manifest_error(manifest)
+    if contextual_error:
+        raise RetrievalError(contextual_error)
     indexed_model = str(manifest["embedding_model_id"])
     embedding: EmbeddingClient
     if indexed_model.startswith("local-hash-v1-"):

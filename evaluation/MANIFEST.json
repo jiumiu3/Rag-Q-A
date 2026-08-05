@@ -49,6 +49,11 @@
       "cases": 4,
       "annotation": "数值、布尔和条件表达的确定性语言夹具",
       "limitation": "不代表复杂真实条款抽取性能"
+    },
+    "datasets/retrieval_realistic_small.jsonl": {
+      "cases": 16,
+      "annotation": "4条精确定位、8条工程口语语义查询、4条多目标查询；使用真实结构化知识单元作为候选相关性标签",
+      "limitation": "候选标签必须在 annotations/retrieval_realistic_review.jsonl 完成领域专家审核后才能作为正式真实效果指标"
     }
   }
 }

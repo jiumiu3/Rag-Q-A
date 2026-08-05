@@ -40,6 +40,9 @@ class RetrievalSettings(BaseModel):
     vector_top_k: int = Field(default=20, ge=1)
     rerank_top_k: int = Field(default=5, ge=1)
     score_threshold: float = Field(default=0.2, ge=0, le=1)
+    contextual_enabled: bool = True
+    contextual_strategy: Literal["deterministic"] = "deterministic"
+    contextual_version: str = Field(default="v1", min_length=1)
 
 
 class AgentSettings(BaseModel):

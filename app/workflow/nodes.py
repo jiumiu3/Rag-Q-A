@@ -15,7 +15,12 @@ from app.domain.models import (
     RequirementLevel,
 )
 from app.qa.service import QAService
-from app.retrieval.models import EvidenceAssessment, RetrievalAttempt
+from app.retrieval.models import (
+    EvidenceAssessment,
+    RetrievalAttempt,
+    RetrievalResult,
+    RetrievalTrace,
+)
 from app.retrieval.planner import AdaptiveRetrievalPlanner
 from app.retrieval.service import QueryAnalyzer, RetrievalService
 from app.workflow.models import AgentState, PendingAction, WorkflowStatus
@@ -130,20 +135,49 @@ class WorkflowNodes:
             "retrieval_plan": plan,
         }
 
+    def analyze_question(self, state: AgentState) -> dict[str, object]:
+        if not hasattr(self.qa, "agentic_planner"):
+            answer, result = self.qa.ask(state.normalized_input)
+            return {"answer": answer, "evidence": result.evidence}
+        analysis = self.qa.agentic_planner.analyze_question(state.normalized_input)
+        return {
+            "question_analysis": analysis,
+            "retrieval_goals": analysis.goals,
+            "original_query": state.normalized_input,
+        }
+
+    def plan_qa_retrieval(self, state: AgentState) -> dict[str, object]:
+        if state.question_analysis is None:
+            raise ValueError("plan_qa_retrieval 缺少 QuestionAnalysis")
+        previous = state.evidence_assessments[-1] if state.evidence_assessments else None
+        plan = self.qa.agentic_planner.create(
+            state.original_query,
+            state.question_analysis,
+            state.retrieval_step_count,
+            previous,
+            state.query_history,
+        )
+        return {"current_query": plan.query, "retrieval_plan": plan}
+
     def retrieve(self, state: AgentState) -> dict[str, object]:
         if state.retrieval_plan is None:
             raise ValueError("retrieve 缺少 RetrievalPlan")
         evidence = list(state.evidence)
         seen = {item.evidence_id for item in evidence}
         new_count = 0
+        tool_calls = list(state.retrieval_tool_calls)
         queries = state.retrieval_plan.subqueries or [state.retrieval_plan.query]
         for query in queries:
             plan = state.retrieval_plan.model_copy(update={"query": query})
-            result = (
-                self.retrieval.execute(plan)
-                if hasattr(self.retrieval, "execute")
-                else self.retrieval.retrieve(query, plan.top_k)
-            )
+            if hasattr(self.qa, "search_tool"):
+                result, tool_trace = self.qa.search_tool.execute(plan, seen)
+                tool_calls.append(tool_trace)
+            else:
+                result = (
+                    self.retrieval.execute(plan)
+                    if hasattr(self.retrieval, "execute")
+                    else self.retrieval.retrieve(query, plan.top_k)
+                )
             for item in result.evidence:
                 if item.evidence_id not in seen:
                     evidence.append(item)
@@ -164,7 +198,76 @@ class WorkflowNodes:
             "evidence": evidence,
             "query_history": state.query_history + queries,
             "retrieval_attempts": state.retrieval_attempts + [attempt],
+            "retrieval_tool_calls": tool_calls,
         }
+
+    def evaluate_qa_evidence(self, state: AgentState) -> dict[str, object]:
+        if state.question_analysis is None or state.retrieval_plan is None:
+            raise ValueError("evaluate_qa_evidence 缺少分析或检索计划")
+        latest = state.retrieval_attempts[-1]
+        valid_ids = {item.evidence_id for item in state.evidence}
+        assessment = self.qa.evidence_evaluator.evaluate(
+            state.question_analysis,
+            state.retrieval_plan,
+            state.evidence,
+            valid_ids,
+            latest.new_evidence_count,
+        )
+        updates: dict[str, object] = {
+            "evidence_assessments": state.evidence_assessments + [assessment],
+            "evidence_coverage": state.evidence_coverage + [assessment],
+            "retrieval_step_count": state.retrieval_step_count + 1,
+            "retrieval_goals": [
+                goal.model_copy(
+                    update={
+                        "status": coverage.status,
+                        "supporting_evidence_ids": coverage.supporting_evidence_ids,
+                    }
+                )
+                for goal, coverage in zip(
+                    state.question_analysis.goals, assessment.goal_assessments, strict=True
+                )
+            ],
+        }
+        if not assessment.is_sufficient and assessment.next_action in {
+            "manual_review",
+            "safe_stop",
+        }:
+            updates.update(
+                status=WorkflowStatus.SAFE_STOPPED,
+                errors=state.errors + [assessment.failure_reason or "证据不足"],
+            )
+        return updates
+
+    def generate_qa_answer(self, state: AgentState) -> dict[str, object]:
+        if state.retrieval_plan is None or state.question_analysis is None:
+            raise ValueError("generate_qa_answer 缺少检索上下文")
+        result = RetrievalResult(
+            evidence=state.evidence,
+            trace=RetrievalTrace(
+                plan=state.retrieval_plan,
+                query_analysis=self.query_analyzer.analyze(state.original_query),
+            ),
+        )
+        answer = self.qa.answer_generator.generate(
+            state.original_query,
+            state.evidence,
+            state.retrieval_goals,
+            state.retrieval_tool_calls,
+            result,
+        )
+        return {"answer": answer}
+
+    def verify_qa_answer(self, state: AgentState) -> dict[str, object]:
+        if state.answer is None:
+            return {
+                "status": WorkflowStatus.SAFE_STOPPED,
+                "errors": state.errors + ["未生成问答结果"],
+            }
+        errors = self.qa.validator.validate(state.answer, state.evidence)
+        if errors:
+            return {"status": WorkflowStatus.SAFE_STOPPED, "errors": state.errors + errors}
+        return {}
 
     def evaluate_evidence(self, state: AgentState) -> dict[str, object]:
         plan = state.retrieval_plan

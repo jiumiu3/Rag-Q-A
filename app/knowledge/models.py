@@ -13,6 +13,8 @@ class StoredUnit(StrictModel):
     clause_number: str | None = None
     table_number: str | None = None
     parse_status: str | None = None
+    context_prefix: str = ""
+    retrieval_text: str = ""
 
 
 class SearchHit(StrictModel):
@@ -30,6 +32,10 @@ class IndexVersion(StrictModel):
     unit_count: int = Field(ge=0)
     bm25_count: int = Field(ge=0)
     vector_count: int = Field(ge=0)
+    contextual_enabled: bool = True
+    contextual_strategy: str = "deterministic"
+    contextual_strategy_version: str = "v1"
+    contextual_config_hash: str = ""
 
 
 class BuildReport(StrictModel):
