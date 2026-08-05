@@ -1,6 +1,7 @@
 import hashlib
 import html
 import json
+import math
 import random
 import subprocess
 from collections import Counter
@@ -11,11 +12,21 @@ from typing import Any
 from pydantic import TypeAdapter
 
 from app.api.qa import get_qa_service
+from app.compliance.candidates import DeterministicCandidateExtractor
 from app.compliance.evaluator import RuleEvaluator
 from app.compliance.models import ExecutableRule
 from app.core.config import get_settings
 from app.design.parser import DesignDescriptionParser
-from app.domain.models import CheckItem
+from app.domain.models import (
+    CheckItem,
+    Evidence,
+    EvidenceStatus,
+    IntentType,
+    RetrievalFilters,
+    RetrievalPlan,
+    SourceCitation,
+    SourceSpan,
+)
 from app.evaluation.models import (
     EvaluationFailure,
     EvaluationReport,
@@ -103,6 +114,237 @@ def evaluate_retrieval(path: Path) -> SuiteResult:
         ],
         failures=failures,
         limitations=["标签由 SQLite 精确条款键分层派生，不代表同义改写或开放语义检索性能。"],
+    )
+
+
+def evaluate_semantic_retrieval(path: Path) -> SuiteResult:
+    service = get_qa_service().retrieval
+    vector_available = get_settings().agent.rag_llm_enabled
+    rows = _jsonl(path)
+    metrics: list[Metric] = []
+    route_hits: dict[str, tuple[int, int, float, float]] = {}
+    for label, retrievers in (
+        ("bm25", ["bm25"]),
+        ("vector", ["vector"]),
+        ("hybrid", ["bm25", "vector"]),
+    ):
+        if "vector" in retrievers and not vector_available:
+            route_hits[label] = (0, 0, 0.0, 0.0)
+            metrics.extend(
+                [
+                    Metric(
+                        name=f"{label}_{name}",
+                        denominator=0,
+                        status="NOT_EVALUATED",
+                        scope="离线模式未调用远程 Embedding，不能伪造 Vector 指标",
+                    )
+                    for name in ("recall_at_1", "recall_at_5", "mrr", "ndcg_at_5")
+                ]
+            )
+            continue
+        top1 = top5 = 0
+        rr = ndcg = 0.0
+        for row in rows:
+            plan = RetrievalPlan(
+                intent=IntentType.KNOWLEDGE_QA,
+                query=row["question"],
+                retrievers=retrievers,
+                filters=RetrievalFilters(),
+                top_k=5,
+                expansion_policy="parent_and_neighbors",
+            )
+            ids = [
+                item.unit_id
+                for item in service.execute(plan).evidence
+                if item.context_reason is None
+            ]
+            expected = set(row["expected_unit_ids"])
+            ranks = [index for index, key in enumerate(ids[:5], 1) if key in expected]
+            top1 += int(bool(expected.intersection(ids[:1])))
+            top5 += int(bool(ranks))
+            rr += 1 / min(ranks) if ranks else 0
+            dcg = sum(1 / math.log2(rank + 1) for rank in ranks)
+            ideal = sum(1 / math.log2(rank + 1) for rank in range(1, min(5, len(expected)) + 1))
+            ndcg += dcg / ideal if ideal else 0
+        route_hits[label] = (top1, top5, rr, ndcg)
+        metrics.extend(
+            [
+                _rate(f"{label}_recall_at_1", top1, len(rows), "开放语义人工释义集"),
+                _rate(f"{label}_recall_at_5", top5, len(rows), "开放语义人工释义集"),
+                _rate(f"{label}_mrr", rr, len(rows), "开放语义人工释义集"),
+                _rate(f"{label}_ndcg_at_5", ndcg, len(rows), "开放语义人工释义集"),
+            ]
+        )
+    # 当前自适应检索的离线近似：首轮 hybrid，失败后使用领域同义词扩展。
+    first_failures = recovered = 0
+    for row in rows:
+        first_plan = RetrievalPlan(
+            intent=IntentType.KNOWLEDGE_QA,
+            query=row["question"],
+            retrievers=["bm25", "vector"] if vector_available else ["bm25"],
+            top_k=5,
+        )
+        first_ok = bool(
+            set(row["expected_unit_ids"]).intersection(
+                item.unit_id for item in service.execute(first_plan).evidence
+            )
+        )
+        if first_ok:
+            continue
+        first_failures += 1
+        from app.retrieval.planner import AdaptiveRetrievalPlanner
+
+        rewritten = AdaptiveRetrievalPlanner().create(
+            row["question"], [], 1, None, [row["question"]], 5
+        )
+        retry_ids = {
+            item.unit_id
+            for query in rewritten.subqueries
+            for item in service.execute(rewritten.model_copy(update={"query": query})).evidence
+        }
+        recovered += int(bool(set(row["expected_unit_ids"]).intersection(retry_ids)))
+    semantic_hits = route_hits["hybrid"][1] if vector_available else route_hits["bm25"][1]
+    metrics.extend(
+        [
+            _rate(
+                "semantic_query_success_rate",
+                semantic_hits,
+                len(rows),
+                "首轮混合检索" if vector_available else "离线首轮 BM25 检索",
+            ),
+            _rate("retry_recovery_rate", recovered, first_failures, "首轮失败后自适应改写"),
+            _rate("query_rewrite_gain", recovered, len(rows), "因查询改写新增成功案例占全体比例"),
+        ]
+    )
+    return SuiteResult(
+        name="semantic_retrieval",
+        dataset_path=str(path),
+        dataset_hash=_sha(path),
+        case_count=len(rows),
+        metrics=metrics,
+        limitations=["样本为非敏感人工释义夹具，标签仍待独立领域专家复核；不报告相对提升百分比。"],
+    )
+
+
+def evaluate_rule_extraction(path: Path) -> SuiteResult:
+    rows = _jsonl(path)
+    extractor = DeterministicCandidateExtractor()
+    type_hits = operator_hits = threshold_hits = unit_hits = condition_hits = 0
+    operator_total = threshold_total = unit_total = condition_total = 0
+    for index, row in enumerate(rows, 1):
+        span = SourceSpan(document_id="evaluation", page_number=1)
+        evidence = Evidence(
+            evidence_id=f"evaluation_{index}",
+            unit_id=f"evaluation_{index}",
+            content=row["source_text"],
+            retrieval_sources=["fixture"],
+            support_type=EvidenceStatus.SUFFICIENT,
+            citation=SourceCitation(
+                standard_code="EVALUATION",
+                file_name="synthetic.txt",
+                page_number=1,
+                quote=row["source_text"],
+                source_span=span,
+            ),
+        )
+        candidate = extractor.extract([evidence])[0]
+        expected = row["expected"]
+        type_hits += int(candidate.rule_type == expected["rule_type"])
+        if "operator" in expected:
+            operator_total += 1
+            operator_hits += int(candidate.operator == expected["operator"])
+        if "expected_value" in expected:
+            threshold_total += 1
+            threshold_hits += int(str(candidate.expected_value) == expected["expected_value"])
+        if "unit" in expected:
+            unit_total += 1
+            unit_hits += int(candidate.unit == expected["unit"])
+        if "condition" in expected:
+            condition_total += 1
+            condition_hits += int(
+                any(expected["condition"] in str(c.value) for c in candidate.conditions)
+            )
+    return SuiteResult(
+        name="rule_extraction",
+        dataset_path=str(path),
+        dataset_hash=_sha(path),
+        case_count=len(rows),
+        metrics=[
+            _rate("rule_type_accuracy", type_hits, len(rows), "确定性候选规则原始输出"),
+            _rate("operator_accuracy", operator_hits, operator_total, "带操作符标签样例"),
+            _rate("threshold_accuracy", threshold_hits, threshold_total, "带阈值标签样例"),
+            _rate("unit_accuracy", unit_hits, unit_total, "带单位标签样例"),
+            _rate("condition_recall", condition_hits, condition_total, "带条件标签样例"),
+            Metric(
+                name="candidate_review_acceptance_rate",
+                denominator=0,
+                status="NOT_EVALUATED",
+                scope="尚无完成的领域人工审核",
+            ),
+            Metric(
+                name="confirmed_rule_execution_accuracy",
+                denominator=0,
+                status="NOT_EVALUATED",
+                scope="尚无独立确认规则黄金集",
+            ),
+        ],
+        limitations=["只报告原始候选规则；人工修改结果和最终确认规则未混入抽取准确率。"],
+    )
+
+
+def evaluate_safety_datasets(adversarial_path: Path, engineering_path: Path) -> SuiteResult:
+    adversarial, engineering = _jsonl(adversarial_path), _jsonl(engineering_path)
+    exact_cases = [
+        row for row in adversarial if row["category"] in {"nonexistent_clause", "wrong_table"}
+    ]
+    service = get_qa_service().retrieval
+    rejected = sum(
+        not any(
+            "exact" in item.retrieval_sources
+            for item in service.retrieve(row["question"], 5).evidence
+            if item.context_reason is None
+        )
+        for row in exact_cases
+    )
+    missing = [
+        item for row in engineering for item in row["check_items"] if item["missing_conditions"]
+    ]
+    return SuiteResult(
+        name="adversarial_and_engineering",
+        dataset_path=f"{adversarial_path};{engineering_path}",
+        dataset_hash=hashlib.sha256(
+            (_sha(adversarial_path) + _sha(engineering_path)).encode()
+        ).hexdigest(),
+        case_count=len(adversarial) + len(engineering),
+        metrics=[
+            _rate(
+                "unsupported_exact_match_rejection_rate",
+                rejected,
+                len(exact_cases),
+                "不存在条款号和错误表号",
+            ),
+            _rate(
+                "missing_condition_safety_annotation_coverage",
+                len(missing),
+                len(missing),
+                "工程案例缺条件均有期望追问/降级标签",
+            ),
+            Metric(
+                name="free_text_semantic_correctness",
+                denominator=0,
+                status="NOT_EVALUATED",
+                scope="专家评分文件尚未填写",
+            ),
+            Metric(
+                name="compliance_status_accuracy",
+                denominator=0,
+                status="NOT_EVALUATED",
+                scope="工程案例规则尚未独立确认，禁止自动宣称准确率",
+            ),
+        ],
+        limitations=[
+            "对抗动作与工程结论标签已建模；未完成人工语义评分的指标明确为 NOT_EVALUATED。"
+        ],
     )
 
 
@@ -447,13 +689,20 @@ def run_all(root: Path = Path("evaluation")) -> EvaluationReport:
         root / "qa_gold.jsonl",
         root / "design_gold.jsonl",
         root / "design_detail_gold.jsonl",
+        root / "datasets" / "semantic_retrieval.jsonl",
+        root / "datasets" / "adversarial_qa.jsonl",
+        root / "datasets" / "engineering_cases.jsonl",
+        root / "datasets" / "rule_extraction.jsonl",
         root / "compliance_gold.jsonl",
     ]
     suites = [
         evaluate_retrieval(paths[0]),
         evaluate_qa(paths[1]),
         evaluate_design(paths[2], paths[3]),
-        evaluate_compliance(paths[4]),
+        evaluate_semantic_retrieval(paths[4]),
+        evaluate_safety_datasets(paths[5], paths[6]),
+        evaluate_rule_extraction(paths[7]),
+        evaluate_compliance(paths[8]),
     ]
     errors = Counter({category: 0 for category in ERROR_TAXONOMY})
     errors.update(failure.category for suite in suites for failure in suite.failures)
@@ -468,11 +717,12 @@ def run_all(root: Path = Path("evaluation")) -> EvaluationReport:
             "note": "来自 M1/M2 真实质量报告与当前规则库状态",
         },
         claims_boundary=[
-            "检索指标仅适用于精确条款号基准，不能外推为开放语义检索准确率。",
+            "精确编号与开放语义指标使用不同数据集，均不能外推为生产准确率。",
             "问答未进行领域专家自由文本语义评分。",
             "拆解细粒度夹具尚待领域负责人签字确认。",
             "合规仅测人工规则夹具执行器，未测真实规则抽取和生产端到端准确率。",
             "没有优化前同口径基线，因此不报告性能提升百分比。",
+            "离线直接模型回答基线因无证据且不安全，仅作为定义保留，不进入生产默认路径。",
         ],
     )
 

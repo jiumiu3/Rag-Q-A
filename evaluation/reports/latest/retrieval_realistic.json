@@ -1,0 +1,641 @@
+{
+  "status": "PROVISIONAL",
+  "warning": "当前标签尚未完成领域专家审核；指标只能用于调试，不能宣称真实生产效果。",
+  "query_count": 16,
+  "execution_count": 28,
+  "embedding_call_upper_bound": 12,
+  "embedding_model_id": "qwen3.7-text-embedding",
+  "uses_real_embedding": true,
+  "elapsed_seconds": 35.365889811000216,
+  "metrics_all_candidates": {
+    "bm25": {
+      "case_count": 12,
+      "recall_at_1": 0.3333333333333333,
+      "recall_at_5": 0.8333333333333334,
+      "mrr": 0.5305555555555556,
+      "full_goal_coverage_rate": 0.5833333333333334,
+      "mean_goal_coverage": 0.7083333333333334,
+      "latency_ms_p50": 105.77527949976684,
+      "latency_ms_p95": 141.4506259998234
+    },
+    "exact": {
+      "case_count": 4,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "full_goal_coverage_rate": 1.0,
+      "mean_goal_coverage": 1.0,
+      "latency_ms_p50": 54.75021950019254,
+      "latency_ms_p95": 85.22962400002143
+    },
+    "hybrid": {
+      "case_count": 12,
+      "recall_at_1": 0.6666666666666666,
+      "recall_at_5": 0.9166666666666666,
+      "mrr": 0.7666666666666666,
+      "full_goal_coverage_rate": 0.8333333333333334,
+      "mean_goal_coverage": 0.875,
+      "latency_ms_p50": 2496.6353580000487,
+      "latency_ms_p95": 4813.693653999962
+    }
+  },
+  "metrics_approved_only": {},
+  "metrics_by_stratum": {
+    "bm25:multi_goal": {
+      "case_count": 4,
+      "recall_at_1": 0.5,
+      "recall_at_5": 1.0,
+      "mrr": 0.7083333333333334,
+      "full_goal_coverage_rate": 0.25,
+      "mean_goal_coverage": 0.625,
+      "latency_ms_p50": 115.9279204998711,
+      "latency_ms_p95": 141.4506259998234
+    },
+    "bm25:semantic": {
+      "case_count": 8,
+      "recall_at_1": 0.25,
+      "recall_at_5": 0.75,
+      "mrr": 0.44166666666666665,
+      "full_goal_coverage_rate": 0.75,
+      "mean_goal_coverage": 0.75,
+      "latency_ms_p50": 99.41993400002502,
+      "latency_ms_p95": 128.72256799983006
+    },
+    "exact:exact": {
+      "case_count": 4,
+      "recall_at_1": 1.0,
+      "recall_at_5": 1.0,
+      "mrr": 1.0,
+      "full_goal_coverage_rate": 1.0,
+      "mean_goal_coverage": 1.0,
+      "latency_ms_p50": 54.75021950019254,
+      "latency_ms_p95": 85.22962400002143
+    },
+    "hybrid:multi_goal": {
+      "case_count": 4,
+      "recall_at_1": 0.75,
+      "recall_at_5": 1.0,
+      "mrr": 0.875,
+      "full_goal_coverage_rate": 0.75,
+      "mean_goal_coverage": 0.875,
+      "latency_ms_p50": 1796.8644884999776,
+      "latency_ms_p95": 2223.799140999745
+    },
+    "hybrid:semantic": {
+      "case_count": 8,
+      "recall_at_1": 0.625,
+      "recall_at_5": 0.875,
+      "mrr": 0.7125,
+      "full_goal_coverage_rate": 0.875,
+      "mean_goal_coverage": 0.875,
+      "latency_ms_p50": 3265.7915104998665,
+      "latency_ms_p95": 4813.693653999962
+    }
+  },
+  "details": [
+    {
+      "case_id": "real-exact-001",
+      "query_type": "exact",
+      "difficulty": "easy",
+      "route": "exact",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_3778edfc2781b0ee455d"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 39.294959000017116
+    },
+    {
+      "case_id": "real-exact-002",
+      "query_type": "exact",
+      "difficulty": "easy",
+      "route": "exact",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_0cbb6d486f790b86bb67"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 24.05417599993598
+    },
+    {
+      "case_id": "real-exact-003",
+      "query_type": "exact",
+      "difficulty": "easy",
+      "route": "exact",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_252d8e4ba36505a328fa"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 70.20548000036797
+    },
+    {
+      "case_id": "real-exact-004",
+      "query_type": "exact",
+      "difficulty": "easy",
+      "route": "exact",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_df44bc0d4e498ce6bd1b"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 85.22962400002143
+    },
+    {
+      "case_id": "real-sem-001",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_df44bc0d4e498ce6bd1b",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_4eb02356191e0a333c47",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 97.78224699994098
+    },
+    {
+      "case_id": "real-sem-001",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_df44bc0d4e498ce6bd1b",
+        "chunk_20e474c0b976d08a59cb",
+        "chunk_0f70dd6fb3afcbb2a0ff",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_70e12c6c1b86718dd745"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 4813.693653999962
+    },
+    {
+      "case_id": "real-sem-002",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_2a446cd32e370bb2c57f",
+        "chunk_a4b7f3a118e7284896ac",
+        "chunk_24f22b804ac50ed9779e",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_ea4612d8077f6b744b63"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "goal_coverage": 0.0,
+      "full_goal_coverage": false,
+      "duration_ms": 123.53340300023774
+    },
+    {
+      "case_id": "real-sem-002",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_a4b7f3a118e7284896ac",
+        "chunk_e42f5af1285aaae4e59d",
+        "chunk_7a60d0fb35a3b59590d6",
+        "chunk_2a446cd32e370bb2c57f",
+        "chunk_bc45e7cd143225ed8af3"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 1743.690192000031
+    },
+    {
+      "case_id": "real-sem-003",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_8b1842acd56d7a1aee59",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3a86265004be2a4b7c15",
+        "chunk_4a3d170ff81f18273b03"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 98.92779199981305
+    },
+    {
+      "case_id": "real-sem-003",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_8b1842acd56d7a1aee59",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_97b4a28d5ba85f533294",
+        "chunk_87b656f9ac66a04a40dd",
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 3109.5864819999406
+    },
+    {
+      "case_id": "real-sem-004",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_fdbfa2dfc9f3ad4f7518",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_f88133e463b5bc01154f",
+        "chunk_8d28f28a05b7e261474a",
+        "chunk_96970fe119f9301aa191"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "goal_coverage": 0.0,
+      "full_goal_coverage": false,
+      "duration_ms": 106.73570799963272
+    },
+    {
+      "case_id": "real-sem-004",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_fdbfa2dfc9f3ad4f7518",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_7035cebff254a48d51ee",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_4ed0245face622c2e17c"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": false,
+      "reciprocal_rank": 0.0,
+      "goal_coverage": 0.0,
+      "full_goal_coverage": false,
+      "duration_ms": 4101.526616999763
+    },
+    {
+      "case_id": "real-sem-005",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_c5ef8756dcfed7c2132b",
+        "chunk_71421ebe8b65dd3d32c4",
+        "chunk_252d8e4ba36505a328fa",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_547fe9f9163e1715180d"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 99.912076000237
+    },
+    {
+      "case_id": "real-sem-005",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_252d8e4ba36505a328fa",
+        "chunk_71421ebe8b65dd3d32c4",
+        "chunk_547fe9f9163e1715180d",
+        "chunk_4f71be680ad7096b707e",
+        "chunk_3f71ff30e62a1f5cdf4c"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 3421.9965389997924
+    },
+    {
+      "case_id": "real-sem-006",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_3c71c032d766629fbf0a",
+        "chunk_8acb1e8e4c3c1d6d0894",
+        "chunk_003c5abb427e50606131",
+        "chunk_e6731e95e6f07f3db497",
+        "chunk_6acbe61e1d877980193d"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 86.16271300024891
+    },
+    {
+      "case_id": "real-sem-006",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_3c71c032d766629fbf0a",
+        "chunk_8acb1e8e4c3c1d6d0894",
+        "chunk_e6731e95e6f07f3db497",
+        "chunk_42bea975be01cc7df2e4",
+        "chunk_64094396c096c7daec29"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 4170.325379000133
+    },
+    {
+      "case_id": "real-sem-007",
+      "query_type": "semantic",
+      "difficulty": "hard",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_79a708f590fb513f14ea",
+        "chunk_8d28f28a05b7e261474a",
+        "chunk_a32db9781faec50df199",
+        "chunk_71421ebe8b65dd3d32c4",
+        "chunk_0cbb6d486f790b86bb67"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.2,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 128.72256799983006
+    },
+    {
+      "case_id": "real-sem-007",
+      "query_type": "semantic",
+      "difficulty": "hard",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_0cbb6d486f790b86bb67",
+        "chunk_12646163fefede48c476",
+        "chunk_6dd1eb864bec71c98ba7",
+        "chunk_03aba18e72105c2b2a81",
+        "chunk_ebf0f338ea0169447512"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 2769.4715750003525
+    },
+    {
+      "case_id": "real-sem-008",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_4fc7eb6ac6c7c45d4b78",
+        "chunk_384f23e34aae6de990b2",
+        "chunk_f0dcd9c3b06196147181",
+        "chunk_0e141f5d42cab005451c",
+        "chunk_66864ee6349898289307"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 92.17304599997078
+    },
+    {
+      "case_id": "real-sem-008",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_384f23e34aae6de990b2",
+        "chunk_4fc7eb6ac6c7c45d4b78",
+        "chunk_0e141f5d42cab005451c",
+        "chunk_f0dcd9c3b06196147181",
+        "chunk_3f71ff30e62a1f5cdf4c"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 2179.968646999896
+    },
+    {
+      "case_id": "real-multi-001",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_3778edfc2781b0ee455d",
+        "chunk_862de99cce203cd67193",
+        "chunk_c0b6b50f20149b0772a1",
+        "chunk_8f2f1f8548f5da6047c4",
+        "chunk_857b305f92c3f4605fce"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 107.92547199980618
+    },
+    {
+      "case_id": "real-multi-001",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_3778edfc2781b0ee455d",
+        "chunk_862de99cce203cd67193",
+        "chunk_857b305f92c3f4605fce",
+        "chunk_c0b6b50f20149b0772a1",
+        "chunk_df44bc0d4e498ce6bd1b"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 2223.799140999745
+    },
+    {
+      "case_id": "real-multi-002",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_4f71be680ad7096b707e",
+        "chunk_8fb485fc8b415248926b",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_97b4a28d5ba85f533294",
+        "chunk_74756fc304f37eec9a4b"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "goal_coverage": 0.5,
+      "full_goal_coverage": false,
+      "duration_ms": 123.93036899993604
+    },
+    {
+      "case_id": "real-multi-002",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_8fb485fc8b415248926b",
+        "chunk_4f71be680ad7096b707e",
+        "chunk_e825db5913b666b1f89a",
+        "chunk_e554d7c4231145ff00b2",
+        "chunk_c9c9136ef7cd06711a49"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 1810.3450560001875
+    },
+    {
+      "case_id": "real-multi-003",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_449bcc59f93a082076b0",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_9ad6554460d460d59968",
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 0.5,
+      "full_goal_coverage": false,
+      "duration_ms": 104.81485099990095
+    },
+    {
+      "case_id": "real-multi-003",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_449bcc59f93a082076b0",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_fdbfa2dfc9f3ad4f7518",
+        "chunk_50ef7e9d52a9b5d16504"
+      ],
+      "hit_at_1": true,
+      "hit_at_5": true,
+      "reciprocal_rank": 1.0,
+      "goal_coverage": 1.0,
+      "full_goal_coverage": true,
+      "duration_ms": 1783.3839209997677
+    },
+    {
+      "case_id": "real-multi-004",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "bm25",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_547fe9f9163e1715180d",
+        "chunk_b4f12e9abf09d944933f",
+        "chunk_11731535ec52647e33b1",
+        "chunk_c5ef8756dcfed7c2132b"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "goal_coverage": 0.5,
+      "full_goal_coverage": false,
+      "duration_ms": 141.4506259998234
+    },
+    {
+      "case_id": "real-multi-004",
+      "query_type": "multi_goal",
+      "difficulty": "hard",
+      "route": "hybrid",
+      "annotation_status": "pending",
+      "returned_unit_ids": [
+        "chunk_547fe9f9163e1715180d",
+        "chunk_b4f12e9abf09d944933f",
+        "chunk_11731535ec52647e33b1",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_4d0655411cd15f3fab64"
+      ],
+      "hit_at_1": false,
+      "hit_at_5": true,
+      "reciprocal_rank": 0.5,
+      "goal_coverage": 0.5,
+      "full_goal_coverage": false,
+      "duration_ms": 1702.4796179998702
+    }
+  ]
+}

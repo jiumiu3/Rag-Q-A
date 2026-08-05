@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS knowledge_units (
  knowledge_unit_id TEXT PRIMARY KEY,
  document_id TEXT NOT NULL REFERENCES documents(document_id) ON DELETE CASCADE,
  unit_type TEXT NOT NULL, title TEXT, content TEXT NOT NULL, clause_id TEXT, clause_number TEXT,
- parent_id TEXT, table_id TEXT, table_number TEXT, parse_status TEXT, unit_json TEXT NOT NULL
+ parent_id TEXT, table_id TEXT, table_number TEXT, parse_status TEXT, unit_json TEXT NOT NULL,
+ context_prefix TEXT NOT NULL DEFAULT '', retrieval_text TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS idx_unit_exact
  ON knowledge_units(document_id, clause_number, table_number, unit_type);
@@ -73,6 +74,15 @@ class SQLiteKnowledgeRepository:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self._connection() as connection:
             connection.executescript(SCHEMA)
+            columns = {row[1] for row in connection.execute("PRAGMA table_info(knowledge_units)")}
+            if "context_prefix" not in columns:
+                connection.execute(
+                    "ALTER TABLE knowledge_units ADD COLUMN context_prefix TEXT NOT NULL DEFAULT ''"
+                )
+            if "retrieval_text" not in columns:
+                connection.execute(
+                    "ALTER TABLE knowledge_units ADD COLUMN retrieval_text TEXT NOT NULL DEFAULT ''"
+                )
 
     def replace_document(self, document: dict[str, object], units: Sequence[StoredUnit]) -> None:
         self.initialize()
@@ -93,7 +103,10 @@ class SQLiteKnowledgeRepository:
             for stored in units:
                 unit = stored.unit
                 connection.execute(
-                    "INSERT INTO knowledge_units VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+                    "INSERT INTO knowledge_units "
+                    "(knowledge_unit_id,document_id,unit_type,title,content,clause_id,"
+                    "clause_number,parent_id,table_id,table_number,parse_status,unit_json,"
+                    "context_prefix,retrieval_text) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (
                         unit.unit_id,
                         document_id,
@@ -107,6 +120,8 @@ class SQLiteKnowledgeRepository:
                         stored.table_number,
                         stored.parse_status,
                         unit.model_dump_json(),
+                        stored.context_prefix,
+                        stored.retrieval_text,
                     ),
                 )
                 for index, span in enumerate(unit.source_spans):
@@ -179,6 +194,8 @@ class SQLiteKnowledgeRepository:
             clause_number=row["clause_number"],
             table_number=row["table_number"],
             parse_status=row["parse_status"],
+            context_prefix=row["context_prefix"],
+            retrieval_text=row["retrieval_text"],
         )
 
     def get_unit(self, unit_id: str) -> StoredUnit | None:

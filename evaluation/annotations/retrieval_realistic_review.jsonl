@@ -1,0 +1,16 @@
+{"case_id":"real-exact-001","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_3778edfc2781b0ee455d"],"comment":null}
+{"case_id":"real-exact-002","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_0cbb6d486f790b86bb67"],"comment":null}
+{"case_id":"real-exact-003","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_252d8e4ba36505a328fa"],"comment":null}
+{"case_id":"real-exact-004","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_df44bc0d4e498ce6bd1b"],"comment":null}
+{"case_id":"real-sem-001","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_df44bc0d4e498ce6bd1b"],"comment":null}
+{"case_id":"real-sem-002","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_bc45e7cd143225ed8af3"],"comment":null}
+{"case_id":"real-sem-003","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_8b1842acd56d7a1aee59"],"comment":null}
+{"case_id":"real-sem-004","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_50ef7e9d52a9b5d16504"],"comment":null}
+{"case_id":"real-sem-005","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_252d8e4ba36505a328fa"],"comment":null}
+{"case_id":"real-sem-006","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_8acb1e8e4c3c1d6d0894"],"comment":null}
+{"case_id":"real-sem-007","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_0cbb6d486f790b86bb67"],"comment":"重点复核低温泵是否等价于该条款中的低压泵"}
+{"case_id":"real-sem-008","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_384f23e34aae6de990b2"],"comment":null}
+{"case_id":"real-multi-001","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_3778edfc2781b0ee455d"],"comment":null}
+{"case_id":"real-multi-002","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_e825db5913b666b1f89a","chunk_8fb485fc8b415248926b"],"comment":null}
+{"case_id":"real-multi-003","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_50ef7e9d52a9b5d16504","chunk_449bcc59f93a082076b0"],"comment":null}
+{"case_id":"real-multi-004","status":"pending","reviewer":null,"relevant_unit_ids":["chunk_b4f12e9abf09d944933f","chunk_a80b16f30c332f1dc96f"],"comment":null}

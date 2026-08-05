@@ -3,17 +3,25 @@ from enum import StrEnum
 
 from pydantic import Field
 
-from app.compliance.models import ExecutableRule
+from app.compliance.models import CandidateRule, ExecutableRule
 from app.domain.models import (
     CheckItem,
     ClarificationRequest,
     ComplianceResult,
     Evidence,
     IntentType,
+    RetrievalPlan,
     StrictModel,
     TraceEvent,
 )
 from app.qa.models import AnswerDraft
+from app.retrieval.models import (
+    EvidenceAssessment,
+    QuestionAnalysis,
+    RetrievalAttempt,
+    RetrievalGoal,
+    RetrievalToolTrace,
+)
 
 
 class WorkflowStatus(StrEnum):
@@ -29,6 +37,7 @@ class WorkflowStatus(StrEnum):
 class PendingAction(StrEnum):
     CONFIRM_CHECK_ITEMS = "CONFIRM_CHECK_ITEMS"
     ANSWER_CLARIFICATION = "ANSWER_CLARIFICATION"
+    REVIEW_CANDIDATE_RULES = "REVIEW_CANDIDATE_RULES"
 
 
 class WorkflowMessage(StrictModel):
@@ -48,7 +57,19 @@ class AgentState(StrictModel):
     scenario: dict[str, str] = Field(default_factory=dict)
     check_items: list[CheckItem] = Field(default_factory=list)
     evidence: list[Evidence] = Field(default_factory=list)
+    original_query: str = ""
+    current_query: str = ""
+    query_history: list[str] = Field(default_factory=list)
+    retrieval_plan: RetrievalPlan | None = None
+    retrieval_attempts: list[RetrievalAttempt] = Field(default_factory=list)
+    evidence_assessments: list[EvidenceAssessment] = Field(default_factory=list)
+    question_analysis: QuestionAnalysis | None = None
+    retrieval_goals: list[RetrievalGoal] = Field(default_factory=list)
+    retrieval_step_count: int = Field(default=0, ge=0)
+    evidence_coverage: list[EvidenceAssessment] = Field(default_factory=list)
+    retrieval_tool_calls: list[RetrievalToolTrace] = Field(default_factory=list)
     rules: list[ExecutableRule] = Field(default_factory=list)
+    candidate_rules: list[CandidateRule] = Field(default_factory=list)
     compliance_results: list[ComplianceResult] = Field(default_factory=list)
     answer: AnswerDraft | None = None
     clarification: ClarificationRequest | None = None
