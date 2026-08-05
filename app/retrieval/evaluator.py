@@ -1,3 +1,5 @@
+import re
+
 from app.domain.models import Evidence, EvidenceStatus, RetrievalPlan
 from app.retrieval.models import (
     EvidenceAssessment,
@@ -21,18 +23,19 @@ class QAEvidenceEvaluator:
         direct = [item for item in evidence if item.context_reason is None]
         goal_results: list[GoalEvidenceAssessment] = []
         for goal in analysis.goals:
-            candidates = self._candidates(goal.description, direct)
             identifiers = goal.required_identifiers
             if identifiers:
                 candidates = [
                     item
-                    for item in candidates
+                    for item in direct
                     if (
                         item.citation.clause_id in identifiers
                         or item.citation.table_id in identifiers
                     )
                     and "exact" in item.retrieval_sources
                 ]
+            else:
+                candidates = self._candidates(goal.description, direct)
             legal = [item for item in candidates if item.evidence_id in valid_evidence_ids]
             partial = [item for item in legal if item.support_type == EvidenceStatus.PARTIAL]
             conflicts = [item for item in legal if item.support_type == EvidenceStatus.CONFLICTING]
@@ -96,12 +99,43 @@ class QAEvidenceEvaluator:
 
     @staticmethod
     def _candidates(description: str, evidence: list[Evidence]) -> list[Evidence]:
-        terms = [term.casefold() for term in description.split() if len(term) > 1]
-        matches = [
-            item
-            for item in evidence
-            if not terms or any(term in item.content.casefold() for term in terms)
-        ]
-        # 中文长句通常没有空格；此时检索器已完成相关性排序，直接证据仍可作为候选，
-        # 但充分性还受 exact、表格状态、冲突和 ID 合法性约束。
-        return matches or evidence
+        ascii_terms, chinese_bigrams = QAEvidenceEvaluator._goal_signals(description)
+        if not ascii_terms and not chinese_bigrams:
+            return []
+        minimum_chinese_overlap = min(2, len(chinese_bigrams))
+        matches: list[Evidence] = []
+        for item in evidence:
+            content = item.content.casefold()
+            ascii_match = any(term in content for term in ascii_terms)
+            chinese_overlap = sum(term in content for term in chinese_bigrams)
+            if ascii_match or chinese_overlap >= minimum_chinese_overlap:
+                matches.append(item)
+        return matches
+
+    @staticmethod
+    def _goal_signals(description: str) -> tuple[set[str], set[str]]:
+        normalized = description.casefold()
+        ascii_terms = {
+            term for term in re.findall(r"[a-z][a-z0-9./-]*", normalized) if len(term) >= 2
+        }
+        chinese = "".join(re.findall(r"[\u4e00-\u9fff]+", normalized))
+        for phrase in (
+            "有什么要求",
+            "有哪些要求",
+            "什么要求",
+            "如何规定",
+            "怎么规定",
+            "是否符合",
+            "要求",
+            "规定",
+            "是否",
+            "什么",
+            "如何",
+            "怎么",
+        ):
+            chinese = chinese.replace(phrase, "")
+        if len(chinese) < 2:
+            return ascii_terms, set()
+        if len(chinese) == 2:
+            return ascii_terms, {chinese}
+        return ascii_terms, {chinese[index : index + 2] for index in range(len(chinese) - 1)}

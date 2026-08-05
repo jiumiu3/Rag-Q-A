@@ -111,3 +111,32 @@ def test_conflict_requires_manual_review_and_sufficient_evidence_is_accepted() -
     )
     assert accepted.is_sufficient
     assert accepted.next_action == "accept"
+
+
+def test_multi_goal_does_not_bind_unrelated_evidence_to_every_goal() -> None:
+    planner = AgenticRetrievalPlanner()
+    analysis = planner.analyze_question("控制室照度有什么要求；UPS持续供电时间有什么要求？")
+    ups = _evidence()
+    assessment = QAEvidenceEvaluator().evaluate(
+        analysis,
+        _open_plan(),
+        [ups],
+        {ups.evidence_id},
+        1,
+    )
+    by_description = {
+        goal.description: coverage
+        for goal, coverage in zip(analysis.goals, assessment.goal_assessments, strict=True)
+    }
+    lighting = next(
+        coverage for description, coverage in by_description.items() if "照度" in description
+    )
+    power = next(
+        coverage for description, coverage in by_description.items() if "UPS" in description
+    )
+    assert lighting.status == RetrievalGoalStatus.UNSUPPORTED
+    assert lighting.supporting_evidence_ids == []
+    assert power.status == RetrievalGoalStatus.SUPPORTED
+    assert power.supporting_evidence_ids == [ups.evidence_id]
+    assert not assessment.is_sufficient
+    assert assessment.next_action == "expand_query"
