@@ -637,7 +637,8 @@ def version_binding(dataset_paths: list[Path]) -> VersionBinding:
     ]
     model_config = {
         "provider": settings.model.provider,
-        "base_url": settings.model.base_url,
+        "chat_base_url": settings.model.resolved_chat_base_url,
+        "embedding_base_url": settings.model.resolved_embedding_base_url,
         "chat_model": settings.model.chat_model,
         "embedding_model": manifest["embedding_model_id"],
         "embedding_batch_size": settings.model.embedding_batch_size,

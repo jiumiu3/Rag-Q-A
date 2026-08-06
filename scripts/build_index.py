@@ -22,7 +22,7 @@ def main() -> int:
     repository = SQLiteKnowledgeRepository(settings.storage.sqlite_path)
     embedding = (
         CompatibleEmbeddingClient(settings.model, show_progress=True)
-        if settings.model.base_url and settings.model.embedding_model
+        if settings.model.resolved_embedding_base_url and settings.model.embedding_model
         else None
     )
     builder = IndexBuilder(

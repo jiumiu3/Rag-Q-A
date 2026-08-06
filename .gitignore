@@ -20,3 +20,12 @@ data/ocr/
 data/processed/
 data/indexes/
 data/*.db
+
+# 本地评测材料可能包含规范片段、查询向量或改进记录，不进入公开仓库。
+/test.md
+/evaluation/generated/
+/evaluation/dev/
+/evaluation/frozen_test/
+/evaluation/reports/latest/generated/
+/evaluation/reports/latest/fusion_dev.json
+/evaluation/reports/latest/query_embedding_cache.json

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import math
 import os
@@ -6,7 +7,7 @@ import time
 import urllib.error
 import urllib.request
 from collections.abc import Sequence
-from typing import Any, TypeVar
+from typing import Any, Literal, TypeVar
 
 from pydantic import BaseModel, ValidationError
 
@@ -23,18 +24,43 @@ class ModelClientError(AppError):
 class CompatibleJSONClient:
     """最小 OpenAI-compatible JSON 客户端；只接受经过 Pydantic 校验的输出。"""
 
-    def __init__(self, settings: ModelSettings) -> None:
+    def __init__(
+        self, settings: ModelSettings, purpose: Literal["chat", "embedding"] = "chat"
+    ) -> None:
         self.settings = settings
+        self.purpose = purpose
+
+    @property
+    def base_url(self) -> str | None:
+        return (
+            self.settings.resolved_chat_base_url
+            if self.purpose == "chat"
+            else self.settings.resolved_embedding_base_url
+        )
+
+    @property
+    def api_key_env(self) -> str:
+        return (
+            self.settings.resolved_chat_api_key_env
+            if self.purpose == "chat"
+            else self.settings.resolved_embedding_api_key_env
+        )
 
     def _api_key(self) -> str:
+        endpoint_key = (
+            self.settings.chat_api_key
+            if self.purpose == "chat"
+            else self.settings.embedding_api_key
+        )
         key = (
-            self.settings.api_key.get_secret_value()
-            if self.settings.api_key
-            else os.getenv(self.settings.api_key_env)
+            endpoint_key.get_secret_value()
+            if endpoint_key
+            else os.getenv(self.api_key_env)
+            or (self.settings.api_key.get_secret_value() if self.settings.api_key else None)
         )
         if not key:
             raise ModelClientError(
-                f"环境变量 {self.settings.api_key_env} 中没有可用密钥",
+                f"环境变量 {self.api_key_env} 中没有可用密钥",
                 details={"hint": "Docker 使用 env_file；本地运行前需导出 .env"},
             )
         return key
@@ -48,7 +74,7 @@ class CompatibleJSONClient:
         response_format: dict[str, str] | None = None,
     ) -> dict[str, Any]:
         """调用 OpenAI-compatible chat/completions，供受控工具循环复用。"""
-        if not self.settings.base_url or not self.settings.chat_model:
+        if not self.base_url or not self.settings.chat_model:
             raise ModelClientError("未配置模型 BASE_URL 或 CHAT_MODEL")
         payload: dict[str, Any] = {
             "model": self.settings.chat_model,
@@ -68,7 +94,7 @@ class CompatibleJSONClient:
             raise ModelClientError("模型响应缺少 message", details={"error": str(exc)}) from exc
 
     def complete(self, prompt: str, response_model: type[ResponseModel]) -> ResponseModel:
-        if not self.settings.base_url or not self.settings.chat_model:
+        if not self.base_url or not self.settings.chat_model:
             raise ModelClientError("未配置模型 BASE_URL 或 CHAT_MODEL")
         schema = response_model.model_json_schema()
         schema_text = json.dumps(schema, ensure_ascii=False)
@@ -94,9 +120,9 @@ class CompatibleJSONClient:
             raise ModelClientError("模型输出未通过结构化校验", details={"error": str(exc)}) from exc
 
     def _post(self, endpoint: str, payload: dict[str, Any]) -> dict[str, Any]:
-        if not self.settings.base_url:
+        if not self.base_url:
             raise ModelClientError("未配置模型 BASE_URL")
-        url = f"{self.settings.base_url.rstrip('/')}/{endpoint}"
+        url = f"{self.base_url.rstrip('/')}/{endpoint}"
         data = json.dumps(payload, ensure_ascii=False).encode()
         headers = {
             "Authorization": f"Bearer {self._api_key()}",
@@ -146,7 +172,7 @@ class CompatibleEmbeddingClient:
         if not settings.embedding_model:
             raise ModelClientError("未配置 EMBEDDING_MODEL")
         self.settings = settings
-        self.client = CompatibleJSONClient(settings)
+        self.client = CompatibleJSONClient(settings, purpose="embedding")
         self.show_progress = show_progress
 
     @property
@@ -155,9 +181,11 @@ class CompatibleEmbeddingClient:
 
     @property
     def configuration_id(self) -> str:
+        endpoint = self.settings.resolved_embedding_base_url or "NOT_CONFIGURED"
+        endpoint_hash = hashlib.sha256(endpoint.encode()).hexdigest()
         return (
             f"{self.model_id}:batch={self.settings.embedding_batch_size}:"
-            f"max_chars={self.settings.embedding_max_chars}"
+            f"max_chars={self.settings.embedding_max_chars}:endpoint={endpoint_hash}"
         )
 
     def embed(self, texts: Sequence[str]) -> list[list[float]]:

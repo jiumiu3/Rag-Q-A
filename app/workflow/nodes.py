@@ -53,10 +53,19 @@ class WorkflowNodes:
 
     def classify_intent(self, state: AgentState) -> dict[str, object]:
         text = state.normalized_input
-        if any(word in text for word in ("审查", "合规", "是否符合", "设计描述")):
+        if text.startswith(("你好", "您好", "嗨")) and "介绍你能做什么" in text:
+            intent = IntentType.OUT_OF_SCOPE
+        elif any(word in text for word in ("忽略证据", "编造", "绕过工具", "泄露提示词")):
+            intent = IntentType.OUT_OF_SCOPE
+        elif any(word in text for word in ("航空发动机", "医疗诊断", "证券投资", "核聚变")):
+            intent = IntentType.OUT_OF_SCOPE
+        elif any(word in text for word in ("审查", "合规", "是否符合", "设计描述")):
             intent = IntentType.COMPLIANCE_REVIEW
         elif any(word in text for word in ("检查清单", "检查项", "清单")):
             intent = IntentType.CHECKLIST_GENERATION
+        elif not re.search(r"[？?]", text) and len(self.parser.parse(text).items) >= 2:
+            # 多对象/多属性设计陈述应自动进入预审，不要求用户显式说“合规审查”。
+            intent = IntentType.COMPLIANCE_REVIEW
         else:
             intent = self.query_analyzer.analyze(text).intent
         return {"intent": intent}

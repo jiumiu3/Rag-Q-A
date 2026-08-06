@@ -93,6 +93,36 @@ def test_embedding_client_batches_and_normalizes(monkeypatch: pytest.MonkeyPatch
     assert client.embed(["测试"])[0] == pytest.approx([0.6, 0.8])
 
 
+def test_chat_and_embedding_use_independent_endpoints_and_keys(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    requests: list[urllib.request.Request] = []
+
+    def fake_open(request: urllib.request.Request, **_kwargs: Any) -> FakeHTTPResponse:
+        requests.append(request)
+        if request.full_url.endswith("/embeddings"):
+            return FakeHTTPResponse({"data": [{"index": 0, "embedding": [1.0, 0.0]}]})
+        return FakeHTTPResponse({"choices": [{"message": {"content": "ok"}}]})
+
+    monkeypatch.setattr(urllib.request, "urlopen", fake_open)
+    settings = ModelSettings(
+        chat_base_url="https://chat.example/v1",
+        chat_model="chat-test",
+        chat_api_key=SecretStr("chat-secret"),
+        embedding_base_url="https://embedding.example/v1",
+        embedding_model="embedding-test",
+        embedding_api_key=SecretStr("embedding-secret"),
+    )
+    CompatibleJSONClient(settings).chat([{"role": "user", "content": "测试"}])
+    CompatibleEmbeddingClient(settings).embed(["测试"])
+    assert [request.full_url for request in requests] == [
+        "https://chat.example/v1/chat/completions",
+        "https://embedding.example/v1/embeddings",
+    ]
+    assert requests[0].get_header("Authorization") == "Bearer chat-secret"
+    assert requests[1].get_header("Authorization") == "Bearer embedding-secret"
+
+
 def test_embedding_client_truncates_only_api_input(monkeypatch: pytest.MonkeyPatch) -> None:
     sent: list[str] = []
 

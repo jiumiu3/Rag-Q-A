@@ -154,6 +154,7 @@ class IndexBuilder:
             ).encode()
         ).hexdigest()
         embedding_config = getattr(self.embedding, "configuration_id", self.embedding.model_id)
+        embedding_configuration_hash = hashlib.sha256(embedding_config.encode()).hexdigest()
         config_hash = hashlib.sha256(
             (
                 f"bm25:k1=1.5,b=0.75;embedding={embedding_config};"
@@ -166,6 +167,8 @@ class IndexBuilder:
             source_hash=source_hash,
             config_hash=config_hash,
             embedding_model_id=self.embedding.model_id,
+            embedding_configuration_hash=embedding_configuration_hash,
+            embedding_dimensions=len(vectors[0]),
             build_time=datetime.now(UTC),
             unit_count=len(all_units),
             bm25_count=len(documents),

@@ -10,7 +10,7 @@ from typing import Protocol
 from app.domain.models import RetrievalFilters
 from app.knowledge.models import SearchHit, StoredUnit
 
-TOKEN_PATTERN = re.compile(r"[a-z]+(?:[./-][a-z0-9]+)*|\d+(?:\.\d+)*|[\u4e00-\u9fff]", re.I)
+TOKEN_PATTERN = re.compile(r"[a-z]+(?:[./-][a-z0-9]+)*|\d+(?:\.\d+)*|[\u4e00-\u9fff]+", re.I)
 
 
 class EmbeddingClient(Protocol):
@@ -21,8 +21,15 @@ class EmbeddingClient(Protocol):
 
 
 def tokenize(text: str) -> list[str]:
-    """中文首版按单字并保留英文/条款号词元，避免依赖外部分词词典。"""
-    return TOKEN_PATTERN.findall(text.casefold().replace("—", "-").replace("－", "-"))
+    """中文使用连续二元词组，英文和条款号保留完整词元。"""
+    output: list[str] = []
+    normalized = text.casefold().replace("—", "-").replace("－", "-")
+    for token in TOKEN_PATTERN.findall(normalized):
+        if re.fullmatch(r"[\u4e00-\u9fff]+", token) and len(token) > 1:
+            output.extend(token[index : index + 2] for index in range(len(token) - 1))
+        else:
+            output.append(token)
+    return output
 
 
 class HashEmbeddingClient:
@@ -66,7 +73,8 @@ class BM25Index:
         return cls(payload["documents"])
 
     def search(self, query: str, allowed_ids: set[str], limit: int) -> list[SearchHit]:
-        query_tokens = tokenize(query)
+        # BM25 使用查询词频没有额外语义，去重可避免重复通用词压过工程实体词。
+        query_tokens = list(dict.fromkeys(tokenize(query)))
         docs = {key: value for key, value in self.documents.items() if key in allowed_ids}
         if not query_tokens or not docs:
             return []

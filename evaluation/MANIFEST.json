@@ -3,6 +3,19 @@
   "random_seed": 42,
   "split": "evaluation-only",
   "training_usage": false,
+  "generated_extension": {
+    "dataset_version": "generated-v1.3.0",
+    "random_seed": 20260806,
+    "split": "60% dev / 40% frozen_test",
+    "targets": {
+      "retrieval": 120,
+      "tool_call": 40,
+      "design": 80,
+      "rule_extraction": 40,
+      "e2e_compliance": 30
+    },
+    "limitation": "当前无已确认 executable_rules 基准，端到端正式准确率不得评测"
+  },
   "datasets": {
     "retrieval_gold.jsonl": {
       "cases": 50,

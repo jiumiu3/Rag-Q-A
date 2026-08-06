@@ -85,6 +85,19 @@ def test_compliance_review_pauses_for_confirmation(tmp_path: Path) -> None:
     assert result.check_items
 
 
+def test_design_statement_without_review_keyword_routes_to_compliance(tmp_path: Path) -> None:
+    service = workflow(tmp_path)
+    created = service.create_session()
+    result = service.send_message(
+        created.session_id,
+        "控制室照度为500lx，UPS供电时间为2h。",
+        "idempotency-design-statement",
+    )
+    assert result.intent == IntentType.COMPLIANCE_REVIEW
+    assert result.status == WorkflowStatus.WAITING_CONFIRMATION
+    assert len(result.check_items) == 2
+
+
 def test_retrieval_retries_are_bounded(tmp_path: Path) -> None:
     service = workflow(tmp_path)
     created = service.create_session()

@@ -28,6 +28,8 @@ class IndexVersion(StrictModel):
     source_hash: str
     config_hash: str
     embedding_model_id: str
+    embedding_configuration_hash: str
+    embedding_dimensions: int = Field(gt=0)
     build_time: datetime
     unit_count: int = Field(ge=0)
     bm25_count: int = Field(ge=0)

@@ -13,10 +13,32 @@ class ModelSettings(BaseModel):
     api_key: SecretStr | None = None
     chat_model: str | None = None
     embedding_model: str | None = None
+    chat_base_url: str | None = None
+    chat_api_key_env: str | None = None
+    chat_api_key: SecretStr | None = None
+    embedding_base_url: str | None = None
+    embedding_api_key_env: str | None = None
+    embedding_api_key: SecretStr | None = None
     embedding_batch_size: int = Field(default=16, ge=1, le=128)
     embedding_max_chars: int = Field(default=6000, ge=256, le=50000)
     timeout: float = Field(default=60.0, gt=0)
     request_retries: int = Field(default=3, ge=1, le=5)
+
+    @property
+    def resolved_chat_base_url(self) -> str | None:
+        return self.chat_base_url or self.base_url
+
+    @property
+    def resolved_chat_api_key_env(self) -> str:
+        return self.chat_api_key_env or self.api_key_env
+
+    @property
+    def resolved_embedding_base_url(self) -> str | None:
+        return self.embedding_base_url or self.base_url
+
+    @property
+    def resolved_embedding_api_key_env(self) -> str:
+        return self.embedding_api_key_env or self.api_key_env
 
 
 class OCRSettings(BaseModel):
@@ -40,6 +62,10 @@ class RetrievalSettings(BaseModel):
     vector_top_k: int = Field(default=20, ge=1)
     rerank_top_k: int = Field(default=5, ge=1)
     score_threshold: float = Field(default=0.2, ge=0, le=1)
+    rrf_k: int = Field(default=60, ge=1, le=1000)
+    exact_weight: float = Field(default=2.0, gt=0)
+    bm25_weight: float = Field(default=1.0, gt=0)
+    vector_weight: float = Field(default=0.25, gt=0)
     contextual_enabled: bool = True
     contextual_strategy: Literal["deterministic"] = "deterministic"
     contextual_version: str = Field(default="v1", min_length=1)
@@ -81,6 +107,11 @@ class Settings(BaseSettings):
         validation_alias=AliasChoices("LLM_API_KEY", "APP_LLM_API_KEY"),
         exclude=True,
     )
+    deepseek_api_key: SecretStr | None = Field(
+        default=None,
+        validation_alias=AliasChoices("DEEPSEEK_API_KEY", "APP_DEEPSEEK_API_KEY"),
+        exclude=True,
+    )
     model: ModelSettings = Field(default_factory=ModelSettings)
     ocr: OCRSettings = Field(default_factory=OCRSettings)
     chunk: ChunkSettings = Field(default_factory=ChunkSettings)
@@ -91,8 +122,16 @@ class Settings(BaseSettings):
     @model_validator(mode="after")
     def bind_model_api_key(self) -> "Settings":
         """兼容 .env 的 LLM_API_KEY，同时只在内存中以 SecretStr 保存。"""
-        if self.llm_api_key and not self.model.api_key:
-            self.model = self.model.model_copy(update={"api_key": self.llm_api_key})
+        updates: dict[str, SecretStr] = {}
+        if self.llm_api_key:
+            if not self.model.api_key:
+                updates["api_key"] = self.llm_api_key
+            if not self.model.embedding_api_key:
+                updates["embedding_api_key"] = self.llm_api_key
+        if self.deepseek_api_key and not self.model.chat_api_key:
+            updates["chat_api_key"] = self.deepseek_api_key
+        if updates:
+            self.model = self.model.model_copy(update=updates)
         return self
 
 

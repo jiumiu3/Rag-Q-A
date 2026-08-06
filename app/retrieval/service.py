@@ -86,12 +86,16 @@ class RetrievalService:
         vector: VectorIndex,
         embedding: EmbeddingClient | None = None,
         reranker: Reranker | None = None,
+        rrf_k: int = 60,
+        rrf_weights: dict[str, float] | None = None,
     ) -> None:
         self.repository = repository
         self.bm25 = bm25
         self.vector = vector
         self.embedding = embedding or HashEmbeddingClient()
         self.reranker = reranker
+        self.rrf_k = rrf_k
+        self.rrf_weights = rrf_weights or {"exact": 2.0, "bm25": 1.0, "vector": 1.0}
         self.analyzer = QueryAnalyzer()
 
     def retrieve(self, query: str, top_k: int = 5) -> RetrievalResult:
@@ -117,7 +121,7 @@ class RetrievalService:
             routes["vector"] = self.vector.search(
                 self.embedding.embed([query])[0], allowed, plan.top_k * 4
             )
-        fused, source_scores = self._rrf(routes)
+        fused, source_scores = self._rrf(routes, self.rrf_k, self.rrf_weights)
         if routes.get("exact"):
             # 明确编号查询以精确命中为首要结果，语义路线只负责补充相关上下文。
             exact_order = {
@@ -161,11 +165,13 @@ class RetrievalService:
 
     @staticmethod
     def _rrf(
-        routes: dict[str, list[SearchHit]], k: int = 60
+        routes: dict[str, list[SearchHit]],
+        k: int = 60,
+        weights: dict[str, float] | None = None,
     ) -> tuple[list[tuple[str, float]], dict[str, dict[str, float]]]:
         fused: defaultdict[str, float] = defaultdict(float)
         scores: defaultdict[str, dict[str, float]] = defaultdict(dict)
-        weights = {"exact": 2.0, "bm25": 1.0, "vector": 1.0}
+        weights = weights or {"exact": 2.0, "bm25": 1.0, "vector": 1.0}
         for route, hits in routes.items():
             for rank, hit in enumerate(hits, 1):
                 fused[hit.knowledge_unit_id] += weights.get(route, 1.0) / (k + rank)

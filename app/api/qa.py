@@ -1,3 +1,4 @@
+import hashlib
 import json
 from functools import lru_cache
 from typing import Annotated
@@ -53,11 +54,38 @@ def get_qa_service() -> QAService:
             "索引 Embedding 模型与当前配置不一致",
             details={"indexed_model": indexed_model, "configured": settings.model.embedding_model},
         )
+    indexed_config_hash = manifest.get("embedding_configuration_hash")
+    indexed_dimensions = manifest.get("embedding_dimensions")
+    if not indexed_config_hash or not isinstance(indexed_dimensions, int):
+        raise RetrievalError("向量索引缺少完整版本绑定，请重新执行 build_index.py")
+    current_config = getattr(embedding, "configuration_id", embedding.model_id)
+    current_config_hash = hashlib.sha256(current_config.encode()).hexdigest()
+    if indexed_config_hash != current_config_hash:
+        raise RetrievalError(
+            "索引 Embedding 配置与当前配置不一致",
+            details={
+                "indexed_configuration_hash": indexed_config_hash,
+                "configured_configuration_hash": current_config_hash,
+            },
+        )
+    vector = VectorIndex.load(index_dir)
+    actual_dimensions = {len(item) for item in vector.vectors}
+    if actual_dimensions != {indexed_dimensions}:
+        raise RetrievalError(
+            "向量索引维度与 manifest 不一致",
+            details={"manifest": indexed_dimensions, "actual": sorted(actual_dimensions)},
+        )
     retrieval = RetrievalService(
         repository,
         BM25Index.load(index_dir / "bm25.json"),
-        VectorIndex.load(index_dir),
+        vector,
         embedding,
+        rrf_k=settings.retrieval.rrf_k,
+        rrf_weights={
+            "exact": settings.retrieval.exact_weight,
+            "bm25": settings.retrieval.bm25_weight,
+            "vector": settings.retrieval.vector_weight,
+        },
     )
     rag_answerer = (
         RAGAgentAnswerer(CompatibleJSONClient(settings.model), retrieval)

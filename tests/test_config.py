@@ -28,7 +28,13 @@ def test_invalid_config_has_clear_validation_error(monkeypatch: pytest.MonkeyPat
 
 def test_plain_llm_api_key_is_bound_as_secret(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("LLM_API_KEY", "test-secret")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "deepseek-secret")
     settings = Settings(_env_file=None)
     assert settings.model.api_key is not None
     assert settings.model.api_key.get_secret_value() == "test-secret"
+    assert settings.model.embedding_api_key is not None
+    assert settings.model.embedding_api_key.get_secret_value() == "test-secret"
+    assert settings.model.chat_api_key is not None
+    assert settings.model.chat_api_key.get_secret_value() == "deepseek-secret"
     assert "test-secret" not in repr(settings)
+    assert "deepseek-secret" not in repr(settings)

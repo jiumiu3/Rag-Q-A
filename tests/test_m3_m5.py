@@ -10,7 +10,7 @@ from app.domain.models import (
     SourceSpan,
     UnitType,
 )
-from app.knowledge.indexes import BM25Index, HashEmbeddingClient, VectorIndex
+from app.knowledge.indexes import BM25Index, HashEmbeddingClient, VectorIndex, tokenize
 from app.knowledge.models import StoredUnit
 from app.knowledge.repository import SQLiteKnowledgeRepository
 from app.qa.models import AnswerClaim, AnswerDraft
@@ -113,6 +113,16 @@ def test_indexes_roundtrip_and_id_mapping(tmp_path: Path) -> None:
     retrieval.vector.save(tmp_path / "vector")
     assert set(BM25Index.load(tmp_path / "bm25.json").documents) == {"u1", "u2"}
     assert VectorIndex.load(tmp_path / "vector").ids == ["u1", "u2"]
+
+
+def test_bm25_chinese_bigrams_prioritize_engineering_phrase() -> None:
+    documents = {
+        "target": tokenize("自力式调压器的调节精度应优于规定阈值"),
+        "generic": tokenize("工程设计应满足规范要求并进行说明"),
+        "other": tokenize("压力变送器应满足工程设计规范要求"),
+    }
+    hits = BM25Index(documents).search("自力式调压器调节精度要求", set(documents), 3)
+    assert hits[0].knowledge_unit_id == "target"
 
 
 def test_clause_qa_only_returns_exact_clause(tmp_path: Path) -> None:
