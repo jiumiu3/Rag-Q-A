@@ -3,60 +3,756 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>规范问答助手</title>
+  <meta name="theme-color" content="#0b3155">
+  <title>规范合规预审工作台</title>
   <style>
-    :root{font-family:Inter,"Noto Sans SC","Microsoft YaHei",sans-serif;color:#17324d;background:#f3f8fd;--blue:#3b82f6;--line:#dceaf7;--soft:#eaf4ff;--muted:#6d8398}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#f7fbff 0%,#edf6ff 100%)}
-    header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#ffffffdb;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);position:sticky;top:0;z-index:10}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:700}.logo{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#78b7ff,#3b82f6);display:grid;place-items:center;color:white}.subtitle{font-size:12px;color:var(--muted);font-weight:400}
-    .layout{max-width:1120px;margin:0 auto;min-height:calc(100vh - 64px);padding:22px;display:flex;gap:18px}.chat{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 36px #4d8fc414;flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
-    .chat-head{padding:20px 22px 14px;border-bottom:1px solid #edf4fa}.chat-head h1{font-size:19px;margin:0 0 5px}.muted{color:var(--muted);font-size:12px}.messages{min-height:430px;max-height:calc(100vh - 285px);overflow:auto;padding:24px;display:flex;flex-direction:column;gap:18px}
-    .bubble{max-width:86%;padding:13px 16px;border-radius:16px;line-height:1.65;white-space:pre-wrap;font-size:14px}.assistant{align-self:flex-start;background:#f1f7fd;border:1px solid #dfedf9;border-bottom-left-radius:5px}.user{align-self:flex-end;background:linear-gradient(135deg,#66a9f7,#3b82f6);color:white;border-bottom-right-radius:5px}.welcome{color:#52708d}
-    .composer{border-top:1px solid var(--line);padding:16px 18px;background:#fbfdff}.input-wrap{display:flex;align-items:flex-end;gap:10px;border:1px solid #cfe2f4;background:white;border-radius:15px;padding:9px 10px 9px 14px;box-shadow:0 4px 14px #6098c60d}.input-wrap:focus-within{border-color:#76adf3;box-shadow:0 0 0 3px #dcebff}
-    textarea{border:0;outline:0;resize:none;width:100%;min-height:48px;max-height:130px;font:inherit;color:#17324d;padding:6px;background:transparent}.send{width:42px;height:42px;border:0;border-radius:12px;background:var(--blue);color:white;font-size:19px;cursor:pointer}.send:hover{background:#256fd9}.tools{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.link-btn{border:0;background:transparent;color:#4b82ba;cursor:pointer;padding:4px;font-size:12px}
-    .drawer{width:0;opacity:0;overflow:hidden;transition:width .25s,opacity .2s}.drawer.open{width:340px;opacity:1}.panel{height:100%;max-height:calc(100vh - 108px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 12px 36px #4d8fc410}.panel h2{font-size:15px;margin:0 0 12px}.panel-section{border-top:1px solid #eaf2f8;padding:14px 0}.panel-section:first-of-type{border-top:0}.panel summary{cursor:pointer;font-size:13px;color:#315c83;padding:6px 0}.panel p{font-size:12px;line-height:1.6;color:#536d84}.panel a{color:#347dc4;font-size:12px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:var(--soft);font-size:11px;margin:2px}.warning{color:#a45e00;background:#fff6df;padding:9px;border-radius:9px;font-size:12px}.status{color:#54809f}.actions button{border:1px solid #cfe2f4;background:white;color:#3978b5;border-radius:9px;padding:7px 9px;margin:4px 3px 4px 0;cursor:pointer}pre{white-space:pre-wrap;font-size:11px;background:#f5f9fc;padding:8px;border-radius:8px;overflow:auto}
-    @media(max-width:820px){.layout{padding:10px}.drawer.open{position:fixed;inset:64px 0 0 auto;width:min(88vw,360px);z-index:9;background:#f3f8fd;padding:10px}.panel{max-height:100%}.messages{max-height:calc(100vh - 275px)}header{padding:0 16px}}
+    :root {
+      color-scheme: light;
+      font-family: "Source Sans 3", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+      color: #14283c;
+      background: #eef3f7;
+      --navy-950: #071f35;
+      --navy-900: #0b3155;
+      --navy-800: #12466f;
+      --blue-600: #1769aa;
+      --blue-500: #247ec1;
+      --blue-100: #dcecf8;
+      --blue-50: #eef7fd;
+      --surface: #ffffff;
+      --surface-subtle: #f7fafc;
+      --line: #d8e2ea;
+      --line-strong: #bdccd8;
+      --text: #14283c;
+      --muted: #5b6f82;
+      --success: #14724d;
+      --success-soft: #e7f5ef;
+      --warning: #9a5b09;
+      --warning-soft: #fff4dc;
+      --danger: #b42332;
+      --danger-soft: #fdecef;
+      --focus: #f0a72f;
+      --shadow-sm: 0 1px 3px rgba(7, 31, 53, .08);
+      --shadow-lg: 0 18px 45px rgba(7, 31, 53, .12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(11, 49, 85, .035), transparent 240px),
+        #eef3f7;
+    }
+    button, textarea { font: inherit; }
+    button, a, summary { -webkit-tap-highlight-color: transparent; }
+    button, summary { touch-action: manipulation; }
+    button:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+    }
+    button:disabled { cursor: not-allowed; opacity: .62; }
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      color: #fff;
+      background: var(--navy-950);
+      transform: translateY(-150%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px clamp(16px, 3vw, 36px);
+      color: #fff;
+      background: linear-gradient(110deg, var(--navy-950), var(--navy-900));
+      border-bottom: 3px solid #2d84bd;
+      box-shadow: 0 5px 18px rgba(7, 31, 53, .18);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 11px;
+      background: rgba(255,255,255,.1);
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    .brand-name { font-weight: 700; letter-spacing: .02em; }
+    .brand-subtitle { margin-top: 2px; color: #b9d1e4; font-size: 12px; font-weight: 400; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .workspace {
+      width: min(1480px, 100%);
+      min-height: calc(100vh - 68px);
+      margin: 0 auto;
+      padding: 18px clamp(12px, 2.4vw, 28px) 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 410px);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .workspace.drawer-closed { grid-template-columns: minmax(0, 1fr) 0; }
+
+    .chat-shell, .detail-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    .chat-shell {
+      min-width: 0;
+      min-height: calc(100vh - 110px);
+      display: grid;
+      grid-template-rows: auto auto minmax(340px, 1fr) auto;
+      overflow: hidden;
+    }
+    .chat-header {
+      padding: 18px 22px 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--blue-600);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0; color: var(--navy-950); font-size: clamp(20px, 2vw, 26px); line-height: 1.25; }
+    .session-meta { margin-top: 5px; color: var(--muted); font-size: 12px; word-break: break-all; }
+
+    .status-badge {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: var(--surface-subtle);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #8192a2; }
+    .status-badge.busy .status-dot { background: var(--blue-500); animation: pulse 1.3s ease-in-out infinite; }
+    .status-badge.success .status-dot { background: var(--success); }
+    .status-badge.warning .status-dot { background: var(--warning); }
+    .status-badge.danger .status-dot { background: var(--danger); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 12px 22px;
+      background: var(--surface-subtle);
+      border-bottom: 1px solid var(--line);
+    }
+    .step { position: relative; display: flex; align-items: center; gap: 8px; color: #718292; font-size: 12px; font-weight: 700; }
+    .step:not(:last-child)::after { content: ""; height: 1px; flex: 1; margin: 0 12px; background: var(--line-strong); }
+    .step-index {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      background: #fff;
+      font-size: 11px;
+    }
+    .step.active { color: var(--blue-600); }
+    .step.active .step-index { color: #fff; border-color: var(--blue-600); background: var(--blue-600); }
+    .step.done { color: var(--success); }
+    .step.done .step-index { color: #fff; border-color: var(--success); background: var(--success); }
+
+    .messages {
+      min-height: 0;
+      overflow: auto;
+      padding: clamp(18px, 3vw, 30px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-behavior: smooth;
+    }
+    .message-row { display: flex; gap: 10px; align-items: flex-start; }
+    .message-row.user { justify-content: flex-end; }
+    .avatar {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 9px;
+      color: #fff;
+      background: var(--navy-900);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .bubble {
+      max-width: min(82%, 760px);
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      border-radius: 5px 16px 16px;
+      color: var(--text);
+      background: var(--blue-50);
+      line-height: 1.7;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+    }
+    .message-row.user .bubble {
+      order: -1;
+      color: #fff;
+      background: var(--navy-800);
+      border-color: var(--navy-800);
+      border-radius: 16px 5px 16px 16px;
+    }
+    .bubble.error { color: #7d1b27; background: var(--danger-soft); border-color: #f4c3ca; }
+
+    .composer { padding: 14px 18px 16px; background: #fbfcfd; border-top: 1px solid var(--line); }
+    .composer-label { display: block; margin: 0 0 7px 2px; color: var(--navy-900); font-size: 12px; font-weight: 700; }
+    .input-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      padding: 8px 8px 8px 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: var(--radius-md);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+    .input-wrap:focus-within { border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(36, 126, 193, .15); }
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      max-height: 160px;
+      padding: 7px 3px;
+      resize: vertical;
+      border: 0;
+      outline: 0;
+      color: var(--text);
+      background: transparent;
+      line-height: 1.55;
+    }
+    textarea::placeholder { color: #7b8b9a; }
+    .composer-foot { min-height: 32px; margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .operation-status { color: var(--muted); font-size: 12px; line-height: 1.4; }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .button:not(:disabled):active { transform: translateY(1px); }
+    .button-primary { color: #fff; background: var(--blue-600); border-color: var(--blue-600); }
+    .button-primary:hover:not(:disabled) { background: #105b94; border-color: #105b94; }
+    .button-secondary { color: var(--navy-900); background: #fff; border-color: var(--line-strong); }
+    .button-secondary:hover:not(:disabled) { background: var(--blue-50); border-color: #8eb6d2; }
+    .button-ghost { color: #d9e9f5; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); }
+    .button-ghost:hover:not(:disabled) { color: #fff; background: rgba(255,255,255,.13); }
+    .send-button { width: 46px; height: 46px; flex: 0 0 auto; padding: 0; }
+    .button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .spinner { width: 15px; height: 15px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin .7s linear infinite; }
+
+    .drawer {
+      min-width: 0;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity .2s ease;
+    }
+    .workspace.drawer-closed .drawer { opacity: 0; pointer-events: none; }
+    .detail-panel { height: calc(100vh - 110px); overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+    .detail-header {
+      padding: 17px 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfd;
+    }
+    .detail-header h2 { margin: 0; color: var(--navy-950); font-size: 17px; }
+    .detail-header p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .detail-scroll { min-height: 0; overflow: auto; padding: 0 18px 20px; }
+    .panel-section { padding: 18px 0; border-bottom: 1px solid #e8eef3; }
+    .panel-section:last-child { border-bottom: 0; }
+    .section-heading { margin: 0 0 11px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .section-heading h3 { margin: 0; color: var(--navy-950); font-size: 14px; }
+    .count { min-width: 24px; padding: 3px 7px; border-radius: 999px; color: var(--blue-600); background: var(--blue-100); font-size: 11px; font-weight: 800; text-align: center; }
+    .empty-state { padding: 12px; border: 1px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--muted); background: var(--surface-subtle); font-size: 12px; line-height: 1.55; }
+    .helper { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+
+    details.item-card, details.evidence-card {
+      margin-top: 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #fff;
+      overflow: hidden;
+    }
+    details summary { min-height: 44px; display: flex; align-items: center; gap: 8px; padding: 10px 11px; color: var(--navy-900); cursor: pointer; font-size: 12px; font-weight: 700; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: "+"; width: 18px; color: var(--blue-600); font-size: 16px; line-height: 1; }
+    details[open] summary::before { content: "−"; }
+    .detail-content { padding: 0 12px 12px 38px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .detail-content p { margin: 0 0 8px; white-space: pre-wrap; }
+    .detail-content a { color: var(--blue-600); font-weight: 700; text-underline-offset: 3px; }
+    .item-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-width: 0; }
+    .item-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .result-card { margin-top: 9px; padding: 12px; border: 1px solid var(--line); border-left: 4px solid #8091a0; border-radius: var(--radius-sm); background: #fff; }
+    .result-card.compliant { border-left-color: var(--success); background: #fbfefc; }
+    .result-card.non-compliant { border-left-color: var(--danger); background: #fffafb; }
+    .result-card.insufficient { border-left-color: var(--warning); background: #fffdf8; }
+    .result-title { margin: 0 0 7px; color: var(--navy-950); font-size: 12px; font-weight: 800; word-break: break-all; }
+    .result-reason { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .pill { display: inline-flex; align-items: center; min-height: 24px; padding: 3px 8px; border-radius: 999px; color: #40566a; background: #eaf0f4; font-size: 10px; font-weight: 800; white-space: nowrap; }
+    .pill.compliant { color: var(--success); background: var(--success-soft); }
+    .pill.non-compliant { color: var(--danger); background: var(--danger-soft); }
+    .pill.insufficient { color: var(--warning); background: var(--warning-soft); }
+    .side-textarea { min-height: 86px; margin-top: 9px; padding: 10px 11px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: #fff; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 12px; }
+    .inline-error { min-height: 18px; margin: 6px 0 0; color: var(--danger); font-size: 11px; }
+    .section-actions { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    pre { max-height: 280px; margin: 8px 0 0; padding: 11px; overflow: auto; border-radius: var(--radius-sm); color: #cfe2f2; background: var(--navy-950); font: 11px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; }
+    .drawer-backdrop { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { 50% { opacity: .35; transform: scale(.85); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+    @media (max-width: 980px) {
+      .workspace, .workspace.drawer-closed { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+      .chat-shell { min-height: calc(100vh - 94px); }
+      .drawer { position: fixed; inset: 68px 0 0 auto; z-index: 40; width: min(92vw, 410px); padding: 10px; background: #eef3f7; box-shadow: -12px 0 35px rgba(7,31,53,.18); transform: translateX(0); transition: transform .22s ease, visibility .22s; }
+      .workspace.drawer-closed .drawer { opacity: 1; visibility: hidden; transform: translateX(105%); }
+      .detail-panel { height: calc(100vh - 88px); }
+      .drawer-backdrop { position: fixed; inset: 68px 0 0; z-index: 30; display: block; border: 0; background: rgba(7,31,53,.42); }
+      .workspace.drawer-closed .drawer-backdrop { display: none; }
+    }
+    @media (max-width: 620px) {
+      .topbar { min-height: 64px; padding: 9px 12px; }
+      .brand-mark { width: 36px; height: 36px; }
+      .brand-subtitle { display: none; }
+      .button-label-mobile { display: none; }
+      .workspace { min-height: calc(100vh - 64px); padding: 8px; }
+      .chat-shell { min-height: calc(100vh - 80px); border-radius: 14px; }
+      .chat-header { padding: 15px 15px 12px; }
+      .status-badge { max-width: 128px; overflow: hidden; text-overflow: ellipsis; }
+      .steps { padding: 10px 14px; }
+      .step { gap: 5px; font-size: 10px; }
+      .step:not(:last-child)::after { margin: 0 5px; }
+      .step-index { width: 21px; height: 21px; }
+      .messages { padding: 16px 12px; gap: 13px; }
+      .avatar { display: none; }
+      .bubble { max-width: 92%; padding: 11px 13px; font-size: 13px; }
+      .composer { padding: 11px; }
+      .composer-foot { align-items: flex-start; }
+      .drawer { top: 64px; padding: 8px; }
+      .drawer-backdrop { top: 64px; }
+    }
   </style>
 </head>
 <body>
-<header>
-  <div class="brand"><div class="logo">规</div><div>规范问答助手<div class="subtitle">油气管网仪表与自动控制</div></div></div>
-  <button class="link-btn" id="toggle">证据与详情 ☰</button>
-</header>
-<main class="layout">
-  <section class="chat">
-    <div class="chat-head"><h1>问答</h1><div id="session" class="muted">正在创建会话…</div></div>
-    <div id="messages" class="messages"><div class="bubble assistant welcome">你好，我可以查询规范条款、生成检查清单或预审设计描述。判断结果会列出对应来源条款。</div></div>
-    <div class="composer">
-      <div class="input-wrap"><textarea id="message" placeholder="输入规范问题或设计描述…">Q/GGW 02005.2-2022 第8.3.4.4条是什么？</textarea><button class="send" id="send" aria-label="发送">↑</button></div>
-      <div class="tools"><span id="status" class="muted"></span><button class="link-btn" id="new">新建会话</button></div>
+  <a class="skip-link" href="#mainContent">跳到主要内容</a>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">规</div>
+      <div>
+        <div class="brand-name">规范合规预审工作台</div>
+        <div class="brand-subtitle">油气管网仪表与自动控制 · 证据约束 RAG</div>
+      </div>
     </div>
-  </section>
-  <aside id="drawer" class="drawer" aria-label="证据与详情侧栏">
-    <div class="panel">
-      <h2>证据与详情</h2>
-      <div class="panel-section"><strong>规范证据</strong><div id="evidence" class="muted">暂无证据</div></div>
-      <div class="panel-section"><strong>检查项确认</strong><div id="items" class="muted">暂无检查项</div><div class="actions"><button id="confirm">确认检查项并继续</button></div></div>
-      <div class="panel-section"><strong>追问回复</strong><div id="question" class="muted">暂无追问</div><textarea id="answers" placeholder='JSON，例如 {"location":"控制室"}'></textarea><div class="actions"><button id="clarify">提交补充信息</button></div></div>
-      <div class="panel-section"><strong>合规结果</strong><div id="results" class="muted">暂无结果</div></div>
-      <div class="panel-section"><details><summary>运行追踪</summary><pre id="trace"></pre></details><div class="actions"><button id="report">打开 Markdown 报告</button></div></div>
+    <div class="header-actions">
+      <button class="button button-ghost" id="toggle" type="button" aria-controls="drawer" aria-expanded="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+        <span class="button-label-mobile">证据与详情</span>
+      </button>
     </div>
-  </aside>
-</main>
-<script>
-let sessionId=null,state=null;
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-async function api(path,options={}){const r=await fetch('/api/v1'+path,{headers:{'Content-Type':'application/json'},...options});const body=await r.json().catch(()=>({}));if(!r.ok)throw new Error(body.error?.message||JSON.stringify(body));return body}
-function bubble(text,type){const node=document.createElement('div');node.className=`bubble ${type}`;node.textContent=text;$('messages').appendChild(node);$('messages').scrollTop=$('messages').scrollHeight}
-async function create(){state=await api('/sessions',{method:'POST',body:'{"mode":"review"}'});sessionId=state.session_id;$('session').textContent=`会话 ${sessionId}`;renderDetails()}
-async function send(){const content=$('message').value.trim();if(!content)return;if(!sessionId)await create();bubble(content,'user');$('message').value='';$('status').textContent='正在检索规范…';try{state=await api(`/sessions/${sessionId}/messages`,{method:'POST',body:JSON.stringify({content,idempotency_key:crypto.randomUUID()})});bubble(answerText(state),'assistant');renderDetails()}catch(e){bubble(`处理失败：${e.message}\n\n证据来源：\n无可用规范证据。`,'assistant')}finally{$('status').textContent=state?`状态 ${state.status}`:''}}
-function sourceText(s){if(!s.evidence.length)return '无可用规范证据。';return s.evidence.slice(0,10).map((e,i)=>`[${i+1}] ${e.citation.standard_code}，${e.citation.clause_id||e.citation.table_id||'未标号内容'}，第 ${e.citation.page_number} 页`).join('\n')}
-function answerText(s){if(s.answer?.answer_text)return s.answer.answer_text;if(s.status==='WAITING_CONFIRMATION')return `已拆解出 ${s.check_items.length} 个检查项，请在右侧“检查项确认”中核对后继续。`;if(s.report_markdown)return s.report_markdown;return `处理完成，当前状态：${s.status}。`}
-async function confirm(){if(!state?.check_items?.length)return;const button=$('confirm');button.disabled=true;button.textContent='正在继续处理…';$('status').textContent='检查项已确认，正在动态检索并进行合规判断…';bubble('检查项已确认，正在继续进行规范检索与合规判断，请稍候。','assistant');try{state=await api(`/sessions/${sessionId}/confirm`,{method:'POST',body:JSON.stringify({items:state.check_items,rules:[]})});bubble(answerText(state),'assistant');renderDetails()}catch(e){bubble(`继续处理失败：${e.message}`,'assistant')}finally{button.disabled=false;button.textContent='确认检查项并继续';$('status').textContent=state?`状态 ${state.status}`:''}}
-async function clarify(){let answers;try{answers=JSON.parse($('answers').value)}catch{alert('追问回复必须是 JSON');return}state=await api(`/sessions/${sessionId}/clarify`,{method:'POST',body:JSON.stringify({answers})});bubble(answerText(state),'assistant');renderDetails()}
-function renderDetails(){if(!state)return;$('items').innerHTML=state.check_items.length?state.check_items.map(i=>`<details><summary>${esc(i.object)} · ${esc(i.attribute)}</summary><p>${esc(i.value)} ${esc(i.unit)} · <span class="pill">${esc(i.status)}</span></p></details>`).join(''):'暂无检查项';$('question').textContent=state.clarification?.question||'暂无追问';$('results').innerHTML=state.compliance_results.length?state.compliance_results.map(r=>`<p><span class="pill">${esc(r.status)}</span> ${esc(r.item_id)}<br>${esc((r.limitations||[]).join('；'))}</p>`).join(''):'暂无结果';$('evidence').innerHTML=state.evidence.length?state.evidence.map(e=>`<details><summary>${esc(e.citation.standard_code)} · ${esc(e.citation.clause_id||e.citation.table_id||'上下文')} · 第${e.citation.page_number}页</summary><p>${esc(e.citation.quote)}</p><a target="_blank" href="/api/v1/pages/${encodeURIComponent(e.citation.source_span.document_id)}/${e.citation.page_number}">打开原页</a></details>`).join(''):'暂无证据';$('trace').textContent=JSON.stringify(state.workflow_trace,null,2)}
-$('toggle').onclick=()=>{$('drawer').classList.toggle('open')};$('new').onclick=async()=>{await create();$('messages').innerHTML='<div class="bubble assistant welcome">新会话已创建。判断结果会列出对应来源条款。</div>'};$('send').onclick=send;$('message').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}};$('confirm').onclick=confirm;$('clarify').onclick=clarify;$('report').onclick=()=>sessionId&&window.open(`/api/v1/sessions/${sessionId}/report?format=markdown`,'_blank');create().catch(e=>$('status').textContent=e.message);
-</script>
+  </header>
+
+  <main id="mainContent">
+  <div id="workspace" class="workspace">
+    <section id="chatShell" class="chat-shell" aria-labelledby="page-title">
+      <div class="chat-header">
+        <div>
+          <p class="eyebrow">Compliance Review</p>
+          <h1 id="page-title">规范问答与合规审查</h1>
+          <div id="session" class="session-meta">正在创建安全会话…</div>
+        </div>
+        <div id="stateBadge" class="status-badge busy" role="status" aria-live="polite" aria-atomic="true">
+          <span class="status-dot" aria-hidden="true"></span><span id="stateText">初始化中</span>
+        </div>
+      </div>
+
+      <div class="steps" aria-label="合规审查进度">
+        <div class="step active" id="stepAnalyze"><span class="step-index">1</span><span>解析方案</span></div>
+        <div class="step" id="stepConfirm"><span class="step-index">2</span><span>核对检查项</span></div>
+        <div class="step" id="stepResult"><span class="step-index">3</span><span>生成结论</span></div>
+      </div>
+
+      <div id="messages" class="messages" aria-live="polite" aria-label="问答消息">
+        <div class="message-row assistant">
+          <div class="avatar" aria-hidden="true">AI</div>
+          <div class="bubble">你好，我可以查询规范条款、生成检查清单或预审设计描述。判断结果会列出对应来源条款。</div>
+        </div>
+      </div>
+
+      <div class="composer">
+        <label class="composer-label" for="message">输入规范问题或待审查的设计方案</label>
+        <div class="input-wrap">
+          <textarea id="message" rows="2" placeholder="例如：分析小屋设置可燃气体探测器，报警设定值为25%LEL，仅触发声光报警。"></textarea>
+          <button class="button button-primary send-button" id="send" type="button" aria-label="发送问题">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg>
+          </button>
+        </div>
+        <div class="composer-foot">
+          <span id="status" class="operation-status" role="status" aria-live="polite">Enter 发送，Shift + Enter 换行</span>
+          <button class="button button-secondary" id="new" type="button">新建会话</button>
+        </div>
+      </div>
+    </section>
+
+    <button id="backdrop" class="drawer-backdrop" type="button" aria-label="关闭证据与详情侧栏"></button>
+    <aside id="drawer" class="drawer" aria-label="证据与详情侧栏">
+      <div class="detail-panel">
+        <div class="detail-header">
+          <div><h2>审查详情</h2><p>核对检查项、证据与模型结论</p></div>
+          <button class="button button-secondary" id="closeDrawer" type="button" aria-label="关闭详情侧栏">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="detail-scroll">
+          <section class="panel-section" aria-labelledby="items-title">
+            <div class="section-heading"><h3 id="items-title">检查项确认</h3><span id="itemCount" class="count">0</span></div>
+            <div id="items" class="empty-state">提交设计描述后，拆解出的检查项将在这里显示。</div>
+            <div class="section-actions"><button class="button button-primary" id="confirm" type="button" disabled>确认检查项并继续</button></div>
+            <p class="helper">确认后将进行动态检索与模型综合判断，此过程可能需要一些时间。</p>
+          </section>
+
+          <section class="panel-section" aria-labelledby="results-title">
+            <div class="section-heading"><h3 id="results-title">合规结论</h3><span id="resultCount" class="count">0</span></div>
+            <div id="results" class="empty-state">完成检查项确认后，将显示逐项判断及主要原因。</div>
+          </section>
+
+          <section class="panel-section" aria-labelledby="evidence-title">
+            <div class="section-heading"><h3 id="evidence-title">规范证据</h3><span id="evidenceCount" class="count">0</span></div>
+            <div id="evidence" class="empty-state">检索完成后，可在这里核验来源条款和原始页面。</div>
+          </section>
+
+          <section class="panel-section" aria-labelledby="clarify-title">
+            <div class="section-heading"><h3 id="clarify-title">补充信息</h3></div>
+            <div id="question" class="empty-state">当前无需补充信息。</div>
+            <label class="composer-label" for="answers" style="margin-top:10px">JSON 格式回复</label>
+            <textarea class="side-textarea" id="answers" rows="4" aria-describedby="answerHelp answerError" placeholder='例如：{"location":"分析小屋"}'></textarea>
+            <p id="answerHelp" class="helper">字段名称应与追问中要求的信息一致。</p>
+            <p id="answerError" class="inline-error" role="alert"></p>
+            <div class="section-actions"><button class="button button-secondary" id="clarify" type="button">提交补充信息</button></div>
+          </section>
+
+          <section class="panel-section">
+            <details><summary>运行追踪</summary><pre id="trace">暂无运行记录</pre></details>
+            <div class="section-actions"><button class="button button-secondary" id="report" type="button" disabled>打开 Markdown 报告</button></div>
+          </section>
+        </div>
+      </div>
+    </aside>
+  </div>
+  </main>
+
+  <script>
+    let sessionId = null;
+    let state = null;
+    let busy = false;
+    const $ = id => document.getElementById(id);
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+
+    // 将工作流英文状态统一映射为用户可理解的中文状态。
+    const statusMeta = {
+      NEW: ['会话已就绪', 'success'],
+      CREATED: ['会话已就绪', 'success'],
+      RUNNING: ['正在处理中', 'busy'],
+      WAITING_CONFIRMATION: ['等待确认检查项', 'warning'],
+      WAITING_CLARIFICATION: ['等待补充信息', 'warning'],
+      COMPLETED: ['审查已完成', 'success'],
+      SAFE_STOPPED: ['安全停止', 'danger'],
+      FAILED: ['处理失败', 'danger']
+    };
+    const resultMeta = {
+      COMPLIANT: ['合规', 'compliant'],
+      NON_COMPLIANT: ['不合规', 'non-compliant'],
+      INSUFFICIENT_INFORMATION: ['信息不足', 'insufficient'],
+      NOT_SPECIFIED: ['规范未规定', 'insufficient'],
+      MANUAL_REVIEW_REQUIRED: ['需人工复核', 'insufficient'],
+      CONFLICT: ['证据冲突', 'non-compliant'],
+      NOT_EVALUATED: ['未判断', '']
+    };
+    const checkItemMeta = {
+      DRAFT: ['待确认', ''],
+      CONFIRMED: ['已确认', 'compliant'],
+      NEEDS_CLARIFICATION: ['需补充', 'insufficient'],
+      READY: ['待判断', ''],
+      EVALUATED: ['已判断', 'compliant']
+    };
+
+    async function api(path, options = {}) {
+      const response = await fetch('/api/v1' + path, {headers: {'Content-Type': 'application/json'}, ...options});
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(body.error?.message || JSON.stringify(body));
+      return body;
+    }
+
+    function setBusy(value, message = '') {
+      busy = value;
+      $('send').disabled = value;
+      $('new').disabled = value;
+      $('message').setAttribute('aria-busy', String(value));
+      $('chatShell').setAttribute('aria-busy', String(value));
+      if (message) $('status').textContent = message;
+      renderControls();
+    }
+
+    function setButtonLoading(button, loading, label) {
+      button.disabled = loading;
+      button.innerHTML = loading ? `<span class="spinner" aria-hidden="true"></span><span>${esc(label)}</span>` : esc(label);
+      button.setAttribute('aria-busy', String(loading));
+    }
+
+    function bubble(text, type = 'assistant', error = false) {
+      const row = document.createElement('div');
+      row.className = `message-row ${type}`;
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = type === 'user' ? '我' : 'AI';
+      const content = document.createElement('div');
+      content.className = `bubble${error ? ' error' : ''}`;
+      content.textContent = text;
+      row.append(avatar, content);
+      $('messages').appendChild(row);
+      $('messages').scrollTop = $('messages').scrollHeight;
+    }
+
+    function updateStatus(currentStatus) {
+      const [label, tone] = statusMeta[currentStatus] || [currentStatus || '会话已就绪', 'success'];
+      $('stateText').textContent = label;
+      $('stateBadge').className = `status-badge ${busy ? 'busy' : tone}`;
+    }
+
+    function updateSteps(currentStatus) {
+      const waitingConfirm = currentStatus === 'WAITING_CONFIRMATION';
+      const finished = ['COMPLETED', 'SAFE_STOPPED', 'FAILED'].includes(currentStatus);
+      $('stepAnalyze').className = `step ${waitingConfirm || finished ? 'done' : 'active'}`;
+      $('stepConfirm').className = `step ${waitingConfirm ? 'active' : finished ? 'done' : ''}`;
+      $('stepResult').className = `step ${finished ? 'active' : ''}`;
+    }
+
+    function openDrawer(open = true) {
+      $('workspace').classList.toggle('drawer-closed', !open);
+      $('toggle').setAttribute('aria-expanded', String(open));
+      if (open && window.matchMedia('(max-width: 980px)').matches) $('closeDrawer').focus();
+    }
+
+    async function create() {
+      setBusy(true, '正在创建安全会话…');
+      try {
+        state = await api('/sessions', {method: 'POST', body: '{"mode":"review"}'});
+        sessionId = state.session_id;
+        // 页面只展示短会话标识，完整 ID 仍由前端状态用于接口调用。
+        $('session').textContent = `会话 ${sessionId.slice(0, 16)}…`;
+        renderDetails();
+        $('status').textContent = '会话已就绪，可以开始提问或提交方案。';
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    function answerText(currentState) {
+      if (currentState.answer?.answer_text) return currentState.answer.answer_text;
+      if (currentState.status === 'WAITING_CONFIRMATION') return `已拆解出 ${currentState.check_items?.length || 0} 个检查项，请在右侧“检查项确认”中核对后继续。`;
+      if (currentState.report_markdown) return currentState.report_markdown;
+      return `处理完成，当前状态：${statusMeta[currentState.status]?.[0] || currentState.status}。`;
+    }
+
+    async function send() {
+      const content = $('message').value.trim();
+      if (!content || busy) return;
+      if (!sessionId) await create();
+      bubble(content, 'user');
+      $('message').value = '';
+      setBusy(true, '正在解析问题并检索规范，请稍候…');
+      updateStatus('RUNNING');
+      try {
+        state = await api(`/sessions/${sessionId}/messages`, {
+          method: 'POST',
+          body: JSON.stringify({content, idempotency_key: crypto.randomUUID()})
+        });
+        bubble(answerText(state));
+        renderDetails();
+        if (state.status === 'WAITING_CONFIRMATION') openDrawer(true);
+        $('status').textContent = statusMeta[state.status]?.[0] || `状态：${state.status}`;
+      } catch (error) {
+        bubble(`处理失败：${error.message}\n\n暂无可用规范证据，请稍后重试。`, 'assistant', true);
+        $('status').textContent = '处理失败，请检查服务状态后重试。';
+        updateStatus('FAILED');
+      } finally {
+        setBusy(false);
+        updateStatus(state?.status);
+      }
+    }
+
+    async function confirmItems() {
+      if (!state?.check_items?.length || busy) return;
+      const button = $('confirm');
+      setBusy(true, '检查项已确认，正在动态检索并进行合规判断…');
+      setButtonLoading(button, true, '正在生成合规结论');
+      updateStatus('RUNNING');
+      bubble('检查项已确认，正在继续进行规范检索与合规判断，请稍候。');
+      try {
+        state = await api(`/sessions/${sessionId}/confirm`, {
+          method: 'POST',
+          body: JSON.stringify({items: state.check_items, rules: []})
+        });
+        bubble(answerText(state));
+        renderDetails();
+        $('status').textContent = state.status === 'COMPLETED' ? '合规审查已完成，可查看逐项结论。' : (statusMeta[state.status]?.[0] || state.status);
+      } catch (error) {
+        bubble(`继续处理失败：${error.message}`, 'assistant', true);
+        $('status').textContent = '检查项已保留，可稍后重新确认。';
+      } finally {
+        setBusy(false);
+        setButtonLoading(button, false, '确认检查项并继续');
+        renderControls();
+        updateStatus(state?.status);
+      }
+    }
+
+    async function clarify() {
+      if (busy) return;
+      let answers;
+      $('answerError').textContent = '';
+      try {
+        answers = JSON.parse($('answers').value);
+      } catch {
+        $('answerError').textContent = '请输入有效的 JSON，例如：{"location":"分析小屋"}';
+        $('answers').focus();
+        return;
+      }
+      setBusy(true, '正在提交补充信息并继续审查…');
+      setButtonLoading($('clarify'), true, '正在提交');
+      try {
+        state = await api(`/sessions/${sessionId}/clarify`, {method: 'POST', body: JSON.stringify({answers})});
+        bubble(answerText(state));
+        renderDetails();
+        $('answers').value = '';
+        $('status').textContent = '补充信息已提交，工作流已继续。';
+      } catch (error) {
+        $('answerError').textContent = `提交失败：${error.message}`;
+      } finally {
+        setBusy(false);
+        setButtonLoading($('clarify'), false, '提交补充信息');
+        renderControls();
+      }
+    }
+
+    function renderControls() {
+      const hasItems = Boolean(state?.check_items?.length);
+      $('confirm').disabled = busy || !hasItems || state?.status !== 'WAITING_CONFIRMATION';
+      $('clarify').disabled = busy || !sessionId || state?.status !== 'WAITING_CLARIFICATION';
+      $('report').disabled = !sessionId || !state?.report_markdown;
+    }
+
+    function renderDetails() {
+      if (!state) return;
+      const items = state.check_items || [];
+      const results = state.compliance_results || [];
+      const evidence = state.evidence || [];
+
+      $('itemCount').textContent = items.length;
+      $('resultCount').textContent = results.length;
+      $('evidenceCount').textContent = evidence.length;
+
+      $('items').className = items.length ? '' : 'empty-state';
+      $('items').innerHTML = items.length ? items.map((item, index) => {
+        const status = checkItemMeta[item.status] || [item.status || '待确认', ''];
+        return `<details class="item-card" ${index === 0 ? 'open' : ''}><summary><span class="item-line"><span class="item-title">${esc(item.object)} · ${esc(item.attribute)}</span><span class="pill ${status[1]}">${esc(status[0])}</span></span></summary><div class="detail-content"><p><strong>实际描述：</strong>${esc(item.value || '未提供')}${item.unit ? ` ${esc(item.unit)}` : ''}</p></div></details>`;
+      }).join('') : '提交设计描述后，拆解出的检查项将在这里显示。';
+
+      $('results').className = results.length ? '' : 'empty-state';
+      $('results').innerHTML = results.length ? results.map(result => {
+        const meta = resultMeta[result.status] || [result.status, ''];
+        const reason = result.reasoning || (result.limitations || []).join('；') || '模型未返回判断说明。';
+        return `<article class="result-card ${meta[1]}"><div class="result-title"><span class="pill ${meta[1]}">${esc(meta[0])}</span> ${esc(result.item_id)}</div><p class="result-reason">${esc(reason)}</p></article>`;
+      }).join('') : '完成检查项确认后，将显示逐项判断及主要原因。';
+
+      $('evidence').className = evidence.length ? '' : 'empty-state';
+      $('evidence').innerHTML = evidence.length ? evidence.map(item => {
+        const citation = item.citation;
+        const section = citation.clause_id || citation.table_id || '上下文';
+        return `<details class="evidence-card"><summary>${esc(citation.standard_code)} · ${esc(section)} · 第${esc(citation.page_number)}页</summary><div class="detail-content"><p>${esc(citation.quote)}</p><a target="_blank" rel="noopener" href="/api/v1/pages/${encodeURIComponent(citation.source_span.document_id)}/${citation.page_number}">打开规范原页</a></div></details>`;
+      }).join('') : '检索完成后，可在这里核验来源条款和原始页面。';
+
+      $('question').textContent = state.clarification?.question || '当前无需补充信息。';
+      $('trace').textContent = JSON.stringify(state.workflow_trace || [], null, 2);
+      updateStatus(state.status);
+      updateSteps(state.status);
+      renderControls();
+    }
+
+    $('toggle').addEventListener('click', () => openDrawer($('workspace').classList.contains('drawer-closed')));
+    $('closeDrawer').addEventListener('click', () => openDrawer(false));
+    $('backdrop').addEventListener('click', () => openDrawer(false));
+    $('new').addEventListener('click', async () => {
+      await create();
+      $('messages').innerHTML = '<div class="message-row assistant"><div class="avatar" aria-hidden="true">AI</div><div class="bubble">新会话已创建。判断结果会列出对应来源条款。</div></div>';
+      $('message').focus();
+    });
+    $('send').addEventListener('click', send);
+    $('message').addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send(); }
+    });
+    $('confirm').addEventListener('click', confirmItems);
+    $('clarify').addEventListener('click', clarify);
+    $('report').addEventListener('click', () => sessionId && window.open(`/api/v1/sessions/${sessionId}/report?format=markdown`, '_blank', 'noopener'));
+
+    create().catch(error => {
+      $('status').textContent = `会话创建失败：${error.message}`;
+      updateStatus('FAILED');
+    });
+  </script>
 </body>
 </html>
