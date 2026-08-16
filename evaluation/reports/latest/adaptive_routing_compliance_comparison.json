@@ -1,0 +1,185 @@
+{
+  "summary": {
+    "cases": 2,
+    "current": {
+      "total": 3,
+      "covered": 3,
+      "coverage": 1.0
+    },
+    "dynamic": {
+      "total": 3,
+      "covered": 3,
+      "coverage": 1.0
+    },
+    "route_counts": {
+      "current": {
+        "('bm25', 'vector')": 2
+      },
+      "dynamic": {
+        "('bm25', 'vector')": 4
+      }
+    },
+    "elapsed_seconds": 1.0159323269999732
+  },
+  "current_items": [
+    {
+      "case_id": "eng-001",
+      "subject": "控制室",
+      "attribute": "照度",
+      "expected_rule_clause": "13.3.2",
+      "evidence_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "hit": true,
+      "routes": [
+        "bm25",
+        "vector"
+      ],
+      "queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    },
+    {
+      "case_id": "eng-001",
+      "subject": "UPS",
+      "attribute": "持续供电时间",
+      "expected_rule_clause": "13.5.1",
+      "evidence_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "hit": true,
+      "routes": [
+        "bm25",
+        "vector"
+      ],
+      "queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    },
+    {
+      "case_id": "eng-002",
+      "subject": "仪表线路",
+      "attribute": "间距",
+      "expected_rule_clause": "11.4.1.5",
+      "evidence_clauses": [
+        "11.2.1.2",
+        "11.2.1.5",
+        "11.4.1.5",
+        "11.4.1.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "hit": true,
+      "routes": [
+        "bm25",
+        "vector"
+      ],
+      "queries": [
+        "仪表与设备 间距",
+        "设备 供电时间"
+      ]
+    }
+  ],
+  "dynamic_items": [
+    {
+      "case_id": "eng-001",
+      "subject": "控制室",
+      "attribute": "照度",
+      "expected_rule_clause": "13.3.2",
+      "evidence_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "hit": true,
+      "routes": "dynamic per query",
+      "queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    },
+    {
+      "case_id": "eng-001",
+      "subject": "UPS",
+      "attribute": "持续供电时间",
+      "expected_rule_clause": "13.5.1",
+      "evidence_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "hit": true,
+      "routes": "dynamic per query",
+      "queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    },
+    {
+      "case_id": "eng-002",
+      "subject": "仪表线路",
+      "attribute": "间距",
+      "expected_rule_clause": "11.4.1.5",
+      "evidence_clauses": [
+        "11.2.1.2",
+        "11.2.1.5",
+        "11.4.1.5",
+        "11.4.1.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "hit": true,
+      "routes": "dynamic per query",
+      "queries": [
+        "仪表与设备 间距",
+        "设备 供电时间"
+      ]
+    }
+  ]
+}

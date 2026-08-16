@@ -177,6 +177,15 @@ vs
 
 冻结集路由分布未变化，因为当前数据集中带编号上下文的问题仍走 `exact`。新增单元测试验证了纯数值问题会改为 `bm25`，纯语义问题保持 `bm25 + vector`。结论：`KEEP`，无回归。
 
+### 合规审查路径动态路由对比
+
+- 检查清单生成路径不经过检索节点，因此动态路由不适用。
+- 合规审查路径使用 `AdaptiveRetrievalPlanner`；在 `evaluation/frozen_test/e2e_compliance.jsonl` 12 条案例上模拟计划级动态路由。
+- 当前路由分布：12 条均 `bm25 + vector`。
+- 模拟动态路由分布：6 条 `bm25 + vector`，6 条 `bm25`。
+- 当前与动态路由的案例级和检查项级 Evidence 覆盖一致，无提升也无回归。
+- 当前标签为 `pending / NOT_EVALUATED`，且检查项查询未包含实际数值和单位，因此该对比只能作为过程性信号，不能作为最终采纳依据。
+
 ---
 
 # P1：领域 Query Rewrite 与同义词扩展

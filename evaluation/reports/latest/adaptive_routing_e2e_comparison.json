@@ -1,0 +1,841 @@
+{
+  "summary": {
+    "case_count": 12,
+    "case_level_current": {
+      "total": 12,
+      "covered": 1,
+      "coverage": 0.08333333333333333
+    },
+    "case_level_dynamic": {
+      "total": 12,
+      "covered": 1,
+      "coverage": 0.08333333333333333
+    },
+    "item_level_current": {
+      "total": 25,
+      "covered": 2,
+      "coverage": 0.08
+    },
+    "item_level_dynamic": {
+      "total": 25,
+      "covered": 2,
+      "coverage": 0.08
+    },
+    "route_counts": {
+      "current": {
+        "('bm25', 'vector')": 12
+      },
+      "dynamic": {
+        "('bm25', 'vector')": 25
+      }
+    },
+    "elapsed_seconds": 19.27252298499934
+  },
+  "case_rows": [
+    {
+      "case_id": "e2e-012",
+      "expected_clauses": [
+        "8.3.4.15"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "5.4.2",
+        "6.2.1",
+        "6.2.2",
+        "6.2.3",
+        "7.1",
+        "7.1.1",
+        "7.1.2",
+        "7.1.4",
+        "7.1.6",
+        "7.1.7",
+        "8.2.8"
+      ],
+      "dynamic_clauses": [
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "5.4.2",
+        "6.2.1",
+        "6.2.2",
+        "6.2.3",
+        "7.1",
+        "7.1.1",
+        "7.1.2",
+        "7.1.4",
+        "7.1.6",
+        "7.1.7",
+        "8.2.8"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "压力变送器 压力 现场",
+        "控制阀 压力 现场",
+        "UPS 供电时间 现场"
+      ]
+    },
+    {
+      "case_id": "e2e-002",
+      "expected_clauses": [
+        "11.4.4.2"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "dynamic_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "仪表电缆与动力电缆 间距",
+        "压力变送器 压力"
+      ]
+    },
+    {
+      "case_id": "e2e-025",
+      "expected_clauses": [
+        "11.2.1.7"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "5.6.3.1",
+        "5.6.3.2",
+        "6.2.2",
+        "6.2.3",
+        "7.1.4"
+      ],
+      "dynamic_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "5.6.3.1",
+        "5.6.3.2",
+        "6.2.2",
+        "6.2.3",
+        "7.1.4"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "UPS 供电时间 控制室",
+        "压力变送器 压力 控制室"
+      ]
+    },
+    {
+      "case_id": "e2e-016",
+      "expected_clauses": [
+        "5.5.3"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "dynamic_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "仪表电缆与动力电缆 间距",
+        "压力变送器 压力"
+      ]
+    },
+    {
+      "case_id": "e2e-021",
+      "expected_clauses": [
+        "9.3.2"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "dynamic_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "UPS 供电时间 控制室",
+        "控制室 照度 控制室"
+      ]
+    },
+    {
+      "case_id": "e2e-001",
+      "expected_clauses": [
+        "11.2.1.2"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "dynamic_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    },
+    {
+      "case_id": "e2e-028",
+      "expected_clauses": [
+        "11.2.2.2"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "5.1.3",
+        "6.3.4",
+        "6.3.4.1",
+        "7.3.2"
+      ],
+      "dynamic_clauses": [
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "5.1.3",
+        "6.3.4",
+        "6.3.4.1",
+        "7.3.2"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "分析仪 防护等级 控制室",
+        "控制室 照度 控制室"
+      ]
+    },
+    {
+      "case_id": "e2e-009",
+      "expected_clauses": [
+        "7.1.12"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "5.6.3",
+        "5.6.3.1",
+        "5.6.3.2",
+        "6.2.2",
+        "7.1.4",
+        "8.3.3",
+        "8.3.3.2"
+      ],
+      "dynamic_clauses": [
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "5.6.3",
+        "5.6.3.1",
+        "5.6.3.2",
+        "6.2.2",
+        "7.1.4",
+        "8.3.3",
+        "8.3.3.2"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "压力变送器 压力",
+        "压力变送器 温度"
+      ]
+    },
+    {
+      "case_id": "e2e-027",
+      "expected_clauses": [
+        "11.2.1.6"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "12.2.2",
+        "12.2.2.1",
+        "12.2.2.2",
+        "12.2.2.6",
+        "12.2.2.7",
+        "12.2.2.8",
+        "12.3.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "dynamic_clauses": [
+        "12.2.2",
+        "12.2.2.1",
+        "12.2.2.2",
+        "12.2.2.6",
+        "12.2.2.7",
+        "12.2.2.8",
+        "12.3.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "UPS 供电时间",
+        "接地线 接地截面积"
+      ]
+    },
+    {
+      "case_id": "e2e-005",
+      "expected_clauses": [
+        "5.2.4"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "12.2.2",
+        "12.2.2.1",
+        "12.2.2.2",
+        "12.2.2.6",
+        "12.2.2.7",
+        "12.2.2.8",
+        "12.3.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "dynamic_clauses": [
+        "12.2.2",
+        "12.2.2.1",
+        "12.2.2.2",
+        "12.2.2.6",
+        "12.2.2.7",
+        "12.2.2.8",
+        "12.3.6",
+        "13.5",
+        "13.5.1",
+        "13.5.2",
+        "8.2.8"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "接地线 接地截面积",
+        "UPS 供电时间"
+      ]
+    },
+    {
+      "case_id": "e2e-030",
+      "expected_clauses": [
+        "11.4.1.6"
+      ],
+      "current_hit": true,
+      "dynamic_hit": true,
+      "current_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "dynamic_clauses": [
+        "11.4.1.6",
+        "11.4.1.7",
+        "11.4.6.2",
+        "11.4.6.3",
+        "5.3",
+        "5.3.1",
+        "5.3.2",
+        "6.2.2",
+        "7.1.4"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "仪表电缆与动力电缆 间距",
+        "压力变送器 压力"
+      ]
+    },
+    {
+      "case_id": "e2e-029",
+      "expected_clauses": [
+        "11.3.1.8"
+      ],
+      "current_hit": false,
+      "dynamic_hit": false,
+      "current_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "dynamic_clauses": [
+        "13",
+        "13.1.7",
+        "13.1.8",
+        "13.3",
+        "13.3.1",
+        "13.3.2",
+        "13.3.3",
+        "13.3.4",
+        "13.4",
+        "13.5",
+        "13.5.1",
+        "13.5.2"
+      ],
+      "current_routes": [
+        "bm25",
+        "vector"
+      ],
+      "dynamic_queries": [
+        "控制室 照度 控制室",
+        "UPS 供电时间 控制室"
+      ]
+    }
+  ],
+  "item_rows_current": [
+    {
+      "case_id": "e2e-012",
+      "attribute": "压力",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-012",
+      "attribute": "压力",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-012",
+      "attribute": "供电时间",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-002",
+      "attribute": "间距",
+      "expected_clause": "11.4.4.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-002",
+      "attribute": "压力",
+      "expected_clause": "11.4.4.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-025",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.7",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-025",
+      "attribute": "压力",
+      "expected_clause": "11.2.1.7",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-016",
+      "attribute": "间距",
+      "expected_clause": "5.5.3",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-016",
+      "attribute": "压力",
+      "expected_clause": "5.5.3",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-021",
+      "attribute": "供电时间",
+      "expected_clause": "9.3.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-021",
+      "attribute": "照度",
+      "expected_clause": "9.3.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-001",
+      "attribute": "照度",
+      "expected_clause": "11.2.1.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-001",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-028",
+      "attribute": "防护等级",
+      "expected_clause": "11.2.2.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-028",
+      "attribute": "照度",
+      "expected_clause": "11.2.2.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-009",
+      "attribute": "压力",
+      "expected_clause": "7.1.12",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-009",
+      "attribute": "温度",
+      "expected_clause": "7.1.12",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-027",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.6",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-027",
+      "attribute": "接地截面积",
+      "expected_clause": "11.2.1.6",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-005",
+      "attribute": "接地截面积",
+      "expected_clause": "5.2.4",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-005",
+      "attribute": "供电时间",
+      "expected_clause": "5.2.4",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-030",
+      "attribute": "间距",
+      "expected_clause": "11.4.1.6",
+      "hit": true
+    },
+    {
+      "case_id": "e2e-030",
+      "attribute": "压力",
+      "expected_clause": "11.4.1.6",
+      "hit": true
+    },
+    {
+      "case_id": "e2e-029",
+      "attribute": "照度",
+      "expected_clause": "11.3.1.8",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-029",
+      "attribute": "供电时间",
+      "expected_clause": "11.3.1.8",
+      "hit": false
+    }
+  ],
+  "item_rows_dynamic": [
+    {
+      "case_id": "e2e-012",
+      "attribute": "压力",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-012",
+      "attribute": "压力",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-012",
+      "attribute": "供电时间",
+      "expected_clause": "8.3.4.15",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-002",
+      "attribute": "间距",
+      "expected_clause": "11.4.4.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-002",
+      "attribute": "压力",
+      "expected_clause": "11.4.4.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-025",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.7",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-025",
+      "attribute": "压力",
+      "expected_clause": "11.2.1.7",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-016",
+      "attribute": "间距",
+      "expected_clause": "5.5.3",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-016",
+      "attribute": "压力",
+      "expected_clause": "5.5.3",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-021",
+      "attribute": "供电时间",
+      "expected_clause": "9.3.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-021",
+      "attribute": "照度",
+      "expected_clause": "9.3.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-001",
+      "attribute": "照度",
+      "expected_clause": "11.2.1.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-001",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-028",
+      "attribute": "防护等级",
+      "expected_clause": "11.2.2.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-028",
+      "attribute": "照度",
+      "expected_clause": "11.2.2.2",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-009",
+      "attribute": "压力",
+      "expected_clause": "7.1.12",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-009",
+      "attribute": "温度",
+      "expected_clause": "7.1.12",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-027",
+      "attribute": "供电时间",
+      "expected_clause": "11.2.1.6",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-027",
+      "attribute": "接地截面积",
+      "expected_clause": "11.2.1.6",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-005",
+      "attribute": "接地截面积",
+      "expected_clause": "5.2.4",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-005",
+      "attribute": "供电时间",
+      "expected_clause": "5.2.4",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-030",
+      "attribute": "间距",
+      "expected_clause": "11.4.1.6",
+      "hit": true
+    },
+    {
+      "case_id": "e2e-030",
+      "attribute": "压力",
+      "expected_clause": "11.4.1.6",
+      "hit": true
+    },
+    {
+      "case_id": "e2e-029",
+      "attribute": "照度",
+      "expected_clause": "11.3.1.8",
+      "hit": false
+    },
+    {
+      "case_id": "e2e-029",
+      "attribute": "供电时间",
+      "expected_clause": "11.3.1.8",
+      "hit": false
+    }
+  ]
+}
