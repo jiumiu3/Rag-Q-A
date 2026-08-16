@@ -8,6 +8,9 @@ from app.domain.models import Evidence, IntentType, RetrievalPlan, StrictModel
 
 class QueryAnalysis(StrictModel):
     intent: IntentType
+    route_type: Literal[
+        "exact", "table", "keyword", "numeric", "semantic", "multi_goal"
+    ] = "semantic"
     standard_codes: list[str] = Field(default_factory=list)
     clause_numbers: list[str] = Field(default_factory=list)
     table_numbers: list[str] = Field(default_factory=list)

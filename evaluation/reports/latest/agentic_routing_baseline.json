@@ -1,0 +1,771 @@
+{
+  "metrics": {
+    "cases": 44,
+    "recall_at_1": 0.8409090909090909,
+    "recall_at_5": 1.0,
+    "mrr": 0.9204545454545454,
+    "ndcg_at_5": 0.8968727336663154,
+    "full_coverage_at_5": 0.8409090909090909
+  },
+  "details": [
+    {
+      "case_id": "retrieval-027",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_e065d0844c9c9434029c"
+      ],
+      "ids": [
+        "chunk_e065d0844c9c9434029c"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-024",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_8f6a84215f67c84f2a06"
+      ],
+      "ids": [
+        "chunk_8f6a84215f67c84f2a06"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-093",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5ffd4081fccc2d41d21c"
+      ],
+      "ids": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_7397a4ff438e2aa7e896",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_3e3b0304e4541174606a",
+        "chunk_8bd586a7625e7304df9f",
+        "chunk_fb71ae7e423e339fc299",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_19c072f32797d0946379"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-067",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "ids": [
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-083",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_8fdbf6c8ecb89daef24a"
+      ],
+      "ids": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-050",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_cd9cd1e16f54dae8ea40"
+      ],
+      "ids": [
+        "chunk_cd9cd1e16f54dae8ea40"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-071",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-095",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_db431ba00f7981256704"
+      ],
+      "ids": [
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_db431ba00f7981256704",
+        "chunk_8aa33556034284ea684f",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_3da351713865c901eb4d",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_f432867e391d6dead944",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "table_a8c9f5413e6a06bf07fd"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-028",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_471274490d7ef724b1ec"
+      ],
+      "ids": [
+        "chunk_471274490d7ef724b1ec"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-030",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "ids": [
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-002",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_1a2b327267db7b3d4795"
+      ],
+      "ids": [
+        "chunk_1a2b327267db7b3d4795"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-041",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_e345d63028288bb87781"
+      ],
+      "ids": [
+        "chunk_e345d63028288bb87781"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-007",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_45930e0320ad7f45e182"
+      ],
+      "ids": [
+        "chunk_45930e0320ad7f45e182"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-037",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6a2c1a12d86b8a7f5576"
+      ],
+      "ids": [
+        "chunk_6a2c1a12d86b8a7f5576"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-091",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "ids": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_f432867e391d6dead944",
+        "chunk_7397a4ff438e2aa7e896",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_3e3b0304e4541174606a",
+        "chunk_00bffdab96da19a6a375",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_19c072f32797d0946379"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-015",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_246d4e121220c18741ba"
+      ],
+      "ids": [
+        "chunk_246d4e121220c18741ba"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-069",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_fc365760cbf15e24d4db"
+      ],
+      "ids": [
+        "chunk_fc365760cbf15e24d4db"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-029",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-049",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_4306606f93e8e49c50e8"
+      ],
+      "ids": [
+        "chunk_4306606f93e8e49c50e8"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-098",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1afecd8ce572cda733df"
+      ],
+      "ids": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_02276e3966cc3ba01375",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_f432867e391d6dead944",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "table_a8c9f5413e6a06bf07fd"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-101",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_6185f3457354500ee294"
+      ],
+      "ids": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_34bb4417d41b0ddda79e",
+        "chunk_30d902f60d97a1117a69",
+        "chunk_93edf39162ff0a2fb975",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_f432867e391d6dead944",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "table_a8c9f5413e6a06bf07fd"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-043",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_e966c334dbbdd52aedcd"
+      ],
+      "ids": [
+        "chunk_e966c334dbbdd52aedcd"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-022",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_dcf02a5d5596f37535e8"
+      ],
+      "ids": [
+        "chunk_dcf02a5d5596f37535e8"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-006",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_442df02b19bf8218c983"
+      ],
+      "ids": [
+        "chunk_442df02b19bf8218c983"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-105",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_45e2b614428cce4db94f",
+        "chunk_2b648c864304beabd561"
+      ],
+      "ids": [
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_2b648c864304beabd561",
+        "chunk_359912c239cfb3e1747c",
+        "chunk_ac012c6c876ea67d09b7",
+        "chunk_a619615964c197aa0b51",
+        "chunk_aca0c9c6a0458cf251e4",
+        "chunk_c9a0d62a5bb20c7d417d",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_442df02b19bf8218c983",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_19c072f32797d0946379",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_ad0277ff690a670bd31a"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-068",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "ids": [
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-059",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_f7feac7e5aca5e7266e1"
+      ],
+      "ids": [
+        "chunk_f7feac7e5aca5e7266e1"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-055",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_7e23ddcce160e3353179"
+      ],
+      "ids": [
+        "chunk_7e23ddcce160e3353179"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-035",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_8c7dcfccfc1aa628e509"
+      ],
+      "ids": [
+        "chunk_8c7dcfccfc1aa628e509"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-104",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_93edf39162ff0a2fb975"
+      ],
+      "ids": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_442df02b19bf8218c983",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_f432867e391d6dead944",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "table_a8c9f5413e6a06bf07fd"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-060",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "ids": [
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-087",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_fdd9b3db369e2bf69d73"
+      ],
+      "ids": [
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_a199d5026f5c8ba5dd11",
+        "chunk_cb6ca7b4609190982258",
+        "chunk_2074394642bab27af664",
+        "chunk_467e911ead4238f740d3",
+        "chunk_4717903c58f9d94bdde4"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-005",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_45e2b614428cce4db94f"
+      ],
+      "ids": [
+        "chunk_45e2b614428cce4db94f"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-075",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_65e9bd0f38ea5e1ac931"
+      ],
+      "ids": [
+        "chunk_65e9bd0f38ea5e1ac931"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-100",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_540d54e02591c6a6bd0d",
+        "chunk_e97f550d57d5ff741bda"
+      ],
+      "ids": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_cbb5a22238cb9cbfe8aa",
+        "chunk_847fbc173378fe13790c",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_f432867e391d6dead944",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_19c072f32797d0946379",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_0fb8e162ef9db7e79bd4"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-099",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56"
+      ],
+      "ids": [
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_607ac3482171d92b4318",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_999d068eb0244833c304",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_841dc5ff0053e653b302",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_4776699a128d3b63a4d9",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_19c072f32797d0946379",
+        "chunk_5ffd4081fccc2d41d21c"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-082",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_496abb837d73946c6fb1"
+      ],
+      "ids": [
+        "table_496abb837d73946c6fb1"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-092",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5aa2b526b5aa993ade95"
+      ],
+      "ids": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_a1cae914558d3c91a653",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_f432867e391d6dead944",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "table_a8c9f5413e6a06bf07fd"
+      ],
+      "retrievers": [
+        "bm25",
+        "vector"
+      ]
+    },
+    {
+      "case_id": "retrieval-078",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_5b1154de9a13b318914b"
+      ],
+      "ids": [
+        "table_5b1154de9a13b318914b",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_f3a96090ee37bd448c1a",
+        "chunk_93fb6c05f4f8d7576647",
+        "chunk_f2f23ef13f5ab5c69339",
+        "chunk_93c399eb3b4fd887d317"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-004",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_6185f3457354500ee294"
+      ],
+      "ids": [
+        "chunk_6185f3457354500ee294"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-046",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6acbe61e1d877980193d"
+      ],
+      "ids": [
+        "chunk_6acbe61e1d877980193d"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-054",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_0084c1e902ad47fd31d9"
+      ],
+      "ids": [
+        "chunk_0084c1e902ad47fd31d9"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-036",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6e36a0745f525f46faec"
+      ],
+      "ids": [
+        "chunk_6e36a0745f525f46faec"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    },
+    {
+      "case_id": "retrieval-047",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_bd2a2e1ac67a35b7129c"
+      ],
+      "ids": [
+        "chunk_bd2a2e1ac67a35b7129c"
+      ],
+      "retrievers": [
+        "exact"
+      ]
+    }
+  ]
+}

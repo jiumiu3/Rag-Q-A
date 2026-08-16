@@ -1,0 +1,1696 @@
+{
+  "dataset": "evaluation/frozen_test/retrieval.jsonl",
+  "evaluated_cases": 44,
+  "metrics": {
+    "bm25_original": {
+      "cases": 44,
+      "recall_at_1": 0.6818181818181818,
+      "recall_at_5": 0.9545454545454546,
+      "mrr": 0.8011363636363636,
+      "ndcg_at_5": 0.796540607406343,
+      "full_coverage_at_5": 0.7954545454545454
+    },
+    "bm25_expanded": {
+      "cases": 44,
+      "recall_at_1": 0.6590909090909091,
+      "recall_at_5": 0.9545454545454546,
+      "mrr": 0.7715909090909091,
+      "ndcg_at_5": 0.7737794159748206,
+      "full_coverage_at_5": 0.7727272727272727
+    },
+    "hybrid_original": {
+      "cases": 44,
+      "recall_at_1": 0.6590909090909091,
+      "recall_at_5": 0.8636363636363636,
+      "mrr": 0.7488636363636364,
+      "ndcg_at_5": 0.7382820094176367,
+      "full_coverage_at_5": 0.7272727272727273
+    },
+    "hybrid_expanded": {
+      "cases": 44,
+      "recall_at_1": 0.6136363636363636,
+      "recall_at_5": 0.8409090909090909,
+      "mrr": 0.7079545454545454,
+      "ndcg_at_5": 0.7071667765442605,
+      "full_coverage_at_5": 0.7045454545454546
+    }
+  },
+  "newly_recalled_cases": {
+    "bm25": [],
+    "hybrid": []
+  },
+  "lost_cases": {
+    "bm25": [],
+    "hybrid": [
+      "retrieval-098"
+    ]
+  },
+  "gain_count": {
+    "bm25": 0,
+    "hybrid": 0
+  },
+  "loss_count": {
+    "bm25": 0,
+    "hybrid": 1
+  },
+  "details": [
+    {
+      "case_id": "retrieval-027",
+      "query": "规范中“孔板流量计”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.5.7条的上下文内回答。",
+      "expanded_query": "规范中“孔板流量计”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.5.7条的上下文内回答。",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_e065d0844c9c9434029c"
+      ],
+      "bm25_original_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88"
+      ],
+      "hybrid_original_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_bb422953b1e423d9b8f8"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_bb422953b1e423d9b8f8"
+      ]
+    },
+    {
+      "case_id": "retrieval-024",
+      "query": "规范中“每条计量支路设置一台流量计算机，进行工况和标况条件下体积”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.4.3条的上下文内回答。",
+      "expanded_query": "规范中“每条计量支路设置一台流量计算机，进行工况和标况条件下体积”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.4.3条的上下文内回答。 流量积算仪 flow computer",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_8f6a84215f67c84f2a06"
+      ],
+      "bm25_original_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93"
+      ],
+      "hybrid_original_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_c4385c108ce7c6fd76ee"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee"
+      ]
+    },
+    {
+      "case_id": "retrieval-093",
+      "query": "请综合说明规范性引用文件与规范性引用文件两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "expanded_query": "请综合说明规范性引用文件与规范性引用文件两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5ffd4081fccc2d41d21c"
+      ],
+      "bm25_original_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_257f6929f4378bd80b8f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_257f6929f4378bd80b8f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_31e8e6cc0b5e22793de7"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_31e8e6cc0b5e22793de7"
+      ]
+    },
+    {
+      "case_id": "retrieval-067",
+      "query": "计量系统有哪些数值或精度限制？ 请限定在Q/GGW 02005.3-2022第5条的上下文内回答。",
+      "expanded_query": "计量系统有哪些数值或精度限制？ 请限定在Q/GGW 02005.3-2022第5条的上下文内回答。 贸易计量系统 metering system",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "bm25_original_top5": [
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_c86e5551e043b0297959",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a"
+      ],
+      "hybrid_original_top5": [
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_4e56ec48f06e6503a31a"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561"
+      ]
+    },
+    {
+      "case_id": "retrieval-083",
+      "query": "Q/GGW 02005.3-2022 表3的适用条件是什么？",
+      "expanded_query": "Q/GGW 02005.3-2022 表3的适用条件是什么？",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_8fdbf6c8ecb89daef24a"
+      ],
+      "bm25_original_top5": [
+        "chunk_7d9c1638c4f281cfad87",
+        "table_fdd9b3db369e2bf69d73",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_7d9c1638c4f281cfad87",
+        "table_fdd9b3db369e2bf69d73",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7"
+      ],
+      "hybrid_original_top5": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_305a0e6823b57be54fdf"
+      ],
+      "hybrid_expanded_top5": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_305a0e6823b57be54fdf"
+      ]
+    },
+    {
+      "case_id": "retrieval-050",
+      "query": "工程设计涉及输油管道控制阀结构要求如下时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第7.1.6条的上下文内回答。",
+      "expanded_query": "工程设计涉及输油管道控制阀结构要求如下时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第7.1.6条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_cd9cd1e16f54dae8ea40"
+      ],
+      "bm25_original_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_d43ae616cec436ba20ce"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_d43ae616cec436ba20ce"
+      ],
+      "hybrid_original_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_b168af69fa1920637ee7"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_b168af69fa1920637ee7"
+      ]
+    },
+    {
+      "case_id": "retrieval-071",
+      "query": "仪表信号有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "expanded_query": "仪表信号有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "bm25_original_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2cd07217535c455ace05"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2cd07217535c455ace05"
+      ],
+      "hybrid_original_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-095",
+      "query": "请综合说明计量系统 metering system与枢纽站 hub station两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "expanded_query": "请综合说明计量系统 metering system与枢纽站 hub station两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。 贸易计量系统",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_db431ba00f7981256704"
+      ],
+      "bm25_original_top5": [
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_db431ba00f7981256704",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8aa33556034284ea684f",
+        "chunk_0322e2ddba4943a2e1bd"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_db431ba00f7981256704",
+        "chunk_1138ce83273675efeb82",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_db431ba00f7981256704",
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_8aa33556034284ea684f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_0322e2ddba4943a2e1bd"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_8aa33556034284ea684f",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_0322e2ddba4943a2e1bd"
+      ]
+    },
+    {
+      "case_id": "retrieval-028",
+      "query": "规范中“设备序列编号不足两位数时，第一位数字”具体指什么？ 请限定在Q/GGW 02005.1-2022第5.1.2.4.7条的上下文内回答。",
+      "expanded_query": "规范中“设备序列编号不足两位数时，第一位数字”具体指什么？ 请限定在Q/GGW 02005.1-2022第5.1.2.4.7条的上下文内回答。",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_471274490d7ef724b1ec"
+      ],
+      "bm25_original_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_e8db191ab4166a2a2ad3"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_e8db191ab4166a2a2ad3"
+      ],
+      "hybrid_original_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_708f2a2e70fe1e5b5031"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_708f2a2e70fe1e5b5031"
+      ]
+    },
+    {
+      "case_id": "retrieval-030",
+      "query": "规范中“流量计算机”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.4.3条的上下文内回答。",
+      "expanded_query": "规范中“流量计算机”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.4.3条的上下文内回答。 流量积算仪 flow computer",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "bm25_original_top5": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_1dec7e94f43936b12a20"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_5c0f5f2e9b6a387842af"
+      ],
+      "hybrid_original_top5": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_1dec7e94f43936b12a20"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_1dec7e94f43936b12a20"
+      ]
+    },
+    {
+      "case_id": "retrieval-002",
+      "query": "Q/GGW 02005.2-2022 第3.6条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.2-2022 第3.6条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_1a2b327267db7b3d4795"
+      ],
+      "bm25_original_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "hybrid_original_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-041",
+      "query": "工程设计涉及界面检测仪时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.6.5条的上下文内回答。",
+      "expanded_query": "工程设计涉及界面检测仪时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.6.5条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_e345d63028288bb87781"
+      ],
+      "bm25_original_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea"
+      ],
+      "hybrid_original_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_19c072f32797d0946379",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_19c072f32797d0946379",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-007",
+      "query": "Q/GGW 02005.1-2022 第3.17条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.1-2022 第3.17条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_45930e0320ad7f45e182"
+      ],
+      "bm25_original_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "hybrid_original_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_e40163670209479caf48"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_e40163670209479caf48"
+      ]
+    },
+    {
+      "case_id": "retrieval-037",
+      "query": "工程设计涉及仪表管阀件 instrument valve and p时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第3.25条的上下文内回答。",
+      "expanded_query": "工程设计涉及仪表管阀件 instrument valve and p时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第3.25条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6a2c1a12d86b8a7f5576"
+      ],
+      "bm25_original_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "hybrid_original_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ]
+    },
+    {
+      "case_id": "retrieval-091",
+      "query": "请综合说明规范性引用文件与范围.两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。",
+      "expanded_query": "请综合说明规范性引用文件与范围.两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "bm25_original_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_f83fdebd81a6be8e5ffd"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_f83fdebd81a6be8e5ffd"
+      ],
+      "hybrid_original_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7"
+      ]
+    },
+    {
+      "case_id": "retrieval-015",
+      "query": "Q/GGW 02005.3-2022 第5.3.6.1条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.3-2022 第5.3.6.1条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_246d4e121220c18741ba"
+      ],
+      "bm25_original_top5": [
+        "chunk_246d4e121220c18741ba",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_246d4e121220c18741ba",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f"
+      ]
+    },
+    {
+      "case_id": "retrieval-069",
+      "query": "B型井口安全控制系统，适用于在采气树设置井下安全阀及地面有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第9.8.2条的上下文内回答。",
+      "expanded_query": "B型井口安全控制系统，适用于在采气树设置井下安全阀及地面有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第9.8.2条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_fc365760cbf15e24d4db"
+      ],
+      "bm25_original_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a3a95358e43656825343"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a3a95358e43656825343"
+      ],
+      "hybrid_original_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a570366da64cb4e70f58"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a570366da64cb4e70f58"
+      ]
+    },
+    {
+      "case_id": "retrieval-029",
+      "query": "规范中“仪表信号”具体指什么？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "expanded_query": "规范中“仪表信号”具体指什么？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "bm25_original_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124"
+      ],
+      "hybrid_original_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47"
+      ]
+    },
+    {
+      "case_id": "retrieval-049",
+      "query": "工程设计涉及油气藏型地下储气库分为井场、集注站、集输系统、联络线、分时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.1.3.2条的上下文内回答。",
+      "expanded_query": "工程设计涉及油气藏型地下储气库分为井场、集注站、集输系统、联络线、分时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.1.3.2条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_4306606f93e8e49c50e8"
+      ],
+      "bm25_original_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_0ada98030b801e4562b5"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_0ada98030b801e4562b5"
+      ],
+      "hybrid_original_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c36501bed10b25d1fbc9"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c36501bed10b25d1fbc9"
+      ]
+    },
+    {
+      "case_id": "retrieval-098",
+      "query": "请综合说明计量系统与液化天然气 liquefied natural gas两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "expanded_query": "请综合说明计量系统与液化天然气 liquefied natural gas两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。 LNG 贸易计量系统 metering system",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1afecd8ce572cda733df"
+      ],
+      "bm25_original_top5": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_5fb4d1109782a3848a56"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_1138ce83273675efeb82"
+      ],
+      "hybrid_original_top5": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_5ffd4081fccc2d41d21c"
+      ]
+    },
+    {
+      "case_id": "retrieval-101",
+      "query": "请综合说明检定 verification与安全仪表系统safety instrumented sy两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "expanded_query": "请综合说明检定 verification与安全仪表系统safety instrumented sy两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。 SIS",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_6185f3457354500ee294"
+      ],
+      "bm25_original_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_fafef068612e188540fa",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_fafef068612e188540fa",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3"
+      ]
+    },
+    {
+      "case_id": "retrieval-043",
+      "query": "工程设计涉及不同安装位置通用仪表的图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.1条的上下文内回答。",
+      "expanded_query": "工程设计涉及不同安装位置通用仪表的图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.1条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_e966c334dbbdd52aedcd"
+      ],
+      "bm25_original_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "hybrid_original_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ]
+    },
+    {
+      "case_id": "retrieval-022",
+      "query": "规范中“等电位连接 equipotential bonding”具体指什么？ 请限定在Q/GGW 02005.1-2022第3.19条的上下文内回答。",
+      "expanded_query": "规范中“等电位连接 equipotential bonding”具体指什么？ 请限定在Q/GGW 02005.1-2022第3.19条的上下文内回答。",
+      "query_type": "term",
+      "expected_unit_ids": [
+        "chunk_dcf02a5d5596f37535e8"
+      ],
+      "bm25_original_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3"
+      ],
+      "hybrid_original_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_eb7ef4606656c9df3940"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_eb7ef4606656c9df3940"
+      ]
+    },
+    {
+      "case_id": "retrieval-006",
+      "query": "Q/GGW 02005.3-2022 第5.3.3.5条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.3-2022 第5.3.3.5条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_442df02b19bf8218c983"
+      ],
+      "bm25_original_top5": [
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a"
+      ]
+    },
+    {
+      "case_id": "retrieval-105",
+      "query": "请综合说明液化天然与考虑到国内现有检定中心的能力，天然气贸易计量系统中单台流两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "expanded_query": "请综合说明液化天然与考虑到国内现有检定中心的能力，天然气贸易计量系统中单台流两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。 metering system",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_45e2b614428cce4db94f",
+        "chunk_2b648c864304beabd561"
+      ],
+      "bm25_original_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "hybrid_original_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ]
+    },
+    {
+      "case_id": "retrieval-068",
+      "query": "压力检测仪表选型有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.3.2条的上下文内回答。",
+      "expanded_query": "压力检测仪表选型有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.3.2条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "bm25_original_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_original_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-059",
+      "query": "压力仪表安装要求压力仪表安装有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第8.3.3.2条的上下文内回答。",
+      "expanded_query": "压力仪表安装要求压力仪表安装有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第8.3.3.2条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_f7feac7e5aca5e7266e1"
+      ],
+      "bm25_original_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10"
+      ],
+      "hybrid_original_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_862de99cce203cd67193",
+        "chunk_bb0f876c0657739662c4"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_862de99cce203cd67193",
+        "chunk_bb0f876c0657739662c4"
+      ]
+    },
+    {
+      "case_id": "retrieval-055",
+      "query": "工程设计涉及液化天然气接收站DCS按照就近原则时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.2.1.6条的上下文内回答。",
+      "expanded_query": "工程设计涉及液化天然气接收站DCS按照就近原则时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.2.1.6条的上下文内回答。 分散控制系统 集散控制系统 LNG",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_7e23ddcce160e3353179"
+      ],
+      "bm25_original_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_a7f65ce222bd7f99b2dd"
+      ],
+      "hybrid_original_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_405c8b52e9fa15eccdba"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_823d40d0be407056aaa7"
+      ]
+    },
+    {
+      "case_id": "retrieval-035",
+      "query": "工程设计涉及压力检测仪表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.3.1条的上下文内回答。",
+      "expanded_query": "工程设计涉及压力检测仪表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.3.1条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_8c7dcfccfc1aa628e509"
+      ],
+      "bm25_original_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "hybrid_original_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_d56ea87a28f50cbdb831"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_d56ea87a28f50cbdb831"
+      ]
+    },
+    {
+      "case_id": "retrieval-104",
+      "query": "请综合说明天然气贸易计量系统与基本过程控制系统 basic processcontro两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "expanded_query": "请综合说明天然气贸易计量系统与基本过程控制系统 basic processcontro两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。 metering system",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_93edf39162ff0a2fb975"
+      ],
+      "bm25_original_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_30d902f60d97a1117a69"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_30d902f60d97a1117a69"
+      ],
+      "hybrid_original_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ]
+    },
+    {
+      "case_id": "retrieval-060",
+      "query": "仪表管阀件材质有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.6.1.4条的上下文内回答。",
+      "expanded_query": "仪表管阀件材质有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.6.1.4条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "bm25_original_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_ddddab2908f0b7cd8be7"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_ddddab2908f0b7cd8be7"
+      ],
+      "hybrid_original_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_18bd6f18a03bd8df31b4"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_18bd6f18a03bd8df31b4"
+      ]
+    },
+    {
+      "case_id": "retrieval-087",
+      "query": "Q/GGW 02005.3-2022 表5的各行参数要求是什么？",
+      "expanded_query": "Q/GGW 02005.3-2022 表5的各行参数要求是什么？",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_fdd9b3db369e2bf69d73"
+      ],
+      "bm25_original_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_c0bba829fe7e1bd53021"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_c0bba829fe7e1bd53021"
+      ],
+      "hybrid_original_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4"
+      ]
+    },
+    {
+      "case_id": "retrieval-005",
+      "query": "Q/GGW 02005.2-2022 第3.8条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.2-2022 第3.8条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_45e2b614428cce4db94f"
+      ],
+      "bm25_original_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "hybrid_original_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2b190b56a9b831e233f6"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2b190b56a9b831e233f6"
+      ]
+    },
+    {
+      "case_id": "retrieval-075",
+      "query": "当直埋电缆穿越道路时有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.4.4.4条的上下文内回答。",
+      "expanded_query": "当直埋电缆穿越道路时有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.4.4.4条的上下文内回答。",
+      "query_type": "numeric",
+      "expected_unit_ids": [
+        "chunk_65e9bd0f38ea5e1ac931"
+      ],
+      "bm25_original_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_5e9b1128dcb473683fc1"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_5e9b1128dcb473683fc1"
+      ],
+      "hybrid_original_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_17a6d2d7d738ac09aec4"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_17a6d2d7d738ac09aec4"
+      ]
+    },
+    {
+      "case_id": "retrieval-100",
+      "query": "请综合说明-与检测元件 sensor两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。",
+      "expanded_query": "请综合说明-与检测元件 sensor两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。 传感器",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_540d54e02591c6a6bd0d",
+        "chunk_e97f550d57d5ff741bda"
+      ],
+      "bm25_original_top5": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_257f6929f4378bd80b8f",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_b0941c642d43f132d27a",
+        "chunk_4ea753df71644ac10158",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_999d068eb0244833c304"
+      ],
+      "hybrid_original_top5": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_cbb5a22238cb9cbfe8aa"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_999d068eb0244833c304",
+        "chunk_841dc5ff0053e653b302",
+        "table_496abb837d73946c6fb1"
+      ]
+    },
+    {
+      "case_id": "retrieval-099",
+      "query": "请综合说明变送器 transmitter与缩略语两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "expanded_query": "请综合说明变送器 transmitter与缩略语两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56"
+      ],
+      "bm25_original_top5": [
+        "chunk_607ac3482171d92b4318",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_607ac3482171d92b4318",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_b24bb4063c51acac7046"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_b24bb4063c51acac7046"
+      ]
+    },
+    {
+      "case_id": "retrieval-082",
+      "query": "Q/GGW 02005.1-2022 表3的表头与参数单位是什么？",
+      "expanded_query": "Q/GGW 02005.1-2022 表3的表头与参数单位是什么？",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_496abb837d73946c6fb1"
+      ],
+      "bm25_original_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_496abb837d73946c6fb1",
+        "table_d1012b61103d65cf9e02",
+        "table_90e4048ce8ea3486219c"
+      ],
+      "bm25_expanded_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_496abb837d73946c6fb1",
+        "table_d1012b61103d65cf9e02",
+        "table_90e4048ce8ea3486219c"
+      ],
+      "hybrid_original_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "table_496abb837d73946c6fb1",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_90e4048ce8ea3486219c",
+        "table_715cbb50f46cf6d34082"
+      ],
+      "hybrid_expanded_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "table_496abb837d73946c6fb1",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_90e4048ce8ea3486219c",
+        "table_715cbb50f46cf6d34082"
+      ]
+    },
+    {
+      "case_id": "retrieval-092",
+      "query": "请综合说明范围与监控阀室 monitoring valve statio两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "expanded_query": "请综合说明范围与监控阀室 monitoring valve statio两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。 监视阀室",
+      "query_type": "multi_clause",
+      "expected_unit_ids": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5aa2b526b5aa993ade95"
+      ],
+      "bm25_original_top5": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_d7375cf977cf884a6048"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_d7375cf977cf884a6048",
+        "chunk_a1cae914558d3c91a653",
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_733e6920eba41d9d11a1",
+        "chunk_5aa2b526b5aa993ade95"
+      ],
+      "hybrid_original_top5": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_7834a3c5deb7e96b91d7"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_d7375cf977cf884a6048",
+        "chunk_a1cae914558d3c91a653",
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_733e6920eba41d9d11a1",
+        "chunk_5aa2b526b5aa993ade95"
+      ]
+    },
+    {
+      "case_id": "retrieval-078",
+      "query": "Q/GGW 02005.3-2022 表1的各行参数要求是什么？",
+      "expanded_query": "Q/GGW 02005.3-2022 表1的各行参数要求是什么？",
+      "query_type": "table",
+      "expected_unit_ids": [
+        "table_5b1154de9a13b318914b"
+      ],
+      "bm25_original_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "hybrid_original_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_ff7f22a43f96b3511711"
+      ]
+    },
+    {
+      "case_id": "retrieval-004",
+      "query": "Q/GGW 02005.1-2022 第3.9条的原文要求是什么？",
+      "expanded_query": "Q/GGW 02005.1-2022 第3.9条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "expected_unit_ids": [
+        "chunk_6185f3457354500ee294"
+      ],
+      "bm25_original_top5": [
+        "chunk_6185f3457354500ee294",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6185f3457354500ee294",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "hybrid_original_top5": [
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_1a9ea2d3b64b655d7c3d"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_1a9ea2d3b64b655d7c3d"
+      ]
+    },
+    {
+      "case_id": "retrieval-046",
+      "query": "工程设计涉及信号处理功能图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.8条的上下文内回答。",
+      "expanded_query": "工程设计涉及信号处理功能图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.8条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6acbe61e1d877980193d"
+      ],
+      "bm25_original_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ],
+      "hybrid_original_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ]
+    },
+    {
+      "case_id": "retrieval-054",
+      "query": "工程设计涉及分输站场未设置在线分析系统时时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第6.3.1.3条的上下文内回答。",
+      "expanded_query": "工程设计涉及分输站场未设置在线分析系统时时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第6.3.1.3条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_0084c1e902ad47fd31d9"
+      ],
+      "bm25_original_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_63a123ab48fb5153706f"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_63a123ab48fb5153706f"
+      ],
+      "hybrid_original_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_a8568912a6def441f31a"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_a8568912a6def441f31a"
+      ]
+    },
+    {
+      "case_id": "retrieval-036",
+      "query": "工程设计涉及超声流量计（插入式）时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第5.3.5.2条的上下文内回答。",
+      "expanded_query": "工程设计涉及超声流量计（插入式）时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第5.3.5.2条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_6e36a0745f525f46faec"
+      ],
+      "bm25_original_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "hybrid_original_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_7823dcab4878094a9304"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_7823dcab4878094a9304"
+      ]
+    },
+    {
+      "case_id": "retrieval-047",
+      "query": "工程设计涉及控制阀上游安装普通不锈钢压力表，下游安装不锈钢耐振压力表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第6.2.3条的上下文内回答。",
+      "expanded_query": "工程设计涉及控制阀上游安装普通不锈钢压力表，下游安装不锈钢耐振压力表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第6.2.3条的上下文内回答。",
+      "query_type": "semantic",
+      "expected_unit_ids": [
+        "chunk_bd2a2e1ac67a35b7129c"
+      ],
+      "bm25_original_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3e3fa6949437d10aea8a"
+      ],
+      "bm25_expanded_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3e3fa6949437d10aea8a"
+      ],
+      "hybrid_original_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_8f2f1f8548f5da6047c4"
+      ],
+      "hybrid_expanded_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_8f2f1f8548f5da6047c4"
+      ]
+    }
+  ]
+}

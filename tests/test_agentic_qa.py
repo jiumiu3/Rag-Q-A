@@ -24,6 +24,22 @@ def test_explicit_clause_uses_exact_only() -> None:
     assert plan.exact_keys == ["8.3.4.4"]
 
 
+def test_numeric_question_uses_bm25_initial_route() -> None:
+    planner = AgenticRetrievalPlanner()
+    question = "设计压力为1.6 MPa时有什么要求？"
+    analysis = planner.analyze_question(question)
+    plan = planner.create(question, analysis, 0, None, [])
+    assert plan.retrievers == ["bm25"]
+
+
+def test_semantic_question_keeps_hybrid_initial_route() -> None:
+    planner = AgenticRetrievalPlanner()
+    question = "UPS持续供电时间有什么要求？"
+    analysis = planner.analyze_question(question)
+    plan = planner.create(question, analysis, 0, None, [])
+    assert plan.retrievers == ["bm25", "vector"]
+
+
 def test_complex_question_has_multiple_goals_and_retry_changes_queries() -> None:
     planner = AgenticRetrievalPlanner()
     question = "控制室照度有什么要求；UPS供电时间有什么要求？"

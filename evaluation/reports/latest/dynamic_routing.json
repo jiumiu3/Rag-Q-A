@@ -1,0 +1,678 @@
+{
+  "dataset": "evaluation/frozen_test/retrieval.jsonl",
+  "evaluated_cases": 44,
+  "baseline_fixed_hybrid": {
+    "cases": 44,
+    "recall_at_1": 0.6590909090909091,
+    "recall_at_5": 0.8636363636363636,
+    "mrr": 0.7488636363636364,
+    "ndcg_at_5": 0.7382820094176367,
+    "full_coverage_at_5": 0.7272727272727273,
+    "latency_p50_ms": 52.588947999538505,
+    "latency_p95_ms": 106.79570499996771
+  },
+  "dynamic_routing": {
+    "cases": 44,
+    "recall_at_1": 0.8409090909090909,
+    "recall_at_5": 0.9772727272727273,
+    "mrr": 0.9022727272727273,
+    "ndcg_at_5": 0.8816334624809022,
+    "full_coverage_at_5": 0.8409090909090909,
+    "latency_p50_ms": 34.06547699978546,
+    "latency_p95_ms": 107.61081199962064
+  },
+  "dynamic_route_counts": {
+    "('bm25',)": 24,
+    "('bm25', 'vector')": 10,
+    "('exact',)": 10
+  },
+  "dynamic_route_type_counts": {
+    "keyword": 24,
+    "multi_goal": 10,
+    "table": 4,
+    "exact": 6
+  },
+  "details": [
+    {
+      "case_id": "retrieval-027",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88"
+      ]
+    },
+    {
+      "case_id": "retrieval-024",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_df9efb207b9557ec3be7"
+      ]
+    },
+    {
+      "case_id": "retrieval-093",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_31e8e6cc0b5e22793de7"
+      ]
+    },
+    {
+      "case_id": "retrieval-067",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_c86e5551e043b0297959",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2"
+      ]
+    },
+    {
+      "case_id": "retrieval-083",
+      "query_type": "table",
+      "route_type": "table",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_ff7f22a43f96b3511711"
+      ]
+    },
+    {
+      "case_id": "retrieval-050",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_d43ae616cec436ba20ce"
+      ]
+    },
+    {
+      "case_id": "retrieval-071",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2cd07217535c455ace05"
+      ]
+    },
+    {
+      "case_id": "retrieval-095",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_db431ba00f7981256704",
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_8aa33556034284ea684f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_0322e2ddba4943a2e1bd"
+      ]
+    },
+    {
+      "case_id": "retrieval-028",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_e8db191ab4166a2a2ad3"
+      ]
+    },
+    {
+      "case_id": "retrieval-030",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_1dec7e94f43936b12a20"
+      ]
+    },
+    {
+      "case_id": "retrieval-002",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_1a2b327267db7b3d4795"
+      ]
+    },
+    {
+      "case_id": "retrieval-041",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea"
+      ]
+    },
+    {
+      "case_id": "retrieval-007",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_45930e0320ad7f45e182"
+      ]
+    },
+    {
+      "case_id": "retrieval-037",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ]
+    },
+    {
+      "case_id": "retrieval-091",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7"
+      ]
+    },
+    {
+      "case_id": "retrieval-015",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_246d4e121220c18741ba"
+      ]
+    },
+    {
+      "case_id": "retrieval-069",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a3a95358e43656825343"
+      ]
+    },
+    {
+      "case_id": "retrieval-029",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124"
+      ]
+    },
+    {
+      "case_id": "retrieval-049",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_0ada98030b801e4562b5"
+      ]
+    },
+    {
+      "case_id": "retrieval-098",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df"
+      ]
+    },
+    {
+      "case_id": "retrieval-101",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3"
+      ]
+    },
+    {
+      "case_id": "retrieval-043",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ]
+    },
+    {
+      "case_id": "retrieval-022",
+      "query_type": "term",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3"
+      ]
+    },
+    {
+      "case_id": "retrieval-006",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_442df02b19bf8218c983"
+      ]
+    },
+    {
+      "case_id": "retrieval-105",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ]
+    },
+    {
+      "case_id": "retrieval-068",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-059",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10"
+      ]
+    },
+    {
+      "case_id": "retrieval-055",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7"
+      ]
+    },
+    {
+      "case_id": "retrieval-035",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_a83a08a1e93117bf2145"
+      ]
+    },
+    {
+      "case_id": "retrieval-104",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ]
+    },
+    {
+      "case_id": "retrieval-060",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_ddddab2908f0b7cd8be7"
+      ]
+    },
+    {
+      "case_id": "retrieval-087",
+      "query_type": "table",
+      "route_type": "table",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_a199d5026f5c8ba5dd11",
+        "chunk_cb6ca7b4609190982258",
+        "chunk_2074394642bab27af664",
+        "chunk_467e911ead4238f740d3"
+      ]
+    },
+    {
+      "case_id": "retrieval-005",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_45e2b614428cce4db94f"
+      ]
+    },
+    {
+      "case_id": "retrieval-075",
+      "query_type": "numeric",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_5e9b1128dcb473683fc1"
+      ]
+    },
+    {
+      "case_id": "retrieval-100",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_cbb5a22238cb9cbfe8aa"
+      ]
+    },
+    {
+      "case_id": "retrieval-099",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_b24bb4063c51acac7046"
+      ]
+    },
+    {
+      "case_id": "retrieval-082",
+      "query_type": "table",
+      "route_type": "table",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "table_496abb837d73946c6fb1"
+      ]
+    },
+    {
+      "case_id": "retrieval-092",
+      "query_type": "multi_clause",
+      "route_type": "multi_goal",
+      "retrievers": [
+        "bm25",
+        "vector"
+      ],
+      "ids": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_7834a3c5deb7e96b91d7"
+      ]
+    },
+    {
+      "case_id": "retrieval-078",
+      "query_type": "table",
+      "route_type": "table",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "table_5b1154de9a13b318914b",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_f3a96090ee37bd448c1a",
+        "chunk_93fb6c05f4f8d7576647",
+        "chunk_f2f23ef13f5ab5c69339"
+      ]
+    },
+    {
+      "case_id": "retrieval-004",
+      "query_type": "exact_clause",
+      "route_type": "exact",
+      "retrievers": [
+        "exact"
+      ],
+      "ids": [
+        "chunk_6185f3457354500ee294"
+      ]
+    },
+    {
+      "case_id": "retrieval-046",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ]
+    },
+    {
+      "case_id": "retrieval-054",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_63a123ab48fb5153706f"
+      ]
+    },
+    {
+      "case_id": "retrieval-036",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ]
+    },
+    {
+      "case_id": "retrieval-047",
+      "query_type": "semantic",
+      "route_type": "keyword",
+      "retrievers": [
+        "bm25"
+      ],
+      "ids": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3e3fa6949437d10aea8a"
+      ]
+    }
+  ]
+}
