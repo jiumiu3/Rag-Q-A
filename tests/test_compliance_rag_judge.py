@@ -71,13 +71,13 @@ def judgement(**changes: object) -> ComplianceJudgement:
     return ComplianceJudgement.model_validate(payload)
 
 
-def test_validator_recomputes_numeric_result_instead_of_trusting_model_status() -> None:
+def test_validator_preserves_model_status_without_recomputing_business_rule() -> None:
     result = ComplianceJudgementValidator().validate(
         check_item(), judgement(), [evidence()], ["evidence_1"]
     )
-    assert result.status == ComplianceStatus.COMPLIANT
-    assert result.comparison_trace[0].passed is True
-    assert result.actual == "500 lx"
+    assert result.status == ComplianceStatus.NON_COMPLIANT
+    assert result.comparison_trace == []
+    assert result.actual == "500"
 
 
 def test_validator_rejects_cross_item_evidence() -> None:
@@ -88,7 +88,7 @@ def test_validator_rejects_cross_item_evidence() -> None:
     assert any("未绑定到当前检查项" in item for item in result.limitations)
 
 
-def test_partial_and_conflicting_evidence_safely_degrade() -> None:
+def test_evidence_support_type_does_not_override_model_status() -> None:
     partial = ComplianceJudgementValidator().validate(
         check_item(), judgement(), [evidence(status=EvidenceStatus.PARTIAL)], ["evidence_1"]
     )
@@ -98,8 +98,8 @@ def test_partial_and_conflicting_evidence_safely_degrade() -> None:
         [evidence(status=EvidenceStatus.CONFLICTING)],
         ["evidence_1"],
     )
-    assert partial.status == ComplianceStatus.MANUAL_REVIEW_REQUIRED
-    assert conflict.status == ComplianceStatus.CONFLICT
+    assert partial.status == ComplianceStatus.NON_COMPLIANT
+    assert conflict.status == ComplianceStatus.NON_COMPLIANT
 
 
 def test_planner_preserves_check_item_for_each_subquery_and_excludes_actual_value() -> None:
@@ -115,7 +115,7 @@ class FakeClient:
 
     def complete(self, prompt: str, _model: object) -> ComplianceJudgementList:
         self.prompt = prompt
-        return ComplianceJudgementList(judgements=[judgement()])
+        return ComplianceJudgementList(overall_summary="总体不合规。", judgements=[judgement()])
 
 
 def test_judge_only_sends_evidence_bound_to_current_item() -> None:
@@ -146,7 +146,7 @@ def test_missing_model_configuration_never_returns_compliant() -> None:
     assert result[0].status == ComplianceStatus.MANUAL_REVIEW_REQUIRED
 
 
-def test_validator_recomputes_enum_and_boolean_results() -> None:
+def test_validator_does_not_recompute_enum_and_boolean_results() -> None:
     enum_item = check_item().model_copy(update={"value": "IP65", "unit": None})
     enum_result = ComplianceJudgementValidator().validate(
         enum_item,
@@ -161,8 +161,8 @@ def test_validator_recomputes_enum_and_boolean_results() -> None:
         [evidence()],
         ["evidence_1"],
     )
-    assert enum_result.status == ComplianceStatus.COMPLIANT
-    assert boolean_result.status == ComplianceStatus.COMPLIANT
+    assert enum_result.status == ComplianceStatus.NON_COMPLIANT
+    assert boolean_result.status == ComplianceStatus.NON_COMPLIANT
 
 
 def test_validator_rejects_citation_not_present_in_bound_evidence() -> None:
@@ -177,8 +177,11 @@ def test_validator_rejects_citation_not_present_in_bound_evidence() -> None:
 
 
 class FakeComplianceJudge:
-    def judge(self, *_args: object) -> list[ComplianceJudgement]:
-        return [judgement(status=ComplianceStatus.NON_COMPLIANT)]
+    def judge(self, *_args: object) -> ComplianceJudgementList:
+        return ComplianceJudgementList(
+            overall_summary="控制室照度不符合要求。",
+            judgements=[judgement(status=ComplianceStatus.NON_COMPLIANT)],
+        )
 
 
 def test_workflow_runs_judge_validate_and_report_chain() -> None:
@@ -201,5 +204,8 @@ def test_workflow_runs_judge_validate_and_report_chain() -> None:
     )
     result = WorkflowRunner(nodes).run(state, "judge_compliance")
     assert result.status == WorkflowStatus.COMPLETED
-    assert result.compliance_results[0].status == ComplianceStatus.COMPLIANT
-    assert "总体状态：COMPLIANT" in (result.report_markdown or "")
+    assert result.compliance_results[0].status == ComplianceStatus.NON_COMPLIANT
+    assert "总体状态：NON_COMPLIANT" in (result.report_markdown or "")
+    assert "简要说明：控制室照度不符合要求" in (result.report_markdown or "")
+    assert "## 证据来源" not in (result.report_markdown or "")
+    assert "来源条款：Q/GGW TEST-2026 第5.1条（第3页）" in (result.report_markdown or "")

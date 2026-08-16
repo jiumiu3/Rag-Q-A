@@ -50,6 +50,7 @@ class WorkflowService:
                 "candidate_rules": [],
                 "compliance_results": [],
                 "compliance_judgements": [],
+                "compliance_summary": None,
                 "answer": None,
                 "clarification": None,
                 "pending_action": None,

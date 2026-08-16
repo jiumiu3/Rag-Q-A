@@ -74,6 +74,7 @@ class AgentState(StrictModel):
     candidate_rules: list[CandidateRule] = Field(default_factory=list)
     compliance_results: list[ComplianceResult] = Field(default_factory=list)
     compliance_judgements: list[ComplianceJudgement] = Field(default_factory=list)
+    compliance_summary: str | None = None
     answer: AnswerDraft | None = None
     clarification: ClarificationRequest | None = None
     pending_action: PendingAction | None = None

@@ -33,4 +33,5 @@ class ComplianceJudgement(StrictModel):
 
 
 class ComplianceJudgementList(StrictModel):
+    overall_summary: str = Field(min_length=1)
     judgements: list[ComplianceJudgement]
