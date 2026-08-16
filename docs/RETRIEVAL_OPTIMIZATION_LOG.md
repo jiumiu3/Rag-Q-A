@@ -104,3 +104,41 @@
 
 - KEEP
 - 原因：Recall@5 从 86.36% 提升到 97.73%，同时超过 BM25 基线 95.45%；Recall@1 和 MRR 均明显提高，且未重建任何索引。
+
+## 实验 2：P1 领域 Query Rewrite 与同义词扩展
+
+### 修改原因
+
+尝试扩充领域同义词，让重试查询同时携带术语、缩写和同义表达，观察是否能补回语义检索遗漏。
+
+### 修改内容
+
+- 扩展 `DOMAIN_SYNONYMS`。
+- 新增统一 `expand_query`。
+- `AdaptiveRetrievalPlanner` 与 `AgenticRetrievalPlanner` 使用同一扩展逻辑。
+
+### 是否重建索引
+
+- BM25：否
+- Vector：否
+- Embedding API 调用：仅查询时生成扩展 Query 向量，不重建文档向量
+
+### 修改前
+
+- BM25：Recall@1 68.18%，Recall@5 95.45%，MRR 80.11%，nDCG@5 79.65%
+- Hybrid：Recall@1 65.91%，Recall@5 86.36%，MRR 74.89%，nDCG@5 73.83%
+
+### 修改后
+
+- BM25 扩展：Recall@1 65.91%，Recall@5 95.45%，MRR 77.16%，nDCG@5 77.38%
+- Hybrid 扩展：Recall@1 61.36%，Recall@5 84.09%，MRR 70.80%，nDCG@5 70.72%
+
+### 失败案例变化
+
+- 新增召回：BM25 0 条，Hybrid 0 条
+- 丢失案例：Hybrid 1 条，`retrieval-098`
+
+### 结论
+
+- REVERT
+- 原因：本轮扩展未产生新增召回，且拉低 MRR、nDCG@5 和 Hybrid Recall@5，已撤销相关改动。
