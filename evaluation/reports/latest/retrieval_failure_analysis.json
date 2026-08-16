@@ -1,0 +1,4502 @@
+{
+  "dataset": "evaluation/frozen_test/retrieval.jsonl",
+  "evaluated_cases": 44,
+  "excluded_unanswerable_cases": 4,
+  "metrics": {
+    "bm25": {
+      "recall_at_1": 0.6818181818181818,
+      "recall_at_5": 0.9545454545454546,
+      "mrr": 0.8011363636363636,
+      "ndcg_at_5": 0.796540607406343,
+      "full_coverage_at_5": 0.7954545454545454,
+      "latency_p50_ms": 13.818004999848199,
+      "latency_p95_ms": 32.22396300043329
+    },
+    "vector": {
+      "recall_at_1": 0.4318181818181818,
+      "recall_at_5": 0.7727272727272727,
+      "mrr": 0.559090909090909,
+      "ndcg_at_5": 0.5771173808558022,
+      "full_coverage_at_5": 0.6363636363636364,
+      "latency_p50_ms": 16.80871799999295,
+      "latency_p95_ms": 33.86860299997352
+    },
+    "hybrid": {
+      "recall_at_1": 0.6590909090909091,
+      "recall_at_5": 0.8636363636363636,
+      "mrr": 0.7488636363636364,
+      "ndcg_at_5": 0.7382820094176367,
+      "full_coverage_at_5": 0.7272727272727273,
+      "latency_p50_ms": 30.338245998791535,
+      "latency_p95_ms": 65.88174500029709
+    }
+  },
+  "failure_counts": {
+    "A": 2,
+    "B": 1,
+    "C": 7,
+    "E": 3,
+    "OK": 31
+  },
+  "cases": [
+    {
+      "case_id": "retrieval-027",
+      "query": "规范中“孔板流量计”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.5.7条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_e065d0844c9c9434029c"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_e065d0844c9c9434029c": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_e065d0844c9c9434029c": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_e065d0844c9c9434029c": 1
+      },
+      "bm25_top20": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_b0da9f4ca5debc869996",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_6e36a0745f525f46faec",
+        "chunk_cb7ee6bc7f74dd6e73a0",
+        "chunk_0cc6cdca82ef86ef7ed8",
+        "chunk_c86e5551e043b0297959",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_ddb66502d739aa8b045d",
+        "chunk_23d18965242d0ea7391c"
+      ],
+      "vector_top20": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_d8e5b7ad8a2471fdcc59",
+        "chunk_7415255e0ba3b6e09cd1",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_6e36a0745f525f46faec",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_0490b509bb95c2f86877",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_f02258b84c7905231485",
+        "chunk_7105fc138eef2ef44af8",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_7823dcab4878094a9304"
+      ],
+      "hybrid_top10": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_6e36a0745f525f46faec",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_b0da9f4ca5debc869996"
+      ],
+      "hybrid_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_bb422953b1e423d9b8f8"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 8.468104999337811,
+        "vector": 5.850559000464273,
+        "hybrid": 14.344783999149513
+      },
+      "bm25_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88"
+      ],
+      "vector_top5": [
+        "chunk_e065d0844c9c9434029c",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_d8e5b7ad8a2471fdcc59",
+        "chunk_7415255e0ba3b6e09cd1"
+      ]
+    },
+    {
+      "case_id": "retrieval-024",
+      "query": "规范中“每条计量支路设置一台流量计算机，进行工况和标况条件下体积”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.3.4.3条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_8f6a84215f67c84f2a06"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_8f6a84215f67c84f2a06": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_8f6a84215f67c84f2a06": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_8f6a84215f67c84f2a06": 1
+      },
+      "bm25_top20": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_6526484438f3bf1bc379",
+        "chunk_4eb02356191e0a333c47",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_97dadd956307d8fc335c",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_b0da9f4ca5debc869996",
+        "chunk_df93c44d5b03be4d689a"
+      ],
+      "vector_top20": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_97dadd956307d8fc335c",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_3da351713865c901eb4d",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_7105fc138eef2ef44af8",
+        "chunk_d8e5b7ad8a2471fdcc59",
+        "chunk_cfbf8e02bd665142e36a"
+      ],
+      "hybrid_top10": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_97dadd956307d8fc335c",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93"
+      ],
+      "hybrid_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_c4385c108ce7c6fd76ee"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 12.722565999865765,
+        "vector": 5.811716000607703,
+        "hybrid": 18.556053000793327
+      },
+      "bm25_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "vector_top5": [
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_b8773d3ba3e0aa17dd53"
+      ]
+    },
+    {
+      "case_id": "retrieval-093",
+      "query": "请综合说明规范性引用文件与规范性引用文件两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5ffd4081fccc2d41d21c"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_5ffd4081fccc2d41d21c": 1,
+        "chunk_13d97808a6993afacdd5": 2
+      },
+      "vector_gold_ranks": {
+        "chunk_13d97808a6993afacdd5": 1,
+        "chunk_5ffd4081fccc2d41d21c": 3
+      },
+      "hybrid_gold_ranks": {
+        "chunk_5ffd4081fccc2d41d21c": 1,
+        "chunk_13d97808a6993afacdd5": 2
+      },
+      "bm25_top20": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_fa2e882ca770e38bccb5",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_734fb4f249cfe8439589",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_e065d0844c9c9434029c",
+        "chunk_b1f932a4f32b59617b5a",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_959ad3bff68cc58d6876",
+        "chunk_8b717012b10495f5bab1"
+      ],
+      "vector_top20": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_19c072f32797d0946379",
+        "chunk_7271f9114dc1f8f29ad1",
+        "chunk_e52549d6139718cfeaab",
+        "chunk_7397a4ff438e2aa7e896",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_2bcfbf3daaefbd9fe339",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_388355e3779b227c711c",
+        "chunk_358776ff554d00069e71",
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_ccfe3db8ccf243748f9d",
+        "chunk_2738fa077b9c43ca9ed2"
+      ],
+      "hybrid_top10": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_fa2e882ca770e38bccb5"
+      ],
+      "hybrid_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_31e8e6cc0b5e22793de7"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 21.3961110002856,
+        "vector": 17.83891200011567,
+        "hybrid": 39.258898999833036
+      },
+      "bm25_top5": [
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_257f6929f4378bd80b8f"
+      ],
+      "vector_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_7f04581c9a4f209d154c"
+      ]
+    },
+    {
+      "case_id": "retrieval-067",
+      "query": "计量系统有哪些数值或精度限制？ 请限定在Q/GGW 02005.3-2022第5条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_0f3b688d89cdaf4a93d9": 20
+      },
+      "vector_gold_ranks": {
+        "chunk_0f3b688d89cdaf4a93d9": 11
+      },
+      "hybrid_gold_ranks": {
+        "chunk_0f3b688d89cdaf4a93d9": 7
+      },
+      "bm25_top20": [
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_c86e5551e043b0297959",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_b0da9f4ca5debc869996",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_0cc6cdca82ef86ef7ed8",
+        "chunk_6e36a0745f525f46faec",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb7ee6bc7f74dd6e73a0",
+        "chunk_ddb66502d739aa8b045d",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "vector_top20": [
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_8db702e353807df06a7a",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_9d2d649b9af58cbdfe8c",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_82d870ec743841fefb6d",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_06ae67615fa535f70550",
+        "chunk_f02258b84c7905231485",
+        "chunk_ebdcef6ea2f06f966ad6"
+      ],
+      "hybrid_top10": [
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_c86e5551e043b0297959",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2"
+      ],
+      "hybrid_top5": [
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_4e56ec48f06e6503a31a"
+      ],
+      "classification": "A",
+      "latency_ms": {
+        "bm25": 8.27118100005464,
+        "vector": 5.8204420001857216,
+        "hybrid": 14.113123000242922
+      },
+      "bm25_top5": [
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_c86e5551e043b0297959",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_817b4e357ddd9f6facc2"
+      ],
+      "vector_top5": [
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_debf4e0dda7f6de2af11"
+      ]
+    },
+    {
+      "case_id": "retrieval-083",
+      "query": "Q/GGW 02005.3-2022 表3的适用条件是什么？",
+      "query_type": "table",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "table_8fdbf6c8ecb89daef24a"
+      ],
+      "bm25_gold_ranks": {
+        "table_8fdbf6c8ecb89daef24a": 3
+      },
+      "vector_gold_ranks": {
+        "table_8fdbf6c8ecb89daef24a": 2
+      },
+      "hybrid_gold_ranks": {
+        "table_8fdbf6c8ecb89daef24a": 1
+      },
+      "bm25_top20": [
+        "chunk_7d9c1638c4f281cfad87",
+        "table_fdd9b3db369e2bf69d73",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_305a0e6823b57be54fdf",
+        "table_a0164affc09e6cee819d",
+        "chunk_f457989a1edbc9ed763a",
+        "table_a942c5a6f18b0e52d0ca",
+        "table_262c24289188199065c1",
+        "table_a8c9f5413e6a06bf07fd",
+        "chunk_31b483b44224c97fadf4",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_387337b273dad4decde8",
+        "chunk_f2f23ef13f5ab5c69339",
+        "chunk_9832b9ecd3f725b2964b",
+        "chunk_f3a96090ee37bd448c1a",
+        "chunk_93fb6c05f4f8d7576647"
+      ],
+      "vector_top20": [
+        "chunk_305a0e6823b57be54fdf",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "table_a8c9f5413e6a06bf07fd",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_9832b9ecd3f725b2964b",
+        "table_5b1154de9a13b318914b",
+        "chunk_f3a96090ee37bd448c1a",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_f457989a1edbc9ed763a",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_f2f23ef13f5ab5c69339",
+        "chunk_590f8c69ec1b17bac289",
+        "table_262c24289188199065c1",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_560979df868369296c84",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_93fb6c05f4f8d7576647"
+      ],
+      "hybrid_top10": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_305a0e6823b57be54fdf",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_f457989a1edbc9ed763a",
+        "table_a8c9f5413e6a06bf07fd",
+        "table_a942c5a6f18b0e52d0ca",
+        "table_262c24289188199065c1"
+      ],
+      "hybrid_top5": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_305a0e6823b57be54fdf"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 0.7399539999823901,
+        "vector": 1.5500700001211953,
+        "hybrid": 2.3043109995342093
+      },
+      "bm25_top5": [
+        "chunk_7d9c1638c4f281cfad87",
+        "table_fdd9b3db369e2bf69d73",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_0cd1e1b9f7a6d84cc2b7"
+      ],
+      "vector_top5": [
+        "chunk_305a0e6823b57be54fdf",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "table_a8c9f5413e6a06bf07fd",
+        "chunk_0cd1e1b9f7a6d84cc2b7"
+      ]
+    },
+    {
+      "case_id": "retrieval-050",
+      "query": "工程设计涉及输油管道控制阀结构要求如下时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第7.1.6条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_cd9cd1e16f54dae8ea40"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_cd9cd1e16f54dae8ea40": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_cd9cd1e16f54dae8ea40": 5
+      },
+      "hybrid_gold_ranks": {
+        "chunk_cd9cd1e16f54dae8ea40": 1
+      },
+      "bm25_top20": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_7ea4fb80944b3384b9cf",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2741a620ae48328fac82",
+        "chunk_b168af69fa1920637ee7",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_73f8b7361503348a6431",
+        "chunk_2b1dd7a5ddce4103ba07",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_d333bd7cc30c973122ca",
+        "chunk_6398088928197b671e72",
+        "chunk_79a708f590fb513f14ea",
+        "chunk_8f2f1f8548f5da6047c4",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_3a86265004be2a4b7c15"
+      ],
+      "vector_top20": [
+        "chunk_acc164f0fdf73cf6b33c",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_65b7afb33d2354be191f",
+        "chunk_3636905d92b06694f13b",
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_b168af69fa1920637ee7",
+        "chunk_35a0fff4f499cf1e4117",
+        "chunk_5527cf57bfba309c078b",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_702c70563521fb85495b",
+        "chunk_34823610c278e495741b",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_6398088928197b671e72",
+        "chunk_d333bd7cc30c973122ca",
+        "chunk_7d336a369da7c93f640c",
+        "chunk_2b1dd7a5ddce4103ba07",
+        "chunk_73b700af30bcca1b06fc",
+        "chunk_109770e84756af6da574",
+        "chunk_d3ec0b32fa86e4330ea8"
+      ],
+      "hybrid_top10": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_b168af69fa1920637ee7",
+        "chunk_2b1dd7a5ddce4103ba07",
+        "chunk_d333bd7cc30c973122ca",
+        "chunk_6398088928197b671e72",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d43ae616cec436ba20ce"
+      ],
+      "hybrid_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_b168af69fa1920637ee7"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 13.818004999848199,
+        "vector": 8.719771999494697,
+        "hybrid": 22.558966999895347
+      },
+      "bm25_top5": [
+        "chunk_cd9cd1e16f54dae8ea40",
+        "chunk_e5e1b89b152dba6129dc",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d872c584de0ffeac4f98",
+        "chunk_d43ae616cec436ba20ce"
+      ],
+      "vector_top5": [
+        "chunk_acc164f0fdf73cf6b33c",
+        "chunk_4815c5d2f129631dcb58",
+        "chunk_65b7afb33d2354be191f",
+        "chunk_3636905d92b06694f13b",
+        "chunk_cd9cd1e16f54dae8ea40"
+      ]
+    },
+    {
+      "case_id": "retrieval-071",
+      "query": "仪表信号有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 1
+      },
+      "bm25_top20": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2cd07217535c455ace05",
+        "chunk_c720305c45af379ebd10",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124",
+        "chunk_862de99cce203cd67193",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_68489355e0fd2ed5ddae",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_3a86265004be2a4b7c15",
+        "chunk_fdbfa2dfc9f3ad4f7518",
+        "chunk_99434557184072acf01c",
+        "chunk_f7feac7e5aca5e7266e1"
+      ],
+      "vector_top20": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_358776ff554d00069e71",
+        "chunk_7c9dde32ee1aec547e8c",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_781148c9bd0c0a18aa31",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_72327c0c8804fce10d0c",
+        "chunk_121be0f388fc889e501d",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_8d762909ed4ed5962fbd",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_ac6b7cd588b100cb682c",
+        "chunk_70248e3957f70417a93f",
+        "chunk_ccfe3db8ccf243748f9d",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_b1f932a4f32b59617b5a",
+        "chunk_13d97808a6993afacdd5"
+      ],
+      "hybrid_top10": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2cd07217535c455ace05",
+        "chunk_c720305c45af379ebd10",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124"
+      ],
+      "hybrid_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 9.796444999665255,
+        "vector": 8.666501000334392,
+        "hybrid": 18.482734000826895
+      },
+      "bm25_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_2cd07217535c455ace05"
+      ],
+      "vector_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_358776ff554d00069e71"
+      ]
+    },
+    {
+      "case_id": "retrieval-095",
+      "query": "请综合说明计量系统 metering system与枢纽站 hub station两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_db431ba00f7981256704"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_db431ba00f7981256704": 2,
+        "chunk_0322e2ddba4943a2e1bd": 5
+      },
+      "vector_gold_ranks": {
+        "chunk_0322e2ddba4943a2e1bd": 6,
+        "chunk_db431ba00f7981256704": 12
+      },
+      "hybrid_gold_ranks": {
+        "chunk_db431ba00f7981256704": 1,
+        "chunk_0322e2ddba4943a2e1bd": 5
+      },
+      "bm25_top20": [
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_db431ba00f7981256704",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8aa33556034284ea684f",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_f34ee1be5b8bbe973580",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_71da1cb80d0381115004",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_c86e5551e043b0297959",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_fcc36a7cd3162fccd6ef",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_e065d0844c9c9434029c",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_1138ce83273675efeb82"
+      ],
+      "vector_top20": [
+        "chunk_b6199a0de60b21a4101b",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_9197a29fc00b30227e76",
+        "chunk_8aa33556034284ea684f",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_9319e1c4a8ec17e321d6",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_cfbf8e02bd665142e36a",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_db431ba00f7981256704",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_68c05147396ef3fdbe45",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_82d870ec743841fefb6d",
+        "chunk_8db702e353807df06a7a",
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_0cd1e1b9f7a6d84cc2b7"
+      ],
+      "hybrid_top10": [
+        "chunk_db431ba00f7981256704",
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_8aa33556034284ea684f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_f34ee1be5b8bbe973580",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_6faf9ea33a56f917194d"
+      ],
+      "hybrid_top5": [
+        "chunk_db431ba00f7981256704",
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_8aa33556034284ea684f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_0322e2ddba4943a2e1bd"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 29.61265900012222,
+        "vector": 28.59136199913337,
+        "hybrid": 58.24593099987396
+      },
+      "bm25_top5": [
+        "chunk_cedf26c49be2ee8f6d40",
+        "chunk_db431ba00f7981256704",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8aa33556034284ea684f",
+        "chunk_0322e2ddba4943a2e1bd"
+      ],
+      "vector_top5": [
+        "chunk_b6199a0de60b21a4101b",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_9197a29fc00b30227e76",
+        "chunk_8aa33556034284ea684f",
+        "chunk_ab258be327b7be2ca9a1"
+      ]
+    },
+    {
+      "case_id": "retrieval-028",
+      "query": "规范中“设备序列编号不足两位数时，第一位数字”具体指什么？ 请限定在Q/GGW 02005.1-2022第5.1.2.4.7条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_471274490d7ef724b1ec"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_471274490d7ef724b1ec": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_471274490d7ef724b1ec": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_471274490d7ef724b1ec": 1
+      },
+      "bm25_top20": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_fb1395b6ed5cfdeaf3a4",
+        "chunk_178272b6efe78b256b72",
+        "chunk_c9a27c035ffb9599e0f4",
+        "chunk_d7bd960108732e50c395",
+        "chunk_c5ef8756dcfed7c2132b",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_bd07d481bc94d35c7516",
+        "chunk_914c13c1047228cc90fb",
+        "chunk_a4d8d933ead2cb57e093",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_703c06e4103e5e1a7579",
+        "chunk_d60be456994f0237e8f3",
+        "chunk_07b02bc8f2136c8ca916",
+        "chunk_db54ce0711b0d1452642",
+        "chunk_f19a2b8b5af714ab9e87"
+      ],
+      "vector_top20": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_f19a2b8b5af714ab9e87",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_db54ce0711b0d1452642",
+        "chunk_fb1395b6ed5cfdeaf3a4",
+        "chunk_291237cd156947adfda8",
+        "chunk_2497d9fbd934c6e01565",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_808546c8779369186769",
+        "chunk_703c06e4103e5e1a7579",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_3220c77f5ffeb57e05c7",
+        "chunk_178272b6efe78b256b72",
+        "chunk_4f56743cbf5cc9d53917",
+        "chunk_d60be456994f0237e8f3",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_c9a27c035ffb9599e0f4",
+        "chunk_9effaa469a2fa8b35ffc"
+      ],
+      "hybrid_top10": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_fb1395b6ed5cfdeaf3a4",
+        "chunk_178272b6efe78b256b72",
+        "chunk_c9a27c035ffb9599e0f4",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_703c06e4103e5e1a7579"
+      ],
+      "hybrid_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_708f2a2e70fe1e5b5031"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 19.243347000156064,
+        "vector": 18.325986000490957,
+        "hybrid": 37.592097000924696
+      },
+      "bm25_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_291237cd156947adfda8",
+        "chunk_708f2a2e70fe1e5b5031",
+        "chunk_e8db191ab4166a2a2ad3"
+      ],
+      "vector_top5": [
+        "chunk_471274490d7ef724b1ec",
+        "chunk_e8db191ab4166a2a2ad3",
+        "chunk_f19a2b8b5af714ab9e87",
+        "chunk_691f434a1fe747ff964e",
+        "chunk_f0c69b6f83d621797c94"
+      ]
+    },
+    {
+      "case_id": "retrieval-030",
+      "query": "规范中“流量计算机”具体指什么？ 请限定在Q/GGW 02005.3-2022第5.4.3条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_df9efb207b9557ec3be7"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_df9efb207b9557ec3be7": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_df9efb207b9557ec3be7": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_df9efb207b9557ec3be7": 1
+      },
+      "bm25_top20": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_4eb02356191e0a333c47",
+        "chunk_64760f9625d578676715",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_b0da9f4ca5debc869996",
+        "chunk_bb422953b1e423d9b8f8",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_6e36a0745f525f46faec",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_5ffd4081fccc2d41d21c"
+      ],
+      "vector_top20": [
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_abe7201f90b4e5aa01f7",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_ff6c21b3480138b0d421",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_3da351713865c901eb4d",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_f02258b84c7905231485",
+        "chunk_7105fc138eef2ef44af8",
+        "chunk_d8e5b7ad8a2471fdcc59"
+      ],
+      "hybrid_top10": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_97c14bb605ae0f257f1f",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4eb02356191e0a333c47",
+        "chunk_64760f9625d578676715"
+      ],
+      "hybrid_top5": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_1dec7e94f43936b12a20"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 7.458649999534828,
+        "vector": 5.783252000583161,
+        "hybrid": 13.27384200067172
+      },
+      "bm25_top5": [
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_1dec7e94f43936b12a20"
+      ],
+      "vector_top5": [
+        "chunk_aa2e0a276a5c77f8928b",
+        "chunk_df9efb207b9557ec3be7",
+        "chunk_c4385c108ce7c6fd76ee",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_69f42d57cd1bcd38ecd5"
+      ]
+    },
+    {
+      "case_id": "retrieval-002",
+      "query": "Q/GGW 02005.2-2022 第3.6条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_1a2b327267db7b3d4795"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_1a2b327267db7b3d4795": 2
+      },
+      "vector_gold_ranks": {
+        "chunk_1a2b327267db7b3d4795": 13
+      },
+      "hybrid_gold_ranks": {
+        "chunk_1a2b327267db7b3d4795": 2
+      },
+      "bm25_top20": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_ae3f23cb16bacb7f8d65",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_19c072f32797d0946379",
+        "chunk_e1a750230e0407b37427",
+        "chunk_6bb4a9097046dd54e972",
+        "chunk_b5b2687bebc2d6bc4323",
+        "chunk_72327c0c8804fce10d0c",
+        "chunk_babae95f287acd31be3f",
+        "chunk_f318c0684d0bc7b245ea",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_fa2e882ca770e38bccb5",
+        "chunk_2b190b56a9b831e233f6"
+      ],
+      "vector_top20": [
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_e52549d6139718cfeaab",
+        "chunk_121be0f388fc889e501d",
+        "chunk_573184f8252cf3afbbeb",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_51b149a86ce740176c11",
+        "chunk_87ef1c8f39a0d8e4476b",
+        "chunk_ba6e4eae96fc3143b943",
+        "chunk_358776ff554d00069e71",
+        "chunk_a5c047463d5de99ffc58",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_a4cd755fb6bb36675fe6",
+        "chunk_c579961e23070f579742",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_ff87650113ef874cb6c8",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_ccfe3db8ccf243748f9d",
+        "chunk_203b8bfb64798d9474b4"
+      ],
+      "hybrid_top10": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_ae3f23cb16bacb7f8d65",
+        "chunk_c19bd2e7fd4f38e91805"
+      ],
+      "hybrid_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 5.459226000311901,
+        "vector": 11.545473999831302,
+        "hybrid": 17.026882000209298
+      },
+      "bm25_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "vector_top5": [
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_e52549d6139718cfeaab",
+        "chunk_121be0f388fc889e501d"
+      ]
+    },
+    {
+      "case_id": "retrieval-041",
+      "query": "工程设计涉及界面检测仪时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.6.5条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_e345d63028288bb87781"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_e345d63028288bb87781": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_e345d63028288bb87781": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_e345d63028288bb87781": 1
+      },
+      "bm25_top20": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_4a3d170ff81f18273b03",
+        "chunk_f29eb91cda53398ec4a6",
+        "chunk_73f8b7361503348a6431",
+        "chunk_4776699a128d3b63a4d9",
+        "chunk_99434557184072acf01c",
+        "chunk_3a86265004be2a4b7c15",
+        "chunk_19c072f32797d0946379",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_c720305c45af379ebd10",
+        "chunk_961737073f9feab940db",
+        "chunk_1cdd20d5eb866eb451fa",
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_11aca44efc3de1c2dd47"
+      ],
+      "vector_top20": [
+        "chunk_e345d63028288bb87781",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_358776ff554d00069e71",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_56dc0ec3f49e10400174",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_8d762909ed4ed5962fbd",
+        "chunk_19c072f32797d0946379",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_121be0f388fc889e501d",
+        "chunk_51b149a86ce740176c11",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_a5c047463d5de99ffc58",
+        "chunk_ccfe3db8ccf243748f9d",
+        "chunk_734fb4f249cfe8439589",
+        "chunk_c579961e23070f579742",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_70248e3957f70417a93f",
+        "chunk_0ef4a7ce9686a0753bc0"
+      ],
+      "hybrid_top10": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_19c072f32797d0946379",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_4a3d170ff81f18273b03",
+        "chunk_f29eb91cda53398ec4a6"
+      ],
+      "hybrid_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_19c072f32797d0946379",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 11.745201999474375,
+        "vector": 8.727376000024378,
+        "hybrid": 20.494338999924366
+      },
+      "bm25_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_79a708f590fb513f14ea"
+      ],
+      "vector_top5": [
+        "chunk_e345d63028288bb87781",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_358776ff554d00069e71",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_8f0a0ac4e8b6239c6bc2"
+      ]
+    },
+    {
+      "case_id": "retrieval-007",
+      "query": "Q/GGW 02005.1-2022 第3.17条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_45930e0320ad7f45e182"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_45930e0320ad7f45e182": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_45930e0320ad7f45e182": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_45930e0320ad7f45e182": 1
+      },
+      "bm25_top20": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e",
+        "chunk_83421847993d167b96f0",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_914c13c1047228cc90fb",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_eb4688da32002590427f",
+        "chunk_1a9ea2d3b64b655d7c3d",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_489226d3e8a8b2ef90fc",
+        "chunk_5fb7cdd15097501d83d5",
+        "chunk_5728b30140cd43208370",
+        "chunk_924f191ac883bbbcfe64",
+        "chunk_e40163670209479caf48",
+        "chunk_0546ea7b37db70a75ed6"
+      ],
+      "vector_top20": [
+        "chunk_e40163670209479caf48",
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_7b00f5735da0a1a03fdf",
+        "chunk_ea4612d8077f6b744b63",
+        "chunk_6d97457efa1dddbc43fd",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_0629d5cfe2938d294243",
+        "chunk_17cf77fc22f544e85716",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_80ad7327643a76f58cb5",
+        "chunk_9dea622530b2eb7bc33f",
+        "chunk_7e425fd24f519a05b4e8",
+        "chunk_a4d8d933ead2cb57e093",
+        "chunk_1f6bf7149f10662c5229",
+        "chunk_0546ea7b37db70a75ed6",
+        "chunk_6618f91fdf3637e35810"
+      ],
+      "hybrid_top10": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_e40163670209479caf48",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_0546ea7b37db70a75ed6",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "hybrid_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_e40163670209479caf48"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 8.94654200055811,
+        "vector": 18.30662999964261,
+        "hybrid": 27.277468000647787
+      },
+      "bm25_top5": [
+        "chunk_45930e0320ad7f45e182",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "vector_top5": [
+        "chunk_e40163670209479caf48",
+        "chunk_45930e0320ad7f45e182",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_7b00f5735da0a1a03fdf"
+      ]
+    },
+    {
+      "case_id": "retrieval-037",
+      "query": "工程设计涉及仪表管阀件 instrument valve and p时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第3.25条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_6a2c1a12d86b8a7f5576"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_6a2c1a12d86b8a7f5576": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_6a2c1a12d86b8a7f5576": 3
+      },
+      "hybrid_gold_ranks": {
+        "chunk_6a2c1a12d86b8a7f5576": 1
+      },
+      "bm25_top20": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_fc872938434b559c06e1",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_2b4748f03c02ee7bd619",
+        "chunk_ae151e0a58944b35f6b8",
+        "chunk_353bee08cc83497efcd3",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_c375d036bc8f642d67f4",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_df44bc0d4e498ce6bd1b",
+        "chunk_17cc48ff81d9d34fbe0e",
+        "chunk_4a9d0205a51bd536d73a",
+        "chunk_80ad7327643a76f58cb5",
+        "chunk_c5ef8756dcfed7c2132b",
+        "chunk_84dcf031de57e699db7f"
+      ],
+      "vector_top20": [
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_fc872938434b559c06e1",
+        "chunk_2b4748f03c02ee7bd619",
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_6a55595c3557d7dcc6ae",
+        "chunk_64457de2f9a522887478",
+        "chunk_c73fe6a893e807bcadb8",
+        "chunk_a44316ff69a24b004ef1",
+        "chunk_2d9196c91625d9716326",
+        "chunk_a0de671508b82643c845",
+        "chunk_37200023d11ce9e98ea7",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_bc45e7cd143225ed8af3",
+        "chunk_e18b3b5fc76034e75af0",
+        "chunk_9bf7be6e365fb8bc3c6f",
+        "chunk_70e12c6c1b86718dd745"
+      ],
+      "hybrid_top10": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_fc872938434b559c06e1",
+        "chunk_2b4748f03c02ee7bd619",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_70fbcbb6dfa196f3d338"
+      ],
+      "hybrid_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 19.835170000078506,
+        "vector": 18.518281000069692,
+        "hybrid": 38.37747700072214
+      },
+      "bm25_top5": [
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "vector_top5": [
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_ddddab2908f0b7cd8be7"
+      ]
+    },
+    {
+      "case_id": "retrieval-091",
+      "query": "请综合说明规范性引用文件与范围.两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_0fb8e162ef9db7e79bd4": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_0fb8e162ef9db7e79bd4": 5,
+        "chunk_7f04581c9a4f209d154c": 6
+      },
+      "hybrid_gold_ranks": {
+        "chunk_0fb8e162ef9db7e79bd4": 1
+      },
+      "bm25_top20": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_fa2e882ca770e38bccb5",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_b1f932a4f32b59617b5a",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_734fb4f249cfe8439589",
+        "chunk_547fe9f9163e1715180d",
+        "chunk_b4f12e9abf09d944933f",
+        "chunk_959ad3bff68cc58d6876",
+        "chunk_aee0114f88a8c184e898",
+        "chunk_86f820743ecdb56c9a5a",
+        "chunk_7397a4ff438e2aa7e896",
+        "chunk_89d6c4b5de9e9f7dacd0"
+      ],
+      "vector_top20": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_f432867e391d6dead944",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_19c072f32797d0946379",
+        "table_58fcd8f56ca3ab475ef9",
+        "chunk_808546c8779369186769",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_8e32959068e696b5aade",
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_db54ce0711b0d1452642",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_2738fa077b9c43ca9ed2",
+        "chunk_e52549d6139718cfeaab"
+      ],
+      "hybrid_top10": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_fa2e882ca770e38bccb5",
+        "chunk_bbd26ea6b22f659dedc9"
+      ],
+      "hybrid_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7"
+      ],
+      "classification": "B",
+      "latency_ms": {
+        "bm25": 28.977784000744577,
+        "vector": 31.94969200012565,
+        "hybrid": 60.951772001317295
+      },
+      "bm25_top5": [
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_31e8e6cc0b5e22793de7",
+        "chunk_f83fdebd81a6be8e5ffd"
+      ],
+      "vector_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_0fb8e162ef9db7e79bd4"
+      ]
+    },
+    {
+      "case_id": "retrieval-015",
+      "query": "Q/GGW 02005.3-2022 第5.3.6.1条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_246d4e121220c18741ba"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_246d4e121220c18741ba": 1
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "chunk_246d4e121220c18741ba": 7
+      },
+      "bm25_top20": [
+        "chunk_246d4e121220c18741ba",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_c86e5551e043b0297959",
+        "chunk_d80d7a43120d2ac8f1ad",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_da5ad0495c11817e23b0",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_3da351713865c901eb4d",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_816b4614dc17f017b686",
+        "chunk_7823dcab4878094a9304",
+        "chunk_7d04a2adf539031550a0"
+      ],
+      "vector_top20": [
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_d07977dcddfd5274f2f0",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_e6b6873c16b522efd547",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_f02258b84c7905231485",
+        "chunk_b2cc57a3bfcf6b381e33",
+        "chunk_cb7ee6bc7f74dd6e73a0",
+        "chunk_c7a7b35a2f301b66c4ea",
+        "chunk_8b717012b10495f5bab1",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_ed582b242508e7195d77",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_7105fc138eef2ef44af8",
+        "chunk_ae080bed390dba315895",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_d97a557df31d819ec54b"
+      ],
+      "hybrid_top10": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_246d4e121220c18741ba",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_debf4e0dda7f6de2af11"
+      ],
+      "hybrid_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 4.833990999941307,
+        "vector": 5.867250999472162,
+        "hybrid": 10.724195999500807
+      },
+      "bm25_top5": [
+        "chunk_246d4e121220c18741ba",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "vector_top5": [
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_d07977dcddfd5274f2f0",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_e6b6873c16b522efd547",
+        "chunk_70613dc82bcd00685ea1"
+      ]
+    },
+    {
+      "case_id": "retrieval-069",
+      "query": "B型井口安全控制系统，适用于在采气树设置井下安全阀及地面有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第9.8.2条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_fc365760cbf15e24d4db"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_fc365760cbf15e24d4db": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_fc365760cbf15e24d4db": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_fc365760cbf15e24d4db": 1
+      },
+      "bm25_top20": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a3a95358e43656825343",
+        "chunk_3220c77f5ffeb57e05c7",
+        "chunk_d3ce41c1b1b1c7f5170d",
+        "chunk_34bb4417d41b0ddda79e",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_bd07d481bc94d35c7516",
+        "chunk_fafef068612e188540fa",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_87fcf2878208a42347ab",
+        "chunk_27cadf5798f53aa88ba1",
+        "chunk_3cc6d0238d78f477c287",
+        "chunk_6e5735fa389ad1370c76",
+        "chunk_f432867e391d6dead944",
+        "chunk_8b1842acd56d7a1aee59"
+      ],
+      "vector_top20": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_bd66b5594b03b2e74c20",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_1d13be9ebab5d5afeb64",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_3e92ea194a273218727a",
+        "chunk_9d4d3bb7f50a2607b6b4",
+        "chunk_93df2d71a992e5a41e06",
+        "chunk_b0197436e211d0805fb2",
+        "chunk_ebf0f338ea0169447512",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_3c64ad35d3d332791288",
+        "chunk_457e95159cf9dc08268a",
+        "chunk_924f191ac883bbbcfe64",
+        "chunk_627d41c0569be5934e08",
+        "chunk_45b042c2528f4424af14",
+        "chunk_87fcf2878208a42347ab"
+      ],
+      "hybrid_top10": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_87fcf2878208a42347ab",
+        "chunk_a3a95358e43656825343",
+        "chunk_3220c77f5ffeb57e05c7",
+        "chunk_d3ce41c1b1b1c7f5170d",
+        "chunk_34bb4417d41b0ddda79e"
+      ],
+      "hybrid_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a570366da64cb4e70f58"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 25.584506999621226,
+        "vector": 18.471131999831414,
+        "hybrid": 44.07975399954012
+      },
+      "bm25_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_a3a95358e43656825343"
+      ],
+      "vector_top5": [
+        "chunk_fc365760cbf15e24d4db",
+        "chunk_6ada7d6e436b0d45f764",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_3e7647d3d76fc6108419",
+        "chunk_bd66b5594b03b2e74c20"
+      ]
+    },
+    {
+      "case_id": "retrieval-029",
+      "query": "规范中“仪表信号”具体指什么？ 请限定在Q/GGW 02005.2-2022第5.7条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_17f0bb05047009c7cf28"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_17f0bb05047009c7cf28": 1
+      },
+      "bm25_top20": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124",
+        "chunk_862de99cce203cd67193",
+        "chunk_68489355e0fd2ed5ddae",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_3a86265004be2a4b7c15",
+        "chunk_99434557184072acf01c",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_b403bd6239a74b466e64",
+        "chunk_3228f3022c6339e4d7a9",
+        "chunk_2b1dd7a5ddce4103ba07",
+        "chunk_182cd085dd49e8a63c86",
+        "chunk_57f003f04b5c76c30663",
+        "chunk_95353f557cc13f0d5f69"
+      ],
+      "vector_top20": [
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_358776ff554d00069e71",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_a62f18c34bbd5c0e2d7e",
+        "chunk_8d762909ed4ed5962fbd",
+        "chunk_f42a12c1200cba468137",
+        "chunk_734fb4f249cfe8439589",
+        "chunk_72327c0c8804fce10d0c",
+        "chunk_19c072f32797d0946379",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_56dc0ec3f49e10400174",
+        "chunk_121be0f388fc889e501d",
+        "chunk_87ef1c8f39a0d8e4476b",
+        "chunk_70248e3957f70417a93f",
+        "chunk_ccfe3db8ccf243748f9d"
+      ],
+      "hybrid_top10": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124",
+        "chunk_862de99cce203cd67193",
+        "chunk_68489355e0fd2ed5ddae",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_1766de09619a7f74ee96"
+      ],
+      "hybrid_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 8.588503999817476,
+        "vector": 8.815184000013687,
+        "hybrid": 17.42433700019319
+      },
+      "bm25_top5": [
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_c720305c45af379ebd10",
+        "chunk_11aca44efc3de1c2dd47",
+        "chunk_49ff1ccf680be7ffc124"
+      ],
+      "vector_top5": [
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_17f0bb05047009c7cf28",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_ab61454e23e0aaded280"
+      ]
+    },
+    {
+      "case_id": "retrieval-049",
+      "query": "工程设计涉及油气藏型地下储气库分为井场、集注站、集输系统、联络线、分时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.1.3.2条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_4306606f93e8e49c50e8"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_4306606f93e8e49c50e8": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_4306606f93e8e49c50e8": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_4306606f93e8e49c50e8": 1
+      },
+      "bm25_top20": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_59bad507e3f378c39547",
+        "chunk_74756fc304f37eec9a4b",
+        "chunk_f88133e463b5bc01154f",
+        "chunk_93df2d71a992e5a41e06",
+        "chunk_3e92ea194a273218727a",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_259e24215e45a5ee43a8",
+        "chunk_7df6dba2f09b7ce64130",
+        "chunk_f525a2d6785caffc1dc6",
+        "chunk_ebf0f338ea0169447512",
+        "chunk_1d5c4066e604d8bb304e",
+        "chunk_f432867e391d6dead944",
+        "chunk_098f47a8da92df5603a1",
+        "chunk_e6088f14457935fdedd5",
+        "chunk_ca8c22fbe00babcfa3bf"
+      ],
+      "vector_top20": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_59bad507e3f378c39547",
+        "chunk_1d13be9ebab5d5afeb64",
+        "chunk_259e24215e45a5ee43a8",
+        "chunk_50b716a61e39f4319ed9",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_3e92ea194a273218727a",
+        "chunk_fce64aa863a2e38093dd",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_a8f68af102b6a8a9a0c3",
+        "chunk_7df6dba2f09b7ce64130",
+        "chunk_f88133e463b5bc01154f",
+        "chunk_93df2d71a992e5a41e06",
+        "chunk_1a9ea2d3b64b655d7c3d",
+        "chunk_f0dcd9c3b06196147181",
+        "chunk_5bee7f5ae7ffede6949d"
+      ],
+      "hybrid_top10": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_59bad507e3f378c39547",
+        "chunk_f88133e463b5bc01154f",
+        "chunk_3e92ea194a273218727a",
+        "chunk_93df2d71a992e5a41e06",
+        "chunk_259e24215e45a5ee43a8"
+      ],
+      "hybrid_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c36501bed10b25d1fbc9"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 26.19549500013818,
+        "vector": 18.680819999644882,
+        "hybrid": 44.89949900016654
+      },
+      "bm25_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_c36501bed10b25d1fbc9",
+        "chunk_0ada98030b801e4562b5"
+      ],
+      "vector_top5": [
+        "chunk_4306606f93e8e49c50e8",
+        "chunk_4a45c699f28c48a2c612",
+        "chunk_0ada98030b801e4562b5",
+        "chunk_c1eb152fc23ebefa4709",
+        "chunk_59bad507e3f378c39547"
+      ]
+    },
+    {
+      "case_id": "retrieval-098",
+      "query": "请综合说明计量系统与液化天然气 liquefied natural gas两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1afecd8ce572cda733df"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_1afecd8ce572cda733df": 3
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "chunk_1afecd8ce572cda733df": 5
+      },
+      "bm25_top20": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_fafef068612e188540fa",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_8c7641fae8882b94e6cc",
+        "chunk_b4f12e9abf09d944933f",
+        "chunk_3cb42d04cff05a759014",
+        "chunk_6e5a75f1e02867d1b7d6",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_1138ce83273675efeb82",
+        "chunk_83bcf0b6aa4a79f0ff62",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_c7911325ad9237444657",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_5c71482d5c91ea38419a"
+      ],
+      "vector_top20": [
+        "chunk_388355e3779b227c711c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_61fe190af7513a8b6ef8",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_8aa33556034284ea684f",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_82d870ec743841fefb6d",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7bc33f5f030cf8518238",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_02276e3966cc3ba01375"
+      ],
+      "hybrid_top10": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_fafef068612e188540fa",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_8c7641fae8882b94e6cc",
+        "chunk_b4f12e9abf09d944933f"
+      ],
+      "hybrid_top5": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df"
+      ],
+      "classification": "E",
+      "latency_ms": {
+        "bm25": 31.34187900013785,
+        "vector": 34.514257999944675,
+        "hybrid": 65.88174500029709
+      },
+      "bm25_top5": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5155aa1656f56ccaca90",
+        "chunk_1afecd8ce572cda733df",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_5fb4d1109782a3848a56"
+      ],
+      "vector_top5": [
+        "chunk_388355e3779b227c711c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_61fe190af7513a8b6ef8"
+      ]
+    },
+    {
+      "case_id": "retrieval-101",
+      "query": "请综合说明检定 verification与安全仪表系统safety instrumented sy两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_6185f3457354500ee294",
+        "chunk_a0fcdf4d9822e86900b3"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_6185f3457354500ee294": 2,
+        "chunk_a0fcdf4d9822e86900b3": 8
+      },
+      "vector_gold_ranks": {
+        "chunk_6185f3457354500ee294": 1,
+        "chunk_a0fcdf4d9822e86900b3": 3
+      },
+      "hybrid_gold_ranks": {
+        "chunk_6185f3457354500ee294": 2,
+        "chunk_a0fcdf4d9822e86900b3": 5
+      },
+      "bm25_top20": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_fafef068612e188540fa",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_34bb4417d41b0ddda79e",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_5318f456fd060796f41d",
+        "chunk_e6731e95e6f07f3db497",
+        "chunk_8b717012b10495f5bab1",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_1f6d0a8d9a6da40f20ff",
+        "chunk_30d902f60d97a1117a69",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "table_262c24289188199065c1",
+        "chunk_93edf39162ff0a2fb975"
+      ],
+      "vector_top20": [
+        "chunk_6185f3457354500ee294",
+        "chunk_b4c346cda8814edc299b",
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_a619847eb49311dab130",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_8b717012b10495f5bab1",
+        "chunk_f02258b84c7905231485",
+        "chunk_c7a7b35a2f301b66c4ea",
+        "chunk_d07977dcddfd5274f2f0",
+        "chunk_cb7ee6bc7f74dd6e73a0",
+        "chunk_b2cc57a3bfcf6b381e33",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_cc63f9924d9943aaa801",
+        "chunk_e6b6873c16b522efd547",
+        "chunk_9d2d649b9af58cbdfe8c",
+        "table_262c24289188199065c1",
+        "chunk_dfc4b80d5c6af9987ee0",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_34bb4417d41b0ddda79e"
+      ],
+      "hybrid_top10": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_34bb4417d41b0ddda79e",
+        "chunk_8b717012b10495f5bab1",
+        "table_262c24289188199065c1",
+        "chunk_fafef068612e188540fa",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_a619847eb49311dab130",
+        "chunk_a0fcdf4d9822e86900b3"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 29.971549999572744,
+        "vector": 27.907232999496046,
+        "hybrid": 57.90458199862769
+      },
+      "bm25_top5": [
+        "chunk_b4c346cda8814edc299b",
+        "chunk_6185f3457354500ee294",
+        "chunk_e06bfc692301e6dc8cfd",
+        "chunk_fafef068612e188540fa",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "vector_top5": [
+        "chunk_6185f3457354500ee294",
+        "chunk_b4c346cda8814edc299b",
+        "chunk_a0fcdf4d9822e86900b3",
+        "chunk_a619847eb49311dab130",
+        "chunk_e06bfc692301e6dc8cfd"
+      ]
+    },
+    {
+      "case_id": "retrieval-043",
+      "query": "工程设计涉及不同安装位置通用仪表的图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.1条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_e966c334dbbdd52aedcd"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_e966c334dbbdd52aedcd": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_e966c334dbbdd52aedcd": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_e966c334dbbdd52aedcd": 1
+      },
+      "bm25_top20": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_5f03ef3c9a43a920f3b4",
+        "chunk_3e95ac95c78bd14be367",
+        "chunk_6acbe61e1d877980193d",
+        "chunk_61f090f8802b3a4e90ec",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_78d91114571eb7830c34",
+        "chunk_382d3150bbb07beef9ca",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_61c0ce70f4b92b0f8fae",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_396a57896c1530c59b7b",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_f432867e391d6dead944"
+      ],
+      "vector_top20": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_61c0ce70f4b92b0f8fae",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_db54ce0711b0d1452642",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_9effaa469a2fa8b35ffc",
+        "chunk_78d91114571eb7830c34",
+        "chunk_61f090f8802b3a4e90ec",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_382d3150bbb07beef9ca",
+        "chunk_f432867e391d6dead944",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_6acbe61e1d877980193d",
+        "chunk_708f2a2e70fe1e5b5031"
+      ],
+      "hybrid_top10": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_61f090f8802b3a4e90ec",
+        "chunk_6acbe61e1d877980193d",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_78d91114571eb7830c34"
+      ],
+      "hybrid_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 24.953850000201783,
+        "vector": 18.318111000553472,
+        "hybrid": 43.29599600077927
+      },
+      "bm25_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_75dff3c3b714538add66",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "vector_top5": [
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_61c0ce70f4b92b0f8fae"
+      ]
+    },
+    {
+      "case_id": "retrieval-022",
+      "query": "规范中“等电位连接 equipotential bonding”具体指什么？ 请限定在Q/GGW 02005.1-2022第3.19条的上下文内回答。",
+      "query_type": "term",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_dcf02a5d5596f37535e8"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_dcf02a5d5596f37535e8": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_dcf02a5d5596f37535e8": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_dcf02a5d5596f37535e8": 1
+      },
+      "bm25_top20": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3",
+        "chunk_eb7ef4606656c9df3940",
+        "chunk_0f53716ddabbd4a6dbbc",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_517b4f1c6bd817b30c2c",
+        "chunk_20f429d602ed24b41a3c",
+        "chunk_0be63fbca9499e0e4474",
+        "chunk_d98464a2d70f2b660c86",
+        "chunk_eb4688da32002590427f",
+        "chunk_0629d5cfe2938d294243",
+        "chunk_cac049d3ec044024ed96",
+        "chunk_abf0e24bdd1a5a7efe33",
+        "chunk_a6accfc4d517ecda882f",
+        "chunk_9aa7ec2f617b0d937b55",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_7ff4cb8dd4469a0c5da3"
+      ],
+      "vector_top20": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_517b4f1c6bd817b30c2c",
+        "chunk_eb7ef4606656c9df3940",
+        "chunk_20f429d602ed24b41a3c",
+        "chunk_0629d5cfe2938d294243",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_7ff4cb8dd4469a0c5da3",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3",
+        "chunk_0be63fbca9499e0e4474",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_c4e38b423c60920f52c8",
+        "chunk_0f53716ddabbd4a6dbbc",
+        "chunk_a6accfc4d517ecda882f",
+        "chunk_9aa7ec2f617b0d937b55",
+        "chunk_69e784bf72c4fdd94790",
+        "chunk_cac049d3ec044024ed96",
+        "chunk_e716b977c440662a30e3",
+        "chunk_d98464a2d70f2b660c86"
+      ],
+      "hybrid_top10": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_eb7ef4606656c9df3940",
+        "chunk_9340cd862081c0db5cb3",
+        "chunk_517b4f1c6bd817b30c2c",
+        "chunk_0f53716ddabbd4a6dbbc",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_20f429d602ed24b41a3c"
+      ],
+      "hybrid_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_eb7ef4606656c9df3940"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 15.58094899974094,
+        "vector": 18.41958400018484,
+        "hybrid": 34.02233399992838
+      },
+      "bm25_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_90d49995fdd2eed736cd",
+        "chunk_ebfd71ec4f5794e39142",
+        "chunk_9340cd862081c0db5cb3"
+      ],
+      "vector_top5": [
+        "chunk_dcf02a5d5596f37535e8",
+        "chunk_b101d1f3bba3f775933c",
+        "chunk_517b4f1c6bd817b30c2c",
+        "chunk_eb7ef4606656c9df3940",
+        "chunk_20f429d602ed24b41a3c"
+      ]
+    },
+    {
+      "case_id": "retrieval-006",
+      "query": "Q/GGW 02005.3-2022 第5.3.3.5条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_442df02b19bf8218c983"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_442df02b19bf8218c983": 1
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "chunk_442df02b19bf8218c983": 4
+      },
+      "bm25_top20": [
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_c86e5551e043b0297959",
+        "chunk_d80d7a43120d2ac8f1ad",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_da5ad0495c11817e23b0",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_3da351713865c901eb4d",
+        "chunk_8f6a84215f67c84f2a06",
+        "chunk_816b4614dc17f017b686",
+        "chunk_7823dcab4878094a9304",
+        "chunk_7d04a2adf539031550a0"
+      ],
+      "vector_top20": [
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_e6b6873c16b522efd547",
+        "chunk_b2cc57a3bfcf6b381e33",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_d07977dcddfd5274f2f0",
+        "chunk_f02258b84c7905231485",
+        "chunk_8b717012b10495f5bab1",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_cb7ee6bc7f74dd6e73a0",
+        "chunk_912df8b14065c75485fe",
+        "chunk_c7a7b35a2f301b66c4ea",
+        "chunk_7105fc138eef2ef44af8",
+        "chunk_04f95a90d476259b49f8",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_d97a557df31d819ec54b",
+        "chunk_bfd8efd860c9cc48b730",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_388355e3779b227c711c",
+        "chunk_9d2d649b9af58cbdfe8c"
+      ],
+      "hybrid_top10": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_c86e5551e043b0297959",
+        "chunk_d80d7a43120d2ac8f1ad"
+      ],
+      "hybrid_top5": [
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_70613dc82bcd00685ea1",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 4.756022999572451,
+        "vector": 6.4784600008351845,
+        "hybrid": 11.255853000875504
+      },
+      "bm25_top5": [
+        "chunk_442df02b19bf8218c983",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_cb3064ff5b69e1cd982f"
+      ],
+      "vector_top5": [
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_e6b6873c16b522efd547",
+        "chunk_b2cc57a3bfcf6b381e33",
+        "chunk_f30ea13dad072c23642f",
+        "chunk_d07977dcddfd5274f2f0"
+      ]
+    },
+    {
+      "case_id": "retrieval-105",
+      "query": "请综合说明液化天然与考虑到国内现有检定中心的能力，天然气贸易计量系统中单台流两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_2b648c864304beabd561",
+        "chunk_45e2b614428cce4db94f"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_2b648c864304beabd561": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_2b648c864304beabd561": 4
+      },
+      "hybrid_gold_ranks": {
+        "chunk_2b648c864304beabd561": 1
+      },
+      "bm25_top20": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1138ce83273675efeb82",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_442df02b19bf8218c983",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_e065d0844c9c9434029c",
+        "chunk_4eb02356191e0a333c47",
+        "chunk_359912c239cfb3e1747c",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_46f299d6f59f0d90d963",
+        "chunk_ac012c6c876ea67d09b7",
+        "chunk_aca0c9c6a0458cf251e4",
+        "chunk_c9a0d62a5bb20c7d417d",
+        "chunk_0b559b332f9a75fb6e1b",
+        "chunk_09a5c11bcee3640c758a"
+      ],
+      "vector_top20": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_2b648c864304beabd561",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_8e8ed9bbe7a946321064",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_2bcfbf3daaefbd9fe339",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_b90fd4146185776745f2",
+        "chunk_abe7201f90b4e5aa01f7",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_f02258b84c7905231485",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_debf4e0dda7f6de2af11"
+      ],
+      "hybrid_top10": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_442df02b19bf8218c983"
+      ],
+      "hybrid_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "classification": "E",
+      "latency_ms": {
+        "bm25": 34.47057500034134,
+        "vector": 17.9898989999856,
+        "hybrid": 52.48651300007623
+      },
+      "bm25_top5": [
+        "chunk_2b648c864304beabd561",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "vector_top5": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_2b648c864304beabd561",
+        "chunk_5ffd4081fccc2d41d21c"
+      ]
+    },
+    {
+      "case_id": "retrieval-068",
+      "query": "压力检测仪表选型有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第5.3.2条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_a83a08a1e93117bf2145": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_a83a08a1e93117bf2145": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_a83a08a1e93117bf2145": 1
+      },
+      "bm25_top20": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_fdbfa2dfc9f3ad4f7518",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_0bed551631a1d6b9f127",
+        "chunk_127ad69127c3a0f7206d",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_358776ff554d00069e71",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_4a3d170ff81f18273b03",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_2cd07217535c455ace05"
+      ],
+      "vector_top20": [
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_358776ff554d00069e71",
+        "chunk_2cd07217535c455ace05",
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_2bcfbf3daaefbd9fe339",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_127ad69127c3a0f7206d",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_0bed551631a1d6b9f127",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_f83fdebd81a6be8e5ffd"
+      ],
+      "hybrid_top10": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_0bed551631a1d6b9f127",
+        "chunk_127ad69127c3a0f7206d",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_358776ff554d00069e71"
+      ],
+      "hybrid_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 10.994537999977183,
+        "vector": 8.860048000315146,
+        "hybrid": 19.90261700029805
+      },
+      "bm25_top5": [
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "vector_top5": [
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ]
+    },
+    {
+      "case_id": "retrieval-059",
+      "query": "压力仪表安装要求压力仪表安装有哪些数值或精度限制？ 请限定在Q/GGW 02005.2-2022第8.3.3.2条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_f7feac7e5aca5e7266e1"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_f7feac7e5aca5e7266e1": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_f7feac7e5aca5e7266e1": 4
+      },
+      "hybrid_gold_ranks": {
+        "chunk_f7feac7e5aca5e7266e1": 1
+      },
+      "bm25_top20": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10",
+        "chunk_862de99cce203cd67193",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_0ef4a7ce9686a0753bc0",
+        "chunk_b403bd6239a74b466e64",
+        "chunk_3a86265004be2a4b7c15",
+        "chunk_99434557184072acf01c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_2cd07217535c455ace05",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_ad4a2a4d31dff785aba8",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_874de419215160c86731",
+        "chunk_11aca44efc3de1c2dd47"
+      ],
+      "vector_top20": [
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_a62f18c34bbd5c0e2d7e",
+        "chunk_72327c0c8804fce10d0c",
+        "chunk_f42a12c1200cba468137",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_66b117e471b8f4f67bf3",
+        "chunk_82dacad41c1bb03ef683",
+        "chunk_121be0f388fc889e501d",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_815039970d6838e1c09f",
+        "chunk_862de99cce203cd67193",
+        "chunk_874de419215160c86731",
+        "chunk_d7cd6ad318d6539df209",
+        "chunk_193583ef1e7bb1a5a9c7"
+      ],
+      "hybrid_top10": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_862de99cce203cd67193",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_874de419215160c86731",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10",
+        "chunk_7f04581c9a4f209d154c"
+      ],
+      "hybrid_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_862de99cce203cd67193",
+        "chunk_bb0f876c0657739662c4"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 11.60423399960564,
+        "vector": 8.946582999669772,
+        "hybrid": 20.57376099855901
+      },
+      "bm25_top5": [
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_c720305c45af379ebd10"
+      ],
+      "vector_top5": [
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_a62f18c34bbd5c0e2d7e"
+      ]
+    },
+    {
+      "case_id": "retrieval-055",
+      "query": "工程设计涉及液化天然气接收站DCS按照就近原则时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第6.2.1.6条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_7e23ddcce160e3353179"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_7e23ddcce160e3353179": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_7e23ddcce160e3353179": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_7e23ddcce160e3353179": 1
+      },
+      "bm25_top20": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_ae017578d9e9d91e05c7",
+        "chunk_c7911325ad9237444657",
+        "chunk_bd07d481bc94d35c7516",
+        "chunk_3cb42d04cff05a759014",
+        "chunk_8c7641fae8882b94e6cc",
+        "chunk_6e5a75f1e02867d1b7d6",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_83bcf0b6aa4a79f0ff62",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_02276e3966cc3ba01375",
+        "chunk_459921f2b24636b41577",
+        "chunk_c02dfc4f2a95467d71be",
+        "chunk_8b98bfe6fd03c165f2b6",
+        "chunk_64094396c096c7daec29"
+      ],
+      "vector_top20": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_c02dfc4f2a95467d71be",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_87195c2096fc84d1072e",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_1f6d0a8d9a6da40f20ff",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_02276e3966cc3ba01375",
+        "chunk_195b215e0327a3761b9a",
+        "chunk_0cd3059e36b5b7b4165b",
+        "chunk_987e05dbbb67431fd53a",
+        "chunk_0cbb6d486f790b86bb67",
+        "chunk_3cb42d04cff05a759014",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_ae017578d9e9d91e05c7",
+        "chunk_6e5a75f1e02867d1b7d6",
+        "chunk_d13dea817dec085a2717"
+      ],
+      "hybrid_top10": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_ae017578d9e9d91e05c7",
+        "chunk_3cb42d04cff05a759014",
+        "chunk_5c8eba55258992e1dd16",
+        "chunk_79296261d2e8e1f216e1",
+        "chunk_6e5a75f1e02867d1b7d6"
+      ],
+      "hybrid_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_405c8b52e9fa15eccdba"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 23.593570000230102,
+        "vector": 18.50496600036422,
+        "hybrid": 42.12308200021653
+      },
+      "bm25_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_70fbcbb6dfa196f3d338",
+        "chunk_405c8b52e9fa15eccdba",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_823d40d0be407056aaa7"
+      ],
+      "vector_top5": [
+        "chunk_7e23ddcce160e3353179",
+        "chunk_823d40d0be407056aaa7",
+        "chunk_497a53ed4d3977a9c92c",
+        "chunk_c02dfc4f2a95467d71be",
+        "chunk_79296261d2e8e1f216e1"
+      ]
+    },
+    {
+      "case_id": "retrieval-035",
+      "query": "工程设计涉及压力检测仪表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第5.3.1条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_8c7dcfccfc1aa628e509"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_8c7dcfccfc1aa628e509": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_8c7dcfccfc1aa628e509": 5
+      },
+      "hybrid_gold_ranks": {
+        "chunk_8c7dcfccfc1aa628e509": 1
+      },
+      "bm25_top20": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_79a708f590fb513f14ea",
+        "chunk_73f8b7361503348a6431",
+        "chunk_cf51cf28de9a91caaf80",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_f29eb91cda53398ec4a6",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_35a0fff4f499cf1e4117",
+        "chunk_134fe57a50a013800b7a",
+        "chunk_bf86df8e09a2b6d8e638",
+        "chunk_0c90e9f5ecd75cb9821c",
+        "chunk_97680cde8641bae43743"
+      ],
+      "vector_top20": [
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_358776ff554d00069e71",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_134fe57a50a013800b7a",
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_19c072f32797d0946379",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_121be0f388fc889e501d",
+        "chunk_257f6929f4378bd80b8f"
+      ],
+      "hybrid_top10": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_134fe57a50a013800b7a",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d43ae616cec436ba20ce"
+      ],
+      "hybrid_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_d56ea87a28f50cbdb831"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 12.128430000302615,
+        "vector": 8.793832999799633,
+        "hybrid": 20.945337000739528
+      },
+      "bm25_top5": [
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "vector_top5": [
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_8c7dcfccfc1aa628e509"
+      ]
+    },
+    {
+      "case_id": "retrieval-104",
+      "query": "请综合说明天然气贸易计量系统与基本过程控制系统 basic processcontro两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_1138ce83273675efeb82",
+        "chunk_93edf39162ff0a2fb975"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_1138ce83273675efeb82": 2,
+        "chunk_93edf39162ff0a2fb975": 6
+      },
+      "vector_gold_ranks": {
+        "chunk_1138ce83273675efeb82": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_1138ce83273675efeb82": 2,
+        "chunk_93edf39162ff0a2fb975": 10
+      },
+      "bm25_top20": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_30d902f60d97a1117a69",
+        "chunk_93edf39162ff0a2fb975",
+        "chunk_3186eba9fbd652987d0f",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_fafef068612e188540fa",
+        "chunk_442df02b19bf8218c983",
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_e814ff2b970feddc1a75",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_1dec7e94f43936b12a20",
+        "chunk_cc63f9924d9943aaa801",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_2c28666fcecc5495c108"
+      ],
+      "vector_top20": [
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_b6199a0de60b21a4101b",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_20391b9e9c2146fc6841",
+        "chunk_9197a29fc00b30227e76",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_1dbe63a0e724fcc801f2",
+        "chunk_2b648c864304beabd561",
+        "chunk_debf4e0dda7f6de2af11",
+        "chunk_82d870ec743841fefb6d",
+        "chunk_8aa33556034284ea684f",
+        "chunk_9319e1c4a8ec17e321d6",
+        "chunk_0322e2ddba4943a2e1bd",
+        "chunk_432a7dc002ff118d0d14"
+      ],
+      "hybrid_top10": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_30d902f60d97a1117a69",
+        "chunk_93edf39162ff0a2fb975"
+      ],
+      "hybrid_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_2b648c864304beabd561",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 35.83669699946768,
+        "vector": 28.461375000006228,
+        "hybrid": 64.32341999970959
+      },
+      "bm25_top5": [
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_1138ce83273675efeb82",
+        "chunk_2b648c864304beabd561",
+        "chunk_df93c44d5b03be4d689a",
+        "chunk_30d902f60d97a1117a69"
+      ],
+      "vector_top5": [
+        "chunk_cfbf8e02bd665142e36a",
+        "chunk_1138ce83273675efeb82",
+        "chunk_b8773d3ba3e0aa17dd53",
+        "chunk_6faf9ea33a56f917194d",
+        "chunk_df93c44d5b03be4d689a"
+      ]
+    },
+    {
+      "case_id": "retrieval-060",
+      "query": "仪表管阀件材质有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.6.1.4条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_29fd8b107dce5a1b4f95"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_29fd8b107dce5a1b4f95": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_29fd8b107dce5a1b4f95": 3
+      },
+      "hybrid_gold_ranks": {
+        "chunk_29fd8b107dce5a1b4f95": 1
+      },
+      "bm25_top20": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_173bc1e7b3638b933327",
+        "chunk_2b4748f03c02ee7bd619",
+        "chunk_d3ce41c1b1b1c7f5170d",
+        "chunk_a3a95358e43656825343",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_bd07d481bc94d35c7516",
+        "chunk_c7f54c8dba7cc83f386e",
+        "chunk_a6f81f9529c2e04314eb",
+        "chunk_f056156314cc5fd8b953",
+        "chunk_a77ff4b1cb96892e63f7",
+        "chunk_70e12c6c1b86718dd745",
+        "chunk_a0de671508b82643c845"
+      ],
+      "vector_top20": [
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_173bc1e7b3638b933327",
+        "chunk_c73fe6a893e807bcadb8",
+        "chunk_c7f54c8dba7cc83f386e",
+        "chunk_ae151e0a58944b35f6b8",
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_fc872938434b559c06e1",
+        "chunk_a0de671508b82643c845",
+        "chunk_5022f5f4bb9f1601d6f9",
+        "chunk_37200023d11ce9e98ea7",
+        "chunk_627d41c0569be5934e08",
+        "chunk_e18b3b5fc76034e75af0",
+        "chunk_2b4748f03c02ee7bd619",
+        "chunk_f51c533de82eeed03057",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_7709ec4956c743c3f4e5"
+      ],
+      "hybrid_top10": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_3f143d8a777ca3bf66c1",
+        "chunk_ddddab2908f0b7cd8be7",
+        "chunk_173bc1e7b3638b933327",
+        "chunk_6a2c1a12d86b8a7f5576",
+        "chunk_2b4748f03c02ee7bd619"
+      ],
+      "hybrid_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_18bd6f18a03bd8df31b4"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 17.50969799923041,
+        "vector": 18.38264399975742,
+        "hybrid": 35.917378998419736
+      },
+      "bm25_top5": [
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_fc872938434b559c06e1",
+        "chunk_ddddab2908f0b7cd8be7"
+      ],
+      "vector_top5": [
+        "chunk_5edbe1c3fdd66b5e19d9",
+        "chunk_0f23f944dbc82533ddc1",
+        "chunk_29fd8b107dce5a1b4f95",
+        "chunk_18bd6f18a03bd8df31b4",
+        "chunk_3f143d8a777ca3bf66c1"
+      ]
+    },
+    {
+      "case_id": "retrieval-087",
+      "query": "Q/GGW 02005.3-2022 表5的各行参数要求是什么？",
+      "query_type": "table",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "table_fdd9b3db369e2bf69d73"
+      ],
+      "bm25_gold_ranks": {
+        "table_fdd9b3db369e2bf69d73": 4
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "table_fdd9b3db369e2bf69d73": 9
+      },
+      "bm25_top20": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4",
+        "chunk_cb6ca7b4609190982258",
+        "chunk_467e911ead4238f740d3",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_05779e07123fc04ddce8",
+        "chunk_9a18cf53bd004a03a933",
+        "chunk_a199d5026f5c8ba5dd11",
+        "chunk_2adde9b50c37bae81440",
+        "chunk_d2fd17b8027257019d82",
+        "chunk_5594b010c2fbb6a472a1",
+        "chunk_b92575a077ad8169db2c",
+        "chunk_d1a4ed57f718fb0c7845",
+        "chunk_2074394642bab27af664",
+        "chunk_006c4440f1bf331a3fde"
+      ],
+      "vector_top20": [
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_305a0e6823b57be54fdf",
+        "table_5b1154de9a13b318914b",
+        "chunk_31b483b44224c97fadf4",
+        "chunk_f3a96090ee37bd448c1a",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_9832b9ecd3f725b2964b",
+        "chunk_9a18cf53bd004a03a933",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_560979df868369296c84",
+        "chunk_c0bba829fe7e1bd53021",
+        "table_a8c9f5413e6a06bf07fd",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_4717903c58f9d94bdde4",
+        "chunk_d4126881c2667187ae74",
+        "table_a942c5a6f18b0e52d0ca"
+      ],
+      "hybrid_top10": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_9a18cf53bd004a03a933",
+        "chunk_114f083ffc1876366a87",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_cb6ca7b4609190982258"
+      ],
+      "hybrid_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 0.8154370007105172,
+        "vector": 1.5948560003380408,
+        "hybrid": 2.4270640014947276
+      },
+      "bm25_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_c0bba829fe7e1bd53021"
+      ],
+      "vector_top5": [
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_305a0e6823b57be54fdf",
+        "table_5b1154de9a13b318914b",
+        "chunk_31b483b44224c97fadf4",
+        "chunk_f3a96090ee37bd448c1a"
+      ]
+    },
+    {
+      "case_id": "retrieval-005",
+      "query": "Q/GGW 02005.2-2022 第3.8条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_45e2b614428cce4db94f"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_45e2b614428cce4db94f": 2
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "chunk_45e2b614428cce4db94f": 6
+      },
+      "bm25_top20": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_ae3f23cb16bacb7f8d65",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_203b8bfb64798d9474b4",
+        "chunk_19c072f32797d0946379",
+        "chunk_e1a750230e0407b37427",
+        "chunk_6bb4a9097046dd54e972",
+        "chunk_b5b2687bebc2d6bc4323",
+        "chunk_72327c0c8804fce10d0c",
+        "chunk_babae95f287acd31be3f",
+        "chunk_f318c0684d0bc7b245ea",
+        "chunk_8ecde8cf6e1551fbd2fe",
+        "chunk_bb0f876c0657739662c4",
+        "chunk_fa2e882ca770e38bccb5",
+        "chunk_2b190b56a9b831e233f6"
+      ],
+      "vector_top20": [
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_121be0f388fc889e501d",
+        "chunk_573184f8252cf3afbbeb",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_87ef1c8f39a0d8e4476b",
+        "chunk_e52549d6139718cfeaab",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_a4cd755fb6bb36675fe6",
+        "chunk_a5c047463d5de99ffc58",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_07113b717b8f34436721",
+        "chunk_c579961e23070f579742",
+        "chunk_ccfe3db8ccf243748f9d",
+        "chunk_7271f9114dc1f8f29ad1",
+        "chunk_216d86b3d29c01551843",
+        "chunk_ff87650113ef874cb6c8",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_70248e3957f70417a93f"
+      ],
+      "hybrid_top10": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2b190b56a9b831e233f6",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_ae3f23cb16bacb7f8d65",
+        "chunk_203b8bfb64798d9474b4"
+      ],
+      "hybrid_top5": [
+        "chunk_13d97808a6993afacdd5",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_2b190b56a9b831e233f6"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 5.382630999520188,
+        "vector": 9.015483999974094,
+        "hybrid": 14.423301999158866
+      },
+      "bm25_top5": [
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_61ca44ffbf1b1bf3ae9b"
+      ],
+      "vector_top5": [
+        "chunk_5b9036d257d2da43fe29",
+        "chunk_121be0f388fc889e501d",
+        "chunk_573184f8252cf3afbbeb",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_13d97808a6993afacdd5"
+      ]
+    },
+    {
+      "case_id": "retrieval-075",
+      "query": "当直埋电缆穿越道路时有哪些数值或精度限制？ 请限定在Q/GGW 02005.1-2022第11.4.4.4条的上下文内回答。",
+      "query_type": "numeric",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_65e9bd0f38ea5e1ac931"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_65e9bd0f38ea5e1ac931": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_65e9bd0f38ea5e1ac931": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_65e9bd0f38ea5e1ac931": 1
+      },
+      "bm25_top20": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_3d7784140c67bfa76af9",
+        "chunk_fa454cb4afa8a551a090",
+        "chunk_165991551871b4d234cc",
+        "chunk_0f70dd6fb3afcbb2a0ff",
+        "chunk_d3ce41c1b1b1c7f5170d",
+        "chunk_b7f281a93ae72920aec2",
+        "chunk_b3e1f7e7b550843fff90",
+        "chunk_a3a95358e43656825343",
+        "chunk_b6a23709d11626b1c38b",
+        "chunk_a7f65ce222bd7f99b2dd",
+        "chunk_2601129313bb7cdb6795",
+        "chunk_bd07d481bc94d35c7516",
+        "chunk_30fac1952d0badf5e8fb",
+        "chunk_5f03ef3c9a43a920f3b4",
+        "chunk_48cf7a99fe0dd44b0f30"
+      ],
+      "vector_top20": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_fa454cb4afa8a551a090",
+        "chunk_2b69902375cd3c625176",
+        "chunk_3d7784140c67bfa76af9",
+        "chunk_3d7d5d7708f6cc2b6dc2",
+        "chunk_7a60d0fb35a3b59590d6",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_b6faece93ccfd1c6687c",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_2d593b1f658ab2a4d43d",
+        "chunk_b7f281a93ae72920aec2",
+        "chunk_c52146cc2ebc53e5a061",
+        "chunk_ea89c9a874b35f800cca",
+        "chunk_e2cdd4ea8e924d1d41e9",
+        "chunk_20e474c0b976d08a59cb",
+        "chunk_165991551871b4d234cc",
+        "chunk_30fac1952d0badf5e8fb",
+        "chunk_8f30b503b740553f1ae5",
+        "chunk_93422bacec48ec5d8af0"
+      ],
+      "hybrid_top10": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_3d7784140c67bfa76af9",
+        "chunk_fa454cb4afa8a551a090",
+        "chunk_165991551871b4d234cc",
+        "chunk_b7f281a93ae72920aec2",
+        "chunk_30fac1952d0badf5e8fb"
+      ],
+      "hybrid_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_17a6d2d7d738ac09aec4"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 19.36424699943018,
+        "vector": 21.892823000598582,
+        "hybrid": 41.28243899958761
+      },
+      "bm25_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_2b69902375cd3c625176",
+        "chunk_17c11cda2b5e824985a9",
+        "chunk_17a6d2d7d738ac09aec4",
+        "chunk_5e9b1128dcb473683fc1"
+      ],
+      "vector_top5": [
+        "chunk_65e9bd0f38ea5e1ac931",
+        "chunk_5e9b1128dcb473683fc1",
+        "chunk_fa454cb4afa8a551a090",
+        "chunk_2b69902375cd3c625176",
+        "chunk_3d7784140c67bfa76af9"
+      ]
+    },
+    {
+      "case_id": "retrieval-100",
+      "query": "请综合说明-与检测元件 sensor两方面的规范要求，范围限定为Q/GGW 02005.1-2022和Q/GGW 02005.2-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_540d54e02591c6a6bd0d",
+        "chunk_e97f550d57d5ff741bda"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_e97f550d57d5ff741bda": 2
+      },
+      "vector_gold_ranks": {
+        "chunk_e97f550d57d5ff741bda": 2
+      },
+      "hybrid_gold_ranks": {
+        "chunk_e97f550d57d5ff741bda": 2
+      },
+      "bm25_top20": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_257f6929f4378bd80b8f",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_847fbc173378fe13790c",
+        "chunk_cbb5a22238cb9cbfe8aa",
+        "chunk_75dff3c3b714538add66",
+        "chunk_dffbb73703bbc68f6cbf",
+        "chunk_f83fdebd81a6be8e5ffd",
+        "chunk_33bb07e163b55310b389",
+        "chunk_45e2b614428cce4db94f",
+        "chunk_5f9bf26cf09bc0da80da",
+        "chunk_8c7dcfccfc1aa628e509",
+        "chunk_86f820743ecdb56c9a5a",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_b1f932a4f32b59617b5a",
+        "chunk_34f03b5de4922a6c35d0",
+        "chunk_f5df81680c1794509733"
+      ],
+      "vector_top20": [
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_4ea753df71644ac10158",
+        "table_496abb837d73946c6fb1",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_1a8debefb1431e78ba30",
+        "chunk_358776ff554d00069e71",
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_cbb5a22238cb9cbfe8aa",
+        "table_715cbb50f46cf6d34082",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_19c072f32797d0946379",
+        "chunk_9e4c43ba2b6e02a9559f",
+        "table_90e4048ce8ea3486219c",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_8f0a0ac4e8b6239c6bc2",
+        "chunk_121be0f388fc889e501d"
+      ],
+      "hybrid_top10": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_cbb5a22238cb9cbfe8aa",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_847fbc173378fe13790c",
+        "chunk_75dff3c3b714538add66",
+        "chunk_dffbb73703bbc68f6cbf",
+        "chunk_f83fdebd81a6be8e5ffd"
+      ],
+      "hybrid_top5": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082",
+        "chunk_cbb5a22238cb9cbfe8aa"
+      ],
+      "classification": "E",
+      "latency_ms": {
+        "bm25": 29.95827500035375,
+        "vector": 37.989570999343414,
+        "hybrid": 67.97352499961562
+      },
+      "bm25_top5": [
+        "chunk_4ea753df71644ac10158",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_257f6929f4378bd80b8f",
+        "table_496abb837d73946c6fb1",
+        "table_715cbb50f46cf6d34082"
+      ],
+      "vector_top5": [
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_e97f550d57d5ff741bda",
+        "chunk_4ea753df71644ac10158",
+        "table_496abb837d73946c6fb1",
+        "chunk_ad0277ff690a670bd31a"
+      ]
+    },
+    {
+      "case_id": "retrieval-099",
+      "query": "请综合说明变送器 transmitter与缩略语两方面的规范要求，范围限定为Q/GGW 02005.2-2022和Q/GGW 02005.3-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_b09aade4702ad2b22a35"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_5fb4d1109782a3848a56": 2,
+        "chunk_b09aade4702ad2b22a35": 4
+      },
+      "vector_gold_ranks": {
+        "chunk_b09aade4702ad2b22a35": 1,
+        "chunk_5fb4d1109782a3848a56": 16
+      },
+      "hybrid_gold_ranks": {
+        "chunk_b09aade4702ad2b22a35": 2,
+        "chunk_5fb4d1109782a3848a56": 3
+      },
+      "bm25_top20": [
+        "chunk_607ac3482171d92b4318",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_7360f87a6c045e5900dd",
+        "chunk_7be4694116134586917e",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_5c0f5f2e9b6a387842af",
+        "chunk_4776699a128d3b63a4d9",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_8655fc27138a51b1ed6f",
+        "chunk_257f6929f4378bd80b8f",
+        "chunk_b0da9f4ca5debc869996",
+        "chunk_871b9c551b74460384c0",
+        "chunk_81ca698ccda54d7c2c2e",
+        "chunk_68489355e0fd2ed5ddae",
+        "chunk_64760f9625d578676715"
+      ],
+      "vector_top20": [
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_61ca44ffbf1b1bf3ae9b",
+        "chunk_999d068eb0244833c304",
+        "chunk_841dc5ff0053e653b302",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_89d6c4b5de9e9f7dacd0",
+        "chunk_7be4694116134586917e",
+        "chunk_69f42d57cd1bcd38ecd5",
+        "chunk_2bcfbf3daaefbd9fe339",
+        "chunk_1a2b327267db7b3d4795",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_359912c239cfb3e1747c",
+        "chunk_19c072f32797d0946379",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_1a8debefb1431e78ba30"
+      ],
+      "hybrid_top10": [
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_7be4694116134586917e",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_607ac3482171d92b4318",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_7360f87a6c045e5900dd"
+      ],
+      "hybrid_top5": [
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_1d28b66bb182aea66a8d",
+        "chunk_b24bb4063c51acac7046"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 23.835959999814804,
+        "vector": 19.702507000147307,
+        "hybrid": 43.56211100002838
+      },
+      "bm25_top5": [
+        "chunk_607ac3482171d92b4318",
+        "chunk_5fb4d1109782a3848a56",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "vector_top5": [
+        "chunk_b09aade4702ad2b22a35",
+        "chunk_e502e78ce5f3656a8fac",
+        "chunk_ad0277ff690a670bd31a",
+        "chunk_b24bb4063c51acac7046",
+        "chunk_13d97808a6993afacdd5"
+      ]
+    },
+    {
+      "case_id": "retrieval-082",
+      "query": "Q/GGW 02005.1-2022 表3的表头与参数单位是什么？",
+      "query_type": "table",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "table_496abb837d73946c6fb1"
+      ],
+      "bm25_gold_ranks": {
+        "table_496abb837d73946c6fb1": 3
+      },
+      "vector_gold_ranks": {
+        "table_496abb837d73946c6fb1": 1
+      },
+      "hybrid_gold_ranks": {
+        "table_496abb837d73946c6fb1": 2
+      },
+      "bm25_top20": [
+        "table_436fa0ca4ffeea8e140b",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_496abb837d73946c6fb1",
+        "table_d1012b61103d65cf9e02",
+        "table_90e4048ce8ea3486219c",
+        "chunk_fa3241c9c2326f70cf23",
+        "table_831cb68309e23b8ae678",
+        "table_70cdbe293af90638e49f",
+        "table_715cbb50f46cf6d34082",
+        "table_819985a1a11602b85ca7",
+        "chunk_9e4c43ba2b6e02a9559f",
+        "table_730af70b252cc314ea89",
+        "table_736518d568aa2d944bfc",
+        "table_58fcd8f56ca3ab475ef9",
+        "chunk_c687e58aaf72886c4737",
+        "table_a6b216826f4a39c3bb27",
+        "chunk_ec2cfc7a1e89d5d9719c",
+        "chunk_a79e0427ff11483186ae",
+        "chunk_5863782051e357225bc7",
+        "chunk_d86c9f1ddfd44f67a940"
+      ],
+      "vector_top20": [
+        "table_496abb837d73946c6fb1",
+        "chunk_9e4c43ba2b6e02a9559f",
+        "table_58fcd8f56ca3ab475ef9",
+        "table_90e4048ce8ea3486219c",
+        "table_436fa0ca4ffeea8e140b",
+        "table_819985a1a11602b85ca7",
+        "table_715cbb50f46cf6d34082",
+        "table_0682f4db8ed2b59bfda0",
+        "chunk_a79e0427ff11483186ae",
+        "chunk_3f4acef03f406c88676a",
+        "chunk_48a0713c7b027091b5e1",
+        "table_fa25940b06115c85b53b",
+        "chunk_bac828fe311478c5f0a7",
+        "table_736518d568aa2d944bfc",
+        "table_70cdbe293af90638e49f",
+        "chunk_4b6d2c78695030d9aab6",
+        "chunk_ec2cfc7a1e89d5d9719c",
+        "table_730af70b252cc314ea89",
+        "chunk_5863782051e357225bc7",
+        "chunk_33c76c3a7dd6a1269feb"
+      ],
+      "hybrid_top10": [
+        "table_436fa0ca4ffeea8e140b",
+        "table_496abb837d73946c6fb1",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_90e4048ce8ea3486219c",
+        "table_715cbb50f46cf6d34082",
+        "chunk_9e4c43ba2b6e02a9559f",
+        "table_819985a1a11602b85ca7",
+        "table_70cdbe293af90638e49f",
+        "table_58fcd8f56ca3ab475ef9",
+        "table_730af70b252cc314ea89"
+      ],
+      "hybrid_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "table_496abb837d73946c6fb1",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_90e4048ce8ea3486219c",
+        "table_715cbb50f46cf6d34082"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 0.7088749998729327,
+        "vector": 2.1312130002115737,
+        "hybrid": 2.8612880005312036
+      },
+      "bm25_top5": [
+        "table_436fa0ca4ffeea8e140b",
+        "chunk_4b6d2c78695030d9aab6",
+        "table_496abb837d73946c6fb1",
+        "table_d1012b61103d65cf9e02",
+        "table_90e4048ce8ea3486219c"
+      ],
+      "vector_top5": [
+        "table_496abb837d73946c6fb1",
+        "chunk_9e4c43ba2b6e02a9559f",
+        "table_58fcd8f56ca3ab475ef9",
+        "table_90e4048ce8ea3486219c",
+        "table_436fa0ca4ffeea8e140b"
+      ]
+    },
+    {
+      "case_id": "retrieval-092",
+      "query": "请综合说明范围与监控阀室 monitoring valve statio两方面的规范要求，范围限定为Q/GGW 02005.3-2022和Q/GGW 02005.1-2022。",
+      "query_type": "multi_clause",
+      "difficulty": "hard",
+      "gold_unit_ids": [
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5aa2b526b5aa993ade95"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_5aa2b526b5aa993ade95": 2,
+        "chunk_1b18c8a0a7aeaab6ba7f": 9
+      },
+      "vector_gold_ranks": {
+        "chunk_5aa2b526b5aa993ade95": 3
+      },
+      "hybrid_gold_ranks": {
+        "chunk_5aa2b526b5aa993ade95": 2,
+        "chunk_1b18c8a0a7aeaab6ba7f": 10
+      },
+      "bm25_top20": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_733e6920eba41d9d11a1",
+        "chunk_a1cae914558d3c91a653",
+        "chunk_044b5061182d21586e3c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8d28f28a05b7e261474a",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_e8f9f389a7c1276d6672",
+        "chunk_e065d0844c9c9434029c",
+        "chunk_8b717012b10495f5bab1",
+        "chunk_eebf982fe954bdb45325",
+        "chunk_547fe9f9163e1715180d",
+        "chunk_e814ff2b970feddc1a75",
+        "chunk_312961228eeb0c6ac030",
+        "chunk_b4f12e9abf09d944933f"
+      ],
+      "vector_top20": [
+        "chunk_a1cae914558d3c91a653",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_733e6920eba41d9d11a1",
+        "chunk_044b5061182d21586e3c",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_432a7dc002ff118d0d14",
+        "table_736518d568aa2d944bfc",
+        "table_730af70b252cc314ea89",
+        "chunk_b6199a0de60b21a4101b",
+        "chunk_bd66b5594b03b2e74c20",
+        "chunk_fbeea0f76dee37334f7e",
+        "chunk_3c64ad35d3d332791288",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_4c0cea57cb6afbe7b1f5",
+        "chunk_48a0713c7b027091b5e1",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_e8f9f389a7c1276d6672",
+        "chunk_457e95159cf9dc08268a"
+      ],
+      "hybrid_top10": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_a1cae914558d3c91a653",
+        "chunk_733e6920eba41d9d11a1",
+        "chunk_044b5061182d21586e3c",
+        "chunk_e8f9f389a7c1276d6672",
+        "chunk_1b18c8a0a7aeaab6ba7f"
+      ],
+      "hybrid_top5": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_7834a3c5deb7e96b91d7"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 32.22396300043329,
+        "vector": 33.86860299997352,
+        "hybrid": 66.13015700077085
+      },
+      "bm25_top5": [
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_7834a3c5deb7e96b91d7",
+        "chunk_7608b5219c446a7e88ee",
+        "chunk_d7375cf977cf884a6048"
+      ],
+      "vector_top5": [
+        "chunk_a1cae914558d3c91a653",
+        "chunk_d7375cf977cf884a6048",
+        "chunk_5aa2b526b5aa993ade95",
+        "chunk_ae633d9027bc8a3ebfde",
+        "chunk_733e6920eba41d9d11a1"
+      ]
+    },
+    {
+      "case_id": "retrieval-078",
+      "query": "Q/GGW 02005.3-2022 表1的各行参数要求是什么？",
+      "query_type": "table",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "table_5b1154de9a13b318914b"
+      ],
+      "bm25_gold_ranks": {
+        "table_5b1154de9a13b318914b": 7
+      },
+      "vector_gold_ranks": {
+        "table_5b1154de9a13b318914b": 8
+      },
+      "hybrid_gold_ranks": {
+        "table_5b1154de9a13b318914b": 6
+      },
+      "bm25_top20": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711",
+        "table_8fdbf6c8ecb89daef24a",
+        "table_5b1154de9a13b318914b",
+        "table_fdd9b3db369e2bf69d73",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_f2f23ef13f5ab5c69339",
+        "chunk_9832b9ecd3f725b2964b",
+        "chunk_f3a96090ee37bd448c1a",
+        "chunk_93fb6c05f4f8d7576647",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_d4126881c2667187ae74",
+        "chunk_4717903c58f9d94bdde4",
+        "chunk_cb6ca7b4609190982258",
+        "chunk_467e911ead4238f740d3",
+        "chunk_7d9c1638c4f281cfad87"
+      ],
+      "vector_top20": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_305a0e6823b57be54fdf",
+        "chunk_31b483b44224c97fadf4",
+        "chunk_ff7f22a43f96b3511711",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_eebf982fe954bdb45325",
+        "table_5b1154de9a13b318914b",
+        "chunk_9832b9ecd3f725b2964b",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_f3a96090ee37bd448c1a",
+        "table_a8c9f5413e6a06bf07fd",
+        "chunk_590f8c69ec1b17bac289",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_c0bba829fe7e1bd53021",
+        "chunk_7d9c1638c4f281cfad87",
+        "chunk_560979df868369296c84",
+        "chunk_9a18cf53bd004a03a933",
+        "chunk_4717903c58f9d94bdde4",
+        "chunk_d4126881c2667187ae74"
+      ],
+      "hybrid_top10": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_ff7f22a43f96b3511711",
+        "table_5b1154de9a13b318914b",
+        "chunk_93c399eb3b4fd887d317",
+        "chunk_590f8c69ec1b17bac289",
+        "chunk_9832b9ecd3f725b2964b",
+        "chunk_f3a96090ee37bd448c1a"
+      ],
+      "hybrid_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "classification": "A",
+      "latency_ms": {
+        "bm25": 0.8869530001902604,
+        "vector": 1.8784439998853486,
+        "hybrid": 2.7804260007542325
+      },
+      "bm25_top5": [
+        "chunk_31b483b44224c97fadf4",
+        "table_a942c5a6f18b0e52d0ca",
+        "chunk_114f083ffc1876366a87",
+        "chunk_0cd1e1b9f7a6d84cc2b7",
+        "chunk_ff7f22a43f96b3511711"
+      ],
+      "vector_top5": [
+        "table_8fdbf6c8ecb89daef24a",
+        "chunk_7781ecdbbc48b254769c",
+        "chunk_305a0e6823b57be54fdf",
+        "chunk_31b483b44224c97fadf4",
+        "chunk_ff7f22a43f96b3511711"
+      ]
+    },
+    {
+      "case_id": "retrieval-004",
+      "query": "Q/GGW 02005.1-2022 第3.9条的原文要求是什么？",
+      "query_type": "exact_clause",
+      "difficulty": "easy",
+      "gold_unit_ids": [
+        "chunk_6185f3457354500ee294"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_6185f3457354500ee294": 1
+      },
+      "vector_gold_ranks": {},
+      "hybrid_gold_ranks": {
+        "chunk_6185f3457354500ee294": 8
+      },
+      "bm25_top20": [
+        "chunk_6185f3457354500ee294",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e",
+        "chunk_83421847993d167b96f0",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_914c13c1047228cc90fb",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_eb4688da32002590427f",
+        "chunk_1a9ea2d3b64b655d7c3d",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_489226d3e8a8b2ef90fc",
+        "chunk_5fb7cdd15097501d83d5",
+        "chunk_5728b30140cd43208370",
+        "chunk_924f191ac883bbbcfe64",
+        "chunk_e40163670209479caf48",
+        "chunk_0546ea7b37db70a75ed6"
+      ],
+      "vector_top20": [
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_e40163670209479caf48",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_432a7dc002ff118d0d14",
+        "chunk_7b00f5735da0a1a03fdf",
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_1d13be9ebab5d5afeb64",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_c19a4c4d9de73a48a3e9",
+        "chunk_ea4612d8077f6b744b63",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_6618f91fdf3637e35810",
+        "chunk_17cf77fc22f544e85716",
+        "chunk_d138537df2247a74a49c",
+        "chunk_80ad7327643a76f58cb5",
+        "chunk_4e23cd3ee478d097f926",
+        "chunk_1a9ea2d3b64b655d7c3d",
+        "chunk_060fb806e81e4b8d5269"
+      ],
+      "hybrid_top10": [
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_1a9ea2d3b64b655d7c3d",
+        "chunk_a570366da64cb4e70f58",
+        "chunk_e40163670209479caf48",
+        "chunk_6185f3457354500ee294",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914"
+      ],
+      "hybrid_top5": [
+        "chunk_58d5c0d994b865e473cd",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_adb6c3b33e5785410c98",
+        "chunk_6aae2f5aa946238746c0",
+        "chunk_1a9ea2d3b64b655d7c3d"
+      ],
+      "classification": "C",
+      "latency_ms": {
+        "bm25": 10.885650999625796,
+        "vector": 22.888141999828804,
+        "hybrid": 33.852652999485144
+      },
+      "bm25_top5": [
+        "chunk_6185f3457354500ee294",
+        "chunk_d1e9cb31d69436ff2436",
+        "chunk_f998ba7c08cd2ebf7914",
+        "chunk_aa791e3c1fc1ccbd8ee4",
+        "chunk_17cc48ff81d9d34fbe0e"
+      ],
+      "vector_top5": [
+        "chunk_4b3d1980f0e531cecb84",
+        "chunk_e40163670209479caf48",
+        "chunk_0fb8e162ef9db7e79bd4",
+        "chunk_ac937b746224b7fb39ca",
+        "chunk_432a7dc002ff118d0d14"
+      ]
+    },
+    {
+      "case_id": "retrieval-046",
+      "query": "工程设计涉及信号处理功能图形符号见表时需要满足哪些要求？ 请限定在Q/GGW 02005.1-2022第5.2.8条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_6acbe61e1d877980193d"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_6acbe61e1d877980193d": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_6acbe61e1d877980193d": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_6acbe61e1d877980193d": 1
+      },
+      "bm25_top20": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_75dff3c3b714538add66",
+        "chunk_5f03ef3c9a43a920f3b4",
+        "chunk_3e95ac95c78bd14be367",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_78d91114571eb7830c34",
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_382d3150bbb07beef9ca",
+        "chunk_61f090f8802b3a4e90ec",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_61c0ce70f4b92b0f8fae",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_003c5abb427e50606131",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_f432867e391d6dead944",
+        "chunk_f0c69b6f83d621797c94"
+      ],
+      "vector_top20": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_7c333f3f528d7c6eaa2f",
+        "chunk_e966c334dbbdd52aedcd",
+        "chunk_61c0ce70f4b92b0f8fae",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_382d3150bbb07beef9ca",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_78d91114571eb7830c34",
+        "chunk_61f090f8802b3a4e90ec",
+        "chunk_75dff3c3b714538add66",
+        "chunk_db54ce0711b0d1452642",
+        "chunk_5f03ef3c9a43a920f3b4",
+        "chunk_3e95ac95c78bd14be367",
+        "chunk_f0c69b6f83d621797c94",
+        "chunk_f432867e391d6dead944",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "hybrid_top10": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_75dff3c3b714538add66",
+        "chunk_5f03ef3c9a43a920f3b4",
+        "chunk_08722d1ec125b4fe26df",
+        "chunk_3e95ac95c78bd14be367",
+        "chunk_e966c334dbbdd52aedcd"
+      ],
+      "hybrid_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_5887ebecda8f2dba1e29",
+        "chunk_7df2dbbdd73cc9f6ef0e"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 27.33007799997722,
+        "vector": 23.518988000432728,
+        "hybrid": 50.86931500045466
+      },
+      "bm25_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_1680d2b30a9d034279ba",
+        "chunk_7df2dbbdd73cc9f6ef0e",
+        "chunk_5887ebecda8f2dba1e29"
+      ],
+      "vector_top5": [
+        "chunk_6acbe61e1d877980193d",
+        "chunk_ec9b6d16811cf4294713",
+        "chunk_350767a4b0ff0ce2125b",
+        "chunk_ab19dd05301d140f0b45",
+        "chunk_7c333f3f528d7c6eaa2f"
+      ]
+    },
+    {
+      "case_id": "retrieval-054",
+      "query": "工程设计涉及分输站场未设置在线分析系统时时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第6.3.1.3条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_0084c1e902ad47fd31d9"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_0084c1e902ad47fd31d9": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_0084c1e902ad47fd31d9": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_0084c1e902ad47fd31d9": 1
+      },
+      "bm25_top20": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_a8568912a6def441f31a",
+        "chunk_d80d7a43120d2ac8f1ad",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_0cc6cdca82ef86ef7ed8",
+        "chunk_3b9d516171a0151feb29",
+        "chunk_0c7b2159f3a7825a819e",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_8532e848e1fd4361e894",
+        "chunk_2da9c3e9d58746dfd58f",
+        "chunk_c86e5551e043b0297959",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_04f95a90d476259b49f8",
+        "chunk_5a3187421ae358aa63ef",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "vector_top20": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1bbd6c2fd4d3f5df7351",
+        "chunk_936fb32c2eee6c8cfa62",
+        "chunk_74cdba0e2dba410b0d8d",
+        "chunk_ae080bed390dba315895",
+        "chunk_10cab24084a193d0bf8c",
+        "chunk_150ebdb8325448942f4b",
+        "chunk_21e03c23286534668a28",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_c6ebcd940dc9a73ed754",
+        "chunk_388355e3779b227c711c",
+        "chunk_64760f9625d578676715",
+        "chunk_ef6b3a9b4e7ccbb12638",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_fb6d1c7baf9b09017ed9",
+        "chunk_a8568912a6def441f31a",
+        "chunk_5c62e4ba30b8371ee475",
+        "chunk_3b9d516171a0151feb29",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_0acf7eb23b9c929a29e7"
+      ],
+      "hybrid_top10": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_a8568912a6def441f31a",
+        "chunk_3b9d516171a0151feb29",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_d80d7a43120d2ac8f1ad",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_0cc6cdca82ef86ef7ed8"
+      ],
+      "hybrid_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_63a123ab48fb5153706f",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_a8568912a6def441f31a"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 14.396150999345991,
+        "vector": 15.917467999315704,
+        "hybrid": 30.338245998791535
+      },
+      "bm25_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_5c99d05801c14cf2e553",
+        "chunk_244a887c4892c3b104bf",
+        "chunk_63a123ab48fb5153706f"
+      ],
+      "vector_top5": [
+        "chunk_0084c1e902ad47fd31d9",
+        "chunk_1bbd6c2fd4d3f5df7351",
+        "chunk_936fb32c2eee6c8cfa62",
+        "chunk_74cdba0e2dba410b0d8d",
+        "chunk_ae080bed390dba315895"
+      ]
+    },
+    {
+      "case_id": "retrieval-036",
+      "query": "工程设计涉及超声流量计（插入式）时需要满足哪些要求？ 请限定在Q/GGW 02005.3-2022第5.3.5.2条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_6e36a0745f525f46faec"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_6e36a0745f525f46faec": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_6e36a0745f525f46faec": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_6e36a0745f525f46faec": 1
+      },
+      "bm25_top20": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_0f3b688d89cdaf4a93d9",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_56e57937a971e81a3d88",
+        "chunk_7823dcab4878094a9304",
+        "chunk_817b4e357ddd9f6facc2",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_6813d5e44a4da0bc1120",
+        "chunk_c86e5551e043b0297959",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_816b4614dc17f017b686",
+        "chunk_5c71482d5c91ea38419a",
+        "chunk_5ffd4081fccc2d41d21c",
+        "chunk_3186eba9fbd652987d0f"
+      ],
+      "vector_top20": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_816b4614dc17f017b686",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_116a623e1432eeb5f6e9",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_7823dcab4878094a9304",
+        "chunk_7d04a2adf539031550a0",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_d94b8789b22aee7fd3b1",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_ab258be327b7be2ca9a1",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_d8e5b7ad8a2471fdcc59",
+        "chunk_b57a97f4c5479591a972",
+        "chunk_341b96a6c0846a3b8625",
+        "chunk_da5ad0495c11817e23b0",
+        "chunk_5c71482d5c91ea38419a"
+      ],
+      "hybrid_top10": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_7823dcab4878094a9304",
+        "chunk_18b030f73bbc1b68b45c",
+        "chunk_ab32a18e6a10381bddf2",
+        "chunk_a0bc1686eafcae9c1b93",
+        "chunk_954628c58e6d6f01f2e7",
+        "chunk_816b4614dc17f017b686"
+      ],
+      "hybrid_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_4e56ec48f06e6503a31a",
+        "chunk_7823dcab4878094a9304"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 12.302540000746376,
+        "vector": 7.12694100002409,
+        "hybrid": 19.45245400111162
+      },
+      "bm25_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_1b18c8a0a7aeaab6ba7f",
+        "chunk_8fe5c6b2123682d48545",
+        "chunk_0f3b688d89cdaf4a93d9"
+      ],
+      "vector_top5": [
+        "chunk_6e36a0745f525f46faec",
+        "chunk_816b4614dc17f017b686",
+        "chunk_23d18965242d0ea7391c",
+        "chunk_cb3064ff5b69e1cd982f",
+        "chunk_116a623e1432eeb5f6e9"
+      ]
+    },
+    {
+      "case_id": "retrieval-047",
+      "query": "工程设计涉及控制阀上游安装普通不锈钢压力表，下游安装不锈钢耐振压力表时需要满足哪些要求？ 请限定在Q/GGW 02005.2-2022第6.2.3条的上下文内回答。",
+      "query_type": "semantic",
+      "difficulty": "medium",
+      "gold_unit_ids": [
+        "chunk_bd2a2e1ac67a35b7129c"
+      ],
+      "bm25_gold_ranks": {
+        "chunk_bd2a2e1ac67a35b7129c": 1
+      },
+      "vector_gold_ranks": {
+        "chunk_bd2a2e1ac67a35b7129c": 1
+      },
+      "hybrid_gold_ranks": {
+        "chunk_bd2a2e1ac67a35b7129c": 1
+      },
+      "bm25_top20": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_bf86df8e09a2b6d8e638",
+        "chunk_99434557184072acf01c",
+        "chunk_bbd26ea6b22f659dedc9",
+        "chunk_d43ae616cec436ba20ce",
+        "chunk_8f2f1f8548f5da6047c4",
+        "chunk_c720305c45af379ebd10",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_862de99cce203cd67193",
+        "chunk_73c8ad789c96ee52413b",
+        "chunk_da4359d36754e68eace6",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_7f04581c9a4f209d154c",
+        "chunk_40be2192a85b4c71611d",
+        "chunk_13d97808a6993afacdd5",
+        "chunk_35a0fff4f499cf1e4117"
+      ],
+      "vector_top20": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_a62f18c34bbd5c0e2d7e",
+        "chunk_8f2f1f8548f5da6047c4",
+        "chunk_e9b72bf9c3054a6258de",
+        "chunk_d7cd6ad318d6539df209",
+        "chunk_73f8b7361503348a6431",
+        "chunk_66b117e471b8f4f67bf3",
+        "chunk_ab61454e23e0aaded280",
+        "chunk_f42a12c1200cba468137",
+        "chunk_193583ef1e7bb1a5a9c7",
+        "chunk_c19bd2e7fd4f38e91805",
+        "chunk_134fe57a50a013800b7a",
+        "chunk_874de419215160c86731",
+        "chunk_358776ff554d00069e71",
+        "chunk_a83a08a1e93117bf2145"
+      ],
+      "hybrid_top10": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_8f2f1f8548f5da6047c4",
+        "chunk_d56ea87a28f50cbdb831",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_3e3fa6949437d10aea8a",
+        "chunk_bf86df8e09a2b6d8e638",
+        "chunk_99434557184072acf01c"
+      ],
+      "hybrid_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_8f2f1f8548f5da6047c4"
+      ],
+      "classification": "OK",
+      "latency_ms": {
+        "bm25": 19.05346700004884,
+        "vector": 16.80871799999295,
+        "hybrid": 35.88544899957924
+      },
+      "bm25_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_73f8b7361503348a6431",
+        "chunk_a83a08a1e93117bf2145",
+        "chunk_3e3fa6949437d10aea8a"
+      ],
+      "vector_top5": [
+        "chunk_bd2a2e1ac67a35b7129c",
+        "chunk_29c4a1d188d58f54c0ff",
+        "chunk_f7feac7e5aca5e7266e1",
+        "chunk_78fb5848c9ccc4ce3e14",
+        "chunk_1766de09619a7f74ee96"
+      ]
+    }
+  ]
+}
