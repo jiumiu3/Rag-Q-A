@@ -63,7 +63,11 @@ class AgenticRetrievalPlanner:
             queries = [goal.description for goal in goals]
             if attempt:
                 queries = [self._expand(query, attempt) for query in queries]
-            retrievers = ["bm25", "vector"] if attempt != 1 else ["bm25"]
+            if parsed.route_type in {"numeric", "keyword"}:
+                # 数值参数和专业关键词查询优先 BM25，避免 Vector 相似语义干扰。
+                retrievers = ["bm25"] if attempt != 2 else ["vector", "bm25"]
+            else:
+                retrievers = ["bm25", "vector"] if attempt != 1 else ["bm25"]
             reason = "initial_goal_search" if attempt == 0 else "missing_goal_retry"
         queries = self._deduplicate(queries[: self.MAX_SUBQUERIES], history, attempt)
         unit_types: list[UnitType] = []

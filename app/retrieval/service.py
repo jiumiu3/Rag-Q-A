@@ -29,7 +29,7 @@ CLAUSE_RE = re.compile(r"(?:条款|第)\s*(\d+(?:\.\d+){0,5})\s*条?|\b(\d+(?:\.
 TABLE_RE = re.compile(r"(?:表|table)\s*([A-Z]?\.?\d+(?:[.-]\d+)*)", re.I)
 NUMBER_RE = re.compile(r"(?<![\w.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h)?", re.I)
 ENGINEERING_NUMBER_RE = re.compile(
-    r"(?<![\w.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h|min|mA|V|kV|lx)",
+    r"(?<![\d.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h|min|mA|V|kV|lx)",
     re.I,
 )
 CONTEXT_LIMIT_RE = re.compile(r"(?:上下文|范围|限定|在.{0,12}内|基于)", re.I)

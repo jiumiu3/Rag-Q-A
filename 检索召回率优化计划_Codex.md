@@ -158,6 +158,25 @@ vs
 
 结论：`KEEP`。
 
+### Agentic 规划器结合结果
+
+已把 `route_type` 接入 `AgenticRetrievalPlanner.create`：
+
+- `numeric / keyword` 初始使用 `bm25`
+- `semantic / multi_goal` 保持 `bm25 + vector`
+- 明确编号仍优先 `exact`
+
+冻结集同一批 44 条案例，首轮规划结果：
+
+| 指标 | 当前 Agentic | 结合后 Agentic |
+|---|---:|---:|
+| Recall@1 | 84.09% | 84.09% |
+| Recall@5 | 100.00% | 100.00% |
+| MRR | 92.05% | 92.05% |
+| nDCG@5 | 89.69% | 89.69% |
+
+冻结集路由分布未变化，因为当前数据集中带编号上下文的问题仍走 `exact`。新增单元测试验证了纯数值问题会改为 `bm25`，纯语义问题保持 `bm25 + vector`。结论：`KEEP`，无回归。
+
 ---
 
 # P1：领域 Query Rewrite 与同义词扩展

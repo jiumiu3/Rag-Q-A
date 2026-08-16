@@ -142,3 +142,47 @@
 
 - REVERT
 - 原因：本轮扩展未产生新增召回，且拉低 MRR、nDCG@5 和 Hybrid Recall@5，已撤销相关改动。
+
+## 实验 3：Agentic 规划器结合动态路由
+
+### 修改原因
+
+QA 工作流仍使用 Agentic 规划器自己的初始路由，没有消费 `route_type`。
+
+### 修改内容
+
+- 在 `AgenticRetrievalPlanner.create` 中读取 `parsed.route_type`。
+- `numeric / keyword` 初始改为 `bm25`。
+- `semantic / multi_goal` 保持 `bm25 + vector`。
+- 明确编号继续走 `exact`。
+
+### 是否重建索引
+
+- BM25：否
+- Vector：否
+- Embedding API 调用：仅生成未缓存子查询向量
+
+### 修改前
+
+当前 Agentic 首轮规划：
+
+- Recall@1 84.09%
+- Recall@5 100.00%
+- MRR 92.05%
+- nDCG@5 89.69%
+
+### 修改后
+
+结合后 Agentic 首轮规划：
+
+- Recall@1 84.09%
+- Recall@5 100.00%
+- MRR 92.05%
+- nDCG@5 89.69%
+
+冻结集路由分布保持不变。新增单元测试证明纯数值问题改为 BM25，纯语义问题保持 Hybrid。
+
+### 结论
+
+- KEEP
+- 原因：本轮无回归，并让 QA 工作流也消费动态路由分类；冻结集指标未变化。
