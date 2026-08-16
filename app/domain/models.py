@@ -269,6 +269,7 @@ class ComparisonStep(StrictModel):
 class ComplianceResult(StrictModel):
     item_id: str
     status: ComplianceStatus
+    reasoning: str | None = None
     actual: str | None = None
     required: str | None = None
     comparison_trace: list[ComparisonStep] = Field(default_factory=list)

@@ -258,7 +258,7 @@ class RetrievalService:
         span = unit.source_spans[0]
         partial_table = (
             unit.unit_type in {UnitType.TABLE, UnitType.TABLE_ROW}
-            and stored.parse_status == "NEEDS_MANUAL_ANNOTATION"
+            and stored.parse_status in {"PARTIAL", "NEEDS_MANUAL_ANNOTATION"}
         )
         quote = unit.content[:500]
         citation = SourceCitation(

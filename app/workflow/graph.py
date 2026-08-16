@@ -41,6 +41,7 @@ class WorkflowRunner:
                 "plan_retrieval",
                 "retrieve",
                 "evaluate_evidence",
+                "judge_compliance",
                 "extract_rule",
                 "evaluate_compliance",
                 "verify_claims",
@@ -122,6 +123,7 @@ class WorkflowRunner:
             "generate_qa_answer": "verify_qa_answer",
             "verify_qa_answer": route_qa_verification(state),
             "evaluate_evidence": route_evidence(state),
+            "judge_compliance": "evaluate_compliance",
             "extract_rule": route_after_rule_extraction(state),
             "evaluate_compliance": "verify_claims",
             "verify_claims": route_verification(state),
@@ -189,8 +191,13 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
     graph.add_conditional_edges(
         "evaluate_evidence",
         route_evidence,
-        {"plan_retrieval": "plan_retrieval", "extract_rule": "extract_rule", "pause": END},
+        {
+            "plan_retrieval": "plan_retrieval",
+            "judge_compliance": "judge_compliance",
+            "pause": END,
+        },
     )
+    graph.add_edge("judge_compliance", "evaluate_compliance")
     graph.add_conditional_edges(
         "extract_rule",
         route_after_rule_extraction,
@@ -233,7 +240,7 @@ def graph_mermaid() -> str:
  complete --> retrieve[plan_retrieval → retrieve]
  retrieve --> evidence{evaluate_evidence}
  evidence -->|有限重试| retrieve
- evidence --> rules[extract_rule → evaluate_compliance]
- rules --> verify{verify_claims}
+ evidence --> judge[judge_compliance → evaluate_compliance]
+ judge --> verify{verify_claims}
  verify -->|最多1次| rules
  verify --> report[generate_report]"""

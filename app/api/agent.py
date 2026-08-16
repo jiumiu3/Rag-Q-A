@@ -9,9 +9,11 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
 from app.api.qa import get_qa_service
+from app.compliance.rag_judge import ComplianceJudge
 from app.compliance.repository import SQLiteRuleRepository
 from app.core.config import get_settings
 from app.core.exceptions import AppError
+from app.core.model_client import CompatibleJSONClient
 from app.workflow.graph import WorkflowRunner, graph_mermaid
 from app.workflow.models import (
     AgentState,
@@ -40,6 +42,9 @@ def get_workflow_service() -> WorkflowService:
         qa,
         qa.retrieval,
         SQLiteRuleRepository(settings.storage.session_sqlite_path),
+        ComplianceJudge(CompatibleJSONClient(settings.model))
+        if settings.agent.rag_llm_enabled
+        else None,
     )
     repository = SQLiteWorkflowRepository(settings.storage.session_sqlite_path)
     return WorkflowService(repository, WorkflowRunner(nodes))

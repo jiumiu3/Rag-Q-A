@@ -3,8 +3,11 @@ import re
 from app.clarification.service import ClarificationPlanner, CompletenessChecker
 from app.compliance.candidates import DeterministicCandidateExtractor
 from app.compliance.evaluator import RuleEvaluator
+from app.compliance.judgement_models import ComplianceJudgement
+from app.compliance.judgement_validator import ComplianceJudgementValidator
 from app.compliance.matcher import RuleMatcher
 from app.compliance.models import ManualReviewRule
+from app.compliance.rag_judge import ComplianceJudge, unavailable_judgements
 from app.compliance.repository import SQLiteRuleRepository
 from app.design.parser import DesignDescriptionParser
 from app.domain.models import (
@@ -34,6 +37,7 @@ class WorkflowNodes:
         qa: QAService,
         retrieval: RetrievalService,
         rule_repository: SQLiteRuleRepository | None = None,
+        compliance_judge: ComplianceJudge | None = None,
     ) -> None:
         self.qa = qa
         self.retrieval = retrieval
@@ -46,6 +50,8 @@ class WorkflowNodes:
         self.retrieval_planner = AdaptiveRetrievalPlanner()
         self.rule_repository = rule_repository
         self.candidate_extractor = DeterministicCandidateExtractor()
+        self.compliance_judge = compliance_judge
+        self.judgement_validator = ComplianceJudgementValidator()
 
     def normalize_input(self, state: AgentState) -> dict[str, object]:
         normalized = re.sub(r"\s+", " ", state.input_text).strip()
@@ -174,9 +180,13 @@ class WorkflowNodes:
         evidence = list(state.evidence)
         seen = {item.evidence_id for item in evidence}
         new_count = 0
+        evidence_by_item = {
+            key: list(value) for key, value in state.evidence_by_check_item.items()
+        }
         tool_calls = list(state.retrieval_tool_calls)
         queries = state.retrieval_plan.subqueries or [state.retrieval_plan.query]
-        for query in queries:
+        query_item_ids = state.retrieval_plan.subquery_item_ids
+        for index, query in enumerate(queries):
             plan = state.retrieval_plan.model_copy(update={"query": query})
             if hasattr(self.qa, "search_tool"):
                 result, tool_trace = self.qa.search_tool.execute(plan, seen)
@@ -186,6 +196,15 @@ class WorkflowNodes:
                     self.retrieval.execute(plan)
                     if hasattr(self.retrieval, "execute")
                     else self.retrieval.retrieve(query, plan.top_k)
+                )
+            item_id = query_item_ids[index] if index < len(query_item_ids) else ""
+            target_ids = [item_id] if item_id else [item.item_id for item in state.check_items]
+            result_ids = [item.evidence_id for item in result.evidence]
+            for target_id in target_ids:
+                previous_ids = evidence_by_item.setdefault(target_id, [])
+                # 最新一轮结果优先，使查询改写后的 Top5 真正进入模型。
+                evidence_by_item[target_id] = list(
+                    dict.fromkeys([*result_ids, *previous_ids])
                 )
             for item in result.evidence:
                 if item.evidence_id not in seen:
@@ -205,6 +224,7 @@ class WorkflowNodes:
         )
         return {
             "evidence": evidence,
+            "evidence_by_check_item": evidence_by_item,
             "query_history": state.query_history + queries,
             "retrieval_attempts": state.retrieval_attempts + [attempt],
             "retrieval_tool_calls": tool_calls,
@@ -287,15 +307,21 @@ class WorkflowNodes:
             and plan.exact_keys
             and not any("exact" in item.retrieval_sources for item in direct)
         )
-        partial_table = bool(direct) and all(item.support_type != "SUFFICIENT" for item in direct)
         unsupported: list[str] = []
         missing: list[str] = []
+        by_id = {item.evidence_id: item for item in direct}
         for check in state.check_items:
             terms = [check.object.casefold(), check.attribute.casefold()]
-            if not any(all(term in item.content.casefold() for term in terms) for item in direct):
+            bound = [
+                by_id[key]
+                for key in state.evidence_by_check_item.get(check.item_id, [])
+                if key in by_id
+            ]
+            if not any(all(term in item.content.casefold() for term in terms) for item in bound):
                 unsupported.append(check.item_id)
                 missing.append(f"{check.object}/{check.attribute}")
-        sufficient = bool(direct) and not exact_missing and not partial_table and not unsupported
+        # PARTIAL/CONFLICTING 也是已命中的证据，由后续校验器转成安全降级状态。
+        sufficient = bool(direct) and not exact_missing and not unsupported
         if sufficient:
             assessment = EvidenceAssessment(is_sufficient=True, next_action="accept")
         elif exact_missing:
@@ -304,14 +330,6 @@ class WorkflowNodes:
                 failure_reason="目标条款或表号精确检索未命中",
                 missing_aspects=plan.exact_keys if plan else [],
                 next_action="safe_stop",
-            )
-        elif partial_table:
-            assessment = EvidenceAssessment(
-                is_sufficient=False,
-                failure_reason="表格未可靠结构化",
-                missing_aspects=missing,
-                unsupported_check_item_ids=unsupported,
-                next_action="manual_review",
             )
         else:
             assessment = EvidenceAssessment(
@@ -364,6 +382,18 @@ class WorkflowNodes:
             ],
         }
 
+    def judge_compliance(self, state: AgentState) -> dict[str, object]:
+        """生成原始结构化判断；最终状态仍由后续校验器决定。"""
+        if self.compliance_judge is None:
+            judgements = unavailable_judgements(state.check_items)
+        else:
+            judgements = self.compliance_judge.judge(
+                state.check_items,
+                state.evidence,
+                state.evidence_by_check_item,
+            )
+        return {"compliance_judgements": judgements}
+
     def extract_rule(self, state: AgentState) -> dict[str, object]:
         if state.rules:
             return {}
@@ -402,6 +432,32 @@ class WorkflowNodes:
         return {"rules": rules}
 
     def evaluate_compliance(self, state: AgentState) -> dict[str, object]:
+        if state.compliance_judgements:
+            by_item: dict[str, ComplianceJudgement] = {}
+            duplicates: set[str] = set()
+            for judgement in state.compliance_judgements:
+                if judgement.check_item_id in by_item:
+                    duplicates.add(judgement.check_item_id)
+                by_item[judgement.check_item_id] = judgement
+            results = []
+            for item in state.check_items:
+                selected = by_item.get(item.item_id)
+                if selected is None or item.item_id in duplicates:
+                    selected = ComplianceJudgement(
+                        check_item_id=item.item_id,
+                        status=ComplianceStatus.MANUAL_REVIEW_REQUIRED,
+                        reasoning="模型未返回唯一的检查项判断",
+                        limitations=["结构化输出不完整或重复"],
+                    )
+                results.append(
+                    self.judgement_validator.validate(
+                        item,
+                        selected,
+                        state.evidence,
+                        state.evidence_by_check_item.get(item.item_id, []),
+                    )
+                )
+            return {"compliance_results": results}
         by_id = {rule.rule_id: rule for rule in state.rules}
         results = []
         for item in state.check_items:
@@ -455,6 +511,8 @@ class WorkflowNodes:
 
     def generate_report(self, state: AgentState) -> dict[str, object]:
         lines = ["# 规范预审报告", "", f"会话：`{state.session_id}`", "", "## 结果"]
+        if state.compliance_results:
+            lines.extend(["", f"- 总体状态：{self._aggregate_status(state.compliance_results)}"])
         if state.answer:
             lines.extend(["", state.answer.answer_text])
         for item, result in zip(state.check_items, state.compliance_results, strict=False):
@@ -463,8 +521,10 @@ class WorkflowNodes:
                     "",
                     f"### {item.object} / {item.attribute}",
                     f"- 状态：{result.status}",
+                    f"- 判断理由：{result.reasoning or '未提供'}",
                     f"- 实际值：{result.actual or item.value or '未提供'} {item.unit or ''}",
                     f"- 规则要求：{result.required or '未形成确定性规则'}",
+                    f"- 证据 ID：{', '.join(result.evidence_ids) or '无'}",
                     f"- 限制：{'；'.join(result.limitations) or '无'}",
                 ]
             )
@@ -484,6 +544,22 @@ class WorkflowNodes:
             "status": WorkflowStatus.COMPLETED,
             "pending_action": None,
         }
+
+    @staticmethod
+    def _aggregate_status(results: list[ComplianceResult]) -> ComplianceStatus:
+        """按固定优先级汇总，建议性不通过不改变强制项总结论。"""
+        statuses = {result.status for result in results if not result.advisory}
+        priority = (
+            ComplianceStatus.NON_COMPLIANT,
+            ComplianceStatus.CONFLICT,
+            ComplianceStatus.MANUAL_REVIEW_REQUIRED,
+            ComplianceStatus.INSUFFICIENT_INFORMATION,
+            ComplianceStatus.COMPLIANT,
+        )
+        return next(
+            (status for status in priority if status in statuses),
+            ComplianceStatus.COMPLIANT,
+        )
 
     def answer_query(self, state: AgentState) -> dict[str, object]:
         answer, result = self.qa.ask(state.normalized_input)

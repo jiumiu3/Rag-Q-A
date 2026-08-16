@@ -20,7 +20,12 @@ class ComplianceJudge:
         by_id = {item.evidence_id: item for item in evidence}
         payload: list[dict[str, object]] = []
         for item in check_items:
-            bound = [by_id[key] for key in evidence_by_item.get(item.item_id, []) if key in by_id]
+            # 只把排名最高的 5 条直接证据交给模型，扩展上下文不单独支撑结论。
+            bound = [
+                by_id[key]
+                for key in evidence_by_item.get(item.item_id, [])
+                if key in by_id and by_id[key].context_reason is None
+            ][:5]
             payload.append(
                 {
                     "check_item": item.model_dump(mode="json"),
