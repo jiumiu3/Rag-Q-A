@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "2adbf4751dfb9c2c189d3416589dbd33f14970bf",
-  "generatedAt": "2026-08-15T19:54:31.381Z",
+  "gitCommitHash": "692b36cd4ba05af6d56319466723cd9c031bee50",
+  "generatedAt": "2026-08-16T11:13:48.886Z",
   "files": {
     ".dockerignore": {
       "filePath": ".dockerignore",
@@ -25,17 +25,17 @@
     },
     ".ua/.understandignore": {
       "filePath": ".ua/.understandignore",
-      "contentHash": "bfde1d30824a441aac4565c8c6dbe6fa7e13dfeaa61094c075a9f120927dcf4e",
+      "contentHash": "f6eca70d38eff03d39a5085c79fc4716ca7cf0b5b40be178bc5b2e5cc2342056",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 90,
+      "totalLines": 99,
       "hasStructuralAnalysis": false
     },
     ".ua/config.json": {
       "filePath": ".ua/config.json",
-      "contentHash": "e6e1895a8e3cb71f76daebccd84c4fc9877d8a88fb75e476ca22a320e69d4995",
+      "contentHash": "c4a81b476be169d02009b0f55951562958b700b6d831e2b5754648ac73552ec9",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -45,12 +45,12 @@
     },
     "AGENTS.md": {
       "filePath": "AGENTS.md",
-      "contentHash": "256431610bc14fad1702dae992a2f5bde2bac94b35af22e9e55f545559456d4d",
+      "contentHash": "05d55b4d20519c91ec9bc7517f0f9ed5c8a609c9f889e74f367e22d3c69091ef",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 34,
+      "totalLines": 5,
       "hasStructuralAnalysis": true
     },
     "Dockerfile": {
@@ -65,12 +65,12 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "fae4a15cdccb4207889a44a2eb8336c2c2d4a56768f96cf016c395d9a8f62c4f",
+      "contentHash": "2f84ce7371630b3900d3154bad2fa1fb4797958e12349fe29a6472b4479a2544",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 414,
+      "totalLines": 438,
       "hasStructuralAnalysis": true
     },
     "app/__init__.py": {
@@ -95,14 +95,14 @@
     },
     "app/api/agent.py": {
       "filePath": "app/api/agent.py",
-      "contentHash": "eba129f439c9d48b91f473dc1e09dedab5b56f3c0cd0db77866f19b6435136ff",
+      "contentHash": "d3f7ad8c29a1ab7c63d84717640bef6da437a87c47d5240ce6ccec0a81dca1ea",
       "functions": [
         {
           "name": "get_workflow_service",
           "params": [],
           "returnType": "WorkflowService",
           "exported": true,
-          "lineCount": 10
+          "lineCount": 13
         },
         {
           "name": "provide_workflow_service",
@@ -302,6 +302,12 @@
           ]
         },
         {
+          "source": "app.compliance.rag_judge",
+          "specifiers": [
+            "ComplianceJudge"
+          ]
+        },
+        {
           "source": "app.compliance.repository",
           "specifiers": [
             "SQLiteRuleRepository"
@@ -317,6 +323,12 @@
           "source": "app.core.exceptions",
           "specifiers": [
             "AppError"
+          ]
+        },
+        {
+          "source": "app.core.model_client",
+          "specifiers": [
+            "CompatibleJSONClient"
           ]
         },
         {
@@ -373,7 +385,7 @@
         "workflow_graph",
         "demo"
       ],
-      "totalLines": 188,
+      "totalLines": 193,
       "hasStructuralAnalysis": true
     },
     "app/api/qa.py": {
@@ -1529,6 +1541,145 @@
       "totalLines": 46,
       "hasStructuralAnalysis": true
     },
+    "app/compliance/judgement_models.py": {
+      "filePath": "app/compliance/judgement_models.py",
+      "contentHash": "c42698954a64a5885292fe04f0df21993c8f9e4d9aaf544d87bb962b24daac77",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ComplianceJudgement",
+          "methods": [],
+          "properties": [
+            "check_item_id",
+            "status",
+            "reasoning",
+            "evidence_ids",
+            "cited_clause_ids",
+            "cited_table_ids",
+            "applied_conditions",
+            "requirement_level",
+            "actual",
+            "required",
+            "operator",
+            "required_unit",
+            "comparison_trace",
+            "limitations"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "ComplianceJudgementList",
+          "methods": [],
+          "properties": [
+            "judgements"
+          ],
+          "exported": true,
+          "lineCount": 2
+        }
+      ],
+      "imports": [
+        {
+          "source": "typing",
+          "specifiers": [
+            "Literal"
+          ]
+        },
+        {
+          "source": "pydantic",
+          "specifiers": [
+            "Field"
+          ]
+        },
+        {
+          "source": "app.domain.models",
+          "specifiers": [
+            "ComparisonStep",
+            "ComplianceStatus",
+            "RequirementLevel",
+            "StrictModel"
+          ]
+        }
+      ],
+      "exports": [
+        "ComplianceJudgement",
+        "ComplianceJudgementList"
+      ],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "app/compliance/judgement_validator.py": {
+      "filePath": "app/compliance/judgement_validator.py",
+      "contentHash": "6a7a55191c211c436441e192f090e0a80f7b4f3858961111b3a6b3608ecbe93d",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ComplianceJudgementValidator",
+          "methods": [
+            "__init__",
+            "validate",
+            "_non_numeric_result",
+            "_numeric_result",
+            "_normalized",
+            "_degraded"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 200
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "decimal",
+          "specifiers": [
+            "Decimal",
+            "InvalidOperation"
+          ]
+        },
+        {
+          "source": "app.compliance.judgement_models",
+          "specifiers": [
+            "ComplianceJudgement"
+          ]
+        },
+        {
+          "source": "app.compliance.units",
+          "specifiers": [
+            "UnitConversionError",
+            "UnitService"
+          ]
+        },
+        {
+          "source": "app.domain.models",
+          "specifiers": [
+            "CheckItem",
+            "ComparisonStep",
+            "ComplianceResult",
+            "ComplianceStatus",
+            "Evidence",
+            "EvidenceStatus",
+            "RequirementLevel"
+          ]
+        }
+      ],
+      "exports": [
+        "ComplianceJudgementValidator"
+      ],
+      "totalLines": 220,
+      "hasStructuralAnalysis": true
+    },
     "app/compliance/matcher.py": {
       "filePath": "app/compliance/matcher.py",
       "contentHash": "90e93737d2236009e69fe18cc832488149267aab2ec8f3b36005727661f9ba70",
@@ -1809,6 +1960,68 @@
         "RuleMatch"
       ],
       "totalLines": 181,
+      "hasStructuralAnalysis": true
+    },
+    "app/compliance/rag_judge.py": {
+      "filePath": "app/compliance/rag_judge.py",
+      "contentHash": "10e4abde50f8d2cd6f597f55d02f442a2e1c9940b0c57a5fe1c6b70ada297606",
+      "functions": [
+        {
+          "name": "unavailable_judgements",
+          "params": [
+            "check_items"
+          ],
+          "returnType": "list[ComplianceJudgement]",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "ComplianceJudge",
+          "methods": [
+            "__init__",
+            "judge"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 46
+        }
+      ],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "app.compliance.judgement_models",
+          "specifiers": [
+            "ComplianceJudgement",
+            "ComplianceJudgementList"
+          ]
+        },
+        {
+          "source": "app.core.model_client",
+          "specifiers": [
+            "CompatibleJSONClient"
+          ]
+        },
+        {
+          "source": "app.domain.models",
+          "specifiers": [
+            "CheckItem",
+            "ComplianceStatus",
+            "Evidence"
+          ]
+        }
+      ],
+      "exports": [
+        "ComplianceJudge",
+        "unavailable_judgements"
+      ],
+      "totalLines": 69,
       "hasStructuralAnalysis": true
     },
     "app/compliance/repository.py": {
@@ -2746,7 +2959,7 @@
     },
     "app/domain/models.py": {
       "filePath": "app/domain/models.py",
-      "contentHash": "d93efae1a3a828faf75cc9fc3fdda4e1c85c4ef92c7655072b8ab31b217864a4",
+      "contentHash": "bfa67aab7f2a07e71a29f64ec2997e60b8febe0f4227e8131e3f7e96df61e5e6",
       "functions": [],
       "classes": [
         {
@@ -2803,7 +3016,7 @@
           "methods": [],
           "properties": [],
           "exported": true,
-          "lineCount": 6
+          "lineCount": 7
         },
         {
           "name": "RequirementLevel",
@@ -2923,11 +3136,12 @@
             "top_k",
             "expansion_policy",
             "subqueries",
+            "subquery_item_ids",
             "rewrite_reason",
             "attempt"
           ],
           "exported": true,
-          "lineCount": 11
+          "lineCount": 13
         },
         {
           "name": "SourceCitation",
@@ -3072,6 +3286,7 @@
           "properties": [
             "item_id",
             "status",
+            "reasoning",
             "actual",
             "required",
             "comparison_trace",
@@ -3080,7 +3295,7 @@
             "limitations"
           ],
           "exported": true,
-          "lineCount": 9
+          "lineCount": 10
         },
         {
           "name": "TraceEvent",
@@ -3181,7 +3396,7 @@
         "TraceEvent",
         "ErrorRecord"
       ],
-      "totalLines": 297,
+      "totalLines": 301,
       "hasStructuralAnalysis": true
     },
     "app/evaluation/__init__.py": {
@@ -5924,7 +6139,7 @@
     },
     "app/retrieval/agentic_planner.py": {
       "filePath": "app/retrieval/agentic_planner.py",
-      "contentHash": "0e283365b6e4db6be4c9f945e87ec6b47e2dae1a086f96ac9660e35acd8fa376",
+      "contentHash": "c47862e10a71b5568aceefd3bffde35d0661303a6678a8035fb62242ff04e255",
       "functions": [],
       "classes": [
         {
@@ -5940,7 +6155,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 138
+          "lineCount": 142
         }
       ],
       "imports": [
@@ -5997,7 +6212,7 @@
       "exports": [
         "AgenticRetrievalPlanner"
       ],
-      "totalLines": 154,
+      "totalLines": 158,
       "hasStructuralAnalysis": true
     },
     "app/retrieval/evaluator.py": {
@@ -6050,7 +6265,7 @@
     },
     "app/retrieval/models.py": {
       "filePath": "app/retrieval/models.py",
-      "contentHash": "8991c6a8bf5a32000385550b5a8f2b6bb3c8b148a41d18163109a2e4a6207724",
+      "contentHash": "a5bdf3eb8b48ea07188298efe0c7d3c41caeb81f630ddab8752460b4cefbaf31",
       "functions": [],
       "classes": [
         {
@@ -6058,6 +6273,7 @@
           "methods": [],
           "properties": [
             "intent",
+            "route_type",
             "standard_codes",
             "clause_numbers",
             "table_numbers",
@@ -6065,7 +6281,7 @@
             "numbers"
           ],
           "exported": true,
-          "lineCount": 7
+          "lineCount": 10
         },
         {
           "name": "RetrievalGoalStatus",
@@ -6228,12 +6444,12 @@
         "EvidenceAssessment",
         "RetrievalAttempt"
       ],
-      "totalLines": 105,
+      "totalLines": 108,
       "hasStructuralAnalysis": true
     },
     "app/retrieval/planner.py": {
       "filePath": "app/retrieval/planner.py",
-      "contentHash": "f65cd99ab05ab42cc1f4a1168f9aa99cdfe22d47cd2218230d0d64ada4f906af",
+      "contentHash": "2a313f4b8ab907c934a8aae72b07223070b408f8a3ee4241b3cf5a7823939717",
       "functions": [],
       "classes": [
         {
@@ -6248,7 +6464,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 81
+          "lineCount": 86
         }
       ],
       "imports": [
@@ -6283,12 +6499,12 @@
       "exports": [
         "AdaptiveRetrievalPlanner"
       ],
-      "totalLines": 98,
+      "totalLines": 103,
       "hasStructuralAnalysis": true
     },
     "app/retrieval/service.py": {
       "filePath": "app/retrieval/service.py",
-      "contentHash": "8c65804857a38113adb14530a86a996e051ce5dcdc4c140bf174de464b35a362",
+      "contentHash": "059ebbc74dcbe69579982d6ed7f2885781589901b392eadddf9c105f56075f50",
       "functions": [],
       "classes": [
         {
@@ -6304,11 +6520,15 @@
           "name": "QueryAnalyzer",
           "methods": [
             "analyze",
-            "plan"
+            "plan",
+            "_is_context_limited",
+            "_has_engineering_number",
+            "_is_multi_goal",
+            "_decompose"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 42
+          "lineCount": 88
         },
         {
           "name": "RetrievalService",
@@ -6406,7 +6626,7 @@
         "QueryAnalyzer",
         "RetrievalService"
       ],
-      "totalLines": 234,
+      "totalLines": 285,
       "hasStructuralAnalysis": true
     },
     "app/retrieval/tools.py": {
@@ -6491,7 +6711,7 @@
     },
     "app/workflow/graph.py": {
       "filePath": "app/workflow/graph.py",
-      "contentHash": "947003bff22033786f8a7ed7c53632ed672500ce4d376453e1b7795cd3a699f1",
+      "contentHash": "68cf14639a3fe74838434312d1523b82798ace925f365feb4f2c451773da32ab",
       "functions": [
         {
           "name": "build_langgraph",
@@ -6501,7 +6721,7 @@
           ],
           "returnType": "object",
           "exported": true,
-          "lineCount": 82
+          "lineCount": 87
         },
         {
           "name": "graph_mermaid",
@@ -6522,7 +6742,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 108
+          "lineCount": 110
         }
       ],
       "imports": [
@@ -6598,12 +6818,12 @@
         "build_langgraph",
         "graph_mermaid"
       ],
-      "totalLines": 240,
+      "totalLines": 247,
       "hasStructuralAnalysis": true
     },
     "app/workflow/models.py": {
       "filePath": "app/workflow/models.py",
-      "contentHash": "4dd19f8d4399613be61d06eab8cb3afafe2d98a24d58362f81e58e0bcf150a3c",
+      "contentHash": "06035bc47b4356e24805db8989fcc6bd59b9587abb5eaeeb4eefd05dbceb5888",
       "functions": [],
       "classes": [
         {
@@ -6645,6 +6865,7 @@
             "scenario",
             "check_items",
             "evidence",
+            "evidence_by_check_item",
             "original_query",
             "current_query",
             "query_history",
@@ -6659,6 +6880,7 @@
             "rules",
             "candidate_rules",
             "compliance_results",
+            "compliance_judgements",
             "answer",
             "clarification",
             "pending_action",
@@ -6673,7 +6895,7 @@
             "updated_at"
           ],
           "exported": true,
-          "lineCount": 37
+          "lineCount": 39
         },
         {
           "name": "SessionCreateRequest",
@@ -6734,6 +6956,12 @@
           ]
         },
         {
+          "source": "app.compliance.judgement_models",
+          "specifiers": [
+            "ComplianceJudgement"
+          ]
+        },
+        {
           "source": "app.compliance.models",
           "specifiers": [
             "CandidateRule",
@@ -6780,12 +7008,12 @@
         "WorkflowConfirmRequest",
         "WorkflowClarificationRequest"
       ],
-      "totalLines": 104,
+      "totalLines": 107,
       "hasStructuralAnalysis": true
     },
     "app/workflow/nodes.py": {
       "filePath": "app/workflow/nodes.py",
-      "contentHash": "894c40b16e5253a124ea157181e4fdb1d1144b1f7e59108b5083b906eae91020",
+      "contentHash": "fe0a1e955a67b9bd11afe50d8658ebcc859b3aa36a980c47d4fa7bbefd212ae0",
       "functions": [],
       "classes": [
         {
@@ -6806,17 +7034,19 @@
             "generate_qa_answer",
             "verify_qa_answer",
             "evaluate_evidence",
+            "judge_compliance",
             "extract_rule",
             "evaluate_compliance",
             "verify_claims",
             "generate_report",
+            "_aggregate_status",
             "answer_query",
             "generate_checklist",
             "out_of_scope"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 472
+          "lineCount": 545
         }
       ],
       "imports": [
@@ -6846,6 +7076,18 @@
           ]
         },
         {
+          "source": "app.compliance.judgement_models",
+          "specifiers": [
+            "ComplianceJudgement"
+          ]
+        },
+        {
+          "source": "app.compliance.judgement_validator",
+          "specifiers": [
+            "ComplianceJudgementValidator"
+          ]
+        },
+        {
           "source": "app.compliance.matcher",
           "specifiers": [
             "RuleMatcher"
@@ -6855,6 +7097,13 @@
           "source": "app.compliance.models",
           "specifiers": [
             "ManualReviewRule"
+          ]
+        },
+        {
+          "source": "app.compliance.rag_judge",
+          "specifiers": [
+            "ComplianceJudge",
+            "unavailable_judgements"
           ]
         },
         {
@@ -6919,7 +7168,7 @@
       "exports": [
         "WorkflowNodes"
       ],
-      "totalLines": 501,
+      "totalLines": 577,
       "hasStructuralAnalysis": true
     },
     "app/workflow/repository.py": {
@@ -6977,7 +7226,7 @@
     },
     "app/workflow/routes.py": {
       "filePath": "app/workflow/routes.py",
-      "contentHash": "a8e7430a3220f2ae28db4c5b19d34eaa946eb2f228bb7c13471a50e2405b4108",
+      "contentHash": "1f01c4ce1ad3ca72841f30d68f534b21b28a3eb78ccc5b0ffe4f05ddefce27de",
       "functions": [
         {
           "name": "route_intent",
@@ -7104,7 +7353,7 @@
     },
     "app/workflow/service.py": {
       "filePath": "app/workflow/service.py",
-      "contentHash": "50bcde2af75d2f2bc882d6b7a7d87ca5090d51fb43da2e29660db5f80526810f",
+      "contentHash": "a2470cf53701687e07ca25df58228805c73808af1bdffe5bf086a6e80cf74a5e",
       "functions": [],
       "classes": [
         {
@@ -7120,7 +7369,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 125
+          "lineCount": 127
         }
       ],
       "imports": [
@@ -7176,7 +7425,7 @@
       "exports": [
         "WorkflowService"
       ],
-      "totalLines": 141,
+      "totalLines": 143,
       "hasStructuralAnalysis": true
     },
     "corrections.example.yaml": {
@@ -7201,7 +7450,7 @@
     },
     "docs/ARCHITECTURE.md": {
       "filePath": "docs/ARCHITECTURE.md",
-      "contentHash": "f280fc71178eceb8541040bd1e836faab25b4988b0065114296c1d86b743ff3a",
+      "contentHash": "6d8caa49ce83e6a9b6df652765f9be34d3faeee210aa4c9266a9dd9f37ed1fc2",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -7247,6 +7496,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 10,
+      "hasStructuralAnalysis": true
+    },
+    "docs/RETRIEVAL_OPTIMIZATION_LOG.md": {
+      "filePath": "docs/RETRIEVAL_OPTIMIZATION_LOG.md",
+      "contentHash": "fc28d67416fed5f6c0ed49115692b5ae1921c7805f20a47e86c52060d70da281",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 224,
       "hasStructuralAnalysis": true
     },
     "evaluation/MANIFEST.json": {
@@ -7399,6 +7658,56 @@
       "totalLines": 31,
       "hasStructuralAnalysis": false
     },
+    "evaluation/reports/latest/adaptive_routing_compliance_comparison.json": {
+      "filePath": "evaluation/reports/latest/adaptive_routing_compliance_comparison.json",
+      "contentHash": "b4ad1a0cefc800233b7587bc141f72b3e232f663b5e264b366b24a327dd3a85f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 186,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/adaptive_routing_e2e_comparison.json": {
+      "filePath": "evaluation/reports/latest/adaptive_routing_e2e_comparison.json",
+      "contentHash": "f90be937ae86434876a9f4b4076655f75243ba06d3639c880145deb7aa2903de",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 842,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json": {
+      "filePath": "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json",
+      "contentHash": "94e5173dc610f347b73a3745a733300ea019824f15e9dddccf4ea842823cddf2",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 828,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/agentic_routing_baseline.json": {
+      "filePath": "evaluation/reports/latest/agentic_routing_baseline.json",
+      "contentHash": "9bb1c900cdf6970ced88ac71ed0c9c477859467d523748ea90f77adccf012834",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 772,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/agentic_routing_combined.json": {
+      "filePath": "evaluation/reports/latest/agentic_routing_combined.json",
+      "contentHash": "9bb1c900cdf6970ced88ac71ed0c9c477859467d523748ea90f77adccf012834",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 772,
+      "hasStructuralAnalysis": true
+    },
     "evaluation/reports/latest/demo_cases.json": {
       "filePath": "evaluation/reports/latest/demo_cases.json",
       "contentHash": "7a9b5cc24bbedeade332f8a925b0cbc46c6e38fd86d91a6aad1461e355c64d4b",
@@ -7419,6 +7728,16 @@
       "totalLines": 26,
       "hasStructuralAnalysis": true
     },
+    "evaluation/reports/latest/dynamic_routing.json": {
+      "filePath": "evaluation/reports/latest/dynamic_routing.json",
+      "contentHash": "3733f1d07b2d3cd6db3403874520b26135aef6eb55dce08e8047505adc9132ef",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 679,
+      "hasStructuralAnalysis": true
+    },
     "evaluation/reports/latest/metrics.json": {
       "filePath": "evaluation/reports/latest/metrics.json",
       "contentHash": "aab731ff4242ee173873d13170eec325ec3c4262fa795f6a02e552c0ebb3d905",
@@ -7427,6 +7746,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 779,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/query_rewrite.json": {
+      "filePath": "evaluation/reports/latest/query_rewrite.json",
+      "contentHash": "599656d710bccc2eff4a341b0dcc731928db3a7200a5689720222b7623fc14e7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1697,
       "hasStructuralAnalysis": true
     },
     "evaluation/reports/latest/report.html": {
@@ -7447,6 +7776,26 @@
       "imports": [],
       "exports": [],
       "totalLines": 186,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/retrieval_failure_analysis.json": {
+      "filePath": "evaluation/reports/latest/retrieval_failure_analysis.json",
+      "contentHash": "522df9c83072b5a594e54025826498507a9a6b1c387f1215b2bbfbe305731ddb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4503,
+      "hasStructuralAnalysis": true
+    },
+    "evaluation/reports/latest/retrieval_failure_analysis.md": {
+      "filePath": "evaluation/reports/latest/retrieval_failure_analysis.md",
+      "contentHash": "930b6f38abf66c71a707e1cd3b4ef7ce34d7d47437ad6e92b093c24008c99af0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 335,
       "hasStructuralAnalysis": true
     },
     "evaluation/reports/latest/retrieval_realistic.json": {
@@ -7674,6 +8023,168 @@
         "main"
       ],
       "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "scripts/diagnose_retrieval_failures.py": {
+      "filePath": "scripts/diagnose_retrieval_failures.py",
+      "contentHash": "5284c9c0bd02f55c9b56ec4d79341d48afd9260154f972eeb6863626c9f23327",
+      "functions": [
+        {
+          "name": "read_jsonl",
+          "params": [
+            "path"
+          ],
+          "returnType": "list[dict[str, Any]]",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "percentile",
+          "params": [
+            "values",
+            "ratio"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "fuse",
+          "params": [
+            "bm25",
+            "vector",
+            "rrf_k",
+            "weights"
+          ],
+          "returnType": "list[str]",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "ranks_for",
+          "params": [
+            "ids",
+            "expected"
+          ],
+          "returnType": "dict[str, int]",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "metrics_for",
+          "params": [
+            "rows",
+            "key"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "classify",
+          "params": [
+            "expected",
+            "bm25",
+            "vector",
+            "hybrid",
+            "final_top5"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 134
+        },
+        {
+          "name": "write_markdown",
+          "params": [
+            "report",
+            "path"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 43
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "collections",
+          "specifiers": [
+            "Counter"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any"
+          ]
+        },
+        {
+          "source": "app.api.qa",
+          "specifiers": [
+            "get_qa_service"
+          ]
+        },
+        {
+          "source": "app.evaluation.generated",
+          "specifiers": [
+            "EvaluationEmbeddingCache"
+          ]
+        },
+        {
+          "source": "app.knowledge.indexes",
+          "specifiers": [
+            "allowed_unit_ids"
+          ]
+        }
+      ],
+      "exports": [
+        "read_jsonl",
+        "percentile",
+        "fuse",
+        "ranks_for",
+        "metrics_for",
+        "classify",
+        "main",
+        "write_markdown"
+      ],
+      "totalLines": 288,
       "hasStructuralAnalysis": true
     },
     "scripts/evaluate_design.py": {
@@ -8441,7 +8952,7 @@
     },
     "tests/test_agentic_qa.py": {
       "filePath": "tests/test_agentic_qa.py",
-      "contentHash": "47c2e29aca910d4052ac439ca7448340a463580e899378417d4ef9c0ff59ebd8",
+      "contentHash": "32d560540ab3c3f13e3637b652bdbccaee3c2fe118648e4726db223cf204fc80",
       "functions": [
         {
           "name": "test_explicit_clause_uses_exact_only",
@@ -8449,6 +8960,20 @@
           "returnType": "None",
           "exported": true,
           "lineCount": 7
+        },
+        {
+          "name": "test_numeric_question_uses_bm25_initial_route",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_semantic_question_keeps_hybrid_initial_route",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
         },
         {
           "name": "test_complex_question_has_multiple_goals_and_retry_changes_queries",
@@ -8559,6 +9084,8 @@
       ],
       "exports": [
         "test_explicit_clause_uses_exact_only",
+        "test_numeric_question_uses_bm25_initial_route",
+        "test_semantic_question_keeps_hybrid_initial_route",
         "test_complex_question_has_multiple_goals_and_retry_changes_queries",
         "test_exact_miss_stops_without_semantic_fallback",
         "_evidence",
@@ -8568,7 +9095,7 @@
         "test_conflict_requires_manual_review_and_sufficient_evidence_is_accepted",
         "test_multi_goal_does_not_bind_unrelated_evidence_to_every_goal"
       ],
-      "totalLines": 143,
+      "totalLines": 159,
       "hasStructuralAnalysis": true
     },
     "tests/test_agentic_upgrades.py": {
@@ -8702,6 +9229,228 @@
         "test_rule_match_is_order_independent_and_reports_missing_condition"
       ],
       "totalLines": 111,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_compliance_rag_judge.py": {
+      "filePath": "tests/test_compliance_rag_judge.py",
+      "contentHash": "af874a43be766b6a5d6ddcb74c7b198f2efeab636e79042417945ec0e0961c06",
+      "functions": [
+        {
+          "name": "check_item",
+          "params": [
+            "item_id",
+            "value"
+          ],
+          "returnType": "CheckItem",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "evidence",
+          "params": [
+            "evidence_id",
+            "status"
+          ],
+          "returnType": "Evidence",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "judgement",
+          "params": [],
+          "returnType": "ComplianceJudgement",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_validator_recomputes_numeric_result_instead_of_trusting_model_status",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "test_validator_rejects_cross_item_evidence",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_partial_and_conflicting_evidence_safely_degrade",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "test_planner_preserves_check_item_for_each_subquery_and_excludes_actual_value",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_judge_only_sends_evidence_bound_to_current_item",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "test_judge_limits_model_input_to_top_five_direct_evidence",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "test_missing_model_configuration_never_returns_compliant",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_validator_recomputes_enum_and_boolean_results",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_validator_rejects_citation_not_present_in_bound_evidence",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_workflow_runs_judge_validate_and_report_chain",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "classes": [
+        {
+          "name": "FakeClient",
+          "methods": [
+            "__init__",
+            "complete"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "FakeComplianceJudge",
+          "methods": [
+            "judge"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "UTC",
+            "datetime"
+          ]
+        },
+        {
+          "source": "decimal",
+          "specifiers": [
+            "Decimal"
+          ]
+        },
+        {
+          "source": "types",
+          "specifiers": [
+            "SimpleNamespace"
+          ]
+        },
+        {
+          "source": "app.compliance.judgement_models",
+          "specifiers": [
+            "ComplianceJudgement",
+            "ComplianceJudgementList"
+          ]
+        },
+        {
+          "source": "app.compliance.judgement_validator",
+          "specifiers": [
+            "ComplianceJudgementValidator"
+          ]
+        },
+        {
+          "source": "app.compliance.rag_judge",
+          "specifiers": [
+            "ComplianceJudge",
+            "unavailable_judgements"
+          ]
+        },
+        {
+          "source": "app.domain.models",
+          "specifiers": [
+            "CharacterSpan",
+            "CheckItem",
+            "ComplianceStatus",
+            "Evidence",
+            "EvidenceStatus",
+            "RequirementLevel",
+            "SourceCitation",
+            "SourceSpan"
+          ]
+        },
+        {
+          "source": "app.retrieval.planner",
+          "specifiers": [
+            "AdaptiveRetrievalPlanner"
+          ]
+        },
+        {
+          "source": "app.workflow.graph",
+          "specifiers": [
+            "WorkflowRunner"
+          ]
+        },
+        {
+          "source": "app.workflow.models",
+          "specifiers": [
+            "AgentState",
+            "WorkflowStatus"
+          ]
+        },
+        {
+          "source": "app.workflow.nodes",
+          "specifiers": [
+            "WorkflowNodes"
+          ]
+        }
+      ],
+      "exports": [
+        "check_item",
+        "evidence",
+        "judgement",
+        "test_validator_recomputes_numeric_result_instead_of_trusting_model_status",
+        "test_validator_rejects_cross_item_evidence",
+        "test_partial_and_conflicting_evidence_safely_degrade",
+        "test_planner_preserves_check_item_for_each_subquery_and_excludes_actual_value",
+        "FakeClient",
+        "test_judge_only_sends_evidence_bound_to_current_item",
+        "test_judge_limits_model_input_to_top_five_direct_evidence",
+        "test_missing_model_configuration_never_returns_compliant",
+        "test_validator_recomputes_enum_and_boolean_results",
+        "test_validator_rejects_citation_not_present_in_bound_evidence",
+        "FakeComplianceJudge",
+        "test_workflow_runs_judge_validate_and_report_chain"
+      ],
+      "totalLines": 206,
       "hasStructuralAnalysis": true
     },
     "tests/test_config.py": {
@@ -9397,7 +10146,7 @@
     },
     "tests/test_m3_m5.py": {
       "filePath": "tests/test_m3_m5.py",
-      "contentHash": "e94cbc3961359a3191c325ed2d40b3d184b7844f18284e077b29b1f6e9fd7575",
+      "contentHash": "8da90df14f2f06b0a5bb00e5e64808149e14edeb826cc2917c807a3e49afe5ed",
       "functions": [
         {
           "name": "stored_unit",
@@ -9496,7 +10245,28 @@
           "params": [],
           "returnType": "None",
           "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_dynamic_route_uses_bm25_for_numeric_parameter",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
           "lineCount": 3
+        },
+        {
+          "name": "test_context_limited_clause_is_not_treated_as_exact_lookup",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "test_multi_goal_query_populates_subqueries",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 7
         },
         {
           "name": "test_clause_and_table_intents_apply_distinct_unit_filters",
@@ -9640,6 +10410,9 @@
         "test_answer_without_evidence_explicitly_states_no_source",
         "test_vector_payload_is_json_serializable",
         "test_numeric_parameter_is_not_misrouted_as_clause",
+        "test_dynamic_route_uses_bm25_for_numeric_parameter",
+        "test_context_limited_clause_is_not_treated_as_exact_lookup",
+        "test_multi_goal_query_populates_subqueries",
         "test_clause_and_table_intents_apply_distinct_unit_filters",
         "test_standard_number_and_year_are_not_engineering_numeric_claims",
         "FakeToolCallingClient",
@@ -9647,7 +10420,7 @@
         "test_rag_agent_calls_search_tool_and_binds_source",
         "test_rag_structured_failure_preserves_tool_audit"
       ],
-      "totalLines": 267,
+      "totalLines": 290,
       "hasStructuralAnalysis": true
     },
     "tests/test_m6_design.py": {
@@ -10878,6 +11651,26 @@
         "test_version_endpoint"
       ],
       "totalLines": 24,
+      "hasStructuralAnalysis": true
+    },
+    "合规审查RAG判断方案计划.md": {
+      "filePath": "合规审查RAG判断方案计划.md",
+      "contentHash": "b07e744f1129b38a7423b342dcc757b4c591ea33432c8f8563fab7fbe5acd962",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 271,
+      "hasStructuralAnalysis": true
+    },
+    "检索召回率优化计划_Codex.md": {
+      "filePath": "检索召回率优化计划_Codex.md",
+      "contentHash": "eeff5b916b8a4947bbe2aa45555e56913f3b6e40120ba7b49c4815bb751502b0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 575,
       "hasStructuralAnalysis": true
     }
   }

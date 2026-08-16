@@ -5,7 +5,6 @@
     "config",
     "dockerfile",
     "html",
-    "javascript",
     "json",
     "jsonl",
     "markdown",
@@ -38,507 +37,15 @@
       "fileCategory": "config"
     },
     {
-      "path": ".ua/.trash-1786823693/assemble-review.json",
-      "language": "json",
-      "sizeLines": 14,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/assembled-graph.json",
-      "language": "json",
-      "sizeLines": 0,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-1-part-1.json",
-      "language": "json",
-      "sizeLines": 1033,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-1-part-2.json",
-      "language": "json",
-      "sizeLines": 807,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-1-part-3.json",
-      "language": "json",
-      "sizeLines": 1454,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-1-part-4.json",
-      "language": "json",
-      "sizeLines": 186,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-10.json",
-      "language": "json",
-      "sizeLines": 56,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-11.json",
-      "language": "json",
-      "sizeLines": 97,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-12.json",
-      "language": "json",
-      "sizeLines": 260,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-13.json",
-      "language": "json",
-      "sizeLines": 127,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-2-part-1.json",
-      "language": "json",
-      "sizeLines": 1474,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-2-part-2.json",
-      "language": "json",
-      "sizeLines": 1643,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-3-part-1.json",
-      "language": "json",
-      "sizeLines": 1410,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-3-part-2.json",
-      "language": "json",
-      "sizeLines": 777,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-4.json",
-      "language": "json",
-      "sizeLines": 390,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-5.json",
-      "language": "json",
-      "sizeLines": 434,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-6.json",
-      "language": "json",
-      "sizeLines": 262,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-7.json",
-      "language": "json",
-      "sizeLines": 113,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-8.json",
-      "language": "json",
-      "sizeLines": 176,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batch-9.json",
-      "language": "json",
-      "sizeLines": 88,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/batches.json",
-      "language": "json",
-      "sizeLines": 5241,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/fingerprint-input.json",
-      "language": "json",
-      "sizeLines": 156,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/layers.json",
-      "language": "json",
-      "sizeLines": 225,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/review.json",
-      "language": "json",
-      "sizeLines": 52,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-1.json",
-      "language": "json",
-      "sizeLines": 1019,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-10.json",
-      "language": "json",
-      "sizeLines": 29,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-11.json",
-      "language": "json",
-      "sizeLines": 50,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-12.json",
-      "language": "json",
-      "sizeLines": 183,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-13.json",
-      "language": "json",
-      "sizeLines": 43,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-2.json",
-      "language": "json",
-      "sizeLines": 837,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-3.json",
-      "language": "json",
-      "sizeLines": 841,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-4.json",
-      "language": "json",
-      "sizeLines": 586,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-5.json",
-      "language": "json",
-      "sizeLines": 654,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-6.json",
-      "language": "json",
-      "sizeLines": 178,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-7.json",
-      "language": "json",
-      "sizeLines": 29,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-8.json",
-      "language": "json",
-      "sizeLines": 78,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/batch-input-9.json",
-      "language": "json",
-      "sizeLines": 43,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/build-batch-3.py",
-      "language": "python",
-      "sizeLines": 324,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/gen-batch-1.py",
-      "language": "python",
-      "sizeLines": 338,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/gen-batch2.py",
-      "language": "python",
-      "sizeLines": 555,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/gen-layers.py",
-      "language": "python",
-      "sizeLines": 96,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-arch-analyze.js",
-      "language": "javascript",
-      "sizeLines": 359,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-arch-input.json",
-      "language": "json",
-      "sizeLines": 6505,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-arch-results.json",
-      "language": "json",
-      "sizeLines": 1546,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-1.json",
-      "language": "json",
-      "sizeLines": 294,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-10.json",
-      "language": "json",
-      "sizeLines": 13,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-11.json",
-      "language": "json",
-      "sizeLines": 19,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-12.json",
-      "language": "json",
-      "sizeLines": 0,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-13.json",
-      "language": "json",
-      "sizeLines": 17,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-2.json",
-      "language": "json",
-      "sizeLines": 234,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-3.json",
-      "language": "json",
-      "sizeLines": 204,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-4.json",
-      "language": "json",
-      "sizeLines": 29,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-5.json",
-      "language": "json",
-      "sizeLines": 71,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-6.json",
-      "language": "json",
-      "sizeLines": 21,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-7.json",
-      "language": "json",
-      "sizeLines": 13,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-8.json",
-      "language": "json",
-      "sizeLines": 27,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-9.json",
-      "language": "json",
-      "sizeLines": 17,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-1.json",
-      "language": "json",
-      "sizeLines": 8578,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-10.json",
-      "language": "json",
-      "sizeLines": 118,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-11.json",
-      "language": "json",
-      "sizeLines": 267,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-12.json",
-      "language": "json",
-      "sizeLines": 183,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-13.json",
-      "language": "json",
-      "sizeLines": 229,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-2.json",
-      "language": "json",
-      "sizeLines": 5855,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-3.json",
-      "language": "json",
-      "sizeLines": 6985,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-4.json",
-      "language": "json",
-      "sizeLines": 2677,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-5.json",
-      "language": "json",
-      "sizeLines": 2648,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-6.json",
-      "language": "json",
-      "sizeLines": 730,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-7.json",
-      "language": "json",
-      "sizeLines": 190,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-8.json",
-      "language": "json",
-      "sizeLines": 643,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-9.json",
-      "language": "json",
-      "sizeLines": 332,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-import-map-input.json",
-      "language": "json",
-      "sizeLines": 759,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-import-map-output.json",
-      "language": "json",
-      "sizeLines": 528,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-inline-validate.cjs",
-      "language": "javascript",
-      "sizeLines": 63,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-scan-files.json",
-      "language": "json",
-      "sizeLines": 939,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-tour-analyze.js",
-      "language": "javascript",
-      "sizeLines": 220,
-      "fileCategory": "code"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-tour-input.json",
-      "language": "json",
-      "sizeLines": 0,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tmp/ua-tour-results.json",
-      "language": "json",
-      "sizeLines": 1474,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/.trash-1786823693/tour.json",
-      "language": "json",
-      "sizeLines": 143,
-      "fileCategory": "config"
-    },
-    {
       "path": ".ua/.understandignore",
       "language": "unknown",
-      "sizeLines": 89,
+      "sizeLines": 98,
       "fileCategory": "code"
     },
     {
       "path": ".ua/config.json",
       "language": "json",
       "sizeLines": 1,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/fingerprints.json",
-      "language": "json",
-      "sizeLines": 10883,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/intermediate/scan-result.json",
-      "language": "json",
-      "sizeLines": 1457,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/knowledge-graph.json",
-      "language": "json",
-      "sizeLines": 0,
-      "fileCategory": "config"
-    },
-    {
-      "path": ".ua/meta.json",
-      "language": "json",
-      "sizeLines": 5,
       "fileCategory": "config"
     },
     {
@@ -556,7 +63,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 432,
+      "sizeLines": 437,
       "fileCategory": "docs"
     },
     {
@@ -574,7 +81,7 @@
     {
       "path": "app/api/agent.py",
       "language": "python",
-      "sizeLines": 187,
+      "sizeLines": 192,
       "fileCategory": "code"
     },
     {
@@ -652,13 +159,13 @@
     {
       "path": "app/compliance/judgement_models.py",
       "language": "python",
-      "sizeLines": 34,
+      "sizeLines": 36,
       "fileCategory": "code"
     },
     {
       "path": "app/compliance/judgement_validator.py",
       "language": "python",
-      "sizeLines": 152,
+      "sizeLines": 219,
       "fileCategory": "code"
     },
     {
@@ -676,7 +183,7 @@
     {
       "path": "app/compliance/rag_judge.py",
       "language": "python",
-      "sizeLines": 63,
+      "sizeLines": 68,
       "fileCategory": "code"
     },
     {
@@ -754,7 +261,7 @@
     {
       "path": "app/domain/models.py",
       "language": "python",
-      "sizeLines": 299,
+      "sizeLines": 300,
       "fileCategory": "code"
     },
     {
@@ -928,7 +435,7 @@
     {
       "path": "app/retrieval/planner.py",
       "language": "python",
-      "sizeLines": 97,
+      "sizeLines": 102,
       "fileCategory": "code"
     },
     {
@@ -958,19 +465,19 @@
     {
       "path": "app/workflow/graph.py",
       "language": "python",
-      "sizeLines": 239,
+      "sizeLines": 246,
       "fileCategory": "code"
     },
     {
       "path": "app/workflow/models.py",
       "language": "python",
-      "sizeLines": 103,
+      "sizeLines": 106,
       "fileCategory": "code"
     },
     {
       "path": "app/workflow/nodes.py",
       "language": "python",
-      "sizeLines": 500,
+      "sizeLines": 576,
       "fileCategory": "code"
     },
     {
@@ -988,7 +495,7 @@
     {
       "path": "app/workflow/service.py",
       "language": "python",
-      "sizeLines": 140,
+      "sizeLines": 142,
       "fileCategory": "code"
     },
     {
@@ -1382,6 +889,12 @@
       "fileCategory": "code"
     },
     {
+      "path": "tests/test_compliance_rag_judge.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
       "path": "tests/test_config.py",
       "language": "python",
       "sizeLines": 40,
@@ -1520,96 +1033,14 @@
       "fileCategory": "docs"
     }
   ],
-  "totalFiles": 249,
-  "filteredByIgnore": 0,
+  "totalFiles": 168,
+  "filteredByIgnore": 130,
   "estimatedComplexity": "large",
   "importMap": {
     ".dockerignore": [],
     ".env.example": [],
-    ".ua/.trash-1786823693/assemble-review.json": [],
-    ".ua/.trash-1786823693/assembled-graph.json": [],
-    ".ua/.trash-1786823693/batch-1-part-1.json": [],
-    ".ua/.trash-1786823693/batch-1-part-2.json": [],
-    ".ua/.trash-1786823693/batch-1-part-3.json": [],
-    ".ua/.trash-1786823693/batch-1-part-4.json": [],
-    ".ua/.trash-1786823693/batch-10.json": [],
-    ".ua/.trash-1786823693/batch-11.json": [],
-    ".ua/.trash-1786823693/batch-12.json": [],
-    ".ua/.trash-1786823693/batch-13.json": [],
-    ".ua/.trash-1786823693/batch-2-part-1.json": [],
-    ".ua/.trash-1786823693/batch-2-part-2.json": [],
-    ".ua/.trash-1786823693/batch-3-part-1.json": [],
-    ".ua/.trash-1786823693/batch-3-part-2.json": [],
-    ".ua/.trash-1786823693/batch-4.json": [],
-    ".ua/.trash-1786823693/batch-5.json": [],
-    ".ua/.trash-1786823693/batch-6.json": [],
-    ".ua/.trash-1786823693/batch-7.json": [],
-    ".ua/.trash-1786823693/batch-8.json": [],
-    ".ua/.trash-1786823693/batch-9.json": [],
-    ".ua/.trash-1786823693/batches.json": [],
-    ".ua/.trash-1786823693/fingerprint-input.json": [],
-    ".ua/.trash-1786823693/layers.json": [],
-    ".ua/.trash-1786823693/review.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-1.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-10.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-11.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-12.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-13.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-2.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-3.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-4.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-5.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-6.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-7.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-8.json": [],
-    ".ua/.trash-1786823693/tmp/batch-input-9.json": [],
-    ".ua/.trash-1786823693/tmp/build-batch-3.py": [],
-    ".ua/.trash-1786823693/tmp/gen-batch-1.py": [],
-    ".ua/.trash-1786823693/tmp/gen-batch2.py": [],
-    ".ua/.trash-1786823693/tmp/gen-layers.py": [],
-    ".ua/.trash-1786823693/tmp/ua-arch-analyze.js": [],
-    ".ua/.trash-1786823693/tmp/ua-arch-input.json": [],
-    ".ua/.trash-1786823693/tmp/ua-arch-results.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-1.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-10.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-11.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-12.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-13.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-2.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-3.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-4.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-5.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-6.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-7.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-8.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-9.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-1.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-10.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-11.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-12.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-13.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-2.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-3.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-4.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-5.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-6.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-7.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-8.json": [],
-    ".ua/.trash-1786823693/tmp/ua-file-extract-results-9.json": [],
-    ".ua/.trash-1786823693/tmp/ua-import-map-input.json": [],
-    ".ua/.trash-1786823693/tmp/ua-import-map-output.json": [],
-    ".ua/.trash-1786823693/tmp/ua-inline-validate.cjs": [],
-    ".ua/.trash-1786823693/tmp/ua-scan-files.json": [],
-    ".ua/.trash-1786823693/tmp/ua-tour-analyze.js": [],
-    ".ua/.trash-1786823693/tmp/ua-tour-input.json": [],
-    ".ua/.trash-1786823693/tmp/ua-tour-results.json": [],
-    ".ua/.trash-1786823693/tour.json": [],
     ".ua/.understandignore": [],
     ".ua/config.json": [],
-    ".ua/fingerprints.json": [],
-    ".ua/intermediate/scan-result.json": [],
-    ".ua/knowledge-graph.json": [],
-    ".ua/meta.json": [],
     "AGENTS.md": [],
     "Dockerfile": [],
     "README.md": [],
@@ -1617,9 +1048,11 @@
     "app/api/__init__.py": [],
     "app/api/agent.py": [
       "app/api/qa.py",
+      "app/compliance/rag_judge.py",
       "app/compliance/repository.py",
       "app/core/config.py",
       "app/core/exceptions.py",
+      "app/core/model_client.py",
       "app/workflow/graph.py",
       "app/workflow/models.py",
       "app/workflow/nodes.py",
@@ -1895,6 +1328,7 @@
       "app/workflow/routes.py"
     ],
     "app/workflow/models.py": [
+      "app/compliance/judgement_models.py",
       "app/compliance/models.py",
       "app/domain/models.py",
       "app/qa/models.py",
@@ -1904,8 +1338,11 @@
       "app/clarification/service.py",
       "app/compliance/candidates.py",
       "app/compliance/evaluator.py",
+      "app/compliance/judgement_models.py",
+      "app/compliance/judgement_validator.py",
       "app/compliance/matcher.py",
       "app/compliance/models.py",
+      "app/compliance/rag_judge.py",
       "app/compliance/repository.py",
       "app/design/parser.py",
       "app/domain/models.py",
@@ -2053,6 +1490,16 @@
       "app/compliance/repository.py",
       "app/domain/models.py",
       "app/retrieval/planner.py"
+    ],
+    "tests/test_compliance_rag_judge.py": [
+      "app/compliance/judgement_models.py",
+      "app/compliance/judgement_validator.py",
+      "app/compliance/rag_judge.py",
+      "app/domain/models.py",
+      "app/retrieval/planner.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py"
     ],
     "tests/test_config.py": [
       "app/core/config.py"
