@@ -1,0 +1,1458 @@
+{
+  "name": "oil-gas-compliance-agent",
+  "description": "An agent for reviewing oil and gas pipeline network instrumentation and automatic-control specifications. It converts technical standards into retrievable, citable, executable knowledge via OCR, BM25, and embedding search, enabling evidence-backed Q&A and deterministic compliance pre-review. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "languages": [
+    "config",
+    "dockerfile",
+    "html",
+    "json",
+    "jsonl",
+    "markdown",
+    "python",
+    "shell",
+    "toml",
+    "txt",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "Docker",
+    "Docker Compose",
+    "FastAPI",
+    "Pydantic",
+    "Pytest",
+    "Uvicorn"
+  ],
+  "files": [
+    {
+      "path": ".dockerignore",
+      "language": "unknown",
+      "sizeLines": 23,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".env.example",
+      "language": "config",
+      "sizeLines": 77,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.understandignore",
+      "language": "unknown",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/config.json",
+      "language": "json",
+      "sizeLines": 1,
+      "fileCategory": "config"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 80,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 413,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "app/__init__.py",
+      "language": "python",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/agent.py",
+      "language": "python",
+      "sizeLines": 187,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/qa.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/review.py",
+      "language": "python",
+      "sizeLines": 218,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/system.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/clarification/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/clarification/models.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/clarification/repository.py",
+      "language": "python",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/clarification/service.py",
+      "language": "python",
+      "sizeLines": 157,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/clarification/session.py",
+      "language": "python",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/candidates.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/evaluator.py",
+      "language": "python",
+      "sizeLines": 258,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/extractor.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/matcher.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/models.py",
+      "language": "python",
+      "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/repository.py",
+      "language": "python",
+      "sizeLines": 212,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/units.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/config.py",
+      "language": "python",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/exceptions.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/ids.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/logging.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/core/model_client.py",
+      "language": "python",
+      "sizeLines": 230,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/design/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/design/models.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/design/parser.py",
+      "language": "python",
+      "sizeLines": 321,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/domain/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/domain/models.py",
+      "language": "python",
+      "sizeLines": 296,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/evaluation/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/evaluation/generated.py",
+      "language": "python",
+      "sizeLines": 1065,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/evaluation/models.py",
+      "language": "python",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/evaluation/runner.py",
+      "language": "python",
+      "sizeLines": 804,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/__init__.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/corrections.py",
+      "language": "python",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/engines.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/interfaces.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/models.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/pipeline.py",
+      "language": "python",
+      "sizeLines": 305,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/renderer.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/structure_models.py",
+      "language": "python",
+      "sizeLines": 128,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/ingestion/structure_parser.py",
+      "language": "python",
+      "sizeLines": 644,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/builder.py",
+      "language": "python",
+      "sizeLines": 275,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/contextual.py",
+      "language": "python",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/indexes.py",
+      "language": "python",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/interfaces.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/models.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/knowledge/repository.py",
+      "language": "python",
+      "sizeLines": 288,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/main.py",
+      "language": "python",
+      "sizeLines": 86,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/qa/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/qa/models.py",
+      "language": "python",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/qa/service.py",
+      "language": "python",
+      "sizeLines": 473,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/agentic_planner.py",
+      "language": "python",
+      "sizeLines": 153,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/evaluator.py",
+      "language": "python",
+      "sizeLines": 141,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/models.py",
+      "language": "python",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/planner.py",
+      "language": "python",
+      "sizeLines": 97,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/service.py",
+      "language": "python",
+      "sizeLines": 233,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/retrieval/tools.py",
+      "language": "python",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/web/index.html",
+      "language": "html",
+      "sizeLines": 62,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/workflow/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/graph.py",
+      "language": "python",
+      "sizeLines": 239,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/models.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/nodes.py",
+      "language": "python",
+      "sizeLines": 500,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/repository.py",
+      "language": "python",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/routes.py",
+      "language": "python",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/workflow/service.py",
+      "language": "python",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "corrections.example.yaml",
+      "language": "yaml",
+      "sizeLines": 25,
+      "fileCategory": "config"
+    },
+    {
+      "path": "docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 50,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "language": "markdown",
+      "sizeLines": 37,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/CHANGELOG.md",
+      "language": "markdown",
+      "sizeLines": 117,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/M2_STRUCTURE.md",
+      "language": "markdown",
+      "sizeLines": 90,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/PROGRESS.md",
+      "language": "markdown",
+      "sizeLines": 237,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/RESUME.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/MANIFEST.json",
+      "language": "json",
+      "sizeLines": 72,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/README.md",
+      "language": "markdown",
+      "sizeLines": 96,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/annotations/candidate_rule_review.jsonl",
+      "language": "jsonl",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/annotations/retrieval_realistic_review.jsonl",
+      "language": "jsonl",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/annotations/semantic_answer_review.jsonl",
+      "language": "jsonl",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/compliance_gold.jsonl",
+      "language": "jsonl",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/datasets/adversarial_qa.jsonl",
+      "language": "jsonl",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/datasets/engineering_cases.jsonl",
+      "language": "jsonl",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/datasets/retrieval_realistic_small.jsonl",
+      "language": "jsonl",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/datasets/rule_extraction.jsonl",
+      "language": "jsonl",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/datasets/semantic_retrieval.jsonl",
+      "language": "jsonl",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/demo_cases.json",
+      "language": "json",
+      "sizeLines": 26,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/design_detail_gold.jsonl",
+      "language": "jsonl",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/design_gold.jsonl",
+      "language": "jsonl",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/qa_gold.jsonl",
+      "language": "jsonl",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "evaluation/reports/latest/demo_cases.json",
+      "language": "json",
+      "sizeLines": 57,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/demo_cases.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/reports/latest/metrics.json",
+      "language": "json",
+      "sizeLines": 778,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/report.html",
+      "language": "html",
+      "sizeLines": 185,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "evaluation/reports/latest/report.md",
+      "language": "markdown",
+      "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/reports/latest/retrieval_realistic.json",
+      "language": "json",
+      "sizeLines": 640,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/retrieval_gold.jsonl",
+      "language": "jsonl",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 67,
+      "fileCategory": "config"
+    },
+    {
+      "path": "requirements-agent.txt",
+      "language": "txt",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "language": "txt",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements-index.txt",
+      "language": "txt",
+      "sizeLines": 2,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements-ocr.txt",
+      "language": "txt",
+      "sizeLines": 4,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/build_index.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/build_structure.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/evaluate_design.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/evaluate_qa.py",
+      "language": "python",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/evaluate_realistic_retrieval.py",
+      "language": "python",
+      "sizeLines": 204,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/evaluate_retrieval.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/generate_evaluation_datasets.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/ingest_pdf.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/query_knowledge.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/replay_workflow.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/run_demo_cases.py",
+      "language": "python",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/run_evaluation.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/run_frozen_evaluation.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/start_demo.sh",
+      "language": "shell",
+      "sizeLines": 5,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/tune_retrieval_fusion.py",
+      "language": "python",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/validate_generated_datasets.py",
+      "language": "python",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_agentic_qa.py",
+      "language": "python",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_agentic_upgrades.py",
+      "language": "python",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_config.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_contextual_indexing.py",
+      "language": "python",
+      "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_docker_config.py",
+      "language": "python",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_ids.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_ingestion.py",
+      "language": "python",
+      "sizeLines": 125,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_logging.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m10_api.py",
+      "language": "python",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m11_evaluation.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m3_m5.py",
+      "language": "python",
+      "sizeLines": 266,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m6_design.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m7_clarification.py",
+      "language": "python",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m8_compliance.py",
+      "language": "python",
+      "sizeLines": 186,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_m9_workflow.py",
+      "language": "python",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_model_client.py",
+      "language": "python",
+      "sizeLines": 191,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_models.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_rapidocr_engine.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_realistic_retrieval_dataset.py",
+      "language": "python",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_review_api.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_structure_cli.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_structure_parser.py",
+      "language": "python",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_system_api.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 151,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "large",
+  "importMap": {
+    ".dockerignore": [],
+    ".env.example": [],
+    ".ua/.understandignore": [],
+    ".ua/config.json": [],
+    "AGENTS.md": [],
+    "Dockerfile": [],
+    "README.md": [],
+    "app/__init__.py": [],
+    "app/api/__init__.py": [],
+    "app/api/agent.py": [
+      "app/api/qa.py",
+      "app/compliance/repository.py",
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py",
+      "app/workflow/repository.py",
+      "app/workflow/service.py"
+    ],
+    "app/api/qa.py": [
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/core/model_client.py",
+      "app/knowledge/builder.py",
+      "app/knowledge/indexes.py",
+      "app/knowledge/repository.py",
+      "app/qa/models.py",
+      "app/qa/service.py",
+      "app/retrieval/service.py"
+    ],
+    "app/api/review.py": [
+      "app/clarification/models.py",
+      "app/clarification/repository.py",
+      "app/clarification/session.py",
+      "app/compliance/candidates.py",
+      "app/compliance/evaluator.py",
+      "app/compliance/models.py",
+      "app/compliance/repository.py",
+      "app/core/config.py",
+      "app/design/models.py",
+      "app/design/parser.py",
+      "app/domain/models.py"
+    ],
+    "app/api/system.py": [
+      "app/__init__.py"
+    ],
+    "app/clarification/__init__.py": [],
+    "app/clarification/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/clarification/repository.py": [
+      "app/clarification/models.py",
+      "app/core/exceptions.py"
+    ],
+    "app/clarification/service.py": [
+      "app/clarification/models.py",
+      "app/domain/models.py"
+    ],
+    "app/clarification/session.py": [
+      "app/clarification/models.py",
+      "app/clarification/repository.py",
+      "app/clarification/service.py",
+      "app/domain/models.py"
+    ],
+    "app/compliance/__init__.py": [],
+    "app/compliance/candidates.py": [
+      "app/compliance/models.py",
+      "app/domain/models.py"
+    ],
+    "app/compliance/evaluator.py": [
+      "app/compliance/models.py",
+      "app/compliance/units.py",
+      "app/domain/models.py"
+    ],
+    "app/compliance/extractor.py": [
+      "app/compliance/models.py",
+      "app/core/model_client.py",
+      "app/domain/models.py"
+    ],
+    "app/compliance/matcher.py": [
+      "app/compliance/models.py",
+      "app/domain/models.py"
+    ],
+    "app/compliance/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/compliance/repository.py": [
+      "app/compliance/models.py"
+    ],
+    "app/compliance/units.py": [],
+    "app/core/__init__.py": [],
+    "app/core/config.py": [],
+    "app/core/exceptions.py": [],
+    "app/core/ids.py": [],
+    "app/core/logging.py": [
+      "app/core/logging.py"
+    ],
+    "app/core/model_client.py": [
+      "app/core/config.py",
+      "app/core/exceptions.py"
+    ],
+    "app/design/__init__.py": [],
+    "app/design/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/design/parser.py": [
+      "app/core/ids.py",
+      "app/core/model_client.py",
+      "app/design/models.py",
+      "app/domain/models.py"
+    ],
+    "app/domain/__init__.py": [
+      "app/domain/models.py"
+    ],
+    "app/domain/models.py": [],
+    "app/evaluation/__init__.py": [],
+    "app/evaluation/generated.py": [
+      "app/api/agent.py",
+      "app/api/qa.py",
+      "app/compliance/candidates.py",
+      "app/core/config.py",
+      "app/design/parser.py",
+      "app/domain/models.py",
+      "app/knowledge/indexes.py"
+    ],
+    "app/evaluation/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/evaluation/runner.py": [
+      "app/api/qa.py",
+      "app/compliance/candidates.py",
+      "app/compliance/evaluator.py",
+      "app/compliance/models.py",
+      "app/core/config.py",
+      "app/design/parser.py",
+      "app/domain/models.py",
+      "app/evaluation/models.py"
+    ],
+    "app/ingestion/__init__.py": [
+      "app/ingestion/pipeline.py"
+    ],
+    "app/ingestion/corrections.py": [
+      "app/core/exceptions.py",
+      "app/ingestion/models.py",
+      "app/ingestion/structure_models.py"
+    ],
+    "app/ingestion/engines.py": [
+      "app/core/exceptions.py",
+      "app/core/ids.py",
+      "app/domain/models.py",
+      "app/ingestion/models.py"
+    ],
+    "app/ingestion/interfaces.py": [
+      "app/ingestion/models.py"
+    ],
+    "app/ingestion/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/ingestion/pipeline.py": [
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/core/ids.py",
+      "app/domain/models.py",
+      "app/ingestion/interfaces.py",
+      "app/ingestion/models.py",
+      "app/ingestion/renderer.py"
+    ],
+    "app/ingestion/renderer.py": [
+      "app/core/exceptions.py"
+    ],
+    "app/ingestion/structure_models.py": [
+      "app/domain/models.py"
+    ],
+    "app/ingestion/structure_parser.py": [
+      "app/core/exceptions.py",
+      "app/core/ids.py",
+      "app/domain/models.py",
+      "app/ingestion/corrections.py",
+      "app/ingestion/models.py",
+      "app/ingestion/structure_models.py"
+    ],
+    "app/knowledge/__init__.py": [],
+    "app/knowledge/builder.py": [
+      "app/domain/models.py",
+      "app/knowledge/contextual.py",
+      "app/knowledge/indexes.py",
+      "app/knowledge/models.py",
+      "app/knowledge/repository.py"
+    ],
+    "app/knowledge/contextual.py": [
+      "app/domain/models.py",
+      "app/knowledge/models.py"
+    ],
+    "app/knowledge/indexes.py": [
+      "app/domain/models.py",
+      "app/knowledge/models.py"
+    ],
+    "app/knowledge/interfaces.py": [
+      "app/domain/models.py",
+      "app/knowledge/models.py"
+    ],
+    "app/knowledge/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/knowledge/repository.py": [
+      "app/domain/models.py",
+      "app/knowledge/models.py"
+    ],
+    "app/main.py": [
+      "app/__init__.py",
+      "app/api/agent.py",
+      "app/api/qa.py",
+      "app/api/review.py",
+      "app/api/system.py",
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/core/logging.py"
+    ],
+    "app/qa/__init__.py": [],
+    "app/qa/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/qa/service.py": [
+      "app/core/model_client.py",
+      "app/domain/models.py",
+      "app/qa/models.py",
+      "app/retrieval/agentic_planner.py",
+      "app/retrieval/evaluator.py",
+      "app/retrieval/models.py",
+      "app/retrieval/service.py",
+      "app/retrieval/tools.py"
+    ],
+    "app/retrieval/__init__.py": [],
+    "app/retrieval/agentic_planner.py": [
+      "app/core/ids.py",
+      "app/core/model_client.py",
+      "app/domain/models.py",
+      "app/retrieval/models.py",
+      "app/retrieval/planner.py",
+      "app/retrieval/service.py"
+    ],
+    "app/retrieval/evaluator.py": [
+      "app/domain/models.py",
+      "app/retrieval/models.py"
+    ],
+    "app/retrieval/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/retrieval/planner.py": [
+      "app/domain/models.py",
+      "app/retrieval/models.py",
+      "app/retrieval/service.py"
+    ],
+    "app/retrieval/service.py": [
+      "app/core/ids.py",
+      "app/domain/models.py",
+      "app/knowledge/indexes.py",
+      "app/knowledge/models.py",
+      "app/knowledge/repository.py",
+      "app/retrieval/models.py"
+    ],
+    "app/retrieval/tools.py": [
+      "app/domain/models.py",
+      "app/retrieval/models.py",
+      "app/retrieval/service.py"
+    ],
+    "app/web/index.html": [],
+    "app/workflow/__init__.py": [],
+    "app/workflow/graph.py": [
+      "app/domain/models.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py",
+      "app/workflow/routes.py"
+    ],
+    "app/workflow/models.py": [
+      "app/compliance/models.py",
+      "app/domain/models.py",
+      "app/qa/models.py",
+      "app/retrieval/models.py"
+    ],
+    "app/workflow/nodes.py": [
+      "app/clarification/service.py",
+      "app/compliance/candidates.py",
+      "app/compliance/evaluator.py",
+      "app/compliance/matcher.py",
+      "app/compliance/models.py",
+      "app/compliance/repository.py",
+      "app/design/parser.py",
+      "app/domain/models.py",
+      "app/qa/service.py",
+      "app/retrieval/models.py",
+      "app/retrieval/planner.py",
+      "app/retrieval/service.py",
+      "app/workflow/models.py"
+    ],
+    "app/workflow/repository.py": [
+      "app/core/exceptions.py",
+      "app/workflow/models.py"
+    ],
+    "app/workflow/routes.py": [
+      "app/domain/models.py",
+      "app/workflow/models.py"
+    ],
+    "app/workflow/service.py": [
+      "app/domain/models.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/repository.py"
+    ],
+    "corrections.example.yaml": [],
+    "docker-compose.yml": [],
+    "docs/ARCHITECTURE.md": [],
+    "docs/CHANGELOG.md": [],
+    "docs/M2_STRUCTURE.md": [],
+    "docs/PROGRESS.md": [],
+    "docs/RESUME.md": [],
+    "evaluation/MANIFEST.json": [],
+    "evaluation/README.md": [],
+    "evaluation/annotations/candidate_rule_review.jsonl": [],
+    "evaluation/annotations/retrieval_realistic_review.jsonl": [],
+    "evaluation/annotations/semantic_answer_review.jsonl": [],
+    "evaluation/compliance_gold.jsonl": [],
+    "evaluation/datasets/adversarial_qa.jsonl": [],
+    "evaluation/datasets/engineering_cases.jsonl": [],
+    "evaluation/datasets/retrieval_realistic_small.jsonl": [],
+    "evaluation/datasets/rule_extraction.jsonl": [],
+    "evaluation/datasets/semantic_retrieval.jsonl": [],
+    "evaluation/demo_cases.json": [],
+    "evaluation/design_detail_gold.jsonl": [],
+    "evaluation/design_gold.jsonl": [],
+    "evaluation/qa_gold.jsonl": [],
+    "evaluation/reports/latest/demo_cases.json": [],
+    "evaluation/reports/latest/demo_cases.md": [],
+    "evaluation/reports/latest/metrics.json": [],
+    "evaluation/reports/latest/report.html": [],
+    "evaluation/reports/latest/report.md": [],
+    "evaluation/reports/latest/retrieval_realistic.json": [],
+    "evaluation/retrieval_gold.jsonl": [],
+    "pyproject.toml": [],
+    "requirements-agent.txt": [],
+    "requirements-dev.txt": [],
+    "requirements-index.txt": [],
+    "requirements-ocr.txt": [],
+    "requirements.txt": [],
+    "scripts/build_index.py": [
+      "app/core/config.py",
+      "app/core/model_client.py",
+      "app/knowledge/builder.py",
+      "app/knowledge/repository.py"
+    ],
+    "scripts/build_structure.py": [
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/ingestion/structure_parser.py"
+    ],
+    "scripts/evaluate_design.py": [
+      "app/design/parser.py"
+    ],
+    "scripts/evaluate_qa.py": [
+      "app/api/qa.py"
+    ],
+    "scripts/evaluate_realistic_retrieval.py": [
+      "app/api/qa.py",
+      "app/domain/models.py"
+    ],
+    "scripts/evaluate_retrieval.py": [
+      "app/api/qa.py"
+    ],
+    "scripts/generate_evaluation_datasets.py": [
+      "app/evaluation/generated.py"
+    ],
+    "scripts/ingest_pdf.py": [
+      "app/core/config.py",
+      "app/core/exceptions.py",
+      "app/ingestion/engines.py",
+      "app/ingestion/pipeline.py"
+    ],
+    "scripts/query_knowledge.py": [
+      "app/api/qa.py"
+    ],
+    "scripts/replay_workflow.py": [
+      "app/api/agent.py"
+    ],
+    "scripts/run_demo_cases.py": [
+      "app/api/qa.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py"
+    ],
+    "scripts/run_evaluation.py": [
+      "app/evaluation/runner.py"
+    ],
+    "scripts/run_frozen_evaluation.py": [
+      "app/evaluation/generated.py"
+    ],
+    "scripts/start_demo.sh": [],
+    "scripts/tune_retrieval_fusion.py": [
+      "app/api/qa.py",
+      "app/knowledge/indexes.py"
+    ],
+    "scripts/validate_generated_datasets.py": [
+      "app/evaluation/generated.py"
+    ],
+    "tests/__init__.py": [],
+    "tests/test_agentic_qa.py": [
+      "app/domain/models.py",
+      "app/retrieval/agentic_planner.py",
+      "app/retrieval/evaluator.py",
+      "app/retrieval/models.py",
+      "app/retrieval/tools.py"
+    ],
+    "tests/test_agentic_upgrades.py": [
+      "app/compliance/candidates.py",
+      "app/compliance/matcher.py",
+      "app/compliance/models.py",
+      "app/compliance/repository.py",
+      "app/domain/models.py",
+      "app/retrieval/planner.py"
+    ],
+    "tests/test_config.py": [
+      "app/core/config.py"
+    ],
+    "tests/test_contextual_indexing.py": [
+      "app/domain/models.py",
+      "app/knowledge/builder.py",
+      "app/knowledge/contextual.py",
+      "app/knowledge/indexes.py",
+      "app/knowledge/models.py",
+      "app/knowledge/repository.py",
+      "app/retrieval/service.py"
+    ],
+    "tests/test_docker_config.py": [],
+    "tests/test_ids.py": [
+      "app/core/ids.py"
+    ],
+    "tests/test_ingestion.py": [
+      "app/core/config.py",
+      "app/domain/models.py",
+      "app/ingestion/models.py",
+      "app/ingestion/pipeline.py"
+    ],
+    "tests/test_logging.py": [
+      "app/core/logging.py"
+    ],
+    "tests/test_m10_api.py": [
+      "app/api/agent.py",
+      "app/main.py",
+      "app/workflow/service.py",
+      "tests/test_m9_workflow.py"
+    ],
+    "tests/test_m11_evaluation.py": [
+      "app/design/parser.py",
+      "app/evaluation/models.py",
+      "app/evaluation/runner.py",
+      "app/retrieval/service.py"
+    ],
+    "tests/test_m3_m5.py": [
+      "app/domain/models.py",
+      "app/knowledge/indexes.py",
+      "app/knowledge/models.py",
+      "app/knowledge/repository.py",
+      "app/qa/models.py",
+      "app/qa/service.py",
+      "app/retrieval/service.py"
+    ],
+    "tests/test_m6_design.py": [
+      "app/design/models.py",
+      "app/design/parser.py",
+      "app/domain/models.py"
+    ],
+    "tests/test_m7_clarification.py": [
+      "app/clarification/repository.py",
+      "app/clarification/service.py",
+      "app/clarification/session.py",
+      "app/core/exceptions.py",
+      "app/domain/models.py"
+    ],
+    "tests/test_m8_compliance.py": [
+      "app/compliance/evaluator.py",
+      "app/compliance/models.py",
+      "app/compliance/units.py",
+      "app/domain/models.py"
+    ],
+    "tests/test_m9_workflow.py": [
+      "app/domain/models.py",
+      "app/qa/models.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py",
+      "app/workflow/repository.py",
+      "app/workflow/service.py"
+    ],
+    "tests/test_model_client.py": [
+      "app/core/config.py",
+      "app/core/model_client.py"
+    ],
+    "tests/test_models.py": [
+      "app/domain/models.py"
+    ],
+    "tests/test_rapidocr_engine.py": [
+      "app/ingestion/engines.py"
+    ],
+    "tests/test_realistic_retrieval_dataset.py": [],
+    "tests/test_review_api.py": [
+      "app/main.py"
+    ],
+    "tests/test_structure_cli.py": [
+      "scripts/build_structure.py"
+    ],
+    "tests/test_structure_parser.py": [
+      "app/core/exceptions.py",
+      "app/domain/models.py",
+      "app/ingestion/models.py",
+      "app/ingestion/structure_parser.py"
+    ],
+    "tests/test_system_api.py": [
+      "app/main.py"
+    ]
+  }
+}
