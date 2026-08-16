@@ -28,6 +28,11 @@ STANDARD_RE = re.compile(r"Q\s*[/.-]?\s*GGW\s*02005[.．](\d)(?:[-—]\d{4})?", 
 CLAUSE_RE = re.compile(r"(?:条款|第)\s*(\d+(?:\.\d+){0,5})\s*条?|\b(\d+(?:\.\d+){2,5})\s*条?")
 TABLE_RE = re.compile(r"(?:表|table)\s*([A-Z]?\.?\d+(?:[.-]\d+)*)", re.I)
 NUMBER_RE = re.compile(r"(?<![\w.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h)?", re.I)
+ENGINEERING_NUMBER_RE = re.compile(
+    r"(?<![\w.])\d+(?:\.\d+)?\s*(?:%|MPa|kPa|℃|mm|m|s|h|min|mA|V|kV|lx)",
+    re.I,
+)
+CONTEXT_LIMIT_RE = re.compile(r"(?:上下文|范围|限定|在.{0,12}内|基于)", re.I)
 
 
 class Reranker(Protocol):
@@ -39,14 +44,30 @@ class QueryAnalyzer:
         standards = [f"Q/GGW 02005.{part}-2022" for part in STANDARD_RE.findall(query)]
         clauses = [left or right for left, right in CLAUSE_RE.findall(query)]
         tables = TABLE_RE.findall(query)
-        if tables:
+        if self._is_multi_goal(query):
+            intent = (
+                IntentType.TABLE_LOOKUP
+                if tables
+                else IntentType.CLAUSE_LOOKUP
+                if clauses
+                else IntentType.KNOWLEDGE_QA
+            )
+            route_type = "multi_goal"
+        elif tables:
             intent = IntentType.TABLE_LOOKUP
+            route_type = "keyword" if self._is_context_limited(query) else "table"
         elif clauses:
             intent = IntentType.CLAUSE_LOOKUP
+            route_type = "keyword" if self._is_context_limited(query) else "exact"
+        elif self._has_engineering_number(query):
+            intent = IntentType.KNOWLEDGE_QA
+            route_type = "numeric"
         else:
             intent = IntentType.KNOWLEDGE_QA
+            route_type = "semantic"
         return QueryAnalysis(
             intent=intent,
+            route_type=route_type,
             standard_codes=list(dict.fromkeys(standards)),
             clause_numbers=list(dict.fromkeys(clauses)),
             table_numbers=list(dict.fromkeys(tables)),
@@ -57,7 +78,13 @@ class QueryAnalyzer:
         analysis = self.analyze(query)
         exact = analysis.clause_numbers + analysis.table_numbers
         # 明确编号是确定性查询：命中则直接返回，未命中则安全拒答，禁止用相似内容冒充。
-        retrievers: list[str] = ["exact"] if exact else ["bm25", "vector"]
+        if analysis.route_type in {"exact", "table"}:
+            retrievers = ["exact"]
+        elif analysis.route_type in {"keyword", "numeric"}:
+            # 专业关键词和工程数值参数优先交给 BM25，避免 Vector 用相似语义挤占排序。
+            retrievers = ["bm25"]
+        else:
+            retrievers = ["bm25", "vector"]
         unit_types: list[UnitType] = []
         if analysis.intent == IntentType.CLAUSE_LOOKUP:
             unit_types = [UnitType.CLAUSE]
@@ -75,7 +102,31 @@ class QueryAnalyzer:
             retrievers=retrievers,
             top_k=top_k,
             expansion_policy="parent_and_neighbors",
+            subqueries=(
+                self._decompose(query) if analysis.route_type == "multi_goal" else []
+            ),
         )
+
+    @staticmethod
+    def _is_context_limited(query: str) -> bool:
+        return bool(CONTEXT_LIMIT_RE.search(query))
+
+    @staticmethod
+    def _has_engineering_number(query: str) -> bool:
+        return bool(ENGINEERING_NUMBER_RE.search(query))
+
+    @staticmethod
+    def _is_multi_goal(query: str) -> bool:
+        # 只用强分隔词或明确综合查询标记判断多目标，避免普通逗号误伤上下文限定查询。
+        return bool(re.search(r"[；;]|以及|并且|同时|综合说明|两方面", query))
+
+    @staticmethod
+    def _decompose(query: str) -> list[str]:
+        parts = [
+            re.sub(r"^[\s，。？?；;]+|[\s，。？?；;]+$", "", part)
+            for part in re.split(r"[，,；;]", query)
+        ]
+        return [part for part in parts if part] or [query]
 
 
 class RetrievalService:

@@ -159,6 +159,29 @@ def test_vector_payload_is_json_serializable(tmp_path: Path) -> None:
 def test_numeric_parameter_is_not_misrouted_as_clause() -> None:
     analysis = QueryAnalyzer().analyze("设计压力为 1.6 MPa 时有什么要求？")
     assert not analysis.clause_numbers
+    assert analysis.route_type == "numeric"
+
+
+def test_dynamic_route_uses_bm25_for_numeric_parameter() -> None:
+    _, plan = QueryAnalyzer().plan("设计压力为 1.6 MPa 时有什么要求？")
+    assert plan.retrievers == ["bm25"]
+
+
+def test_context_limited_clause_is_not_treated_as_exact_lookup() -> None:
+    analysis, plan = QueryAnalyzer().plan(
+        "请说明孔板流量计的具体要求，限定在Q/GGW 02005.3-2022第5.3.5.7条上下文内回答。"
+    )
+    assert analysis.route_type == "keyword"
+    assert plan.retrievers == ["bm25"]
+
+
+def test_multi_goal_query_populates_subqueries() -> None:
+    analysis, plan = QueryAnalyzer().plan(
+        "控制室照度有什么要求；UPS供电时间有什么要求？"
+    )
+    assert analysis.route_type == "multi_goal"
+    assert plan.retrievers == ["bm25", "vector"]
+    assert len(plan.subqueries) == 2
 
 
 def test_clause_and_table_intents_apply_distinct_unit_filters() -> None:
