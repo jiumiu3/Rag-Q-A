@@ -1,6 +1,6 @@
 {
   "name": "oil-gas-compliance-agent",
-  "description": "An agent for reviewing oil and gas pipeline network instrumentation and automatic-control specifications. It converts technical standards into retrievable, citable, executable knowledge via OCR, BM25, and embedding search, enabling evidence-backed Q&A and deterministic compliance pre-review. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "description": "油气管网仪表与自动控制规范审查 Agent。注意：该项目包含超过 100 个源文件；若需更快完成分析，可考虑将范围限定到某个子目录。",
   "languages": [
     "config",
     "dockerfile",
@@ -20,7 +20,7 @@
     "Docker Compose",
     "FastAPI",
     "Pydantic",
-    "Pytest",
+    "pytest",
     "Uvicorn"
   ],
   "files": [
@@ -39,7 +39,7 @@
     {
       "path": ".ua/.understandignore",
       "language": "unknown",
-      "sizeLines": 89,
+      "sizeLines": 98,
       "fileCategory": "code"
     },
     {
@@ -51,7 +51,7 @@
     {
       "path": "AGENTS.md",
       "language": "markdown",
-      "sizeLines": 33,
+      "sizeLines": 4,
       "fileCategory": "docs"
     },
     {
@@ -63,7 +63,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 413,
+      "sizeLines": 437,
       "fileCategory": "docs"
     },
     {
@@ -81,7 +81,7 @@
     {
       "path": "app/api/agent.py",
       "language": "python",
-      "sizeLines": 187,
+      "sizeLines": 192,
       "fileCategory": "code"
     },
     {
@@ -157,6 +157,18 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/compliance/judgement_models.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/judgement_validator.py",
+      "language": "python",
+      "sizeLines": 219,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/compliance/matcher.py",
       "language": "python",
       "sizeLines": 51,
@@ -166,6 +178,12 @@
       "path": "app/compliance/models.py",
       "language": "python",
       "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/rag_judge.py",
+      "language": "python",
+      "sizeLines": 68,
       "fileCategory": "code"
     },
     {
@@ -243,7 +261,7 @@
     {
       "path": "app/domain/models.py",
       "language": "python",
-      "sizeLines": 296,
+      "sizeLines": 300,
       "fileCategory": "code"
     },
     {
@@ -399,7 +417,7 @@
     {
       "path": "app/retrieval/agentic_planner.py",
       "language": "python",
-      "sizeLines": 153,
+      "sizeLines": 157,
       "fileCategory": "code"
     },
     {
@@ -411,19 +429,19 @@
     {
       "path": "app/retrieval/models.py",
       "language": "python",
-      "sizeLines": 104,
+      "sizeLines": 107,
       "fileCategory": "code"
     },
     {
       "path": "app/retrieval/planner.py",
       "language": "python",
-      "sizeLines": 97,
+      "sizeLines": 102,
       "fileCategory": "code"
     },
     {
       "path": "app/retrieval/service.py",
       "language": "python",
-      "sizeLines": 233,
+      "sizeLines": 284,
       "fileCategory": "code"
     },
     {
@@ -447,19 +465,19 @@
     {
       "path": "app/workflow/graph.py",
       "language": "python",
-      "sizeLines": 239,
+      "sizeLines": 246,
       "fileCategory": "code"
     },
     {
       "path": "app/workflow/models.py",
       "language": "python",
-      "sizeLines": 103,
+      "sizeLines": 106,
       "fileCategory": "code"
     },
     {
       "path": "app/workflow/nodes.py",
       "language": "python",
-      "sizeLines": 500,
+      "sizeLines": 576,
       "fileCategory": "code"
     },
     {
@@ -477,7 +495,7 @@
     {
       "path": "app/workflow/service.py",
       "language": "python",
-      "sizeLines": 140,
+      "sizeLines": 142,
       "fileCategory": "code"
     },
     {
@@ -520,6 +538,12 @@
       "path": "docs/RESUME.md",
       "language": "markdown",
       "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/RETRIEVAL_OPTIMIZATION_LOG.md",
+      "language": "markdown",
+      "sizeLines": 223,
       "fileCategory": "docs"
     },
     {
@@ -613,6 +637,36 @@
       "fileCategory": "code"
     },
     {
+      "path": "evaluation/reports/latest/adaptive_routing_compliance_comparison.json",
+      "language": "json",
+      "sizeLines": 185,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/adaptive_routing_e2e_comparison.json",
+      "language": "json",
+      "sizeLines": 841,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json",
+      "language": "json",
+      "sizeLines": 827,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/agentic_routing_baseline.json",
+      "language": "json",
+      "sizeLines": 771,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/agentic_routing_combined.json",
+      "language": "json",
+      "sizeLines": 771,
+      "fileCategory": "config"
+    },
+    {
       "path": "evaluation/reports/latest/demo_cases.json",
       "language": "json",
       "sizeLines": 57,
@@ -625,9 +679,21 @@
       "fileCategory": "docs"
     },
     {
+      "path": "evaluation/reports/latest/dynamic_routing.json",
+      "language": "json",
+      "sizeLines": 678,
+      "fileCategory": "config"
+    },
+    {
       "path": "evaluation/reports/latest/metrics.json",
       "language": "json",
       "sizeLines": 778,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/query_rewrite.json",
+      "language": "json",
+      "sizeLines": 1696,
       "fileCategory": "config"
     },
     {
@@ -640,6 +706,18 @@
       "path": "evaluation/reports/latest/report.md",
       "language": "markdown",
       "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/reports/latest/retrieval_failure_analysis.json",
+      "language": "json",
+      "sizeLines": 4502,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/retrieval_failure_analysis.md",
+      "language": "markdown",
+      "sizeLines": 334,
       "fileCategory": "docs"
     },
     {
@@ -700,6 +778,12 @@
       "path": "scripts/build_structure.py",
       "language": "python",
       "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/diagnose_retrieval_failures.py",
+      "language": "python",
+      "sizeLines": 287,
       "fileCategory": "code"
     },
     {
@@ -795,13 +879,19 @@
     {
       "path": "tests/test_agentic_qa.py",
       "language": "python",
-      "sizeLines": 142,
+      "sizeLines": 158,
       "fileCategory": "code"
     },
     {
       "path": "tests/test_agentic_upgrades.py",
       "language": "python",
       "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_compliance_rag_judge.py",
+      "language": "python",
+      "sizeLines": 205,
       "fileCategory": "code"
     },
     {
@@ -855,7 +945,7 @@
     {
       "path": "tests/test_m3_m5.py",
       "language": "python",
-      "sizeLines": 266,
+      "sizeLines": 289,
       "fileCategory": "code"
     },
     {
@@ -929,10 +1019,22 @@
       "language": "python",
       "sizeLines": 23,
       "fileCategory": "code"
+    },
+    {
+      "path": "合规审查RAG判断方案计划.md",
+      "language": "markdown",
+      "sizeLines": 270,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "检索召回率优化计划_Codex.md",
+      "language": "markdown",
+      "sizeLines": 574,
+      "fileCategory": "docs"
     }
   ],
-  "totalFiles": 151,
-  "filteredByIgnore": 0,
+  "totalFiles": 168,
+  "filteredByIgnore": 130,
   "estimatedComplexity": "large",
   "importMap": {
     ".dockerignore": [],
@@ -946,9 +1048,11 @@
     "app/api/__init__.py": [],
     "app/api/agent.py": [
       "app/api/qa.py",
+      "app/compliance/rag_judge.py",
       "app/compliance/repository.py",
       "app/core/config.py",
       "app/core/exceptions.py",
+      "app/core/model_client.py",
       "app/workflow/graph.py",
       "app/workflow/models.py",
       "app/workflow/nodes.py",
@@ -1015,11 +1119,24 @@
       "app/core/model_client.py",
       "app/domain/models.py"
     ],
+    "app/compliance/judgement_models.py": [
+      "app/domain/models.py"
+    ],
+    "app/compliance/judgement_validator.py": [
+      "app/compliance/judgement_models.py",
+      "app/compliance/units.py",
+      "app/domain/models.py"
+    ],
     "app/compliance/matcher.py": [
       "app/compliance/models.py",
       "app/domain/models.py"
     ],
     "app/compliance/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/compliance/rag_judge.py": [
+      "app/compliance/judgement_models.py",
+      "app/core/model_client.py",
       "app/domain/models.py"
     ],
     "app/compliance/repository.py": [
@@ -1211,6 +1328,7 @@
       "app/workflow/routes.py"
     ],
     "app/workflow/models.py": [
+      "app/compliance/judgement_models.py",
       "app/compliance/models.py",
       "app/domain/models.py",
       "app/qa/models.py",
@@ -1220,8 +1338,11 @@
       "app/clarification/service.py",
       "app/compliance/candidates.py",
       "app/compliance/evaluator.py",
+      "app/compliance/judgement_models.py",
+      "app/compliance/judgement_validator.py",
       "app/compliance/matcher.py",
       "app/compliance/models.py",
+      "app/compliance/rag_judge.py",
       "app/compliance/repository.py",
       "app/design/parser.py",
       "app/domain/models.py",
@@ -1252,6 +1373,7 @@
     "docs/M2_STRUCTURE.md": [],
     "docs/PROGRESS.md": [],
     "docs/RESUME.md": [],
+    "docs/RETRIEVAL_OPTIMIZATION_LOG.md": [],
     "evaluation/MANIFEST.json": [],
     "evaluation/README.md": [],
     "evaluation/annotations/candidate_rule_review.jsonl": [],
@@ -1267,11 +1389,20 @@
     "evaluation/design_detail_gold.jsonl": [],
     "evaluation/design_gold.jsonl": [],
     "evaluation/qa_gold.jsonl": [],
+    "evaluation/reports/latest/adaptive_routing_compliance_comparison.json": [],
+    "evaluation/reports/latest/adaptive_routing_e2e_comparison.json": [],
+    "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json": [],
+    "evaluation/reports/latest/agentic_routing_baseline.json": [],
+    "evaluation/reports/latest/agentic_routing_combined.json": [],
     "evaluation/reports/latest/demo_cases.json": [],
     "evaluation/reports/latest/demo_cases.md": [],
+    "evaluation/reports/latest/dynamic_routing.json": [],
     "evaluation/reports/latest/metrics.json": [],
+    "evaluation/reports/latest/query_rewrite.json": [],
     "evaluation/reports/latest/report.html": [],
     "evaluation/reports/latest/report.md": [],
+    "evaluation/reports/latest/retrieval_failure_analysis.json": [],
+    "evaluation/reports/latest/retrieval_failure_analysis.md": [],
     "evaluation/reports/latest/retrieval_realistic.json": [],
     "evaluation/retrieval_gold.jsonl": [],
     "pyproject.toml": [],
@@ -1290,6 +1421,11 @@
       "app/core/config.py",
       "app/core/exceptions.py",
       "app/ingestion/structure_parser.py"
+    ],
+    "scripts/diagnose_retrieval_failures.py": [
+      "app/api/qa.py",
+      "app/evaluation/generated.py",
+      "app/knowledge/indexes.py"
     ],
     "scripts/evaluate_design.py": [
       "app/design/parser.py"
@@ -1354,6 +1490,16 @@
       "app/compliance/repository.py",
       "app/domain/models.py",
       "app/retrieval/planner.py"
+    ],
+    "tests/test_compliance_rag_judge.py": [
+      "app/compliance/judgement_models.py",
+      "app/compliance/judgement_validator.py",
+      "app/compliance/rag_judge.py",
+      "app/domain/models.py",
+      "app/retrieval/planner.py",
+      "app/workflow/graph.py",
+      "app/workflow/models.py",
+      "app/workflow/nodes.py"
     ],
     "tests/test_config.py": [
       "app/core/config.py"
@@ -1453,6 +1599,8 @@
     ],
     "tests/test_system_api.py": [
       "app/main.py"
-    ]
+    ],
+    "合规审查RAG判断方案计划.md": [],
+    "检索召回率优化计划_Codex.md": []
   }
 }

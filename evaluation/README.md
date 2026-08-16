@@ -16,6 +16,7 @@
 | `datasets/engineering_cases.jsonl` | 2/4项 | 多检查项工程预审 | 非敏感合成案例，结论未计入正式指标 |
 | `datasets/rule_extraction.jsonl` | 4 | 候选规则结构化抽取 | 不与人工修改后规则混算 |
 | `datasets/retrieval_realistic_small.jsonl` | 16 | 小规模分层真实检索 | 默认最多 12 次查询 Embedding 调用；标签尚未冻结 |
+| `datasets/rag_compliance_business_small.jsonl` | 10 | RAG检索与合规判断业务金标 | 从3份规范PDF的OCR条款构造，含页码、原文、知识单元与安全降级标签 |
 | `annotations/*.jsonl` | 待填写 | 可选逐条评分 | 未填写时报告 `NOT_EVALUATED` |
 | `demo_cases.json` | 3 | 查询、清单、完整预审演示 | 校验真实工作流终态 |
 
@@ -61,6 +62,21 @@ PYTHONPATH=. python scripts/run_frozen_evaluation.py
 当前没有已确认的 `executable_rules` 基准，因此端到端案例保留为 `pending`，相关正式指标是
 `NOT_EVALUATED`；自动候选规则不能替代可执行规则基准。远程 Embedding 不可用时 Vector 和
 Hybrid 同样标记为 `NOT_EVALUATED`。
+
+## 小规模RAG合规业务金标集
+
+`datasets/rag_compliance_business_small.jsonl` 是首批10条独立业务案例，不复用执行器单元测试夹具。
+每条案例包含自然语言设计描述、原子检查项、期望检索条款、确定性判断结构和PDF溯源信息。
+案例覆盖三部分规范，以及合规、不合规、信息不足和人工复核四类终态；同时覆盖包含/排除边界、
+单位换算、布尔及类别禁止、区间、条件和动作联锁、外部标准依赖。扫描版PDF通过项目OCR提取，
+`source_image` 用于回看原页，`expected_unit_ids` 用于检索评测。该版本标记为
+`assistant_verified`，适合作为开发集和首轮回归集；在取得独立领域专家复核前，不宣称为生产级盲测集。
+
+只验证数据集规模、溯源字段、标签和覆盖面：
+
+```bash
+pytest -q tests/test_rag_compliance_business_dataset.py
+```
 
 当前生成集版本为 `generated-v1.3.0`。向量索引严格绑定模型、脱敏配置指纹、1024 维度、
 知识单元源哈希和 contextual strategy；RRF 权重只在 dev 集选择，详细记录见

@@ -64,5 +64,6 @@ def test_demo_and_graph_endpoints() -> None:
     assert "检查项确认" in demo.text
     assert "淡蓝" not in demo.text
     assert "证据与详情侧栏" in demo.text
-    assert "每次回答末尾都会列出证据来源" in demo.text
+    assert "判断结果会列出对应来源条款" in demo.text
+    assert "正在继续进行规范检索与合规判断" in demo.text
     assert "classify_intent" in graph.text

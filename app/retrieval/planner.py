@@ -27,23 +27,26 @@ class AdaptiveRetrievalPlanner:
         attempt: int,
         previous: EvidenceAssessment | None,
         history: list[str],
-        top_k: int = 3,
+        top_k: int = 5,
     ) -> RetrievalPlan:
         base_queries = self._item_queries(check_items) or self._decompose(original_query)
         analysis = self.analyzer.analyze(original_query)
         exact_keys = analysis.clause_numbers + analysis.table_numbers
         if exact_keys:
             queries = [original_query]
+            query_item_ids = [""]
             routes = ["exact"]
             reason = None if attempt == 0 else "精确标识符未命中；保留标识符并扩展上下文"
             expansion = None if attempt == 0 else "parent_and_neighbors"
         elif attempt == 0:
             queries = base_queries
+            query_item_ids = [item.item_id for item in check_items]
             routes = ["bm25", "vector"]
             reason = "复杂问题按检查项拆分" if len(queries) > 1 else None
             expansion = "parent_and_neighbors"
         else:
             queries = [self._expand_terms(item) for item in base_queries]
+            query_item_ids = [item.item_id for item in check_items]
             routes = ["bm25"] if attempt == 1 else ["vector", "bm25"]
             reason = (
                 f"证据评估失败：{previous.failure_reason}"
@@ -64,6 +67,8 @@ class AdaptiveRetrievalPlanner:
             intent=analysis.intent,
             query=queries[0],
             subqueries=queries,
+            # 空字符串表示精确编号查询同时支持本轮所有检查项。
+            subquery_item_ids=query_item_ids,
             exact_keys=exact_keys,
             filters=RetrievalFilters(standard_codes=analysis.standard_codes, unit_types=unit_types),
             retrievers=routes,

@@ -9,9 +9,13 @@ from fastapi import APIRouter, Depends, Query
 from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
 from app.api.qa import get_qa_service
+from app.compliance.rag_judge import ComplianceJudge
 from app.compliance.repository import SQLiteRuleRepository
 from app.core.config import get_settings
 from app.core.exceptions import AppError
+from app.core.model_client import CompatibleJSONClient
+from app.design.parser import LLMDesignDescriptionParser
+from app.retrieval.agentic_planner import AgenticRetrievalPlanner
 from app.workflow.graph import WorkflowRunner, graph_mermaid
 from app.workflow.models import (
     AgentState,
@@ -36,10 +40,14 @@ class ApiResourceError(AppError):
 def get_workflow_service() -> WorkflowService:
     settings = get_settings()
     qa = get_qa_service()
+    model_client = CompatibleJSONClient(settings.model) if settings.agent.rag_llm_enabled else None
     nodes = WorkflowNodes(
         qa,
         qa.retrieval,
         SQLiteRuleRepository(settings.storage.session_sqlite_path),
+        ComplianceJudge(model_client) if model_client else None,
+        design_parser=LLMDesignDescriptionParser(model_client) if model_client else None,
+        retrieval_planner=AgenticRetrievalPlanner(model_client),
     )
     repository = SQLiteWorkflowRepository(settings.storage.session_sqlite_path)
     return WorkflowService(repository, WorkflowRunner(nodes))

@@ -1,7 +1,7 @@
 from decimal import Decimal
 
-from app.design.models import ItemPatch
-from app.design.parser import DesignDescriptionParser
+from app.design.models import ExtractedCheckItem, ExtractedDesign, ItemPatch
+from app.design.parser import DesignDescriptionParser, LLMDesignDescriptionParser
 from app.domain.models import CheckItemStatus
 
 
@@ -47,3 +47,29 @@ def test_confirmation_applies_patch_and_delete() -> None:
 def test_auto_confirm_only_readies_unambiguous_items() -> None:
     preview = DesignDescriptionParser().parse("控制室照度为500lx。", auto_confirm=True)
     assert preview.items[0].status == CheckItemStatus.READY
+
+
+class FakeExtractionClient:
+    def complete(self, _prompt: str, model: object) -> ExtractedDesign:
+        assert model is ExtractedDesign
+        return ExtractedDesign(
+            items=[
+                ExtractedCheckItem(
+                    object="仪表管道",
+                    attribute="净距",
+                    value=50,
+                    unit="mm",
+                    source_text="仪表管道净距为50 mm",
+                )
+            ]
+        )
+
+
+def test_llm_parser_uses_lightweight_schema_and_builds_trace_fields() -> None:
+    text = "请进行合规审查：仪表管道净距为50 mm。"
+    preview = LLMDesignDescriptionParser(FakeExtractionClient()).parse(text)  # type: ignore[arg-type]
+    item = preview.items[0]
+    assert preview.description == text
+    assert text[item.span.start : item.span.end] == item.source_text
+    assert item.item_id.startswith("check_")
+    assert item.explicit_fields == {"object", "attribute", "value", "unit", "source_text"}

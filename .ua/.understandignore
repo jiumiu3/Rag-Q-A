@@ -87,3 +87,12 @@
 # Swift
 # **/Tests/**/*.swift
 # **/Specs/**/*.swift
+
+# --- Understand Anything 生成物 ---
+
+.ua/.trash-*/
+.ua/tmp/
+.ua/intermediate/
+.ua/knowledge-graph.json
+.ua/fingerprints.json
+.ua/meta.json

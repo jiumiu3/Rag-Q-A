@@ -5,7 +5,7 @@ from typing import Protocol
 
 from app.core.ids import check_item_id
 from app.core.model_client import CompatibleJSONClient
-from app.design.models import DesignContext, DesignPreview, ItemPatch
+from app.design.models import DesignContext, DesignPreview, ExtractedDesign, ItemPatch
 from app.domain.models import CharacterSpan, CheckItem, CheckItemStatus
 
 SENTENCE_RE = re.compile(r"[^。；;！？!?\n]+[。；;！？!?]?|[^。；;！？!?\n]+$")
@@ -54,7 +54,7 @@ AREAS = ("爆炸危险区域", "危险区", "非危险区", "控制室", "机柜
 
 
 class StructuredDesignParser(Protocol):
-    def parse(self, description: str) -> DesignPreview: ...
+    def parse(self, description: str, *, auto_confirm: bool = False) -> DesignPreview: ...
 
 
 class DesignDescriptionParser:
@@ -307,15 +307,58 @@ class LLMDesignDescriptionParser:
     def __init__(self, client: CompatibleJSONClient) -> None:
         self.client = client
 
-    def parse(self, description: str) -> DesignPreview:
-        preview = self.client.complete(
-            "将设计描述拆成原子检查项。每项只能有一个主要属性，区分 explicit_fields 与 "
-            f"inferred_fields，并精确给出 source_text 和字符 span。设计描述：\n{description}",
-            DesignPreview,
+    def parse(self, description: str, *, auto_confirm: bool = False) -> DesignPreview:
+        extracted = self.client.complete(
+            "将设计描述拆成最多20个原子检查项，每项只保留一个主要属性。"
+            "只提取原文明确表达的业务字段，不生成ID、字符位置、状态或推断字段。"
+            "source_text必须逐字复制输入中的连续片段；没有提供的字段返回null。"
+            f"设计描述：\n{description}",
+            ExtractedDesign,
         )
-        if preview.description != description:
-            raise ValueError("模型返回的 description 与输入不一致")
-        for item in preview.items:
-            if description[item.span.start : item.span.end] != item.source_text:
-                raise ValueError(f"检查项 {item.item_id} 的字符区间无法回溯原文")
-        return preview
+        normalized_items: list[CheckItem] = []
+        for item in extracted.items:
+            start = description.find(item.source_text)
+            if start < 0:
+                raise ValueError(f"检查项原文无法回溯输入：{item.source_text}")
+            span = CharacterSpan(start=start, end=start + len(item.source_text))
+            values = item.model_dump()
+            explicit = {
+                field
+                for field, value in values.items()
+                if value is not None and field != "source_text"
+            }
+            explicit.add("source_text")
+            normalized_items.append(
+                CheckItem(
+                    item_id=check_item_id(item.source_text, (span.start, span.end)),
+                    object=item.object,
+                    attribute=item.attribute,
+                    value=item.value,
+                    unit=item.unit,
+                    location=item.location,
+                    condition=item.condition,
+                    relation=item.relation,
+                    source_text=item.source_text,
+                    span=span,
+                    explicit_fields=explicit,
+                    status=CheckItemStatus.READY if auto_confirm else CheckItemStatus.DRAFT,
+                )
+            )
+        preview = DesignPreview(
+            description=description,
+            context=extracted.context,
+            items=normalized_items,
+            requires_confirmation=not auto_confirm,
+            warnings=extracted.warnings,
+        )
+        if not auto_confirm:
+            return preview
+        return preview.model_copy(
+            update={
+                "items": [
+                    item.model_copy(update={"status": CheckItemStatus.READY})
+                    for item in preview.items
+                ],
+                "requires_confirmation": False,
+            }
+        )

@@ -36,7 +36,7 @@ def route_evidence(state: AgentState) -> str:
     if state.status == WorkflowStatus.SAFE_STOPPED:
         return "pause"
     if state.evidence_assessments and state.evidence_assessments[-1].is_sufficient:
-        return "extract_rule"
+        return "judge_compliance"
     return "plan_retrieval"
 
 

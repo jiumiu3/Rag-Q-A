@@ -3,6 +3,7 @@ from enum import StrEnum
 
 from pydantic import Field
 
+from app.compliance.judgement_models import ComplianceJudgement
 from app.compliance.models import CandidateRule, ExecutableRule
 from app.domain.models import (
     CheckItem,
@@ -57,6 +58,7 @@ class AgentState(StrictModel):
     scenario: dict[str, str] = Field(default_factory=dict)
     check_items: list[CheckItem] = Field(default_factory=list)
     evidence: list[Evidence] = Field(default_factory=list)
+    evidence_by_check_item: dict[str, list[str]] = Field(default_factory=dict)
     original_query: str = ""
     current_query: str = ""
     query_history: list[str] = Field(default_factory=list)
@@ -71,6 +73,8 @@ class AgentState(StrictModel):
     rules: list[ExecutableRule] = Field(default_factory=list)
     candidate_rules: list[CandidateRule] = Field(default_factory=list)
     compliance_results: list[ComplianceResult] = Field(default_factory=list)
+    compliance_judgements: list[ComplianceJudgement] = Field(default_factory=list)
+    compliance_summary: str | None = None
     answer: AnswerDraft | None = None
     clarification: ClarificationRequest | None = None
     pending_action: PendingAction | None = None
