@@ -64,6 +64,7 @@ class ComplianceStatus(StrEnum):
     INSUFFICIENT_INFORMATION = "INSUFFICIENT_INFORMATION"
     NOT_SPECIFIED = "NOT_SPECIFIED"
     MANUAL_REVIEW_REQUIRED = "MANUAL_REVIEW_REQUIRED"
+    CONFLICT = "CONFLICT"
 
 
 class RequirementLevel(StrEnum):
@@ -163,6 +164,8 @@ class RetrievalPlan(StrictModel):
     top_k: int = Field(default=5, ge=1, le=100)
     expansion_policy: str | None = None
     subqueries: list[str] = Field(default_factory=list)
+    # 与 subqueries 同位置对应，确保合规审查证据不会跨检查项串用。
+    subquery_item_ids: list[str] = Field(default_factory=list)
     rewrite_reason: str | None = None
     attempt: int = Field(default=0, ge=0)
 

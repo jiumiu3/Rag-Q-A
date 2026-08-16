@@ -1,10 +1,11 @@
 {
   "name": "oil-gas-compliance-agent",
-  "description": "An agent for reviewing oil and gas pipeline network instrumentation and automatic-control specifications. It converts technical standards into retrievable, citable, executable knowledge via OCR, BM25, and embedding search, enabling evidence-backed Q&A and deterministic compliance pre-review. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+  "description": "油气管网仪表与自动控制规范审查 Agent。注意：该项目包含超过 100 个源文件；若需更快完成分析，可考虑将范围限定到某个子目录。",
   "languages": [
     "config",
     "dockerfile",
     "html",
+    "javascript",
     "json",
     "jsonl",
     "markdown",
@@ -20,7 +21,7 @@
     "Docker Compose",
     "FastAPI",
     "Pydantic",
-    "Pytest",
+    "pytest",
     "Uvicorn"
   ],
   "files": [
@@ -37,6 +38,474 @@
       "fileCategory": "config"
     },
     {
+      "path": ".ua/.trash-1786823693/assemble-review.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/assembled-graph.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-1-part-1.json",
+      "language": "json",
+      "sizeLines": 1033,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-1-part-2.json",
+      "language": "json",
+      "sizeLines": 807,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-1-part-3.json",
+      "language": "json",
+      "sizeLines": 1454,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-1-part-4.json",
+      "language": "json",
+      "sizeLines": 186,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-10.json",
+      "language": "json",
+      "sizeLines": 56,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-11.json",
+      "language": "json",
+      "sizeLines": 97,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-12.json",
+      "language": "json",
+      "sizeLines": 260,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-13.json",
+      "language": "json",
+      "sizeLines": 127,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-2-part-1.json",
+      "language": "json",
+      "sizeLines": 1474,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-2-part-2.json",
+      "language": "json",
+      "sizeLines": 1643,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-3-part-1.json",
+      "language": "json",
+      "sizeLines": 1410,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-3-part-2.json",
+      "language": "json",
+      "sizeLines": 777,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-4.json",
+      "language": "json",
+      "sizeLines": 390,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-5.json",
+      "language": "json",
+      "sizeLines": 434,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-6.json",
+      "language": "json",
+      "sizeLines": 262,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-7.json",
+      "language": "json",
+      "sizeLines": 113,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-8.json",
+      "language": "json",
+      "sizeLines": 176,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batch-9.json",
+      "language": "json",
+      "sizeLines": 88,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/batches.json",
+      "language": "json",
+      "sizeLines": 5241,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/fingerprint-input.json",
+      "language": "json",
+      "sizeLines": 156,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/layers.json",
+      "language": "json",
+      "sizeLines": 225,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/review.json",
+      "language": "json",
+      "sizeLines": 52,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-1.json",
+      "language": "json",
+      "sizeLines": 1019,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-10.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-11.json",
+      "language": "json",
+      "sizeLines": 50,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-12.json",
+      "language": "json",
+      "sizeLines": 183,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-13.json",
+      "language": "json",
+      "sizeLines": 43,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-2.json",
+      "language": "json",
+      "sizeLines": 837,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-3.json",
+      "language": "json",
+      "sizeLines": 841,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-4.json",
+      "language": "json",
+      "sizeLines": 586,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-5.json",
+      "language": "json",
+      "sizeLines": 654,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-6.json",
+      "language": "json",
+      "sizeLines": 178,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-7.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-8.json",
+      "language": "json",
+      "sizeLines": 78,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/batch-input-9.json",
+      "language": "json",
+      "sizeLines": 43,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/build-batch-3.py",
+      "language": "python",
+      "sizeLines": 324,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/gen-batch-1.py",
+      "language": "python",
+      "sizeLines": 338,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/gen-batch2.py",
+      "language": "python",
+      "sizeLines": 555,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/gen-layers.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-arch-analyze.js",
+      "language": "javascript",
+      "sizeLines": 359,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-arch-input.json",
+      "language": "json",
+      "sizeLines": 6505,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-arch-results.json",
+      "language": "json",
+      "sizeLines": 1546,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-1.json",
+      "language": "json",
+      "sizeLines": 294,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-10.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-11.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-12.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-13.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-2.json",
+      "language": "json",
+      "sizeLines": 234,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-3.json",
+      "language": "json",
+      "sizeLines": 204,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-4.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-5.json",
+      "language": "json",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-6.json",
+      "language": "json",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-7.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-8.json",
+      "language": "json",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-9.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-1.json",
+      "language": "json",
+      "sizeLines": 8578,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-10.json",
+      "language": "json",
+      "sizeLines": 118,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-11.json",
+      "language": "json",
+      "sizeLines": 267,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-12.json",
+      "language": "json",
+      "sizeLines": 183,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-13.json",
+      "language": "json",
+      "sizeLines": 229,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-2.json",
+      "language": "json",
+      "sizeLines": 5855,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-3.json",
+      "language": "json",
+      "sizeLines": 6985,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-4.json",
+      "language": "json",
+      "sizeLines": 2677,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-5.json",
+      "language": "json",
+      "sizeLines": 2648,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-6.json",
+      "language": "json",
+      "sizeLines": 730,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-7.json",
+      "language": "json",
+      "sizeLines": 190,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-8.json",
+      "language": "json",
+      "sizeLines": 643,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-file-extract-results-9.json",
+      "language": "json",
+      "sizeLines": 332,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-import-map-input.json",
+      "language": "json",
+      "sizeLines": 759,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-import-map-output.json",
+      "language": "json",
+      "sizeLines": 528,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-inline-validate.cjs",
+      "language": "javascript",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-scan-files.json",
+      "language": "json",
+      "sizeLines": 939,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-tour-analyze.js",
+      "language": "javascript",
+      "sizeLines": 220,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-tour-input.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tmp/ua-tour-results.json",
+      "language": "json",
+      "sizeLines": 1474,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/.trash-1786823693/tour.json",
+      "language": "json",
+      "sizeLines": 143,
+      "fileCategory": "config"
+    },
+    {
       "path": ".ua/.understandignore",
       "language": "unknown",
       "sizeLines": 89,
@@ -49,9 +518,33 @@
       "fileCategory": "config"
     },
     {
+      "path": ".ua/fingerprints.json",
+      "language": "json",
+      "sizeLines": 10883,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/intermediate/scan-result.json",
+      "language": "json",
+      "sizeLines": 1457,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/knowledge-graph.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".ua/meta.json",
+      "language": "json",
+      "sizeLines": 5,
+      "fileCategory": "config"
+    },
+    {
       "path": "AGENTS.md",
       "language": "markdown",
-      "sizeLines": 33,
+      "sizeLines": 4,
       "fileCategory": "docs"
     },
     {
@@ -63,7 +556,7 @@
     {
       "path": "README.md",
       "language": "markdown",
-      "sizeLines": 413,
+      "sizeLines": 432,
       "fileCategory": "docs"
     },
     {
@@ -157,6 +650,18 @@
       "fileCategory": "code"
     },
     {
+      "path": "app/compliance/judgement_models.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/judgement_validator.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
       "path": "app/compliance/matcher.py",
       "language": "python",
       "sizeLines": 51,
@@ -166,6 +671,12 @@
       "path": "app/compliance/models.py",
       "language": "python",
       "sizeLines": 180,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/compliance/rag_judge.py",
+      "language": "python",
+      "sizeLines": 63,
       "fileCategory": "code"
     },
     {
@@ -243,7 +754,7 @@
     {
       "path": "app/domain/models.py",
       "language": "python",
-      "sizeLines": 296,
+      "sizeLines": 299,
       "fileCategory": "code"
     },
     {
@@ -399,7 +910,7 @@
     {
       "path": "app/retrieval/agentic_planner.py",
       "language": "python",
-      "sizeLines": 153,
+      "sizeLines": 157,
       "fileCategory": "code"
     },
     {
@@ -411,7 +922,7 @@
     {
       "path": "app/retrieval/models.py",
       "language": "python",
-      "sizeLines": 104,
+      "sizeLines": 107,
       "fileCategory": "code"
     },
     {
@@ -423,7 +934,7 @@
     {
       "path": "app/retrieval/service.py",
       "language": "python",
-      "sizeLines": 233,
+      "sizeLines": 284,
       "fileCategory": "code"
     },
     {
@@ -523,6 +1034,12 @@
       "fileCategory": "docs"
     },
     {
+      "path": "docs/RETRIEVAL_OPTIMIZATION_LOG.md",
+      "language": "markdown",
+      "sizeLines": 223,
+      "fileCategory": "docs"
+    },
+    {
       "path": "evaluation/MANIFEST.json",
       "language": "json",
       "sizeLines": 72,
@@ -613,6 +1130,36 @@
       "fileCategory": "code"
     },
     {
+      "path": "evaluation/reports/latest/adaptive_routing_compliance_comparison.json",
+      "language": "json",
+      "sizeLines": 185,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/adaptive_routing_e2e_comparison.json",
+      "language": "json",
+      "sizeLines": 841,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json",
+      "language": "json",
+      "sizeLines": 827,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/agentic_routing_baseline.json",
+      "language": "json",
+      "sizeLines": 771,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/agentic_routing_combined.json",
+      "language": "json",
+      "sizeLines": 771,
+      "fileCategory": "config"
+    },
+    {
       "path": "evaluation/reports/latest/demo_cases.json",
       "language": "json",
       "sizeLines": 57,
@@ -625,9 +1172,21 @@
       "fileCategory": "docs"
     },
     {
+      "path": "evaluation/reports/latest/dynamic_routing.json",
+      "language": "json",
+      "sizeLines": 678,
+      "fileCategory": "config"
+    },
+    {
       "path": "evaluation/reports/latest/metrics.json",
       "language": "json",
       "sizeLines": 778,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/query_rewrite.json",
+      "language": "json",
+      "sizeLines": 1696,
       "fileCategory": "config"
     },
     {
@@ -640,6 +1199,18 @@
       "path": "evaluation/reports/latest/report.md",
       "language": "markdown",
       "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "evaluation/reports/latest/retrieval_failure_analysis.json",
+      "language": "json",
+      "sizeLines": 4502,
+      "fileCategory": "config"
+    },
+    {
+      "path": "evaluation/reports/latest/retrieval_failure_analysis.md",
+      "language": "markdown",
+      "sizeLines": 334,
       "fileCategory": "docs"
     },
     {
@@ -700,6 +1271,12 @@
       "path": "scripts/build_structure.py",
       "language": "python",
       "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/diagnose_retrieval_failures.py",
+      "language": "python",
+      "sizeLines": 287,
       "fileCategory": "code"
     },
     {
@@ -795,7 +1372,7 @@
     {
       "path": "tests/test_agentic_qa.py",
       "language": "python",
-      "sizeLines": 142,
+      "sizeLines": 158,
       "fileCategory": "code"
     },
     {
@@ -855,7 +1432,7 @@
     {
       "path": "tests/test_m3_m5.py",
       "language": "python",
-      "sizeLines": 266,
+      "sizeLines": 289,
       "fileCategory": "code"
     },
     {
@@ -929,16 +1506,110 @@
       "language": "python",
       "sizeLines": 23,
       "fileCategory": "code"
+    },
+    {
+      "path": "合规审查RAG判断方案计划.md",
+      "language": "markdown",
+      "sizeLines": 270,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "检索召回率优化计划_Codex.md",
+      "language": "markdown",
+      "sizeLines": 574,
+      "fileCategory": "docs"
     }
   ],
-  "totalFiles": 151,
+  "totalFiles": 249,
   "filteredByIgnore": 0,
   "estimatedComplexity": "large",
   "importMap": {
     ".dockerignore": [],
     ".env.example": [],
+    ".ua/.trash-1786823693/assemble-review.json": [],
+    ".ua/.trash-1786823693/assembled-graph.json": [],
+    ".ua/.trash-1786823693/batch-1-part-1.json": [],
+    ".ua/.trash-1786823693/batch-1-part-2.json": [],
+    ".ua/.trash-1786823693/batch-1-part-3.json": [],
+    ".ua/.trash-1786823693/batch-1-part-4.json": [],
+    ".ua/.trash-1786823693/batch-10.json": [],
+    ".ua/.trash-1786823693/batch-11.json": [],
+    ".ua/.trash-1786823693/batch-12.json": [],
+    ".ua/.trash-1786823693/batch-13.json": [],
+    ".ua/.trash-1786823693/batch-2-part-1.json": [],
+    ".ua/.trash-1786823693/batch-2-part-2.json": [],
+    ".ua/.trash-1786823693/batch-3-part-1.json": [],
+    ".ua/.trash-1786823693/batch-3-part-2.json": [],
+    ".ua/.trash-1786823693/batch-4.json": [],
+    ".ua/.trash-1786823693/batch-5.json": [],
+    ".ua/.trash-1786823693/batch-6.json": [],
+    ".ua/.trash-1786823693/batch-7.json": [],
+    ".ua/.trash-1786823693/batch-8.json": [],
+    ".ua/.trash-1786823693/batch-9.json": [],
+    ".ua/.trash-1786823693/batches.json": [],
+    ".ua/.trash-1786823693/fingerprint-input.json": [],
+    ".ua/.trash-1786823693/layers.json": [],
+    ".ua/.trash-1786823693/review.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-1.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-10.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-11.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-12.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-13.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-2.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-3.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-4.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-5.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-6.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-7.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-8.json": [],
+    ".ua/.trash-1786823693/tmp/batch-input-9.json": [],
+    ".ua/.trash-1786823693/tmp/build-batch-3.py": [],
+    ".ua/.trash-1786823693/tmp/gen-batch-1.py": [],
+    ".ua/.trash-1786823693/tmp/gen-batch2.py": [],
+    ".ua/.trash-1786823693/tmp/gen-layers.py": [],
+    ".ua/.trash-1786823693/tmp/ua-arch-analyze.js": [],
+    ".ua/.trash-1786823693/tmp/ua-arch-input.json": [],
+    ".ua/.trash-1786823693/tmp/ua-arch-results.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-1.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-10.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-11.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-12.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-13.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-2.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-3.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-4.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-5.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-6.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-7.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-8.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-analyzer-input-9.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-1.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-10.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-11.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-12.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-13.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-2.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-3.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-4.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-5.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-6.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-7.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-8.json": [],
+    ".ua/.trash-1786823693/tmp/ua-file-extract-results-9.json": [],
+    ".ua/.trash-1786823693/tmp/ua-import-map-input.json": [],
+    ".ua/.trash-1786823693/tmp/ua-import-map-output.json": [],
+    ".ua/.trash-1786823693/tmp/ua-inline-validate.cjs": [],
+    ".ua/.trash-1786823693/tmp/ua-scan-files.json": [],
+    ".ua/.trash-1786823693/tmp/ua-tour-analyze.js": [],
+    ".ua/.trash-1786823693/tmp/ua-tour-input.json": [],
+    ".ua/.trash-1786823693/tmp/ua-tour-results.json": [],
+    ".ua/.trash-1786823693/tour.json": [],
     ".ua/.understandignore": [],
     ".ua/config.json": [],
+    ".ua/fingerprints.json": [],
+    ".ua/intermediate/scan-result.json": [],
+    ".ua/knowledge-graph.json": [],
+    ".ua/meta.json": [],
     "AGENTS.md": [],
     "Dockerfile": [],
     "README.md": [],
@@ -1015,11 +1686,24 @@
       "app/core/model_client.py",
       "app/domain/models.py"
     ],
+    "app/compliance/judgement_models.py": [
+      "app/domain/models.py"
+    ],
+    "app/compliance/judgement_validator.py": [
+      "app/compliance/judgement_models.py",
+      "app/compliance/units.py",
+      "app/domain/models.py"
+    ],
     "app/compliance/matcher.py": [
       "app/compliance/models.py",
       "app/domain/models.py"
     ],
     "app/compliance/models.py": [
+      "app/domain/models.py"
+    ],
+    "app/compliance/rag_judge.py": [
+      "app/compliance/judgement_models.py",
+      "app/core/model_client.py",
       "app/domain/models.py"
     ],
     "app/compliance/repository.py": [
@@ -1252,6 +1936,7 @@
     "docs/M2_STRUCTURE.md": [],
     "docs/PROGRESS.md": [],
     "docs/RESUME.md": [],
+    "docs/RETRIEVAL_OPTIMIZATION_LOG.md": [],
     "evaluation/MANIFEST.json": [],
     "evaluation/README.md": [],
     "evaluation/annotations/candidate_rule_review.jsonl": [],
@@ -1267,11 +1952,20 @@
     "evaluation/design_detail_gold.jsonl": [],
     "evaluation/design_gold.jsonl": [],
     "evaluation/qa_gold.jsonl": [],
+    "evaluation/reports/latest/adaptive_routing_compliance_comparison.json": [],
+    "evaluation/reports/latest/adaptive_routing_e2e_comparison.json": [],
+    "evaluation/reports/latest/adaptive_routing_e2e_planlevel_comparison.json": [],
+    "evaluation/reports/latest/agentic_routing_baseline.json": [],
+    "evaluation/reports/latest/agentic_routing_combined.json": [],
     "evaluation/reports/latest/demo_cases.json": [],
     "evaluation/reports/latest/demo_cases.md": [],
+    "evaluation/reports/latest/dynamic_routing.json": [],
     "evaluation/reports/latest/metrics.json": [],
+    "evaluation/reports/latest/query_rewrite.json": [],
     "evaluation/reports/latest/report.html": [],
     "evaluation/reports/latest/report.md": [],
+    "evaluation/reports/latest/retrieval_failure_analysis.json": [],
+    "evaluation/reports/latest/retrieval_failure_analysis.md": [],
     "evaluation/reports/latest/retrieval_realistic.json": [],
     "evaluation/retrieval_gold.jsonl": [],
     "pyproject.toml": [],
@@ -1290,6 +1984,11 @@
       "app/core/config.py",
       "app/core/exceptions.py",
       "app/ingestion/structure_parser.py"
+    ],
+    "scripts/diagnose_retrieval_failures.py": [
+      "app/api/qa.py",
+      "app/evaluation/generated.py",
+      "app/knowledge/indexes.py"
     ],
     "scripts/evaluate_design.py": [
       "app/design/parser.py"
@@ -1453,6 +2152,8 @@
     ],
     "tests/test_system_api.py": [
       "app/main.py"
-    ]
+    ],
+    "合规审查RAG判断方案计划.md": [],
+    "检索召回率优化计划_Codex.md": []
   }
 }
