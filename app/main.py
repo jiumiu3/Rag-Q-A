@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse, Response
 
 from app import __version__
 from app.api.agent import router as agent_router
+from app.api.projects import router as projects_router
 from app.api.qa import router as qa_router
 from app.api.review import router as review_router
 from app.api.system import router as system_router
@@ -25,6 +26,7 @@ def create_app() -> FastAPI:
     application.include_router(qa_router, prefix=settings.api_prefix)
     application.include_router(review_router, prefix=settings.api_prefix)
     application.include_router(agent_router, prefix=settings.api_prefix)
+    application.include_router(projects_router, prefix=settings.api_prefix)
 
     @application.middleware("http")
     async def request_trace(
@@ -51,10 +53,10 @@ def create_app() -> FastAPI:
     async def handle_app_error(_request: Request, exc: AppError) -> JSONResponse:
         logging.getLogger(__name__).warning(
             exc.message,
-            extra={"module": "api", "status": "error", "error_code": exc.code},
+            extra={"component": "api", "status": "error", "error_code": exc.code},
         )
         return JSONResponse(
-            status_code=400,
+            status_code=exc.status_code,
             content={"error": {"code": exc.code, "message": exc.message, "details": exc.details}},
         )
 
@@ -63,7 +65,7 @@ def create_app() -> FastAPI:
         request_id = getattr(request.state, "request_id", None)
         logging.getLogger(__name__).exception(
             "unexpected_error",
-            extra={"module": "api", "status": "error", "request_id": request_id},
+            extra={"component": "api", "status": "error", "request_id": request_id},
         )
         return JSONResponse(
             status_code=500,

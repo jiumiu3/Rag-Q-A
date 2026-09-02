@@ -15,6 +15,7 @@ from app.domain.models import (
     StrictModel,
     TraceEvent,
 )
+from app.memory.models import FactValue, MemoryActionResult, ProjectSummary
 from app.qa.models import AnswerDraft
 from app.retrieval.models import (
     EvidenceAssessment,
@@ -39,6 +40,7 @@ class PendingAction(StrEnum):
     CONFIRM_CHECK_ITEMS = "CONFIRM_CHECK_ITEMS"
     ANSWER_CLARIFICATION = "ANSWER_CLARIFICATION"
     REVIEW_CANDIDATE_RULES = "REVIEW_CANDIDATE_RULES"
+    CONFIRM_MEMORY = "CONFIRM_MEMORY"
 
 
 class WorkflowMessage(StrictModel):
@@ -50,6 +52,15 @@ class WorkflowMessage(StrictModel):
 class AgentState(StrictModel):
     session_id: str
     request_id: str
+    user_id: str = "legacy_local"
+    project_id: str | None = None
+    active_review_run_id: str | None = None
+    active_check_item_id: str | None = None
+    pending_question_id: str | None = None
+    workflow_stage: str = "new"
+    pending_hypothesis: dict[str, FactValue] | None = None
+    memory_actions: list[MemoryActionResult] = Field(default_factory=list)
+    project_summary: ProjectSummary | None = None
     status: WorkflowStatus = WorkflowStatus.NEW
     current_node: str = "normalize_input"
     input_text: str = ""
@@ -91,6 +102,7 @@ class AgentState(StrictModel):
 
 class SessionCreateRequest(StrictModel):
     mode: str = "review"
+    project_id: str | None = None
 
 
 class SessionMessageRequest(StrictModel):
@@ -105,3 +117,7 @@ class WorkflowConfirmRequest(StrictModel):
 
 class WorkflowClarificationRequest(StrictModel):
     answers: dict[str, str | int | float | bool]
+
+
+class MemoryConfirmRequest(StrictModel):
+    approved: bool

@@ -13,7 +13,7 @@ from tests.test_m9_workflow import workflow
 async def request(method: str, path: str, payload: dict[str, Any] | None = None) -> httpx.Response:
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
-        return await client.request(method, path, json=payload)
+        return await client.request(method, path, json=payload, headers={"X-User-Id": "test_user"})
 
 
 def install_service(service: WorkflowService) -> None:

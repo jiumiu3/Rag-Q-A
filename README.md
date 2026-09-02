@@ -54,6 +54,11 @@ OCR 与条款结构化，建立 BM25 和 Embedding 索引，并提供带条款�
 - Claim-Evidence 绑定、引用真实性校验和证据不足安全降级。
 - 轻量模型 Schema 拆解设计描述，代码生成稳定 ID、字符位置和追溯字段。
 - 检查项确认、处理状态反馈、会话恢复和报告导出。
+- 通过 `X-User-Id + project_id` 隔离工程项目、Session、结构化事实和审查记录。
+- ProjectFact 支持 active/superseded 版本、幂等写入、乐观锁和历史追溯。
+- 模型结构化提取明确工程事实；不确定和假设表达不会覆盖正式项目状态。
+- Review Memory 保存事实与 Evidence 依赖，参数变化后只使关联检查项失效并局部重审。
+- 新 Session 可恢复项目事实、审查摘要和待补充问题；历史判断优先从已存 Review 解释。
 - 每个检查项独立检索 Top5 直接 Evidence，显式保存检查项与证据归属。
 - 模型结合完整原始设计描述与每项 Evidence 输出合规状态、总体总结、逐项原因和来源条款。
 - 代码只验证 Evidence 归属及来源条款真实性，不用确定性业务规则覆盖模型结论。
@@ -80,6 +85,12 @@ flowchart LR
     CONFIRM --> SEARCH[动态分项检索 Evidence]
     SEARCH --> JUDGE[模型结构化判断]
     JUDGE --> VALIDATE[Evidence 与来源条款校验]
+    PROJECT[工程项目] --> MEMORY[结构化事实与版本]
+    MEMORY --> ITEMS
+    VALIDATE --> REVIEWMEM[审查结果与依赖]
+    MEMORY --> IMPACT[变更影响分析]
+    IMPACT --> SEARCH
+    REVIEWMEM --> EXPLAIN[跨会话恢复与历史解释]
 ```
 
 详细组件和安全边界见 [系统架构说明](docs/ARCHITECTURE.md)。
@@ -104,6 +115,7 @@ app/
   evaluation/     统一评测器
   ingestion/      PDF 与 OCR
   knowledge/      SQLite、BM25、向量索引
+  memory/         项目、事实版本、审查记忆与影响分析
   qa/             RAG Agent 与回答校验
   retrieval/      查询分析和 Evidence
   web/            问答页面
@@ -315,14 +327,28 @@ GET  /api/v1/rules/{rule_id}
 
 ## 会话与证据接口
 
+项目与 Session 接口必须携带 `X-User-Id` 请求头。用户标识由上游认证系统注入；当前项目只负责作用域隔离，不签发身份凭证。
+
 ```text
 POST /api/v1/sessions
 POST /api/v1/sessions/{session_id}/messages
 POST /api/v1/sessions/{session_id}/confirm
 POST /api/v1/sessions/{session_id}/clarify
+POST /api/v1/sessions/{session_id}/memory/confirm
 GET  /api/v1/sessions/{session_id}
 POST /api/v1/sessions/{session_id}/replay
 GET  /api/v1/sessions/{session_id}/report?format=markdown|json
+
+POST /api/v1/projects
+GET  /api/v1/projects
+GET  /api/v1/projects/{project_id}
+GET  /api/v1/projects/{project_id}/facts
+GET  /api/v1/projects/{project_id}/facts/history
+POST /api/v1/projects/{project_id}/facts
+PATCH /api/v1/projects/{project_id}/facts/{fact_id}
+GET  /api/v1/projects/{project_id}/changes
+GET  /api/v1/projects/{project_id}/reviews
+GET  /api/v1/projects/{project_id}/reviews/{review_id}
 
 GET /api/v1/knowledge/documents
 GET /api/v1/knowledge/index-versions
@@ -368,8 +394,8 @@ python -m app.main
 代码检查：
 
 ```bash
-ruff format --check .
-ruff check .
+ruff format --check app tests
+ruff check app tests
 mypy app
 pytest
 ```
@@ -381,4 +407,7 @@ pytest
 - 回答只在已导入规范范围内提供证据，不替代正式工程审查。
 - 复杂表格可能标记为 `NEEDS_MANUAL_ANNOTATION`，不得自动查值。
 - 合规结论由模型基于当前检查项绑定 Evidence 生成，输出前必须通过 Evidence 归属和来源条款真实性校验。
+- Project Memory 只表示工程事实，不能作为规范要求替代 Evidence。
+- 项目消息的事实候选提取依赖已配置的真实聊天模型；模型不可用时安全暂停，不使用程序模拟。
+- V1 使用 SQLite 确定性查询结构化记忆，暂不实现 Episodic Memory 和跨项目语义召回。
 - 没有充分证据时必须拒答、返回部分结果或标记待复核。

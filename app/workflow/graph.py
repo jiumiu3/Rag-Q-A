@@ -123,7 +123,11 @@ class WorkflowRunner:
             "generate_qa_answer": "verify_qa_answer",
             "verify_qa_answer": route_qa_verification(state),
             "evaluate_evidence": route_evidence(state),
-            "judge_compliance": "evaluate_compliance",
+            "judge_compliance": (
+                "pause"
+                if state.status == WorkflowStatus.WAITING_CLARIFICATION
+                else "evaluate_compliance"
+            ),
             "extract_rule": route_after_rule_extraction(state),
             "evaluate_compliance": "verify_claims",
             "verify_claims": route_verification(state),
@@ -197,7 +201,15 @@ def build_langgraph(nodes: WorkflowNodes, checkpoint_path: Path | None = None) -
             "pause": END,
         },
     )
-    graph.add_edge("judge_compliance", "evaluate_compliance")
+    graph.add_conditional_edges(
+        "judge_compliance",
+        lambda state: (
+            "pause"
+            if state.status == WorkflowStatus.WAITING_CLARIFICATION
+            else "evaluate_compliance"
+        ),
+        {"pause": END, "evaluate_compliance": "evaluate_compliance"},
+    )
     graph.add_conditional_edges(
         "extract_rule",
         route_after_rule_extraction,

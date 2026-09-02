@@ -30,6 +30,7 @@ class ComplianceJudgement(StrictModel):
     required_unit: str | None = None
     comparison_trace: list[ComparisonStep] = Field(default_factory=list)
     limitations: list[str] = Field(default_factory=list)
+    missing_fields: list[str] = Field(default_factory=list)
 
 
 class ComplianceJudgementList(StrictModel):

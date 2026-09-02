@@ -48,6 +48,8 @@ class ComplianceJudge:
             "只有 Evidence 明确证明实际方案违反要求时才能判 NON_COMPLIANT；"
             "未提供参数、核验记录、联锁说明或适用条件时，必须判 "
             "INSUFFICIENT_INFORMATION 或 MANUAL_REVIEW_REQUIRED，禁止把资料缺失当成违规。"
+            "如果用户补充某个工程事实后即可继续判断，将该事实的 snake_case 键写入 "
+            "missing_fields；仅需人工查表或核验时不要虚构可追问字段。"
             "证据不足、需查未结构化表格或无法确认条款优先级时安全降级。"
             "actual 必须与 CheckItem 一致，required 必须来自 Evidence。"
             "original_design_description 只用于恢复多个检查项共享的场景、位置和条件，"

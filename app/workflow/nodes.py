@@ -12,10 +12,12 @@ from app.compliance.repository import SQLiteRuleRepository
 from app.design.parser import DesignDescriptionParser, StructuredDesignParser
 from app.domain.models import (
     CheckItemStatus,
+    ClarificationRequest,
     ComplianceResult,
     ComplianceStatus,
     Evidence,
     IntentType,
+    MissingField,
     RequirementLevel,
 )
 from app.qa.service import QAService
@@ -196,9 +198,7 @@ class WorkflowNodes:
         evidence = list(state.evidence)
         seen = {item.evidence_id for item in evidence}
         new_count = 0
-        evidence_by_item = {
-            key: list(value) for key, value in state.evidence_by_check_item.items()
-        }
+        evidence_by_item = {key: list(value) for key, value in state.evidence_by_check_item.items()}
         tool_calls = list(state.retrieval_tool_calls)
         queries = state.retrieval_plan.subqueries or [state.retrieval_plan.query]
         query_item_ids = state.retrieval_plan.subquery_item_ids
@@ -219,9 +219,7 @@ class WorkflowNodes:
             for target_id in target_ids:
                 previous_ids = evidence_by_item.setdefault(target_id, [])
                 # 最新一轮结果优先，使查询改写后的 Top5 真正进入模型。
-                evidence_by_item[target_id] = list(
-                    dict.fromkeys([*result_ids, *previous_ids])
-                )
+                evidence_by_item[target_id] = list(dict.fromkeys([*result_ids, *previous_ids]))
             for item in result.evidence:
                 if item.evidence_id not in seen:
                     evidence.append(item)
@@ -418,6 +416,29 @@ class WorkflowNodes:
             )
             judgements = generated.judgements
             summary = generated.overall_summary
+            missing = [
+                MissingField(
+                    field_name=field,
+                    reason="当前规范 Evidence 表明该工程条件是完成判断的必要前提",
+                    expected_type="string_or_number",
+                    related_item_ids=[judgement.check_item_id],
+                )
+                for judgement in judgements
+                for field in judgement.missing_fields
+            ]
+            if missing:
+                fields = "、".join(dict.fromkeys(row.field_name for row in missing))
+                return {
+                    "compliance_judgements": judgements,
+                    "compliance_summary": summary,
+                    "clarification": ClarificationRequest(
+                        question=f"继续审查前请补充：{fields}",
+                        requested_fields=missing,
+                        resume_token=state.session_id,
+                    ),
+                    "status": WorkflowStatus.WAITING_CLARIFICATION,
+                    "pending_action": PendingAction.ANSWER_CLARIFICATION,
+                }
         return {"compliance_judgements": judgements, "compliance_summary": summary}
 
     def extract_rule(self, state: AgentState) -> dict[str, object]:

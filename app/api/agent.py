@@ -8,6 +8,7 @@ from typing import Annotated, Literal
 from fastapi import APIRouter, Depends, Query
 from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse
 
+from app.api.identity import current_user_id
 from app.api.qa import get_qa_service
 from app.compliance.rag_judge import ComplianceJudge
 from app.compliance.repository import SQLiteRuleRepository
@@ -15,10 +16,13 @@ from app.core.config import get_settings
 from app.core.exceptions import AppError
 from app.core.model_client import CompatibleJSONClient
 from app.design.parser import LLMDesignDescriptionParser
+from app.memory.extractor import MemoryCandidateExtractor
+from app.memory.repository import SQLiteMemoryRepository
 from app.retrieval.agentic_planner import AgenticRetrievalPlanner
 from app.workflow.graph import WorkflowRunner, graph_mermaid
 from app.workflow.models import (
     AgentState,
+    MemoryConfirmRequest,
     SessionCreateRequest,
     SessionMessageRequest,
     WorkflowClarificationRequest,
@@ -50,7 +54,9 @@ def get_workflow_service() -> WorkflowService:
         retrieval_planner=AgenticRetrievalPlanner(model_client),
     )
     repository = SQLiteWorkflowRepository(settings.storage.session_sqlite_path)
-    return WorkflowService(repository, WorkflowRunner(nodes))
+    memory_repository = SQLiteMemoryRepository(settings.storage.session_sqlite_path)
+    memory_extractor = MemoryCandidateExtractor(model_client) if model_client else None
+    return WorkflowService(repository, WorkflowRunner(nodes), memory_repository, memory_extractor)
 
 
 async def provide_workflow_service() -> WorkflowService:
@@ -59,63 +65,80 @@ async def provide_workflow_service() -> WorkflowService:
 
 @router.post("/sessions", response_model=AgentState)
 async def create_session(
-    _request: SessionCreateRequest,
+    request: SessionCreateRequest,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
 ) -> AgentState:
-    return service.create_session()
+    return service.create_session(user_id, request.project_id)
 
 
 @router.post("/sessions/{session_id}/messages", response_model=AgentState)
 async def send_message(
     session_id: str,
     request: SessionMessageRequest,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
 ) -> AgentState:
-    return service.send_message(session_id, request.content, request.idempotency_key)
+    return service.send_message(session_id, request.content, request.idempotency_key, user_id)
 
 
 @router.post("/sessions/{session_id}/confirm", response_model=AgentState)
 async def confirm_items(
     session_id: str,
     request: WorkflowConfirmRequest,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
 ) -> AgentState:
-    return service.confirm(session_id, request)
+    return service.confirm(session_id, request, user_id)
 
 
 @router.post("/sessions/{session_id}/clarify", response_model=AgentState)
 async def clarify(
     session_id: str,
     request: WorkflowClarificationRequest,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
 ) -> AgentState:
-    return service.clarify(session_id, request.answers)
+    return service.clarify(session_id, request.answers, user_id)
+
+
+@router.post("/sessions/{session_id}/memory/confirm", response_model=AgentState)
+async def confirm_memory(
+    session_id: str,
+    request: MemoryConfirmRequest,
+    user_id: Annotated[str, Depends(current_user_id)],
+    service: Annotated[WorkflowService, Depends(provide_workflow_service)],
+) -> AgentState:
+    return service.confirm_memory(session_id, request.approved, user_id)
 
 
 @router.get("/sessions/{session_id}", response_model=AgentState)
 async def get_session(
     session_id: str,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
 ) -> AgentState:
-    return service.repository.load(session_id)
+    return service.repository.load(session_id, user_id)
 
 
 @router.post("/sessions/{session_id}/replay", response_model=AgentState)
 async def replay(
     session_id: str,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
     start_node: str | None = Query(default=None),
 ) -> AgentState:
-    return service.replay(session_id, start_node)
+    return service.replay(session_id, start_node, user_id)
 
 
 @router.get("/sessions/{session_id}/report")
 async def export_report(
     session_id: str,
+    user_id: Annotated[str, Depends(current_user_id)],
     service: Annotated[WorkflowService, Depends(provide_workflow_service)],
     format: Literal["markdown", "json"] = Query(default="markdown"),
 ) -> PlainTextResponse:
-    state = service.repository.load(session_id)
+    state = service.repository.load(session_id, user_id)
     if format == "json":
         return PlainTextResponse(state.model_dump_json(indent=2), media_type="application/json")
     return PlainTextResponse(state.report_markdown or "报告尚未生成", media_type="text/markdown")

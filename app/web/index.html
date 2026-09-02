@@ -48,7 +48,7 @@
         linear-gradient(180deg, rgba(11, 49, 85, .035), transparent 240px),
         #eef3f7;
     }
-    button, textarea { font: inherit; }
+    button, textarea, input { font: inherit; }
     button, a, summary { -webkit-tap-highlight-color: transparent; }
     button, summary { touch-action: manipulation; }
     button:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible {
@@ -316,6 +316,13 @@
     .count { min-width: 24px; padding: 3px 7px; border-radius: 999px; color: var(--blue-600); background: var(--blue-100); font-size: 11px; font-weight: 800; text-align: center; }
     .empty-state { padding: 12px; border: 1px dashed var(--line-strong); border-radius: var(--radius-sm); color: var(--muted); background: var(--surface-subtle); font-size: 12px; line-height: 1.55; }
     .helper { margin: 7px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .field-label { display: block; margin: 10px 0 6px; color: var(--navy-900); font-size: 12px; font-weight: 700; }
+    .text-input { width: 100%; min-height: 44px; padding: 9px 11px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); color: var(--text); background: #fff; }
+    .text-input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+    .fact-list { display: grid; gap: 7px; }
+    .fact-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-subtle); font-size: 12px; }
+    .fact-row strong { overflow-wrap: anywhere; }
+    .fact-value { color: var(--navy-900); font-variant-numeric: tabular-nums; text-align: right; }
 
     details.item-card, details.evidence-card {
       margin-top: 8px;
@@ -457,6 +464,19 @@
           </button>
         </div>
         <div class="detail-scroll">
+          <section class="panel-section" aria-labelledby="project-title">
+            <div class="section-heading"><h3 id="project-title">当前项目</h3><span id="projectState" class="count" role="status" aria-atomic="true">未绑定</span></div>
+            <label class="field-label" for="userId">用户标识</label>
+            <input class="text-input" id="userId" value="demo_user" autocomplete="username" aria-describedby="userHelp">
+            <p id="userHelp" class="helper">切换用户后会重新加载该用户的项目，项目数据彼此隔离。</p>
+            <label class="field-label" for="projectName">新项目名称</label>
+            <input class="text-input" id="projectName" value="演示工程" maxlength="200">
+            <div class="section-actions"><button class="button button-secondary" id="createProject" type="button">创建并切换项目</button></div>
+            <p id="projectError" class="inline-error" role="alert"></p>
+            <div id="projectSummary" class="empty-state">正在加载项目状态…</div>
+            <div id="projectFacts" class="fact-list" aria-label="当前有效项目事实"></div>
+          </section>
+
           <section class="panel-section" aria-labelledby="items-title">
             <div class="section-heading"><h3 id="items-title">检查项确认</h3><span id="itemCount" class="count">0</span></div>
             <div id="items" class="empty-state">提交设计描述后，拆解出的检查项将在这里显示。</div>
@@ -496,6 +516,7 @@
 
   <script>
     let sessionId = null;
+    let projectId = null;
     let state = null;
     let busy = false;
     const $ = id => document.getElementById(id);
@@ -530,7 +551,11 @@
     };
 
     async function api(path, options = {}) {
-      const response = await fetch('/api/v1' + path, {headers: {'Content-Type': 'application/json'}, ...options});
+      const userId = $('userId')?.value.trim() || 'demo_user';
+      const response = await fetch('/api/v1' + path, {
+        ...options,
+        headers: {'Content-Type': 'application/json', 'X-User-Id': userId, ...(options.headers || {})}
+      });
       const body = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(body.error?.message || JSON.stringify(body));
       return body;
@@ -590,15 +615,77 @@
     async function create() {
       setBusy(true, '正在创建安全会话…');
       try {
-        state = await api('/sessions', {method: 'POST', body: '{"mode":"review"}'});
+        await ensureProject();
+        state = await api('/sessions', {
+          method: 'POST',
+          body: JSON.stringify({mode: 'review', project_id: projectId})
+        });
         sessionId = state.session_id;
         // 页面只展示短会话标识，完整 ID 仍由前端状态用于接口调用。
         $('session').textContent = `会话 ${sessionId.slice(0, 16)}…`;
         renderDetails();
+        await renderProjectMemory();
         $('status').textContent = '会话已就绪，可以开始提问或提交方案。';
       } finally {
         setBusy(false);
       }
+    }
+
+    async function ensureProject() {
+      if (projectId) return;
+      const projects = await api('/projects');
+      if (projects.items?.length) {
+        projectId = projects.items[0].project_id;
+        $('projectName').value = projects.items[0].name;
+      } else {
+        const project = await api('/projects', {
+          method: 'POST',
+          body: JSON.stringify({name: $('projectName').value.trim() || '演示工程'})
+        });
+        projectId = project.project_id;
+      }
+      $('projectState').textContent = '已绑定';
+    }
+
+    async function createProject() {
+      if (busy) return;
+      const name = $('projectName').value.trim();
+      if (!name) {
+        $('projectError').textContent = '请输入项目名称。';
+        $('projectName').focus();
+        return;
+      }
+      $('projectError').textContent = '';
+      setBusy(true, '正在创建项目…');
+      setButtonLoading($('createProject'), true, '正在创建');
+      try {
+        const project = await api('/projects', {
+          method: 'POST', body: JSON.stringify({name})
+        });
+        projectId = project.project_id;
+        sessionId = null;
+        await create();
+        $('status').textContent = `已切换到项目“${project.name}”。`;
+      } catch (error) {
+        $('projectError').textContent = `创建失败：${error.message}`;
+      } finally {
+        setBusy(false);
+        setButtonLoading($('createProject'), false, '创建并切换项目');
+      }
+    }
+
+    async function renderProjectMemory() {
+      if (!projectId) return;
+      const [project, facts] = await Promise.all([
+        api(`/projects/${projectId}`), api(`/projects/${projectId}/facts`)
+      ]);
+      const summary = state?.project_summary;
+      $('projectSummary').textContent = summary
+        ? `${project.name}：${summary.active_fact_count} 条有效事实，${summary.valid_review_count} 项有效审查，${summary.stale_review_count} 项待重审。`
+        : `${project.name}：当前有 ${facts.items.length} 条有效事实。`;
+      $('projectFacts').innerHTML = facts.items.length ? facts.items.map(fact =>
+        `<div class="fact-row"><strong>${esc(fact.fact_key)}</strong><span class="fact-value">${esc(Array.isArray(fact.value) ? fact.value.join('、') : fact.value)} ${esc(fact.unit || '')}<br>v${esc(fact.version)}</span></div>`
+      ).join('') : '<div class="empty-state">尚无已确认项目事实。</div>';
     }
 
     function answerText(currentState) {
@@ -623,6 +710,7 @@
         });
         bubble(answerText(state));
         renderDetails();
+        await renderProjectMemory();
         if (state.status === 'WAITING_CONFIRMATION') openDrawer(true);
         $('status').textContent = statusMeta[state.status]?.[0] || `状态：${state.status}`;
       } catch (error) {
@@ -649,6 +737,7 @@
         });
         bubble(answerText(state));
         renderDetails();
+        await renderProjectMemory();
         $('status').textContent = state.status === 'COMPLETED' ? '合规审查已完成，可查看逐项结论。' : (statusMeta[state.status]?.[0] || state.status);
       } catch (error) {
         bubble(`继续处理失败：${error.message}`, 'assistant', true);
@@ -678,6 +767,7 @@
         state = await api(`/sessions/${sessionId}/clarify`, {method: 'POST', body: JSON.stringify({answers})});
         bubble(answerText(state));
         renderDetails();
+        await renderProjectMemory();
         $('answers').value = '';
         $('status').textContent = '补充信息已提交，工作流已继续。';
       } catch (error) {
@@ -694,6 +784,7 @@
       $('confirm').disabled = busy || !hasItems || state?.status !== 'WAITING_CONFIRMATION';
       $('clarify').disabled = busy || !sessionId || state?.status !== 'WAITING_CLARIFICATION';
       $('report').disabled = !sessionId || !state?.report_markdown;
+      $('createProject').disabled = busy;
     }
 
     function renderDetails() {
@@ -741,13 +832,33 @@
       $('messages').innerHTML = '<div class="message-row assistant"><div class="avatar" aria-hidden="true">AI</div><div class="bubble">新会话已创建。判断结果会列出对应来源条款。</div></div>';
       $('message').focus();
     });
+    $('createProject').addEventListener('click', createProject);
+    $('userId').addEventListener('change', async () => {
+      projectId = null;
+      sessionId = null;
+      state = null;
+      await create();
+    });
     $('send').addEventListener('click', send);
     $('message').addEventListener('keydown', event => {
       if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); send(); }
     });
     $('confirm').addEventListener('click', confirmItems);
     $('clarify').addEventListener('click', clarify);
-    $('report').addEventListener('click', () => sessionId && window.open(`/api/v1/sessions/${sessionId}/report?format=markdown`, '_blank', 'noopener'));
+    $('report').addEventListener('click', async () => {
+      if (!sessionId) return;
+      const userId = $('userId').value.trim();
+      const response = await fetch(`/api/v1/sessions/${sessionId}/report?format=markdown`, {
+        headers: {'X-User-Id': userId}
+      });
+      if (!response.ok) {
+        $('status').textContent = '报告打开失败，请稍后重试。';
+        return;
+      }
+      const url = URL.createObjectURL(await response.blob());
+      window.open(url, '_blank', 'noopener');
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    });
 
     create().catch(error => {
       $('status').textContent = `会话创建失败：${error.message}`;
